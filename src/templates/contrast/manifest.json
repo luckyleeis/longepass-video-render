@@ -1,0 +1,67 @@
+{
+  "id": "contrast",
+  "version": 1,
+  "name": "전환점 한 글자",
+  "component": "Contrast.tsx",
+  "category": "emphasis",
+  "inspired_by": "ai_sync_club — 화면을 채우는 한 글자",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A turning point: one huge character (e.g. 但, 其實) plus a short sentence.",
+  "avoid_when": "Used more than once per video.",
+  "fields": {
+    "char": {
+      "type": "text",
+      "max": 2,
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "max": 12,
+      "required": true
+    }
+  },
+  "events": {
+    "char": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "text": {
+      "kind": "single",
+      "at": 0.25
+    }
+  },
+  "sfx": {
+    "char": "impact",
+    "text": "swish_up"
+  },
+  "sfx_when": [],
+  "bg": "alt",
+  "duration": {
+    "min_sec": 3,
+    "max_sec": 12
+  },
+  "examples": [
+    {
+      "narration": "但是請特別注意，地方政府發放的證照獎勵金並不是人人都可以領取的。在滿懷期待送出申請之前，一定要先進行自我檢核，以免白白浪費了寶貴的時間。",
+      "data": {
+        "char": "但",
+        "text": "獎勵金並非人人可領"
+      },
+      "cues": {
+        "char": "但是請",
+        "text": "人人都可以領取"
+      }
+    }
+  ]
+}

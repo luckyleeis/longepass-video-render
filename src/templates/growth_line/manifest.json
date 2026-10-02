@@ -1,0 +1,137 @@
+{
+  "id": "growth_line",
+  "version": 1,
+  "kind": "shot",
+  "name": "성장 곡선",
+  "component": "GrowthLine.tsx",
+  "category": "chart",
+  "inspired_by": "echany — 큰 숫자가 꺾은선 끝을 따라 101조→500조로 커지는 장면",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A value changing over time or stages (3-7 points): the line grows point by point while a big number follows its tip. Best for growth or progress.",
+  "avoid_when": "Values are categories without order (use bar_chart). Only one number (use counter).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "label": {
+      "type": "text",
+      "max": 10,
+      "desc": "small text next to the big number"
+    },
+    "prefix": {
+      "type": "text",
+      "max": 4
+    },
+    "unit": {
+      "type": "text",
+      "max": 3
+    },
+    "points": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "max": 6,
+            "required": true
+          },
+          "value": {
+            "type": "number",
+            "required": true
+          },
+          "note": {
+            "type": "text",
+            "max": 10,
+            "desc": "badge on the last point only"
+          }
+        },
+        "required": true
+      },
+      "min": 3,
+      "max": 7
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "points": {
+      "kind": "each",
+      "of": "points"
+    },
+    "end": {
+      "kind": "single",
+      "at": 0.9,
+      "after": {
+        "event": "points",
+        "gap": 6
+      }
+    }
+  },
+  "sfx": {
+    "points": "click",
+    "end": "ding"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "如果每天固定刷題，模擬考分數通常會這樣慢慢爬升：第一週四十二分、第二週五十五分、第四週六十三分、第六週七十四分，第八週衝上八十六分。",
+      "data": {
+        "title": "每天刷題的分數變化",
+        "label": "模擬考平均",
+        "unit": "分",
+        "points": [
+          {
+            "label": "第1週",
+            "value": 42
+          },
+          {
+            "label": "第2週",
+            "value": 55
+          },
+          {
+            "label": "第4週",
+            "value": 63
+          },
+          {
+            "label": "第6週",
+            "value": 74
+          },
+          {
+            "label": "第8週",
+            "value": 86,
+            "note": "穩過及格線"
+          }
+        ]
+      },
+      "cues": {
+        "points": [
+          "第一週",
+          "第二週",
+          "第四週",
+          "第六週",
+          "第八週"
+        ]
+      }
+    }
+  ]
+}

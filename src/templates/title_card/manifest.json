@@ -1,0 +1,78 @@
+{
+  "id": "title_card",
+  "version": 1,
+  "name": "영상 제목 카드",
+  "component": "TitleCard.tsx",
+  "category": "opener",
+  "inspired_by": "ai_sync_club — 큰 글자 제목 + 강조 구절",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Right after the opening hook: names the video topic and what the viewer will learn.",
+  "avoid_when": "Anywhere other than the start of the video.",
+  "fields": {
+    "kicker": {
+      "type": "text",
+      "max": 24,
+      "desc": "small label above the title"
+    },
+    "title": {
+      "type": "text",
+      "max": 16,
+      "required": true
+    },
+    "highlight": {
+      "type": "text",
+      "max": 6,
+      "desc": "exact fragment of title to mark"
+    },
+    "sub": {
+      "type": "text",
+      "max": 28
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "sub": {
+      "kind": "single",
+      "at": 0.5
+    }
+  },
+  "sfx": {
+    "title": "pop",
+    "sub": "glass"
+  },
+  "sfx_when": [],
+  "bg": "base",
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 14
+  },
+  "examples": [
+    {
+      "narration": "這支影片幫你把繁瑣的公文簡化成秒懂懶人包，完整盤點全台二十二縣市的證照獎勵金發放標準，帶你一步步將手中的專業證照，轉換成實實在在的銀行存款。",
+      "data": {
+        "kicker": "2026 全台 22 縣市攻略",
+        "title": "證照獎勵金懶人包",
+        "highlight": "獎勵金",
+        "sub": "完整盤點補助標準，教你領回萬元現金"
+      },
+      "cues": {
+        "title": "證照獎勵金",
+        "sub": "銀行存款"
+      }
+    }
+  ]
+}

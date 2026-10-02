@@ -1,0 +1,142 @@
+{
+  "id": "compare",
+  "version": 1,
+  "name": "A vs B 비교",
+  "component": "Compare.tsx",
+  "category": "compare",
+  "inspired_by": "aimkt — 전후 비교 카드",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Comparing two things side by side; value can hold an amount or key figure; verdict sums it up.",
+  "avoid_when": "More than two things (use bar_chart or list).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "left": {
+      "type": "object",
+      "fields": {
+        "label": {
+          "type": "text",
+          "max": 8,
+          "required": true
+        },
+        "value": {
+          "type": "text",
+          "max": 8
+        },
+        "points": {
+          "type": "list",
+          "item": {
+            "type": "text",
+            "max": 14,
+            "required": true
+          },
+          "min": 0,
+          "max": 3
+        }
+      },
+      "required": true
+    },
+    "right": {
+      "type": "object",
+      "fields": {
+        "label": {
+          "type": "text",
+          "max": 8,
+          "required": true
+        },
+        "value": {
+          "type": "text",
+          "max": 8
+        },
+        "points": {
+          "type": "list",
+          "item": {
+            "type": "text",
+            "max": 14,
+            "required": true
+          },
+          "min": 0,
+          "max": 3
+        }
+      },
+      "required": true
+    },
+    "verdict": {
+      "type": "text",
+      "max": 20
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "left": {
+      "kind": "single",
+      "at": 0.15
+    },
+    "right": {
+      "kind": "single",
+      "at": 0.45
+    },
+    "verdict": {
+      "kind": "single",
+      "at": 0.8
+    }
+  },
+  "sfx": {
+    "left": "swish_up",
+    "right": "swish_up",
+    "verdict": "ding"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "內行人才知道的雙重省錢密技，就是先申請勞動部的考試費用全額減免，免繳報名費與測試費用，順利考取之後再去領地方政府的獎勵金，實現真正的零成本專業升級。",
+      "data": {
+        "title": "0 元考照疊加方案",
+        "left": {
+          "label": "第一步：勞動部",
+          "value": "費用全免",
+          "points": [
+            "免繳報名費",
+            "免繳測試費"
+          ]
+        },
+        "right": {
+          "label": "第二步：縣政府",
+          "value": "領獎勵金",
+          "points": [
+            "最高領取 2 萬",
+            "現金直接匯款"
+          ]
+        },
+        "verdict": "達成真正的 0 成本升級！"
+      },
+      "cues": {
+        "title": "省錢密技",
+        "left": "費用全額減免",
+        "right": "領地方政府",
+        "verdict": "零成本專業升級"
+      }
+    }
+  ]
+}

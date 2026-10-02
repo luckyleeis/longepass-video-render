@@ -1,0 +1,120 @@
+{
+  "id": "bar_chart",
+  "version": 1,
+  "name": "가로 막대 차트",
+  "component": "BarChart.tsx",
+  "category": "chart",
+  "inspired_by": "echany — 데이터 시각화",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Ranking or comparing 3-7 numbers (e.g. amounts by city). highlight = index of the item to emphasise.",
+  "avoid_when": "Only one number (use counter).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 18,
+      "required": true
+    },
+    "unit": {
+      "type": "text",
+      "max": 3
+    },
+    "items": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "max": 5,
+            "required": true
+          },
+          "value": {
+            "type": "number",
+            "required": true
+          },
+          "note": {
+            "type": "text",
+            "max": 6
+          }
+        },
+        "required": true
+      },
+      "min": 3,
+      "max": 7
+    },
+    "highlight": {
+      "type": "int"
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "bars": {
+      "kind": "each",
+      "of": "items"
+    }
+  },
+  "sfx": {
+    "bars": "click"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "讓我們來看看各縣市的獎勵金額度。在直轄市當中，桃園市對三十歲以下青年最慷慨，甲級最高發給兩萬元；台北市與新北市的甲級獎勵金也有最高一萬元的補助。",
+      "data": {
+        "title": "直轄市甲級獎勵金比較",
+        "unit": "元",
+        "items": [
+          {
+            "label": "桃園市",
+            "value": 20000.0,
+            "note": "30歲青年"
+          },
+          {
+            "label": "台北市",
+            "value": 10000.0,
+            "note": "在職勞工"
+          },
+          {
+            "label": "新北市",
+            "value": 10000.0,
+            "note": "現職相關"
+          },
+          {
+            "label": "台中市",
+            "value": 5000.0,
+            "note": "在職勞工"
+          }
+        ],
+        "highlight": 0
+      },
+      "cues": {
+        "title": "獎勵金額度",
+        "bars": [
+          "桃園市",
+          "台北市",
+          "新北市",
+          "台中市"
+        ]
+      }
+    }
+  ]
+}

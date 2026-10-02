@@ -1,0 +1,155 @@
+{
+  "id": "radar",
+  "version": 1,
+  "kind": "shot",
+  "name": "레이더 차트",
+  "component": "Radar.tsx",
+  "category": "chart",
+  "inspired_by": "echany — 왼쪽 문장 + 오른쪽 기술성/사업성/시장성 삼각 레이더",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Profile across 3-6 dimensions scored 0-100 (strengths and weaknesses), optionally against a baseline (base). Big statement on the left.",
+  "avoid_when": "Dimensions are not comparable scores.",
+  "fields": {
+    "lines": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 8,
+        "required": true
+      },
+      "min": 1,
+      "max": 3
+    },
+    "highlight": {
+      "type": "text",
+      "max": 8
+    },
+    "axes": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "max": 6,
+            "required": true
+          },
+          "value": {
+            "type": "number",
+            "required": true,
+            "desc": "0-100"
+          },
+          "base": {
+            "type": "number",
+            "desc": "0-100 baseline, optional"
+          }
+        },
+        "required": true
+      },
+      "min": 3,
+      "max": 6
+    },
+    "legend": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 6,
+        "required": true
+      },
+      "min": 0,
+      "max": 2,
+      "desc": "labels for value and base"
+    }
+  },
+  "events": {
+    "lines": {
+      "kind": "each",
+      "of": "lines"
+    },
+    "axes": {
+      "kind": "each",
+      "of": "axes"
+    },
+    "shape": {
+      "kind": "single",
+      "at": 0.7,
+      "after": {
+        "event": "axes",
+        "gap": 8
+      }
+    }
+  },
+  "sfx": {
+    "lines": "pop",
+    "axes": "click",
+    "shape": "swish_up"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "把模擬考成績攤開來看，學科、工安和法規都過了及格線，真正拖後腿的是術科。",
+      "data": {
+        "lines": [
+          "找出你的",
+          "弱點科目"
+        ],
+        "highlight": "弱點科目",
+        "axes": [
+          {
+            "label": "學科",
+            "value": 82,
+            "base": 60
+          },
+          {
+            "label": "工安",
+            "value": 75,
+            "base": 60
+          },
+          {
+            "label": "法規",
+            "value": 66,
+            "base": 60
+          },
+          {
+            "label": "術科",
+            "value": 45,
+            "base": 60
+          }
+        ],
+        "legend": [
+          "你的分數",
+          "及格線"
+        ]
+      },
+      "cues": {
+        "lines": [
+          "攤開來看",
+          "拖後腿"
+        ],
+        "axes": [
+          "學科",
+          "工安",
+          "法規",
+          "術科"
+        ],
+        "shape": "真正"
+      }
+    }
+  ]
+}

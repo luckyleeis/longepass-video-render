@@ -1,0 +1,124 @@
+{
+  "id": "card_set",
+  "version": 1,
+  "name": "조건 카드 세트",
+  "component": "CardSet.tsx",
+  "category": "organize",
+  "inspired_by": "ai_sync_club — 펼쳐지는 카드 + 체크",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "2-5 conditions or key points as cards. check=true ticks them one by one (\"all must be met\"). Good for a final recap.",
+  "avoid_when": "Items need explanations (use list).",
+  "fields": {
+    "label": {
+      "type": "text",
+      "max": 12
+    },
+    "cards": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 6,
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    },
+    "check": {
+      "type": "bool",
+      "desc": "true = tick each card"
+    }
+  },
+  "events": {
+    "label": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "cards": {
+      "kind": "each",
+      "of": "cards"
+    },
+    "checks": {
+      "kind": "each",
+      "of": "cards",
+      "when": "check",
+      "start": 0.12,
+      "after": {
+        "event": "cards",
+        "gap": 10
+      }
+    }
+  },
+  "sfx": {
+    "cards": "swish_up",
+    "checks": "check"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "一般來說，想要成功領到這筆獎勵金必須同時符合四大條件：具備在職勞工或特定身分、設籍滿規定時間、考取乙級或甲級證照，而且必須在證照生效日起九十天內提出申請。",
+      "data": {
+        "label": "資格檢核四大條件",
+        "cards": [
+          "身分限定",
+          "設籍要求",
+          "級別限制",
+          "時效限制"
+        ],
+        "check": true
+      },
+      "cues": {
+        "label": "四大條件",
+        "cards": [
+          "特定身分",
+          "設籍滿",
+          "乙級或甲級",
+          "九十天內"
+        ],
+        "checks": [
+          "在職勞工",
+          "規定時間",
+          "甲級證照",
+          "提出申請"
+        ]
+      }
+    },
+    {
+      "narration": "影片最後幫大家重點整理：考取證照後先上官網確認經費額度，牢記九十天黃金申請期限，備齊四大文件儘速送件，再搭配勞動部費用減免，就能把補助效益發揮到最大。",
+      "data": {
+        "label": "考照領錢四要點",
+        "cards": [
+          "先查經費額度",
+          "牢記 90 天",
+          "備齊四文件",
+          "疊加費用減免"
+        ],
+        "check": false
+      },
+      "cues": {
+        "label": "重點整理",
+        "cards": [
+          "確認經費額度",
+          "九十天",
+          "四大文件",
+          "費用減免"
+        ]
+      }
+    }
+  ]
+}

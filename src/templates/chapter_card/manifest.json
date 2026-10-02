@@ -1,0 +1,55 @@
+{
+  "id": "chapter_card",
+  "version": 1,
+  "name": "챕터 구분 카드",
+  "component": "ChapterCard.tsx",
+  "category": "structure",
+  "inspired_by": "echany — 큰 번호 + 영문 소제목",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": false,
+  "use_when": "Inserted automatically at the start of every chapter after the first. Not chosen by the LLM.",
+  "avoid_when": "",
+  "fields": {
+    "index": {
+      "type": "int"
+    },
+    "title": {
+      "type": "text",
+      "max": 12,
+      "required": true
+    }
+  },
+  "events": {
+    "in": {
+      "kind": "single",
+      "at": 0.0
+    }
+  },
+  "sfx": {},
+  "sfx_when": [],
+  "bg": "deep",
+  "duration": {
+    "min_sec": 2,
+    "max_sec": 3
+  },
+  "examples": [
+    {
+      "narration": "",
+      "data": {
+        "index": 2,
+        "title": "全台縣市金額盤點"
+      },
+      "cues": {}
+    }
+  ]
+}

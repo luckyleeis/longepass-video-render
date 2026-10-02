@@ -1,0 +1,91 @@
+{
+  "id": "callout",
+  "version": 1,
+  "name": "주의/팁 박스",
+  "component": "Callout.tsx",
+  "category": "emphasis",
+  "inspired_by": "aimkt — 강조 패널",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "An important warning, tip or note in a box, optionally with one big figure (big, e.g. NT$60,000). tone: warning|tip|info.",
+  "avoid_when": "Plain information without a caution or tip.",
+  "fields": {
+    "tone": {
+      "type": "enum",
+      "options": [
+        "warning",
+        "tip",
+        "info"
+      ],
+      "required": true
+    },
+    "title": {
+      "type": "text",
+      "max": 16,
+      "required": true
+    },
+    "body": {
+      "type": "text",
+      "max": 40,
+      "required": true
+    },
+    "big": {
+      "type": "text",
+      "max": 10
+    }
+  },
+  "events": {
+    "in": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "big": {
+      "kind": "single",
+      "at": 0.35
+    }
+  },
+  "sfx": {
+    "in": "bong",
+    "big": "impact"
+  },
+  "sfx_when": [
+    {
+      "if": {
+        "tone": "warning"
+      },
+      "sfx": {
+        "in": "error"
+      }
+    }
+  ],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "如果你具備原住民身分，請先暫緩申請縣市獎勵金！中央原民會提供了最高高達六萬元的專屬現金獎勵，金額是地方補助的好幾倍，而且申請期限長達整整一年。",
+      "data": {
+        "tone": "warning",
+        "title": "原住民專屬高額獎勵",
+        "body": "請暫緩申請縣市獎勵金，優先選擇中央原民會專案！",
+        "big": "NT$60,000"
+      },
+      "cues": {
+        "in": "原住民身分",
+        "big": "六萬元"
+      }
+    }
+  ]
+}

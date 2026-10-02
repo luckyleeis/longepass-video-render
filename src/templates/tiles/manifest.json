@@ -1,0 +1,126 @@
+{
+  "id": "tiles",
+  "version": 1,
+  "name": "이름표 타일",
+  "component": "Tiles.tsx",
+  "category": "space",
+  "inspired_by": "ai_sync_club — 모자이크 타일이 차오름",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Many short labels (e.g. 20 county names) filling in one by one, then one big word in the middle.",
+  "avoid_when": "Fewer than 6 labels (use list or card_set).",
+  "fields": {
+    "labels": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 4,
+        "required": true
+      },
+      "min": 6,
+      "max": 24
+    },
+    "center": {
+      "type": "text",
+      "max": 4,
+      "required": true
+    },
+    "center_sub": {
+      "type": "text",
+      "max": 6
+    }
+  },
+  "events": {
+    "tiles": {
+      "kind": "stagger",
+      "of": "labels"
+    },
+    "center": {
+      "kind": "single",
+      "at": 0.7,
+      "after": {
+        "event": "tiles",
+        "gap": 8
+      }
+    }
+  },
+  "sfx": {
+    "tiles": "click",
+    "center": [
+      "impact",
+      "bong"
+    ]
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 14
+  },
+  "examples": [
+    {
+      "narration": "部分縣市則祭出了特殊的在地優惠，例如苗栗縣針對在職勞工提供考過全額退報名費的福利，花蓮縣與連江縣馬祖地區也有針對特定區域或職類的高額獎勵方案。",
+      "data": {
+        "labels": [
+          "台北市",
+          "新北市",
+          "桃園市",
+          "台中市",
+          "台南市",
+          "高雄市",
+          "基隆市",
+          "新竹縣",
+          "苗栗縣",
+          "彰化縣",
+          "南投縣",
+          "雲林縣",
+          "嘉義縣",
+          "屏東縣",
+          "宜蘭縣",
+          "花蓮縣",
+          "台東縣",
+          "澎湖縣",
+          "金門縣",
+          "連江縣"
+        ],
+        "center": "特色專案",
+        "center_sub": "退費與區域加碼"
+      },
+      "cues": {
+        "tiles": [
+          "台北市",
+          "新北市",
+          "桃園市",
+          "台中市",
+          "台南市",
+          "高雄市",
+          "基隆市",
+          "新竹縣",
+          "苗栗縣",
+          "彰化縣",
+          "南投縣",
+          "雲林縣",
+          "嘉義縣",
+          "屏東縣",
+          "宜蘭縣",
+          "花蓮縣",
+          "台東縣",
+          "澎湖縣",
+          "金門縣",
+          "連江縣"
+        ],
+        "center": "在地優惠"
+      }
+    }
+  ]
+}

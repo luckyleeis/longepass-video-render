@@ -1,0 +1,121 @@
+{
+  "id": "taiwan_map",
+  "version": 1,
+  "name": "대만 지도",
+  "component": "TaiwanMap.tsx",
+  "category": "space",
+  "inspired_by": "echany — 지도 위 데이터 표시",
+  "scope": [
+    "longepass"
+  ],
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Comparing regions of Taiwan: colour 1-4 groups of counties and label them. Use county names like 台北市.",
+  "avoid_when": "The point is not about regions.",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 16,
+      "required": true
+    },
+    "groups": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "counties": {
+            "type": "list",
+            "item": {
+              "type": "text",
+              "max": 4,
+              "required": true
+            },
+            "min": 1,
+            "max": 22
+          },
+          "label": {
+            "type": "text",
+            "max": 10,
+            "required": true
+          },
+          "color": {
+            "type": "enum",
+            "options": [
+              "primary",
+              "accent",
+              "accent2",
+              "danger",
+              "muted"
+            ],
+            "required": true
+          },
+          "value": {
+            "type": "text",
+            "max": 8
+          }
+        },
+        "required": true
+      },
+      "min": 1,
+      "max": 4
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "groups": {
+      "kind": "each",
+      "of": "groups"
+    }
+  },
+  "sfx": {
+    "groups": "pop"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "不過地圖攤開來比較會發現，並非每個地方都有補助。例如台南市、高雄市、彰化縣、南投縣與屏東縣等地區，目前都沒有提供一般勞工額外的證照獎勵金。",
+      "data": {
+        "title": "無一般勞工獎勵金縣市",
+        "groups": [
+          {
+            "counties": [
+              "台南市",
+              "高雄市",
+              "彰化縣",
+              "南投縣",
+              "屏東縣",
+              "雲林縣",
+              "新竹市"
+            ],
+            "label": "無一般勞工補助",
+            "color": "danger",
+            "value": "無補助"
+          }
+        ]
+      },
+      "cues": {
+        "title": "並非每個地方",
+        "groups": [
+          "台南市"
+        ]
+      }
+    }
+  ]
+}

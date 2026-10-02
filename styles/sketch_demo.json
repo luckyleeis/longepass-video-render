@@ -1,0 +1,135 @@
+{
+  "name": "sketch_demo",
+  "description": "검증용: 손그림 재료(sketch). 종이 바탕 + 손글씨 + 흔들리는 선과 빗금 채우기. 같은 템플릿이 재료만 바꿔 그려지는지 확인",
+  "media": "sketch",
+  "continuity": "cut",
+  "theme": {
+    "font": "'Jason Handwriting', 'Noto Sans TC', sans-serif",
+    "mono": "'Jason Handwriting', 'Noto Sans TC', sans-serif",
+    "surfaces": {
+      "base": {
+        "bg": "#F7F2E8",
+        "ink": "#2A2826",
+        "sub": "#8A8378",
+        "grid": "#E4DCCB",
+        "card": "#FFFDF8",
+        "cardInk": "#2A2826",
+        "line": "#2A2826",
+        "fill": "#DDD5C5",
+        "fillStrong": "#A79E8E"
+      },
+      "alt": {
+        "bg": "#2F3B33",
+        "ink": "#F3EFE6",
+        "sub": "#B9C2B5",
+        "grid": "#3A473E",
+        "card": "#34423A",
+        "cardInk": "#F3EFE6",
+        "line": "#F3EFE6",
+        "fill": "#4E5D53",
+        "fillStrong": "#7F8F84",
+        "dark": true
+      },
+      "accent": {
+        "bg": "#FBE38E",
+        "ink": "#2A2826",
+        "sub": "#8A7A3A",
+        "grid": "#F0D46F",
+        "card": "#FFFDF8",
+        "cardInk": "#2A2826",
+        "line": "#2A2826",
+        "fill": "#E9CF6A",
+        "fillStrong": "#B59A35"
+      },
+      "deep": {
+        "bg": "#DCE6F2",
+        "ink": "#1F3A5F",
+        "sub": "#5B7499",
+        "grid": "#C8D6E8",
+        "card": "#FFFDF8",
+        "cardInk": "#1F3A5F",
+        "line": "#1F3A5F",
+        "fill": "#B9CBE2",
+        "fillStrong": "#7F9BC2"
+      }
+    },
+    "primary": "#E8B931",
+    "accent": "#3D6FB6",
+    "accent2": "#5E9E6E",
+    "danger": "#D9534F",
+    "brand": {
+      "parts": [
+        {
+          "text": "LONG"
+        },
+        {
+          "text": "E",
+          "accent": true
+        },
+        {
+          "text": "PASS"
+        }
+      ],
+      "suffix": "容易通"
+    },
+    "skin": {
+      "cardBorder": 3,
+      "cardBorderColor": "ink",
+      "radius": 14,
+      "shadow": "none",
+      "objectStroke": 3,
+      "grid": "none",
+      "ring": false,
+      "beatPulse": false,
+      "highlight": "marker",
+      "onColorInk": "#2A2826",
+      "onAccentInk": "#FFFDF8",
+      "colorful": false,
+      "captionBg": "#2A2826",
+      "motion": {
+        "damping": 18,
+        "stiffness": 110,
+        "mass": 0.9,
+        "distance": 20,
+        "tilt": 0,
+        "impact": false
+      }
+    },
+    "media": {
+      "kind": "sketch",
+      "roughness": 1.3,
+      "bowing": 1.2,
+      "fillStyle": "hachure",
+      "hachureGap": 9,
+      "fillWeight": 2.2
+    },
+    "lang": "zh-tw"
+  },
+  "pacing": {
+    "music": "carefree",
+    "music_open_lufs": -19.0,
+    "music_under_voice_lufs": -27.0,
+    "sfx_gain_db": -7.0,
+    "stagger_beats": 0.5,
+    "transition_frames": 16,
+    "transitions": {
+      "chapter": "slide",
+      "counter": "fade",
+      "default": "fade"
+    },
+    "transition_sfx": {
+      "slide": [
+        "whoosh",
+        -6.0
+      ],
+      "fade": null
+    },
+    "sfx_replace": {
+      "impact": "ding",
+      "stamp": "ding",
+      "scratch": null,
+      "error": "bong"
+    },
+    "stagger_sfx_every": 6
+  }
+}

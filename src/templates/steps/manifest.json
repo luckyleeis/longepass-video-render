@@ -1,0 +1,102 @@
+{
+  "id": "steps",
+  "version": 1,
+  "name": "단계",
+  "component": "Steps.tsx",
+  "category": "organize",
+  "inspired_by": "aimkt — 연결선으로 이어지는 흐름",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A process of 3-5 ordered steps.",
+  "avoid_when": "Items have no order (use list).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "steps": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "title": {
+            "type": "text",
+            "max": 6,
+            "required": true
+          },
+          "sub": {
+            "type": "text",
+            "max": 16
+          }
+        },
+        "required": true
+      },
+      "min": 3,
+      "max": 5
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "steps": {
+      "kind": "each",
+      "of": "steps"
+    }
+  },
+  "sfx": {
+    "steps": "pop"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "完整的申請流程只要四個步驟：先確認補助資格、準備好四樣必備文件、在規定期限內親送或掛號郵寄至指定單位，通過審核後補助金就會直接匯入指定的個人帳戶。",
+      "data": {
+        "title": "獎勵金申請四步驟",
+        "steps": [
+          {
+            "title": "確認資格",
+            "sub": "自我檢核身分與設籍"
+          },
+          {
+            "title": "準備文件",
+            "sub": "備妥證照存摺影本"
+          },
+          {
+            "title": "提出申請",
+            "sub": "規定期限內掛號郵寄"
+          },
+          {
+            "title": "審核撥款",
+            "sub": "審核通過直接匯款"
+          }
+        ]
+      },
+      "cues": {
+        "title": "申請流程",
+        "steps": [
+          "確認補助資格",
+          "必備文件",
+          "送至指定單位",
+          "直接匯入"
+        ]
+      }
+    }
+  ]
+}

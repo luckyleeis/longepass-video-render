@@ -1,0 +1,96 @@
+{
+  "id": "outro",
+  "version": 1,
+  "name": "끝 화면 + 도장",
+  "component": "Outro.tsx",
+  "category": "outro",
+  "inspired_by": "ai_sync_club — 엔드카드 도장",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "The last shot: big title with a stamp as the call to action.",
+  "avoid_when": "Anywhere but the final shot.",
+  "fields": {
+    "kicker": {
+      "type": "text",
+      "max": 24
+    },
+    "title": {
+      "type": "text",
+      "max": 14,
+      "required": true
+    },
+    "highlight": {
+      "type": "text",
+      "max": 6
+    },
+    "sub": {
+      "type": "text",
+      "max": 28
+    },
+    "stamp": {
+      "type": "text",
+      "max": 4,
+      "required": true
+    },
+    "stamp_sub": {
+      "type": "text",
+      "max": 10
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "stamp": {
+      "kind": "single",
+      "at": 0.55
+    },
+    "sub": {
+      "kind": "single",
+      "at": 0.7
+    }
+  },
+  "sfx": {
+    "title": "pop",
+    "stamp": [
+      "stamp",
+      "impact"
+    ],
+    "sub": "glass"
+  },
+  "sfx_when": [],
+  "bg": "base",
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 12
+  },
+  "examples": [
+    {
+      "narration": "想順利考取技術士證照、把獎勵金領回家嗎？現在就下載容易通，隨時隨地刷題練習，讓你考照一次過關！",
+      "data": {
+        "kicker": "考照刷題首選",
+        "title": "LONGEPASS 容易通",
+        "highlight": "容易通",
+        "sub": "隨時隨地練習考題，一次過關領獎金",
+        "stamp": "下載",
+        "stamp_sub": "LONGEPASS"
+      },
+      "cues": {
+        "title": "下載容易通",
+        "stamp": "刷題練習",
+        "sub": "一次過關"
+      }
+    }
+  ]
+}

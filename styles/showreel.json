@@ -1,0 +1,133 @@
+{
+  "name": "showreel",
+  "description": "검증용: 첫 모션 시제품 모습 (크림 배경, 굵은 검정 테두리, 튀는 움직임, 빠른 BGM)",
+  "media": "clean",
+  "continuity": "cut",
+  "theme": {
+    "font": "'Noto Sans TC', sans-serif",
+    "mono": "Menlo, 'Courier New', monospace",
+    "surfaces": {
+      "base": {
+        "bg": "#F2EEE3",
+        "ink": "#121212",
+        "sub": "#d6ceb8",
+        "grid": "#ddd5c2",
+        "card": "#FFFFFF",
+        "cardInk": "#121212",
+        "line": "#121212",
+        "fill": "#DDD5C2",
+        "fillStrong": "#bdb6a5"
+      },
+      "accent": {
+        "bg": "#FFCC00",
+        "ink": "#121212",
+        "sub": "#d9ad00",
+        "grid": "#ebbd00",
+        "card": "#FFFFFF",
+        "cardInk": "#121212",
+        "line": "#121212",
+        "fill": "#ebbd00",
+        "fillStrong": "#b38f00"
+      },
+      "alt": {
+        "bg": "#121212",
+        "ink": "#F2EEE3",
+        "sub": "#3a3a3a",
+        "grid": "#262626",
+        "card": "#1d1d1f",
+        "cardInk": "#F2EEE3",
+        "line": "#F2EEE3",
+        "dark": true,
+        "fill": "#2a2a2c",
+        "fillStrong": "#555555"
+      },
+      "deep": {
+        "bg": "#2F54EB",
+        "ink": "#FFFFFF",
+        "sub": "#1f3ab8",
+        "grid": "#3a5ef0",
+        "card": "#1f3ab8",
+        "cardInk": "#FFFFFF",
+        "line": "#FFFFFF",
+        "dark": true,
+        "fill": "#3a5ef0",
+        "fillStrong": "#6f8cf5"
+      }
+    },
+    "primary": "#FFCC00",
+    "accent": "#3D5AFE",
+    "accent2": "#4ADE80",
+    "danger": "#FF3B30",
+    "brand": {
+      "parts": [
+        {
+          "text": "LONG"
+        },
+        {
+          "text": "E",
+          "accent": true
+        },
+        {
+          "text": "PASS"
+        }
+      ],
+      "suffix": "容易通"
+    },
+    "skin": {
+      "cardBorder": 4,
+      "cardBorderColor": "ink",
+      "radius": 26,
+      "shadow": "offset",
+      "objectStroke": 6,
+      "grid": "squares",
+      "ring": true,
+      "beatPulse": true,
+      "highlight": "pill",
+      "onColorInk": "#121212",
+      "onAccentInk": "#FFFFFF",
+      "colorful": true,
+      "captionBg": "rgba(12,12,14,0.86)",
+      "motion": {
+        "damping": 14,
+        "stiffness": 180,
+        "mass": 0.6,
+        "distance": 60,
+        "tilt": 5,
+        "impact": true
+      }
+    },
+    "media": {
+      "kind": "clean"
+    },
+    "lang": "zh-tw"
+  },
+  "pacing": {
+    "music": "raving_energy",
+    "music_open_lufs": -16.0,
+    "music_under_voice_lufs": -24.0,
+    "sfx_gain_db": -3.0,
+    "stagger_beats": 0.25,
+    "transition_frames": 14,
+    "transitions": {
+      "chapter": "stripes",
+      "counter": "iris",
+      "default": "flash"
+    },
+    "transition_sfx": {
+      "stripes": [
+        "whoosh",
+        -2.0
+      ],
+      "iris": [
+        "whoosh",
+        -2.0
+      ],
+      "flash": [
+        "swish_down",
+        -2.0
+      ]
+    },
+    "sfx_replace": {},
+    "stagger_sfx_every": 3
+  }
+}

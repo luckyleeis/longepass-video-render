@@ -1,0 +1,4 @@
+#!/bin/sh
+# video-studio 명령 진입점. 표준 라이브러리만 쓰므로 아무 python3 (3.9+)로 실행된다.
+cd "$(dirname "$0")/.." || exit 1
+exec "${STUDIO_PYTHON:-python3}" -m studio "$@"

@@ -1,0 +1,344 @@
+{
+ "taiwan": {
+  "lon": 121.0,
+  "lat": 23.7,
+  "name": {
+   "zh-tw": "台灣",
+   "ko": "대만",
+   "en": "Taiwan"
+  }
+ },
+ "taipei": {
+  "lon": 121.5,
+  "lat": 25.0,
+  "name": {
+   "zh-tw": "台北",
+   "ko": "타이베이",
+   "en": "Taipei"
+  }
+ },
+ "japan": {
+  "lon": 138.5,
+  "lat": 36.2,
+  "name": {
+   "zh-tw": "日本",
+   "ko": "일본",
+   "en": "Japan"
+  }
+ },
+ "tokyo": {
+  "lon": 139.7,
+  "lat": 35.7,
+  "name": {
+   "zh-tw": "東京",
+   "ko": "도쿄",
+   "en": "Tokyo"
+  }
+ },
+ "korea": {
+  "lon": 127.8,
+  "lat": 36.5,
+  "name": {
+   "zh-tw": "韓國",
+   "ko": "한국",
+   "en": "Korea"
+  }
+ },
+ "seoul": {
+  "lon": 127.0,
+  "lat": 37.6,
+  "name": {
+   "zh-tw": "首爾",
+   "ko": "서울",
+   "en": "Seoul"
+  }
+ },
+ "china": {
+  "lon": 104.2,
+  "lat": 35.9,
+  "name": {
+   "zh-tw": "中國",
+   "ko": "중국",
+   "en": "China"
+  }
+ },
+ "shanghai": {
+  "lon": 121.5,
+  "lat": 31.2,
+  "name": {
+   "zh-tw": "上海",
+   "ko": "상하이",
+   "en": "Shanghai"
+  }
+ },
+ "hongkong": {
+  "lon": 114.2,
+  "lat": 22.3,
+  "name": {
+   "zh-tw": "香港",
+   "ko": "홍콩",
+   "en": "Hong Kong"
+  }
+ },
+ "singapore": {
+  "lon": 103.8,
+  "lat": 1.35,
+  "name": {
+   "zh-tw": "新加坡",
+   "ko": "싱가포르",
+   "en": "Singapore"
+  }
+ },
+ "malaysia": {
+  "lon": 101.7,
+  "lat": 3.1,
+  "name": {
+   "zh-tw": "馬來西亞",
+   "ko": "말레이시아",
+   "en": "Malaysia"
+  }
+ },
+ "thailand": {
+  "lon": 100.5,
+  "lat": 13.8,
+  "name": {
+   "zh-tw": "泰國",
+   "ko": "태국",
+   "en": "Thailand"
+  }
+ },
+ "vietnam": {
+  "lon": 105.8,
+  "lat": 21.0,
+  "name": {
+   "zh-tw": "越南",
+   "ko": "베트남",
+   "en": "Vietnam"
+  }
+ },
+ "philippines": {
+  "lon": 121.0,
+  "lat": 14.6,
+  "name": {
+   "zh-tw": "菲律賓",
+   "ko": "필리핀",
+   "en": "Philippines"
+  }
+ },
+ "indonesia": {
+  "lon": 106.8,
+  "lat": -6.2,
+  "name": {
+   "zh-tw": "印尼",
+   "ko": "인도네시아",
+   "en": "Indonesia"
+  }
+ },
+ "india": {
+  "lon": 77.2,
+  "lat": 28.6,
+  "name": {
+   "zh-tw": "印度",
+   "ko": "인도",
+   "en": "India"
+  }
+ },
+ "uae": {
+  "lon": 55.3,
+  "lat": 25.2,
+  "name": {
+   "zh-tw": "杜拜",
+   "ko": "두바이",
+   "en": "Dubai"
+  }
+ },
+ "australia": {
+  "lon": 151.2,
+  "lat": -33.9,
+  "name": {
+   "zh-tw": "澳洲",
+   "ko": "호주",
+   "en": "Australia"
+  }
+ },
+ "newzealand": {
+  "lon": 174.8,
+  "lat": -41.3,
+  "name": {
+   "zh-tw": "紐西蘭",
+   "ko": "뉴질랜드",
+   "en": "New Zealand"
+  }
+ },
+ "usa": {
+  "lon": -98.5,
+  "lat": 39.8,
+  "name": {
+   "zh-tw": "美國",
+   "ko": "미국",
+   "en": "USA"
+  }
+ },
+ "newyork": {
+  "lon": -74.0,
+  "lat": 40.7,
+  "name": {
+   "zh-tw": "紐約",
+   "ko": "뉴욕",
+   "en": "New York"
+  }
+ },
+ "sanfrancisco": {
+  "lon": -122.4,
+  "lat": 37.8,
+  "name": {
+   "zh-tw": "舊金山",
+   "ko": "샌프란시스코",
+   "en": "San Francisco"
+  }
+ },
+ "canada": {
+  "lon": -114.0,
+  "lat": 53.0,
+  "name": {
+   "zh-tw": "加拿大",
+   "ko": "캐나다",
+   "en": "Canada"
+  }
+ },
+ "mexico": {
+  "lon": -99.1,
+  "lat": 19.4,
+  "name": {
+   "zh-tw": "墨西哥",
+   "ko": "멕시코",
+   "en": "Mexico"
+  }
+ },
+ "brazil": {
+  "lon": -46.6,
+  "lat": -23.5,
+  "name": {
+   "zh-tw": "巴西",
+   "ko": "브라질",
+   "en": "Brazil"
+  }
+ },
+ "uk": {
+  "lon": -0.1,
+  "lat": 51.5,
+  "name": {
+   "zh-tw": "英國",
+   "ko": "영국",
+   "en": "UK"
+  }
+ },
+ "france": {
+  "lon": 2.35,
+  "lat": 48.9,
+  "name": {
+   "zh-tw": "法國",
+   "ko": "프랑스",
+   "en": "France"
+  }
+ },
+ "germany": {
+  "lon": 13.4,
+  "lat": 52.5,
+  "name": {
+   "zh-tw": "德國",
+   "ko": "독일",
+   "en": "Germany"
+  }
+ },
+ "netherlands": {
+  "lon": 4.9,
+  "lat": 52.4,
+  "name": {
+   "zh-tw": "荷蘭",
+   "ko": "네덜란드",
+   "en": "Netherlands"
+  }
+ },
+ "switzerland": {
+  "lon": 8.5,
+  "lat": 47.4,
+  "name": {
+   "zh-tw": "瑞士",
+   "ko": "스위스",
+   "en": "Switzerland"
+  }
+ },
+ "italy": {
+  "lon": 12.5,
+  "lat": 41.9,
+  "name": {
+   "zh-tw": "義大利",
+   "ko": "이탈리아",
+   "en": "Italy"
+  }
+ },
+ "spain": {
+  "lon": -3.7,
+  "lat": 40.4,
+  "name": {
+   "zh-tw": "西班牙",
+   "ko": "스페인",
+   "en": "Spain"
+  }
+ },
+ "russia": {
+  "lon": 37.6,
+  "lat": 55.8,
+  "name": {
+   "zh-tw": "俄羅斯",
+   "ko": "러시아",
+   "en": "Russia"
+  }
+ },
+ "southafrica": {
+  "lon": 18.4,
+  "lat": -33.9,
+  "name": {
+   "zh-tw": "南非",
+   "ko": "남아프리카",
+   "en": "South Africa"
+  }
+ },
+ "egypt": {
+  "lon": 31.2,
+  "lat": 30.0,
+  "name": {
+   "zh-tw": "埃及",
+   "ko": "이집트",
+   "en": "Egypt"
+  }
+ },
+ "turkey": {
+  "lon": 29.0,
+  "lat": 41.0,
+  "name": {
+   "zh-tw": "土耳其",
+   "ko": "튀르키예",
+   "en": "Türkiye"
+  }
+ },
+ "vancouver": {
+  "lon": -123.1,
+  "lat": 49.3,
+  "name": {
+   "zh-tw": "溫哥華",
+   "ko": "밴쿠버",
+   "en": "Vancouver"
+  }
+ },
+ "toronto": {
+  "lon": -79.4,
+  "lat": 43.7,
+  "name": {
+   "zh-tw": "多倫多",
+   "ko": "토론토",
+   "en": "Toronto"
+  }
+ }
+}

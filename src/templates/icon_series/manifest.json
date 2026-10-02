@@ -1,0 +1,147 @@
+{
+  "id": "icon_series",
+  "version": 1,
+  "kind": "shot",
+  "name": "아이콘 시리즈",
+  "component": "IconSeries.tsx",
+  "category": "organize",
+  "inspired_by": "echany — 큰 키워드 + 선 아이콘 카드가 한 장씩 넘어가는 분야 소개 (페이지 점)",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Introducing 2-5 categories or kinds one at a time, each with a big keyword, a short subtitle and an icon.",
+  "avoid_when": "Items should be compared side by side (use list or compare).",
+  "fields": {
+    "kicker": {
+      "type": "text",
+      "max": 16
+    },
+    "items": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "title": {
+            "type": "text",
+            "max": 8,
+            "required": true
+          },
+          "sub": {
+            "type": "text",
+            "max": 20
+          },
+          "icon": {
+            "type": "enum",
+            "options": [
+              "doc",
+              "warning",
+              "tip",
+              "info",
+              "check",
+              "x",
+              "star",
+              "user",
+              "users",
+              "calendar",
+              "clock",
+              "cash",
+              "coin",
+              "bank",
+              "certificate",
+              "id",
+              "school",
+              "briefcase",
+              "tool",
+              "home",
+              "phone",
+              "mail",
+              "search",
+              "target",
+              "trend",
+              "chart",
+              "pie",
+              "globe",
+              "pin",
+              "shield",
+              "question",
+              "arrow",
+              "bolt",
+              "leaf",
+              "heart",
+              "gift",
+              "lock",
+              "download"
+            ],
+            "required": true,
+            "desc": "line icon"
+          }
+        },
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    }
+  },
+  "events": {
+    "items": {
+      "kind": "each",
+      "of": "items"
+    }
+  },
+  "sfx": {
+    "items": "swish_up"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 16
+  },
+  "examples": [
+    {
+      "narration": "能領的補助主要有四種：縣市的證照獎勵金、勞動部的考試費減免、原民會的專案獎勵，以及給青年的加碼補助。",
+      "data": {
+        "kicker": "四種補助一次看",
+        "items": [
+          {
+            "title": "證照獎勵金",
+            "sub": "各縣市發放・最高兩萬元",
+            "icon": "cash"
+          },
+          {
+            "title": "考試費減免",
+            "sub": "勞動部・報名費全免",
+            "icon": "coin"
+          },
+          {
+            "title": "原民會專案",
+            "sub": "原住民身分・最高六萬元",
+            "icon": "users"
+          },
+          {
+            "title": "青年加碼",
+            "sub": "三十歲以下・桃園市",
+            "icon": "school"
+          }
+        ]
+      },
+      "cues": {
+        "items": [
+          "證照獎勵金",
+          "考試費減免",
+          "專案獎勵",
+          "加碼補助"
+        ]
+      }
+    }
+  ]
+}

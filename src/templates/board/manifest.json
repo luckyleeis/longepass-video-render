@@ -1,0 +1,270 @@
+{
+  "id": "board",
+  "version": 1,
+  "kind": "stage",
+  "name": "카드 보드 (무대)",
+  "component": "Board.tsx",
+  "category": "organize",
+  "inspired_by": "aimkt — 같은 업무 카드가 흩어짐 → 하루 타임라인 → 분류 칸 → 선택 강조로 이어지는 한 화면",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A set of 3-6 things (documents, tasks, conditions, options) that the narration first introduces, then lines up (optionally with a value each), sorts into 2-4 groups, and/or highlights. The same cards stay on screen and rearrange across beats.",
+  "avoid_when": "Only one beat of content (use list or card_set). Items are ordered steps (use steps or flow).",
+  "fields": {
+    "subject": {
+      "type": "text",
+      "max": 6,
+      "desc": "optional person in the middle, e.g. 考生"
+    },
+    "items": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "max": 8,
+            "required": true
+          },
+          "icon": {
+            "type": "enum",
+            "options": [
+              "doc",
+              "warning",
+              "tip",
+              "info",
+              "check",
+              "x",
+              "star",
+              "user",
+              "users",
+              "calendar",
+              "clock",
+              "cash",
+              "coin",
+              "bank",
+              "certificate",
+              "id",
+              "school",
+              "briefcase",
+              "tool",
+              "home",
+              "phone",
+              "mail",
+              "search",
+              "target",
+              "trend",
+              "chart",
+              "pie",
+              "globe",
+              "pin",
+              "shield",
+              "question",
+              "arrow",
+              "bolt",
+              "leaf",
+              "heart",
+              "gift",
+              "lock",
+              "download"
+            ],
+            "desc": "line icon that fits the label"
+          },
+          "value": {
+            "type": "text",
+            "max": 8,
+            "desc": "shown above the card in the row layout"
+          },
+          "group": {
+            "type": "int",
+            "desc": "0-based index into groups"
+          }
+        },
+        "required": true
+      },
+      "min": 3,
+      "max": 6
+    },
+    "groups": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 8,
+        "required": true
+      },
+      "min": 0,
+      "max": 4,
+      "desc": "column labels for the group layout"
+    }
+  },
+  "events": {},
+  "sfx": {},
+  "sfx_when": [],
+  "beat_fields": {
+    "layout": {
+      "type": "enum",
+      "options": [
+        "scatter",
+        "row",
+        "group",
+        "focus"
+      ],
+      "required": true,
+      "desc": "scatter=around the subject, row=one line with values, group=sorted into groups, focus=highlight some cards in the previous layout"
+    },
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "focus": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 8,
+        "required": true
+      },
+      "min": 0,
+      "max": 4,
+      "desc": "item labels to highlight (focus layout)"
+    },
+    "note": {
+      "type": "text",
+      "max": 28,
+      "desc": "one-line takeaway shown at the bottom"
+    }
+  },
+  "beat_events": {
+    "items": {
+      "kind": "each",
+      "of": "items",
+      "once": true
+    },
+    "focus": {
+      "kind": "single",
+      "at": 0.3,
+      "when": "focus"
+    }
+  },
+  "beat_sfx": {
+    "at": "swish_up",
+    "items": "pop",
+    "focus": "ding"
+  },
+  "beats": {
+    "min": 2,
+    "max": 5
+  },
+  "bg": null,
+  "duration": {
+    "min_sec": 10,
+    "max_sec": 45
+  },
+  "examples": [
+    {
+      "data": {
+        "subject": "考生",
+        "items": [
+          {
+            "label": "證照影本",
+            "icon": "certificate",
+            "value": "正反面",
+            "group": 0
+          },
+          {
+            "label": "身分證",
+            "icon": "id",
+            "value": "影本",
+            "group": 0
+          },
+          {
+            "label": "戶口名簿",
+            "icon": "home",
+            "value": "設籍證明",
+            "group": 0
+          },
+          {
+            "label": "存摺封面",
+            "icon": "bank",
+            "value": "本人帳戶",
+            "group": 0
+          },
+          {
+            "label": "申請書",
+            "icon": "doc",
+            "value": "官網下載",
+            "group": 0
+          },
+          {
+            "label": "在職證明",
+            "icon": "briefcase",
+            "value": "勞保明細",
+            "group": 1
+          }
+        ],
+        "groups": [
+          "人人必備",
+          "依身分加附"
+        ]
+      },
+      "beats": [
+        {
+          "narration": "考完證照之後，桌上突然多出一堆要準備的文件，常常讓人不知道從哪裡開始。",
+          "data": {
+            "layout": "scatter",
+            "title": "申請要準備什麼？"
+          },
+          "cues": {
+            "items": [
+              "桌上",
+              "一堆",
+              "要準備",
+              "文件",
+              "不知道",
+              "開始"
+            ]
+          }
+        },
+        {
+          "narration": "其實全部攤開來看，申請獎勵金需要的文件就只有這六樣。",
+          "data": {
+            "layout": "row",
+            "title": "申請文件一覽"
+          },
+          "cues": {}
+        },
+        {
+          "narration": "再把它們分成兩類：人人都要準備的基本文件，以及依照身分才需要加附的證明。",
+          "data": {
+            "layout": "group",
+            "title": "兩類文件"
+          },
+          "cues": {}
+        },
+        {
+          "narration": "其中最常出錯的是證照影本和存摺封面，一定要確認日期清楚、是本人帳戶。",
+          "data": {
+            "layout": "focus",
+            "focus": [
+              "證照影本",
+              "存摺封面"
+            ],
+            "note": "影本要看得到生效日期"
+          },
+          "cues": {
+            "focus": "最常出錯"
+          }
+        }
+      ]
+    }
+  ]
+}

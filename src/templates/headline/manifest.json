@@ -1,0 +1,88 @@
+{
+  "id": "headline",
+  "version": 1,
+  "name": "큰 글자 한 줄",
+  "component": "Headline.tsx",
+  "category": "emphasis",
+  "inspired_by": "ai_sync_club — 줄 단위 키네틱 타이포",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "One key message in huge type, line by line. Use strike to cross out a misconception.",
+  "avoid_when": "More than 3 short lines of content (use list) or a single number (use counter).",
+  "fields": {
+    "lines": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 8,
+        "required": true
+      },
+      "min": 1,
+      "max": 3
+    },
+    "highlight": {
+      "type": "text",
+      "max": 8,
+      "desc": "exact fragment of one line"
+    },
+    "strike": {
+      "type": "text",
+      "max": 8,
+      "desc": "exact fragment to cross out"
+    },
+    "kicker": {
+      "type": "text",
+      "max": 28
+    }
+  },
+  "events": {
+    "lines": {
+      "kind": "each",
+      "of": "lines"
+    },
+    "strike": {
+      "kind": "single",
+      "at": 0.75,
+      "when": "strike"
+    }
+  },
+  "sfx": {
+    "lines": "pop",
+    "strike": "scratch"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 3,
+    "max_sec": 12
+  },
+  "examples": [
+    {
+      "narration": "許多人在查看對照表時會忽略單一級證照，以為只能領丙級的金額。其實許多縣市會把單一級比照甲級或乙級來發放，大家記得先對照該縣市的職類認定清單才不會吃虧。",
+      "data": {
+        "lines": [
+          "單一級證照",
+          "比照甲乙級發放"
+        ],
+        "highlight": "單一級證照",
+        "kicker": "別以為單一級只能領丙級金額"
+      },
+      "cues": {
+        "lines": [
+          "單一級證照",
+          "比照甲級"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+import React from 'react';
+import { SCircle, SPath, SRect, useMedia } from './media';
+
+/**
+ * 코드로 그리는 사물 그래픽 (SVG). 색은 호출하는 쪽에서 테마 색을 넘긴다.
+ * 도형은 그림 재료 층(media.tsx)의 부품이라 스타일의 재료(clean/sketch)대로 그려진다.
+ * 글자는 바깥의 글꼴(스타일 font)을 물려받는다.
+ */
+
+/** 바닥 그림자: 손그림 재료에서는 그리지 않는다 */
+const ShadowRect: React.FC<{ x: number; y: number; w: number; h: number; rx: number; opacity: number }> = (p) =>
+  useMedia().kind === 'sketch' ? null : <rect x={p.x} y={p.y} width={p.w} height={p.h} rx={p.rx} fill="#000" opacity={p.opacity} />;
+
+export const Certificate: React.FC<{ w: number; sw?: number; primary: string; ink: string; title?: string }> = ({ w, sw = 6, primary, ink, title = '技術士證' }) => (
+  <svg width={w} height={w * 0.72} viewBox="0 0 500 360">
+    <ShadowRect x={8} y={14} w={484} h={338} rx={22} opacity={0.12} />
+    <SRect x={0} y={0} w={484} h={338} rx={22} fill="#fffdf6" stroke={ink} sw={sw} />
+    <SRect x={22} y={22} w={440} h={294} rx={12} fill="none" stroke={primary} sw={5} strokeDasharray="14 8" />
+    <text x="242" y="96" textAnchor="middle" fontSize="54" fontWeight="900" fill={ink}>{title}</text>
+    <SRect x={70} y={140} w={250} h={16} rx={8} fill={ink} opacity={0.75} />
+    <SRect x={70} y={178} w={200} h={16} rx={8} fill={ink} opacity={0.35} />
+    <SRect x={70} y={216} w={230} h={16} rx={8} fill={ink} opacity={0.35} />
+    <SCircle cx={380} cy={230} r={58} fill={primary} stroke={ink} sw={sw} />
+    <SPath d="M350 284 L340 340 L380 318 L420 340 L410 284" fill={primary} stroke={ink} sw={sw} strokeLinejoin="round" />
+    <SPath d="M355 230 l17 17 l34 -34" stroke={ink} sw={10} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const Bill: React.FC<{ w: number; sw?: number; color: string; ink: string; label?: string }> = ({ w, sw = 6, color, ink, label = 'NT$' }) => (
+  <svg width={w} height={w * 0.5} viewBox="0 0 300 150">
+    <SRect x={3} y={3} w={294} h={144} rx={14} fill={color} stroke={ink} sw={sw} />
+    <SRect x={18} y={18} w={264} h={114} rx={8} fill="none" stroke={ink} sw={3} opacity={0.5} />
+    <SCircle cx={150} cy={75} r={34} fill="#fff" stroke={ink} sw={5} />
+    <text x="150" y="88" textAnchor="middle" fontSize="34" fontWeight="900" fill={ink}>$</text>
+    <text x="40" y="52" fontSize="26" fontWeight="900" fill={ink}>{label}</text>
+  </svg>
+);
+
+export const Coin: React.FC<{ d: number; sw?: number; color: string; ink: string }> = ({ d, sw = 6, color, ink }) => (
+  <svg width={d} height={d} viewBox="0 0 100 100">
+    <SCircle cx={50} cy={50} r={46} fill={color} stroke={ink} sw={sw} />
+    <SCircle cx={50} cy={50} r={32} fill="none" stroke={ink} sw={4} opacity={0.5} />
+    <text x="50" y="64" textAnchor="middle" fontSize="40" fontWeight="900" fill={ink}>$</text>
+  </svg>
+);
+
+export const DocumentSheet: React.FC<{ w: number; sw?: number; ink: string; accent: string; title?: string }> = ({ w, sw = 6, ink, accent, title = '申請書' }) => (
+  <svg width={w} height={w * 1.3} viewBox="0 0 300 390">
+    <ShadowRect x={10} y={14} w={280} h={370} rx={18} opacity={0.12} />
+    <SPath d="M0 0 H220 L280 60 V370 H0 Z" fill="#ffffff" stroke={ink} sw={sw} strokeLinejoin="round" />
+    <SPath d="M220 0 V60 H280" fill={accent} stroke={ink} sw={sw} strokeLinejoin="round" />
+    <text x="30" y="70" fontSize="38" fontWeight="900" fill={ink}>{title}</text>
+    {[120, 160, 200, 240, 280].map((y, i) => (
+      <SRect key={y} x={30} y={y} w={i % 2 ? 160 : 210} h={14} rx={7} fill={ink} opacity={i === 0 ? 0.7 : 0.3} />
+    ))}
+    <SRect x={150} y={310} w={110} h={34} rx={8} fill={accent} stroke={ink} sw={4} />
+  </svg>
+);
+
+export const CalendarPage: React.FC<{ w: number; sw?: number; ink: string; accent: string; big: string; unit?: string }> = ({ w, sw = 6, ink, accent, big, unit = '天' }) => (
+  <svg width={w} height={w * 1.05} viewBox="0 0 300 315">
+    <ShadowRect x={10} y={20} w={280} h={290} rx={22} opacity={0.12} />
+    <SRect x={0} y={10} w={280} h={290} rx={22} fill="#ffffff" stroke={ink} sw={sw} />
+    <SPath d="M0 32 Q0 10 22 10 H258 Q280 10 280 32 V90 H0 Z" fill={accent} stroke={ink} sw={sw} />
+    <SRect x={60} y={0} w={16} h={44} rx={8} fill={ink} />
+    <SRect x={204} y={0} w={16} h={44} rx={8} fill={ink} />
+    <text x="140" y="232" textAnchor="middle" fontSize="120" fontWeight="900" fill={ink}>{big}</text>
+    <text x="140" y="280" textAnchor="middle" fontSize="34" fontWeight="900" fill={ink} opacity="0.6">{unit}</text>
+  </svg>
+);
+
+export const IdCard: React.FC<{ w: number; sw?: number; ink: string; accent: string }> = ({ w, sw = 6, ink, accent }) => (
+  <svg width={w} height={w * 0.64} viewBox="0 0 320 205">
+    <ShadowRect x={8} y={12} w={312} h={190} rx={20} opacity={0.12} />
+    <SRect x={0} y={0} w={312} h={190} rx={20} fill="#ffffff" stroke={ink} sw={sw} />
+    <SRect x={0} y={0} w={312} h={44} rx={20} fill={accent} stroke={ink} sw={sw} />
+    <SRect x={22} y={64} w={90} h={106} rx={12} fill={accent} opacity={0.35} stroke={ink} sw={4} />
+    <SCircle cx={67} cy={102} r={20} fill={ink} opacity={0.6} />
+    <SPath d="M37 165 Q67 125 97 165" fill={ink} opacity={0.6} />
+    {[78, 108, 138].map((y, i) => <SRect key={y} x={132} y={y} w={i ? 120 : 150} h={14} rx={7} fill={ink} opacity={i ? 0.3 : 0.7} />)}
+  </svg>
+);
+
+export const Passbook: React.FC<{ w: number; sw?: number; ink: string; accent: string }> = ({ w, sw = 6, ink, accent }) => (
+  <svg width={w} height={w * 1.2} viewBox="0 0 260 312">
+    <ShadowRect x={10} y={14} w={240} h={292} rx={18} opacity={0.12} />
+    <SRect x={0} y={0} w={240} h={292} rx={18} fill={accent} stroke={ink} sw={sw} />
+    <SRect x={22} y={22} w={196} h={248} rx={10} fill="none" stroke={ink} sw={3} opacity={0.5} />
+    <text x="120" y="120" textAnchor="middle" fontSize="40" fontWeight="900" fill={ink}>存摺</text>
+    <SCircle cx={120} cy={190} r={34} fill="#ffffff" stroke={ink} sw={5} />
+    <text x="120" y="203" textAnchor="middle" fontSize="36" fontWeight="900" fill={ink}>$</text>
+  </svg>
+);
+
+/** 도장 찍힌 자국 (원형 테두리 + 글자) */
+export const StampMark: React.FC<{ d: number; sw?: number; color: string; text: string; sub?: string }> = ({ d, sw = 6, color, text, sub }) => (
+  <svg width={d} height={d} viewBox="0 0 200 200">
+    <SCircle cx={100} cy={100} r={90} fill="none" stroke={color} sw={10} />
+    <SCircle cx={100} cy={100} r={72} fill="none" stroke={color} sw={4} strokeDasharray="6 6" />
+    <text x="100" y="115" textAnchor="middle" fontSize="54" fontWeight="900" fill={color}>{text}</text>
+    {sub && <text x="100" y="150" textAnchor="middle" fontSize="20" fontWeight="800" fill={color} letterSpacing="3">{sub}</text>}
+  </svg>
+);
+
+/** 체크박스가 있는 조건 카드 */
+export const CheckCard: React.FC<{ w: number; sw?: number; stroke?: string; ink: string; bg: string; primary: string; title: string; checked: number; idx: number }> = ({
+  w, sw = 6, stroke, ink, bg, primary, title, checked, idx,
+}) => (
+  <svg width={w} height={w * 1.25} viewBox="0 0 240 300">
+    <ShadowRect x={8} y={12} w={224} h={282} rx={22} opacity={0.14} />
+    <SRect x={0} y={0} w={224} h={282} rx={22} fill={bg} stroke={stroke || ink} sw={sw} />
+    <text x="24" y="52" fontSize="26" fontWeight="900" fill={ink} opacity="0.4" fontFamily="Menlo, monospace">{String(idx + 1).padStart(2, '0')}</text>
+    <SRect x={62} y={80} w={100} h={100} rx={18} fill={checked > 0 ? primary : '#fff'} stroke={stroke || ink} sw={sw} />
+    {checked > 0 && (
+      <SPath d="M84 130 l20 20 l40 -46" stroke={ink} sw={12} fill="none" strokeLinecap="round" strokeLinejoin="round" reveal={checked} />
+    )}
+    {checked <= 0 && <text x="112" y="150" textAnchor="middle" fontSize="64" fontWeight="900" fill={ink} opacity="0.25">?</text>}
+    <text x="112" y="238" textAnchor="middle" fontSize="34" fontWeight="900" fill={ink}>{title}</text>
+  </svg>
+);

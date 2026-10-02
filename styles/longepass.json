@@ -1,0 +1,131 @@
+{
+  "name": "longepass",
+  "description": "롱이패스: 남색 + 노랑, 흰 카드와 옅은 선. 정보 전달용으로 차분하게 (Carefree BGM)",
+  "media": "clean",
+  "continuity": "cut",
+  "theme": {
+    "font": "'Noto Sans TC', sans-serif",
+    "mono": "'Noto Sans TC', sans-serif",
+    "surfaces": {
+      "base": {
+        "bg": "#F4F6FA",
+        "ink": "#0F172A",
+        "sub": "#64748B",
+        "grid": "#D5DCE6",
+        "card": "#FFFFFF",
+        "cardInk": "#0F172A",
+        "line": "#D6DCE5",
+        "fill": "#D5DCE6",
+        "fillStrong": "#94A3B8"
+      },
+      "alt": {
+        "bg": "#0B1426",
+        "ink": "#F1F5F9",
+        "sub": "#94A3B8",
+        "grid": "#1A2740",
+        "card": "#13203A",
+        "cardInk": "#F1F5F9",
+        "line": "#24324F",
+        "dark": true,
+        "fill": "#334155",
+        "fillStrong": "#64748B"
+      },
+      "accent": {
+        "bg": "#FACC15",
+        "ink": "#0F172A",
+        "sub": "#854D0E",
+        "grid": "#EAB308",
+        "card": "#FFFFFF",
+        "cardInk": "#0F172A",
+        "line": "#E0B10C",
+        "fill": "#E8B90E",
+        "fillStrong": "#A16207"
+      },
+      "deep": {
+        "bg": "#1E3A8A",
+        "ink": "#FFFFFF",
+        "sub": "#BFDBFE",
+        "grid": "#2A4799",
+        "card": "#1E40AF",
+        "cardInk": "#FFFFFF",
+        "line": "#3554B0",
+        "dark": true,
+        "fill": "#2E4C9E",
+        "fillStrong": "#6B83C4"
+      }
+    },
+    "primary": "#EAB308",
+    "accent": "#3B82F6",
+    "accent2": "#10B981",
+    "danger": "#F43F5E",
+    "brand": {
+      "parts": [
+        {
+          "text": "LONG"
+        },
+        {
+          "text": "E",
+          "accent": true
+        },
+        {
+          "text": "PASS"
+        }
+      ],
+      "suffix": "容易通"
+    },
+    "skin": {
+      "cardBorder": 2,
+      "cardBorderColor": "line",
+      "radius": 22,
+      "shadow": "soft",
+      "objectStroke": 4,
+      "grid": "dots",
+      "ring": false,
+      "beatPulse": false,
+      "highlight": "marker",
+      "onColorInk": "#0F172A",
+      "onAccentInk": "#FFFFFF",
+      "colorful": false,
+      "captionBg": "rgba(11,20,38,0.88)",
+      "motion": {
+        "damping": 18,
+        "stiffness": 120,
+        "mass": 0.8,
+        "distance": 28,
+        "tilt": 0,
+        "impact": false
+      }
+    },
+    "media": {
+      "kind": "clean"
+    },
+    "lang": "zh-tw"
+  },
+  "pacing": {
+    "music": "carefree",
+    "music_open_lufs": -19.0,
+    "music_under_voice_lufs": -27.0,
+    "sfx_gain_db": -7.0,
+    "stagger_beats": 0.5,
+    "transition_frames": 16,
+    "transitions": {
+      "chapter": "slide",
+      "counter": "fade",
+      "default": "fade"
+    },
+    "transition_sfx": {
+      "slide": [
+        "whoosh",
+        -6.0
+      ],
+      "fade": null
+    },
+    "sfx_replace": {
+      "impact": "ding",
+      "stamp": "ding",
+      "scratch": null,
+      "error": "bong"
+    },
+    "stagger_sfx_every": 6
+  }
+}

@@ -1,0 +1,403 @@
+{
+  "id": "doodle_scene",
+  "version": 1,
+  "kind": "stage",
+  "name": "낙서 장면 (무대)",
+  "component": "DoodleScene.tsx",
+  "category": "story",
+  "inspired_by": "gasket — 픽토그램 사람과 사물로 상황을 보여주고 빨간 동그라미/X로 짚기 · lazyachiver — 문장마다 그림이 하나씩 그려지며 쌓이는 화면",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A small everyday story or situation told in 2-5 beats: a person (with poses like cheer, think, sad, point, phone, walk) and objects appear one by one on a ground line; poses change; red circle / cross / check / arrow marks point at what matters. Great for 'what happens if…' examples and common mistakes.",
+  "avoid_when": "Pure numbers or lists without a situation (use counter, list, bar_chart).",
+  "fields": {
+    "ground": {
+      "type": "bool",
+      "desc": "draw the ground line (default true)"
+    }
+  },
+  "events": {},
+  "sfx": {},
+  "sfx_when": [],
+  "beat_fields": {
+    "add": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "required": true,
+        "fields": {
+          "kind": {
+            "type": "enum",
+            "options": [
+              "person",
+              "prop"
+            ],
+            "required": true
+          },
+          "pose": {
+            "type": "enum",
+            "options": [
+              "stand",
+              "walk",
+              "run",
+              "wait",
+              "think",
+              "point",
+              "cheer",
+              "sad",
+              "phone",
+              "shrug",
+              "hold"
+            ],
+            "desc": "pose of a person"
+          },
+          "prop": {
+            "type": "enum",
+            "options": [
+              "doc",
+              "warning",
+              "tip",
+              "info",
+              "check",
+              "x",
+              "star",
+              "user",
+              "users",
+              "calendar",
+              "clock",
+              "cash",
+              "coin",
+              "bank",
+              "certificate",
+              "id",
+              "school",
+              "briefcase",
+              "tool",
+              "home",
+              "phone",
+              "mail",
+              "search",
+              "target",
+              "trend",
+              "chart",
+              "pie",
+              "globe",
+              "pin",
+              "shield",
+              "question",
+              "arrow",
+              "bolt",
+              "leaf",
+              "heart",
+              "gift",
+              "lock",
+              "download",
+              "laptop",
+              "desktop",
+              "wallet",
+              "store",
+              "building",
+              "cart",
+              "register",
+              "book",
+              "pencil",
+              "hammer",
+              "helmet",
+              "car",
+              "bus",
+              "train",
+              "plane",
+              "truck",
+              "bike",
+              "coffee",
+              "bed",
+              "door",
+              "chair",
+              "desk",
+              "trophy",
+              "medal",
+              "flag",
+              "hourglass",
+              "piggy",
+              "receipt",
+              "call",
+              "chat",
+              "stethoscope",
+              "chef",
+              "plant",
+              "sun",
+              "moon",
+              "rain",
+              "key",
+              "box",
+              "clipboard",
+              "barrier",
+              "stairs",
+              "mountain",
+              "road",
+              "printer",
+              "camera"
+            ],
+            "desc": "line-drawn object"
+          },
+          "label": {
+            "type": "text",
+            "max": 8,
+            "desc": "name tag under it"
+          },
+          "tone": {
+            "type": "enum",
+            "options": [
+              "ink",
+              "accent",
+              "danger",
+              "muted"
+            ],
+            "desc": "color of the element"
+          }
+        }
+      },
+      "min": 0,
+      "max": 3,
+      "desc": "elements added in this beat. Elements are numbered 1,2,3… in the order they are added across the whole scene"
+    },
+    "change": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "required": true,
+        "fields": {
+          "target": {
+            "type": "int",
+            "desc": "element number"
+          },
+          "pose": {
+            "type": "enum",
+            "options": [
+              "stand",
+              "walk",
+              "run",
+              "wait",
+              "think",
+              "point",
+              "cheer",
+              "sad",
+              "phone",
+              "shrug",
+              "hold"
+            ],
+            "desc": "pose of a person"
+          },
+          "tone": {
+            "type": "enum",
+            "options": [
+              "ink",
+              "accent",
+              "danger",
+              "muted"
+            ],
+            "desc": "color of the element"
+          },
+          "label": {
+            "type": "text",
+            "max": 8
+          }
+        }
+      },
+      "min": 0,
+      "max": 3
+    },
+    "remove": {
+      "type": "list",
+      "item": {
+        "type": "int"
+      },
+      "min": 0,
+      "max": 3,
+      "desc": "element numbers to erase"
+    },
+    "mark": {
+      "type": "object",
+      "fields": {
+        "target": {
+          "type": "int",
+          "desc": "element number"
+        },
+        "kind": {
+          "type": "enum",
+          "options": [
+            "circle",
+            "cross",
+            "check",
+            "arrow"
+          ],
+          "required": true
+        },
+        "text": {
+          "type": "text",
+          "max": 10
+        }
+      }
+    },
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "note": {
+      "type": "text",
+      "max": 28
+    }
+  },
+  "beat_events": {
+    "add": {
+      "kind": "each",
+      "of": "add"
+    },
+    "change": {
+      "kind": "single",
+      "at": 0.35,
+      "when": "change"
+    },
+    "mark": {
+      "kind": "single",
+      "at": 0.55,
+      "when": "mark"
+    }
+  },
+  "beat_sfx": {
+    "add": "pop",
+    "mark": "ding"
+  },
+  "beats": {
+    "min": 2,
+    "max": 5
+  },
+  "bg": null,
+  "duration": {
+    "min_sec": 10,
+    "max_sec": 40
+  },
+  "examples": [
+    {
+      "data": {},
+      "beats": [
+        {
+          "narration": "阿明好不容易考到乙級證照，開心得不得了。",
+          "data": {
+            "title": "阿明的獎勵金",
+            "add": [
+              {
+                "kind": "person",
+                "pose": "cheer",
+                "label": "阿明"
+              },
+              {
+                "kind": "prop",
+                "prop": "certificate",
+                "label": "乙級證照",
+                "tone": "accent"
+              }
+            ]
+          },
+          "cues": {
+            "add": [
+              "阿明",
+              "乙級證照"
+            ]
+          }
+        },
+        {
+          "narration": "可是他每天忙著上班，申請的事就這樣一拖再拖。",
+          "data": {
+            "add": [
+              {
+                "kind": "prop",
+                "prop": "briefcase",
+                "label": "忙著上班"
+              }
+            ],
+            "change": [
+              {
+                "target": 1,
+                "pose": "phone"
+              }
+            ],
+            "mark": {
+              "target": 3,
+              "kind": "arrow",
+              "text": "一拖再拖"
+            }
+          },
+          "cues": {
+            "add": [
+              "忙著上班"
+            ],
+            "change": "一拖再拖",
+            "mark": "一拖再拖"
+          }
+        },
+        {
+          "narration": "等他想起來時，已經超過九十天的申請期限，獎勵金就這樣退回國庫。",
+          "data": {
+            "add": [
+              {
+                "kind": "prop",
+                "prop": "calendar",
+                "label": "超過90天",
+                "tone": "danger"
+              }
+            ],
+            "change": [
+              {
+                "target": 1,
+                "pose": "sad"
+              }
+            ],
+            "mark": {
+              "target": 4,
+              "kind": "cross",
+              "text": "申請失敗"
+            }
+          },
+          "cues": {
+            "add": [
+              "九十天"
+            ],
+            "change": "退回國庫",
+            "mark": "退回國庫"
+          }
+        },
+        {
+          "narration": "所以拿到證照之後，第一件事就是馬上送件。",
+          "data": {
+            "change": [
+              {
+                "target": 1,
+                "pose": "point"
+              }
+            ],
+            "mark": {
+              "target": 2,
+              "kind": "circle",
+              "text": "馬上送件"
+            },
+            "note": "生效日起九十天內申請"
+          },
+          "cues": {
+            "mark": "馬上送件"
+          }
+        }
+      ]
+    }
+  ]
+}

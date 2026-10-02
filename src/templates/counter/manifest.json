@@ -1,0 +1,86 @@
+{
+  "id": "counter",
+  "version": 1,
+  "name": "숫자 카운트업",
+  "component": "Counter.tsx",
+  "category": "number",
+  "inspired_by": "echany — 성장 숫자 카운트",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "One key number counting up from 0 (money, people, days). Strong as the opening hook.",
+  "avoid_when": "Several numbers to compare (use bar_chart).",
+  "fields": {
+    "label": {
+      "type": "text",
+      "max": 12,
+      "required": true
+    },
+    "prefix": {
+      "type": "text",
+      "max": 4
+    },
+    "value": {
+      "type": "number",
+      "required": true
+    },
+    "suffix": {
+      "type": "text",
+      "max": 3
+    },
+    "burst": {
+      "type": "bool",
+      "desc": "true = bills and coins burst out at the end (money only)"
+    }
+  },
+  "events": {
+    "start": {
+      "kind": "single",
+      "at": 0.15
+    },
+    "end": {
+      "kind": "single",
+      "at": 0.65,
+      "after": {
+        "event": "start",
+        "gap": 24
+      }
+    }
+  },
+  "sfx": {
+    "end": [
+      "impact",
+      "ding"
+    ]
+  },
+  "sfx_when": [],
+  "bg": "accent",
+  "duration": {
+    "min_sec": 3,
+    "max_sec": 12
+  },
+  "examples": [
+    {
+      "narration": "你以為辛苦考完勞動部技術士證照之後，只能拿到一張紙嗎？其實國家與地方政府早就為你準備好了加薪大禮包，只要申請，最高竟然可以直接領到兩萬元現金！",
+      "data": {
+        "label": "最高證照獎勵金",
+        "prefix": "NT$",
+        "value": 20000.0,
+        "burst": true
+      },
+      "cues": {
+        "start": "考完勞動部",
+        "end": "兩萬元現金"
+      }
+    }
+  ]
+}

@@ -1,0 +1,627 @@
+{
+  "_note": "효과음 목록. category의 설명/용도는 파일명과 팩 설명 기준의 초기값이라 실제로 들어보고 조정할 것. peak_db는 최대 음량(엔진이 음량을 맞추는 데 사용).",
+  "categories": {
+    "pop": {
+      "description": "짧고 가벼운 '뽁' 소리. 작은 요소가 튀어나올 때",
+      "use_for": [
+        "element_in",
+        "sticker_in",
+        "tile_in"
+      ]
+    },
+    "click": {
+      "description": "아주 짧은 '틱' 클릭. 빠르게 연속되는 등장이나 커서 동작",
+      "use_for": [
+        "tick",
+        "cursor",
+        "list_item"
+      ]
+    },
+    "check": {
+      "description": "스위치/토글 '딸깍'. 체크박스가 체크될 때",
+      "use_for": [
+        "check"
+      ]
+    },
+    "ding": {
+      "description": "밝은 '띵'/확인음. 숫자 도달, 정답, 완료",
+      "use_for": [
+        "count_end",
+        "success",
+        "highlight"
+      ]
+    },
+    "glass": {
+      "description": "맑은 유리 '팅'. 반짝이는 강조, 가벼운 포인트",
+      "use_for": [
+        "sparkle",
+        "highlight"
+      ]
+    },
+    "bong": {
+      "description": "둥근 '봉' 한 번. 섹션 시작, 묵직한 강조",
+      "use_for": [
+        "section"
+      ]
+    },
+    "swish_up": {
+      "description": "위로 '스윽' 열리는 UI 소리. 패널/카드가 펼쳐질 때",
+      "use_for": [
+        "panel_open",
+        "card_spread"
+      ]
+    },
+    "swish_down": {
+      "description": "아래로 '스윽' 닫히는 UI 소리. 요소가 사라지거나 접힐 때",
+      "use_for": [
+        "panel_close",
+        "element_out"
+      ]
+    },
+    "glitch": {
+      "description": "디지털 '지직' 글리치. 화면 전환, 반전 정보",
+      "use_for": [
+        "glitch_transition",
+        "twist"
+      ]
+    },
+    "scratch": {
+      "description": "마커로 긁는 '슥' 소리. 밑줄/형광펜/줄긋기",
+      "use_for": [
+        "underline",
+        "strike",
+        "draw"
+      ]
+    },
+    "error": {
+      "description": "낮은 경고 '삑'. 오답, X 표시, 주의",
+      "use_for": [
+        "wrong",
+        "warning"
+      ]
+    },
+    "question": {
+      "description": "물음표 느낌의 '띠링?'. 질문 제시",
+      "use_for": [
+        "question"
+      ]
+    },
+    "whoosh": {
+      "description": "공기를 가르는 '휙'(합성). 화면 전환, 큰 요소의 빠른 이동",
+      "use_for": [
+        "transition",
+        "big_move"
+      ]
+    },
+    "riser": {
+      "description": "1초간 음높이가 올라가는 긴장감(합성). 큰 공개 직전",
+      "use_for": [
+        "build_up"
+      ]
+    },
+    "impact": {
+      "description": "낮은 '쿵'(합성). 큰 숫자/제목이 꽂힐 때",
+      "use_for": [
+        "slam",
+        "big_reveal"
+      ]
+    },
+    "stamp": {
+      "description": "도장 찍는 '착'(합성). 인증/도장/확정",
+      "use_for": [
+        "stamp"
+      ]
+    }
+  },
+  "event_defaults": {
+    "element_in": "pop",
+    "sticker_in": "pop",
+    "tile_in": "pop",
+    "tick": "click",
+    "cursor": "click",
+    "list_item": "click",
+    "check": "check",
+    "count_end": "ding",
+    "success": "ding",
+    "highlight": "glass",
+    "sparkle": "glass",
+    "section": "bong",
+    "panel_open": "swish_up",
+    "card_spread": "swish_up",
+    "panel_close": "swish_down",
+    "element_out": "swish_down",
+    "glitch_transition": "glitch",
+    "twist": "glitch",
+    "underline": "scratch",
+    "strike": "scratch",
+    "draw": "scratch",
+    "wrong": "error",
+    "warning": "error",
+    "question": "question",
+    "transition": "whoosh",
+    "big_move": "whoosh",
+    "build_up": "riser",
+    "slam": "impact",
+    "big_reveal": "impact",
+    "stamp": "stamp"
+  },
+  "sounds": [
+    {
+      "id": "bong_001",
+      "file": "sfx/kenney/bong_001.wav",
+      "category": "bong",
+      "duration_sec": 0.12,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "click_001",
+      "file": "sfx/kenney/click_001.wav",
+      "category": "click",
+      "duration_sec": 0.097,
+      "peak_db": -4.4,
+      "source": "Kenney UI Audio / Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "click_004",
+      "file": "sfx/kenney/click_004.wav",
+      "category": "click",
+      "duration_sec": 0.022,
+      "peak_db": -2.1,
+      "source": "Kenney UI Audio / Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "confirmation_001",
+      "file": "sfx/kenney/confirmation_001.wav",
+      "category": "ding",
+      "duration_sec": 0.29,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "confirmation_002",
+      "file": "sfx/kenney/confirmation_002.wav",
+      "category": "ding",
+      "duration_sec": 0.539,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "confirmation_003",
+      "file": "sfx/kenney/confirmation_003.wav",
+      "category": "ding",
+      "duration_sec": 0.322,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "confirmation_004",
+      "file": "sfx/kenney/confirmation_004.wav",
+      "category": "ding",
+      "duration_sec": 0.49,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "drop_001",
+      "file": "sfx/kenney/drop_001.wav",
+      "category": "pop",
+      "duration_sec": 0.132,
+      "peak_db": -0.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "drop_002",
+      "file": "sfx/kenney/drop_002.wav",
+      "category": "pop",
+      "duration_sec": 0.188,
+      "peak_db": -1.1,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "drop_003",
+      "file": "sfx/kenney/drop_003.wav",
+      "category": "pop",
+      "duration_sec": 0.188,
+      "peak_db": -1.1,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "drop_004",
+      "file": "sfx/kenney/drop_004.wav",
+      "category": "pop",
+      "duration_sec": 0.284,
+      "peak_db": -0.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "error_001",
+      "file": "sfx/kenney/error_001.wav",
+      "category": "error",
+      "duration_sec": 0.162,
+      "peak_db": 0.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "error_002",
+      "file": "sfx/kenney/error_002.wav",
+      "category": "error",
+      "duration_sec": 0.165,
+      "peak_db": -0.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "error_003",
+      "file": "sfx/kenney/error_003.wav",
+      "category": "error",
+      "duration_sec": 0.533,
+      "peak_db": -0.7,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glass_001",
+      "file": "sfx/kenney/glass_001.wav",
+      "category": "glass",
+      "duration_sec": 0.276,
+      "peak_db": -4.1,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glass_002",
+      "file": "sfx/kenney/glass_002.wav",
+      "category": "glass",
+      "duration_sec": 0.122,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glass_003",
+      "file": "sfx/kenney/glass_003.wav",
+      "category": "glass",
+      "duration_sec": 0.121,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glass_004",
+      "file": "sfx/kenney/glass_004.wav",
+      "category": "glass",
+      "duration_sec": 0.692,
+      "peak_db": -3.4,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glass_005",
+      "file": "sfx/kenney/glass_005.wav",
+      "category": "glass",
+      "duration_sec": 0.132,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glass_006",
+      "file": "sfx/kenney/glass_006.wav",
+      "category": "glass",
+      "duration_sec": 0.132,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glitch_001",
+      "file": "sfx/kenney/glitch_001.wav",
+      "category": "glitch",
+      "duration_sec": 0.017,
+      "peak_db": -1.1,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glitch_002",
+      "file": "sfx/kenney/glitch_002.wav",
+      "category": "glitch",
+      "duration_sec": 0.027,
+      "peak_db": -1.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "glitch_004",
+      "file": "sfx/kenney/glitch_004.wav",
+      "category": "glitch",
+      "duration_sec": 0.02,
+      "peak_db": -0.6,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "maximize_001",
+      "file": "sfx/kenney/maximize_001.wav",
+      "category": "swish_up",
+      "duration_sec": 0.258,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "maximize_002",
+      "file": "sfx/kenney/maximize_002.wav",
+      "category": "swish_up",
+      "duration_sec": 0.258,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "maximize_003",
+      "file": "sfx/kenney/maximize_003.wav",
+      "category": "swish_up",
+      "duration_sec": 0.212,
+      "peak_db": -3.8,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "maximize_004",
+      "file": "sfx/kenney/maximize_004.wav",
+      "category": "swish_up",
+      "duration_sec": 0.418,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "minimize_001",
+      "file": "sfx/kenney/minimize_001.wav",
+      "category": "swish_down",
+      "duration_sec": 0.258,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "minimize_002",
+      "file": "sfx/kenney/minimize_002.wav",
+      "category": "swish_down",
+      "duration_sec": 0.258,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "minimize_003",
+      "file": "sfx/kenney/minimize_003.wav",
+      "category": "swish_down",
+      "duration_sec": 0.212,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "minimize_004",
+      "file": "sfx/kenney/minimize_004.wav",
+      "category": "swish_down",
+      "duration_sec": 0.418,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "pluck_001",
+      "file": "sfx/kenney/pluck_001.wav",
+      "category": "pop",
+      "duration_sec": 0.1,
+      "peak_db": -0.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "pluck_002",
+      "file": "sfx/kenney/pluck_002.wav",
+      "category": "pop",
+      "duration_sec": 0.162,
+      "peak_db": 0.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "question_001",
+      "file": "sfx/kenney/question_001.wav",
+      "category": "question",
+      "duration_sec": 0.491,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "question_002",
+      "file": "sfx/kenney/question_002.wav",
+      "category": "question",
+      "duration_sec": 0.333,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "scratch_001",
+      "file": "sfx/kenney/scratch_001.wav",
+      "category": "scratch",
+      "duration_sec": 0.139,
+      "peak_db": -3.8,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "scratch_002",
+      "file": "sfx/kenney/scratch_002.wav",
+      "category": "scratch",
+      "duration_sec": 0.139,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "scratch_003",
+      "file": "sfx/kenney/scratch_003.wav",
+      "category": "scratch",
+      "duration_sec": 0.123,
+      "peak_db": -3.6,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "select_001",
+      "file": "sfx/kenney/select_001.wav",
+      "category": "pop",
+      "duration_sec": 0.04,
+      "peak_db": -1.1,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "select_002",
+      "file": "sfx/kenney/select_002.wav",
+      "category": "pop",
+      "duration_sec": 0.04,
+      "peak_db": -0.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "select_003",
+      "file": "sfx/kenney/select_003.wav",
+      "category": "pop",
+      "duration_sec": 0.38,
+      "peak_db": -3.8,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "tick_001",
+      "file": "sfx/kenney/tick_001.wav",
+      "category": "click",
+      "duration_sec": 0.045,
+      "peak_db": -2.5,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "tick_002",
+      "file": "sfx/kenney/tick_002.wav",
+      "category": "click",
+      "duration_sec": 0.02,
+      "peak_db": -1.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "tick_004",
+      "file": "sfx/kenney/tick_004.wav",
+      "category": "click",
+      "duration_sec": 0.055,
+      "peak_db": -3.8,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "toggle_001",
+      "file": "sfx/kenney/toggle_001.wav",
+      "category": "check",
+      "duration_sec": 0.136,
+      "peak_db": -3.9,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "toggle_002",
+      "file": "sfx/kenney/toggle_002.wav",
+      "category": "check",
+      "duration_sec": 0.136,
+      "peak_db": -4.0,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "toggle_003",
+      "file": "sfx/kenney/toggle_003.wav",
+      "category": "check",
+      "duration_sec": 0.139,
+      "peak_db": -3.8,
+      "source": "Kenney Interface Sounds",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "impact_01",
+      "file": "sfx/synth/impact_01.wav",
+      "category": "impact",
+      "duration_sec": 0.6,
+      "peak_db": -2.9,
+      "source": "ffmpeg 합성 (이 프로젝트에서 생성)",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "riser_01",
+      "file": "sfx/synth/riser_01.wav",
+      "category": "riser",
+      "duration_sec": 1.0,
+      "peak_db": -13.7,
+      "source": "ffmpeg 합성 (이 프로젝트에서 생성)",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "stamp_01",
+      "file": "sfx/synth/stamp_01.wav",
+      "category": "stamp",
+      "duration_sec": 0.35,
+      "peak_db": -5.9,
+      "source": "ffmpeg 합성 (이 프로젝트에서 생성)",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "whoosh_01",
+      "file": "sfx/synth/whoosh_01.wav",
+      "category": "whoosh",
+      "duration_sec": 0.47,
+      "peak_db": -20.3,
+      "source": "ffmpeg 합성 (이 프로젝트에서 생성)",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "whoosh_02",
+      "file": "sfx/synth/whoosh_02.wav",
+      "category": "whoosh",
+      "duration_sec": 0.35,
+      "peak_db": 0.0,
+      "source": "ffmpeg 합성 (이 프로젝트에서 생성)",
+      "license": "CC0 (출처 표기 불필요)"
+    },
+    {
+      "id": "whoosh_03",
+      "file": "sfx/synth/whoosh_03.wav",
+      "category": "whoosh",
+      "duration_sec": 0.6,
+      "peak_db": -1.2,
+      "source": "ffmpeg 합성 (이 프로젝트에서 생성)",
+      "license": "CC0 (출처 표기 불필요)"
+    }
+  ]
+}

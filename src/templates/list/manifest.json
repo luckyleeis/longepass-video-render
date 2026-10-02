@@ -1,0 +1,122 @@
+{
+  "id": "list",
+  "version": 1,
+  "name": "목록",
+  "component": "List.tsx",
+  "category": "organize",
+  "inspired_by": "ai_sync_club — 체크리스트",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A list of 2-5 items with optional one-line notes (requirements, documents, cautions). style: check|number|doc|bullet.",
+  "avoid_when": "Ordered process (use steps) or 6+ short labels (use tiles).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "style": {
+      "type": "enum",
+      "options": [
+        "check",
+        "number",
+        "doc",
+        "bullet"
+      ],
+      "required": true
+    },
+    "items": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "text": {
+            "type": "text",
+            "max": 16,
+            "required": true
+          },
+          "sub": {
+            "type": "text",
+            "max": 24
+          }
+        },
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "items": {
+      "kind": "each",
+      "of": "items"
+    }
+  },
+  "sfx": {
+    "items": "pop"
+  },
+  "sfx_when": [
+    {
+      "if": {
+        "style": "check"
+      },
+      "sfx": {
+        "items": "check"
+      }
+    }
+  ],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "申請時準備的文件其實非常簡單，只要用手機拍好存檔就可以：包含證照正反面影本、身分證與戶口名簿影本、本人金融存摺封面，以及去主管機關官網下載好的申請書。",
+      "data": {
+        "title": "申請必備四樣文件",
+        "style": "doc",
+        "items": [
+          {
+            "text": "證照正反面影本",
+            "sub": "生效日期需清晰可見"
+          },
+          {
+            "text": "身分證與戶口名簿",
+            "sub": "證明設籍與居住地"
+          },
+          {
+            "text": "本人金融存摺封面",
+            "sub": "獎勵金直接匯入戶頭"
+          },
+          {
+            "text": "申請書",
+            "sub": "各縣市官網下載"
+          }
+        ]
+      },
+      "cues": {
+        "title": "準備的文件",
+        "items": [
+          "證照正反面",
+          "身分證",
+          "存摺封面",
+          "申請書"
+        ]
+      }
+    }
+  ]
+}

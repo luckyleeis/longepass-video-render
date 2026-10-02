@@ -1,0 +1,243 @@
+{
+  "id": "flow",
+  "version": 1,
+  "kind": "stage",
+  "name": "흐름도 (무대)",
+  "component": "Flow.tsx",
+  "category": "organize",
+  "inspired_by": "aimkt — 카드 하나에서 갈래가 뻗고 다시 모이는 진단 흐름, 카메라가 따라감",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A path that BRANCHES and merges: a starting point, then a column with 2-4 options or routes, then a common result. Columns are drawn one by one across beats while the camera follows.",
+  "avoid_when": "Every column would have only one node (that is a linear process: use steps). At least one column must have 2+ nodes.",
+  "fields": {
+    "columns": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "max": 10,
+            "desc": "small label above the column"
+          },
+          "nodes": {
+            "type": "list",
+            "item": {
+              "type": "object",
+              "fields": {
+                "label": {
+                  "type": "text",
+                  "max": 8,
+                  "required": true
+                },
+                "sub": {
+                  "type": "text",
+                  "max": 12
+                },
+                "icon": {
+                  "type": "enum",
+                  "options": [
+                    "doc",
+                    "warning",
+                    "tip",
+                    "info",
+                    "check",
+                    "x",
+                    "star",
+                    "user",
+                    "users",
+                    "calendar",
+                    "clock",
+                    "cash",
+                    "coin",
+                    "bank",
+                    "certificate",
+                    "id",
+                    "school",
+                    "briefcase",
+                    "tool",
+                    "home",
+                    "phone",
+                    "mail",
+                    "search",
+                    "target",
+                    "trend",
+                    "chart",
+                    "pie",
+                    "globe",
+                    "pin",
+                    "shield",
+                    "question",
+                    "arrow",
+                    "bolt",
+                    "leaf",
+                    "heart",
+                    "gift",
+                    "lock",
+                    "download"
+                  ],
+                  "desc": "line icon that fits the label"
+                }
+              },
+              "required": true
+            },
+            "min": 1,
+            "max": 4
+          }
+        },
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    }
+  },
+  "events": {},
+  "sfx": {},
+  "sfx_when": [],
+  "beat_fields": {
+    "show": {
+      "type": "int",
+      "desc": "0-based index of the last visible column in this beat (default: spread evenly)"
+    },
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "focus": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 8,
+        "required": true
+      },
+      "min": 0,
+      "max": 4,
+      "desc": "node labels to highlight"
+    },
+    "note": {
+      "type": "text",
+      "max": 28
+    }
+  },
+  "beat_events": {
+    "focus": {
+      "kind": "single",
+      "at": 0.3,
+      "when": "focus"
+    }
+  },
+  "beat_sfx": {
+    "at": "pop",
+    "focus": "ding"
+  },
+  "beats": {
+    "min": 2,
+    "max": 5
+  },
+  "bg": null,
+  "duration": {
+    "min_sec": 10,
+    "max_sec": 45
+  },
+  "examples": [
+    {
+      "data": {
+        "columns": [
+          {
+            "label": "起點",
+            "nodes": [
+              {
+                "label": "考取證照",
+                "sub": "乙級或甲級",
+                "icon": "certificate"
+              }
+            ]
+          },
+          {
+            "label": "三種身分",
+            "nodes": [
+              {
+                "label": "在職勞工",
+                "sub": "縣市獎勵金",
+                "icon": "briefcase"
+              },
+              {
+                "label": "三十歲以下",
+                "sub": "青年加碼",
+                "icon": "school"
+              },
+              {
+                "label": "原住民",
+                "sub": "原民會專案",
+                "icon": "users"
+              }
+            ]
+          },
+          {
+            "label": "結果",
+            "nodes": [
+              {
+                "label": "領取獎勵金",
+                "sub": "九十天內申請",
+                "icon": "cash"
+              }
+            ]
+          }
+        ]
+      },
+      "beats": [
+        {
+          "narration": "考取證照只是第一步，接下來要看你屬於哪一種身分。",
+          "data": {
+            "show": 0,
+            "title": "你走哪一條路？"
+          },
+          "cues": {}
+        },
+        {
+          "narration": "常見的路線有三種：在職勞工、三十歲以下的青年，以及原住民身分。",
+          "data": {
+            "show": 1
+          },
+          "cues": {}
+        },
+        {
+          "narration": "如果你是原住民，原民會專案的金額最高，建議優先申請。",
+          "data": {
+            "show": 1,
+            "focus": [
+              "原住民"
+            ],
+            "note": "原民會最高六萬元"
+          },
+          "cues": {
+            "focus": "原住民"
+          }
+        },
+        {
+          "narration": "不管走哪一條路，都要在九十天內送出申請，才能順利領到獎勵金。",
+          "data": {
+            "show": 2,
+            "focus": [
+              "領取獎勵金"
+            ]
+          },
+          "cues": {
+            "focus": "九十天"
+          }
+        }
+      ]
+    }
+  ]
+}

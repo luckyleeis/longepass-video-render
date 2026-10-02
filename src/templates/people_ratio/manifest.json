@@ -1,0 +1,209 @@
+{
+  "id": "people_ratio",
+  "version": 1,
+  "kind": "shot",
+  "name": "그림 비율",
+  "component": "PeopleRatio.tsx",
+  "category": "number",
+  "inspired_by": "gasket — 줄 선 사람 픽토그램 중 일부만 색이 바뀌며 '8명', '1/3'을 보여주는 장면",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A ratio or 'K out of N' fact (N up to 24): N people (or objects) appear in rows and K of them change color, with the ratio in big type.",
+  "avoid_when": "Exact large numbers (use counter) or several categories (use bar_chart).",
+  "fields": {
+    "total": {
+      "type": "int",
+      "desc": "N (2-24)"
+    },
+    "highlight": {
+      "type": "int",
+      "desc": "K"
+    },
+    "unit": {
+      "type": "enum",
+      "options": [
+        "person",
+        "doc",
+        "warning",
+        "tip",
+        "info",
+        "check",
+        "x",
+        "star",
+        "user",
+        "users",
+        "calendar",
+        "clock",
+        "cash",
+        "coin",
+        "bank",
+        "certificate",
+        "id",
+        "school",
+        "briefcase",
+        "tool",
+        "home",
+        "phone",
+        "mail",
+        "search",
+        "target",
+        "trend",
+        "chart",
+        "pie",
+        "globe",
+        "pin",
+        "shield",
+        "question",
+        "arrow",
+        "bolt",
+        "leaf",
+        "heart",
+        "gift",
+        "lock",
+        "download",
+        "laptop",
+        "desktop",
+        "wallet",
+        "store",
+        "building",
+        "cart",
+        "register",
+        "book",
+        "pencil",
+        "hammer",
+        "helmet",
+        "car",
+        "bus",
+        "train",
+        "plane",
+        "truck",
+        "bike",
+        "coffee",
+        "bed",
+        "door",
+        "chair",
+        "desk",
+        "trophy",
+        "medal",
+        "flag",
+        "hourglass",
+        "piggy",
+        "receipt",
+        "call",
+        "chat",
+        "stethoscope",
+        "chef",
+        "plant",
+        "sun",
+        "moon",
+        "rain",
+        "key",
+        "box",
+        "clipboard",
+        "barrier",
+        "stairs",
+        "mountain",
+        "road",
+        "printer",
+        "camera"
+      ],
+      "desc": "what each unit is (person or an object)"
+    },
+    "pose": {
+      "type": "enum",
+      "options": [
+        "stand",
+        "walk",
+        "run",
+        "wait",
+        "think",
+        "point",
+        "cheer",
+        "sad",
+        "phone",
+        "shrug",
+        "hold"
+      ],
+      "desc": "pose of a person"
+    },
+    "tone": {
+      "type": "enum",
+      "options": [
+        "accent",
+        "danger"
+      ]
+    },
+    "big": {
+      "type": "text",
+      "max": 8,
+      "desc": "big ratio text, e.g. 7/22 or 30%"
+    },
+    "label": {
+      "type": "text",
+      "max": 20,
+      "required": true
+    },
+    "sub": {
+      "type": "text",
+      "max": 28
+    }
+  },
+  "events": {
+    "units": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "highlight": {
+      "kind": "single",
+      "at": 0.45
+    },
+    "big": {
+      "kind": "single",
+      "at": 0.6,
+      "after": {
+        "event": "highlight",
+        "gap": 6
+      }
+    }
+  },
+  "sfx": {
+    "units": "pop",
+    "highlight": "ding",
+    "big": "swish_up"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 14
+  },
+  "examples": [
+    {
+      "narration": "全台二十二個縣市裡，有七個縣市沒有提供一般勞工的證照獎勵金，申請前一定要先確認自己的縣市。",
+      "data": {
+        "total": 22,
+        "highlight": 7,
+        "unit": "pin",
+        "tone": "danger",
+        "big": "7/22",
+        "label": "沒有一般勞工獎勵金的縣市",
+        "sub": "申請前先確認自己的縣市"
+      },
+      "cues": {
+        "units": "二十二個",
+        "highlight": "七個縣市",
+        "big": "沒有提供"
+      }
+    }
+  ]
+}

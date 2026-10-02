@@ -1,0 +1,96 @@
+{
+  "id": "headline_object",
+  "version": 1,
+  "name": "큰 글자 + 사물 그림",
+  "component": "HeadlineObject.tsx",
+  "category": "emphasis",
+  "inspired_by": "ai_sync_club — 글자 옆에 떨어지는 사물",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A key message paired with a concrete object (certificate, cash, document, calendar with a number, ID card, bankbook).",
+  "avoid_when": "No object clearly matches the message.",
+  "fields": {
+    "lines": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 7,
+        "required": true
+      },
+      "min": 1,
+      "max": 3
+    },
+    "highlight": {
+      "type": "text",
+      "max": 7
+    },
+    "object": {
+      "type": "enum",
+      "options": [
+        "certificate",
+        "cash",
+        "document",
+        "calendar",
+        "idcard",
+        "passbook"
+      ],
+      "required": true
+    },
+    "object_label": {
+      "type": "text",
+      "max": 6,
+      "desc": "text on the object, e.g. a number on the calendar"
+    }
+  },
+  "events": {
+    "lines": {
+      "kind": "each",
+      "of": "lines"
+    },
+    "object": {
+      "kind": "single",
+      "at": 0.3
+    }
+  },
+  "sfx": {
+    "lines": "pop",
+    "object": "whoosh"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 3,
+    "max_sec": 12
+  },
+  "examples": [
+    {
+      "narration": "請大家務必牢記九十天這個黃金申請期！只要超過證照生效日起算的三個月，這筆原本屬於你的補助金就會直接退回國庫，千萬別讓證照放在抽屜裡面睡覺了。",
+      "data": {
+        "lines": [
+          "把握 90 天",
+          "黃金申請期"
+        ],
+        "highlight": "黃金申請期",
+        "object": "calendar",
+        "object_label": "90"
+      },
+      "cues": {
+        "lines": [
+          "九十天",
+          "黃金申請期"
+        ],
+        "object": "證照生效日"
+      }
+    }
+  ]
+}

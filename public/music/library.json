@@ -1,0 +1,145 @@
+{
+  "_note": "배경음악 목록. moods/energy는 초기값이라 실제로 들어보고 조정할 것. lufs=ebur128 측정, bpm/first_beat_sec=librosa 박자 분석(엔진이 음량 보정과 박자 맞춤에 사용).",
+  "tracks": [
+    {
+      "id": "wallpaper",
+      "file": "music/wallpaper.mp3",
+      "title": "Wallpaper",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "attribution": "\"Wallpaper\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Wallpaper.mp3",
+      "duration_sec": 220.1,
+      "lufs": -11.2,
+      "moods": [
+        "chill",
+        "modern",
+        "unobtrusive",
+        "informative"
+      ],
+      "energy": 2,
+      "bpm": 92.3,
+      "first_beat_sec": 10.38
+    },
+    {
+      "id": "easy_lemon",
+      "file": "music/easy_lemon.mp3",
+      "title": "Easy Lemon",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "attribution": "\"Easy Lemon\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Easy%20Lemon.mp3",
+      "duration_sec": 126.4,
+      "lufs": -15.8,
+      "moods": [
+        "light",
+        "positive",
+        "friendly",
+        "informative"
+      ],
+      "energy": 3,
+      "bpm": 80.7,
+      "first_beat_sec": 0.07
+    },
+    {
+      "id": "carefree",
+      "file": "music/carefree.mp3",
+      "title": "Carefree",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "attribution": "\"Carefree\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Carefree.mp3",
+      "duration_sec": 205.1,
+      "lufs": -20.2,
+      "moods": [
+        "upbeat",
+        "cheerful",
+        "playful"
+      ],
+      "energy": 4,
+      "bpm": 95.7,
+      "first_beat_sec": 0.98
+    },
+    {
+      "id": "inspired",
+      "file": "music/inspired.mp3",
+      "title": "Inspired",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "attribution": "\"Inspired\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Inspired.mp3",
+      "duration_sec": 286.1,
+      "lufs": -12.8,
+      "moods": [
+        "warm",
+        "inspiring",
+        "gentle",
+        "piano"
+      ],
+      "energy": 2,
+      "bpm": 117.5,
+      "first_beat_sec": 0.07
+    },
+    {
+      "id": "raving_energy",
+      "file": "music/raving_energy.mp3",
+      "title": "Raving Energy",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "attribution": "\"Raving Energy\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Raving%20Energy.mp3",
+      "duration_sec": 267.6,
+      "lufs": -13.8,
+      "bpm": 123.0,
+      "first_beat_sec": 0.07,
+      "moods": [
+        "energetic",
+        "electronic",
+        "hip",
+        "motion_graphics",
+        "upbeat"
+      ],
+      "energy": 5
+    },
+    {
+      "id": "voxel_revolution",
+      "file": "music/voxel_revolution.mp3",
+      "title": "Voxel Revolution",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "attribution": "\"Voxel Revolution\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Voxel%20Revolution.mp3",
+      "duration_sec": 129.9,
+      "lufs": -12.2,
+      "bpm": 123.0,
+      "first_beat_sec": 0.07,
+      "moods": [
+        "energetic",
+        "electronic",
+        "chiptune",
+        "motion_graphics"
+      ],
+      "energy": 4
+    },
+    {
+      "id": "pixelland",
+      "file": "music/pixelland.mp3",
+      "title": "Pixelland",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "attribution": "\"Pixelland\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Pixelland.mp3",
+      "duration_sec": 233.8,
+      "lufs": -17.4,
+      "bpm": 117.5,
+      "first_beat_sec": 0.49,
+      "moods": [
+        "playful",
+        "electronic",
+        "chiptune",
+        "light"
+      ],
+      "energy": 3
+    }
+  ]
+}

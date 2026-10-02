@@ -1,0 +1,8 @@
+@font-face { font-family: 'Noto Sans TC'; src: url('../public/fonts/Noto_Sans_TC/NotoSansTC-Regular.ttf') format('truetype'); font-weight: 400; }
+@font-face { font-family: 'Noto Sans TC'; src: url('../public/fonts/Noto_Sans_TC/NotoSansTC-Medium.ttf') format('truetype'); font-weight: 500; }
+@font-face { font-family: 'Noto Sans TC'; src: url('../public/fonts/Noto_Sans_TC/NotoSansTC-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Noto Sans TC'; src: url('../public/fonts/Noto_Sans_TC/NotoSansTC-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Noto Sans TC'; src: url('../public/fonts/Noto_Sans_TC/NotoSansTC-ExtraBold.ttf') format('truetype'); font-weight: 800; }
+@font-face { font-family: 'Noto Sans TC'; src: url('../public/fonts/Noto_Sans_TC/NotoSansTC-Black.ttf') format('truetype'); font-weight: 900; }
+/* 손그림 재료용 손글씨 (清松手寫體, SIL OFL) */
+@font-face { font-family: 'Jason Handwriting'; src: url('../public/fonts/JasonHandwriting.ttf') format('truetype'); font-weight: 400 900; }

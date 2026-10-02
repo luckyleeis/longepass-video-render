@@ -1,0 +1,205 @@
+{
+  "id": "globe",
+  "version": 1,
+  "kind": "shot",
+  "name": "지구본",
+  "component": "Globe.tsx",
+  "category": "space",
+  "inspired_by": "echany — 점으로 된 지구본 위로 출발지에서 뻗어 나가는 호",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Connections from one place to other countries or cities (overseas work, international recognition, trade). Statement on the left, arcs drawn one by one.",
+  "avoid_when": "Places inside one country (use taiwan_map or tiles).",
+  "fields": {
+    "lines": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 8,
+        "required": true
+      },
+      "min": 1,
+      "max": 3
+    },
+    "highlight": {
+      "type": "text",
+      "max": 8
+    },
+    "origin": {
+      "type": "enum",
+      "options": [
+        "taiwan",
+        "taipei",
+        "japan",
+        "tokyo",
+        "korea",
+        "seoul",
+        "china",
+        "shanghai",
+        "hongkong",
+        "singapore",
+        "malaysia",
+        "thailand",
+        "vietnam",
+        "philippines",
+        "indonesia",
+        "india",
+        "uae",
+        "australia",
+        "newzealand",
+        "usa",
+        "newyork",
+        "sanfrancisco",
+        "canada",
+        "mexico",
+        "brazil",
+        "uk",
+        "france",
+        "germany",
+        "netherlands",
+        "switzerland",
+        "italy",
+        "spain",
+        "russia",
+        "southafrica",
+        "egypt",
+        "turkey",
+        "vancouver",
+        "toronto"
+      ],
+      "required": true
+    },
+    "origin_label": {
+      "type": "text",
+      "max": 6
+    },
+    "targets": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "place": {
+            "type": "enum",
+            "options": [
+              "taiwan",
+              "taipei",
+              "japan",
+              "tokyo",
+              "korea",
+              "seoul",
+              "china",
+              "shanghai",
+              "hongkong",
+              "singapore",
+              "malaysia",
+              "thailand",
+              "vietnam",
+              "philippines",
+              "indonesia",
+              "india",
+              "uae",
+              "australia",
+              "newzealand",
+              "usa",
+              "newyork",
+              "sanfrancisco",
+              "canada",
+              "mexico",
+              "brazil",
+              "uk",
+              "france",
+              "germany",
+              "netherlands",
+              "switzerland",
+              "italy",
+              "spain",
+              "russia",
+              "southafrica",
+              "egypt",
+              "turkey",
+              "vancouver",
+              "toronto"
+            ],
+            "required": true
+          },
+          "label": {
+            "type": "text",
+            "max": 6,
+            "desc": "display name (default: name in the video language)"
+          }
+        },
+        "required": true
+      },
+      "min": 1,
+      "max": 6
+    }
+  },
+  "events": {
+    "lines": {
+      "kind": "each",
+      "of": "lines"
+    },
+    "targets": {
+      "kind": "each",
+      "of": "targets"
+    }
+  },
+  "sfx": {
+    "targets": "swish_up"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "有了證照技能，出國打工度假也更有優勢，日本、澳洲、紐西蘭和加拿大都是台灣青年的熱門選擇。",
+      "data": {
+        "lines": [
+          "證照技能",
+          "走向海外"
+        ],
+        "highlight": "走向海外",
+        "origin": "taiwan",
+        "targets": [
+          {
+            "place": "japan"
+          },
+          {
+            "place": "australia"
+          },
+          {
+            "place": "newzealand"
+          },
+          {
+            "place": "canada"
+          }
+        ]
+      },
+      "cues": {
+        "lines": [
+          "證照技能",
+          "出國打工"
+        ],
+        "targets": [
+          "日本",
+          "澳洲",
+          "紐西蘭",
+          "加拿大"
+        ]
+      }
+    }
+  ]
+}

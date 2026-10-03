@@ -102,7 +102,11 @@
     "lang": "zh-tw"
   },
   "pacing": {
-    "music": "raving_energy",
+    "music": "happy_times",
+    "music_moods": [
+      "motivating",
+      "playful"
+    ],
     "music_open_lufs": -16.0,
     "music_under_voice_lufs": -24.0,
     "sfx_gain_db": -3.0,

@@ -60,6 +60,15 @@ def check_style(style: Dict[str, Any]) -> List[str]:
         errs.append(f"media({style.get('media')})와 theme.media.kind({media})가 다름")
     if media not in MEDIA_KINDS:
         errs.append(f"theme.media.kind는 {MEDIA_KINDS} 중 하나")
+    lib_path = os.path.join(ROOT, "public", "music", "library.json")
+    if os.path.exists(lib_path):
+        with open(lib_path, "r", encoding="utf-8") as f:
+            lib = json.load(f)
+        if pc.get("music") not in {t["id"] for t in lib["tracks"]}:
+            errs.append(f"pacing.music '{pc.get('music')}' 곡이 public/music/library.json 에 없음")
+        bad = [m for m in pc.get("music_moods", []) if m not in lib.get("moods", {})]
+        if bad:
+            errs.append(f"pacing.music_moods 에 없는 분위기 {bad} (가능: {list(lib.get('moods', {}))})")
     for k in ("chapter", "counter", "default"):
         if k not in pc.get("transitions", {}):
             errs.append(f"pacing.transitions.{k} 없음")

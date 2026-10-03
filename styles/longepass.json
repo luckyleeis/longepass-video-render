@@ -1,6 +1,6 @@
 {
   "name": "longepass",
-  "description": "롱이패스: 남색 + 노랑, 흰 카드와 옅은 선. 정보 전달용으로 차분하게 (Carefree BGM)",
+  "description": "롱이패스: 남색 + 노랑, 흰 카드와 옅은 선. 정보 전달용으로 차분하게 (BGM은 영상 분위기별 Mixkit 곡)",
   "media": "clean",
   "continuity": "cut",
   "theme": {
@@ -102,7 +102,14 @@
     "lang": "zh-tw"
   },
   "pacing": {
-    "music": "carefree",
+    "music": "just_keep_walking",
+    "music_moods": [
+      "calm",
+      "bright",
+      "warm",
+      "playful",
+      "motivating"
+    ],
     "music_open_lufs": -19.0,
     "music_under_voice_lufs": -27.0,
     "sfx_gain_db": -7.0,

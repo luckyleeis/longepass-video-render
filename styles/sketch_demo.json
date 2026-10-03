@@ -106,7 +106,13 @@
     "lang": "zh-tw"
   },
   "pacing": {
-    "music": "carefree",
+    "music": "walking_in_the_park",
+    "music_moods": [
+      "calm",
+      "bright",
+      "warm",
+      "playful"
+    ],
     "music_open_lufs": -19.0,
     "music_under_voice_lufs": -27.0,
     "sfx_gain_db": -7.0,

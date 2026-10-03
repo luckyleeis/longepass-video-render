@@ -34,7 +34,10 @@ bin/studio list | styles
 - `src/templates/<id>/` — 템플릿 (manifest.json + 컴포넌트). 작성법: [TEMPLATE_GUIDE.md](TEMPLATE_GUIDE.md)
 - `src/kit/` — 공용 부품 (그림 재료 층, 스킨, 무대, 관절 인형 …)
 - `styles/` — 프로젝트 스타일 (색·글꼴·움직임·음악·효과음 양)
-- `public/music`, `public/sfx` — 음악(CC BY, `library.json`에 표기)·효과음(Kenney CC0 등)
+- `public/music` — 배경음악 17곡, 모두 **Mixkit Stock Music Free License** (상업·유튜브 사용 가능, **출처 표기 불필요**, 원본 단독 재판매 금지).
+  `library.json`의 `mood`(calm/bright/warm/playful/motivating)로 영상마다 고른다 (계획의 `music_mood`, 스타일의 `music_moods`).
+  새 곡도 출처 표기가 필요 없는 라이선스만 넣는다.
+- `public/sfx` — 효과음 (Kenney CC0 등)
 - `public/fonts` — Noto Sans TC (SIL OFL), 清松手寫體 JasonHandwriting (SIL OFL로 알려짐, 운영 사용 전 확인)
 - `studio/` — Python 명령
 

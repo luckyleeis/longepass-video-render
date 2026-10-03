@@ -166,7 +166,7 @@ export default MyTemplate;
 - `skin`: 테두리(`cardBorder`, `cardBorderColor`), `radius`, `shadow`(soft/offset/none), `objectStroke`,
   배경 무늬 `grid`(dots/lines/squares/none), `ring`, `beatPulse`, 강조 `highlight`(marker/pill),
   `colorful`, `captionBg`, `motion`(damping, stiffness, mass, distance, tilt, impact)
-- `pacing`: `music`, 음악 크기(`music_open_lufs`, `music_under_voice_lufs`), `sfx_gain_db`,
+- `pacing`: `music`(기본 곡), `music_moods`(이 스타일이 허용하는 분위기 — 계획의 `music_mood`가 여기 있으면 그 분위기 곡 중 하나), 음악 크기(`music_open_lufs`, `music_under_voice_lufs`), `sfx_gain_db`,
   `stagger_sfx_every`, `stagger_beats`, `transition_frames`, `transitions`(chapter/counter/default),
   `transition_sfx`, `sfx_replace`
 - `media`, `continuity`: 이 스타일이 쓰는 그림 재료와 이어짐 방식 (템플릿 후보를 거른다)
@@ -194,5 +194,5 @@ export default MyTemplate;
 ## 6. 프로젝트 전용 규칙
 
 LLM 계획 프롬프트와 프로젝트 전용 규칙(브랜드 표기, 통화 기호 등)은 서버 쪽에 있다
-(`py-macmini-server/assets/prompts/video_engine/motion_plan.md`, `projects.py`의 `plan_rules`).
+(`py-macmini-server/assets/prompts/video_engine/` 의 `script.md`(대본) · `direction.md`(연출, 템플릿 설명이 들어감) · `repair.md`(고치기), `projects.py`의 `plan_rules`).
 studio는 그 프롬프트에 들어갈 템플릿 설명(`bin/studio catalog`)만 만든다.

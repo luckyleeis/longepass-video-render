@@ -4,7 +4,17 @@
 """
 from typing import Any, Dict, Optional
 
+import json
+import os
+
 from studio import catalog
+
+MUSIC_LIBRARY = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public", "music", "library.json")
+
+
+def music_moods() -> list:
+    with open(MUSIC_LIBRARY, "r", encoding="utf-8") as f:
+        return list(json.load(f).get("moods", {}))
 
 
 def allowed_templates(project: str, style: Dict[str, Any]) -> set:
@@ -55,4 +65,5 @@ def normalize_plan(raw: Dict[str, Any], allowed: Optional[set] = None) -> Dict[s
         "video_title": raw.get("video_title", ""), "description": raw.get("description", ""),
         "hashtags": [h for h in raw.get("hashtags") or [] if isinstance(h, str)][:5],
         "thumbnail": raw.get("thumbnail") or {}, "chapters": chapters, "report": report,
+        "music_mood": raw.get("music_mood") if raw.get("music_mood") in music_moods() else None,
     }

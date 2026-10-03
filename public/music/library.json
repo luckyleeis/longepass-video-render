@@ -1,145 +1,381 @@
 {
-  "_note": "배경음악 목록. moods/energy는 초기값이라 실제로 들어보고 조정할 것. lufs=ebur128 측정, bpm/first_beat_sec=librosa 박자 분석(엔진이 음량 보정과 박자 맞춤에 사용).",
-  "tracks": [
-    {
-      "id": "wallpaper",
-      "file": "music/wallpaper.mp3",
-      "title": "Wallpaper",
-      "artist": "Kevin MacLeod",
-      "license": "CC BY 4.0",
-      "attribution": "\"Wallpaper\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
-      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Wallpaper.mp3",
-      "duration_sec": 220.1,
-      "lufs": -11.2,
-      "moods": [
-        "chill",
-        "modern",
-        "unobtrusive",
-        "informative"
-      ],
-      "energy": 2,
-      "bpm": 92.3,
-      "first_beat_sec": 10.38
-    },
-    {
-      "id": "easy_lemon",
-      "file": "music/easy_lemon.mp3",
-      "title": "Easy Lemon",
-      "artist": "Kevin MacLeod",
-      "license": "CC BY 4.0",
-      "attribution": "\"Easy Lemon\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
-      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Easy%20Lemon.mp3",
-      "duration_sec": 126.4,
-      "lufs": -15.8,
-      "moods": [
-        "light",
-        "positive",
-        "friendly",
-        "informative"
-      ],
-      "energy": 3,
-      "bpm": 80.7,
-      "first_beat_sec": 0.07
-    },
-    {
-      "id": "carefree",
-      "file": "music/carefree.mp3",
-      "title": "Carefree",
-      "artist": "Kevin MacLeod",
-      "license": "CC BY 4.0",
-      "attribution": "\"Carefree\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
-      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Carefree.mp3",
-      "duration_sec": 205.1,
-      "lufs": -20.2,
-      "moods": [
-        "upbeat",
-        "cheerful",
-        "playful"
-      ],
-      "energy": 4,
-      "bpm": 95.7,
-      "first_beat_sec": 0.98
-    },
-    {
-      "id": "inspired",
-      "file": "music/inspired.mp3",
-      "title": "Inspired",
-      "artist": "Kevin MacLeod",
-      "license": "CC BY 4.0",
-      "attribution": "\"Inspired\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
-      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Inspired.mp3",
-      "duration_sec": 286.1,
-      "lufs": -12.8,
-      "moods": [
-        "warm",
-        "inspiring",
-        "gentle",
-        "piano"
-      ],
-      "energy": 2,
-      "bpm": 117.5,
-      "first_beat_sec": 0.07
-    },
-    {
-      "id": "raving_energy",
-      "file": "music/raving_energy.mp3",
-      "title": "Raving Energy",
-      "artist": "Kevin MacLeod",
-      "license": "CC BY 4.0",
-      "attribution": "\"Raving Energy\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
-      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Raving%20Energy.mp3",
-      "duration_sec": 267.6,
-      "lufs": -13.8,
-      "bpm": 123.0,
-      "first_beat_sec": 0.07,
-      "moods": [
-        "energetic",
-        "electronic",
-        "hip",
-        "motion_graphics",
-        "upbeat"
-      ],
-      "energy": 5
-    },
-    {
-      "id": "voxel_revolution",
-      "file": "music/voxel_revolution.mp3",
-      "title": "Voxel Revolution",
-      "artist": "Kevin MacLeod",
-      "license": "CC BY 4.0",
-      "attribution": "\"Voxel Revolution\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
-      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Voxel%20Revolution.mp3",
-      "duration_sec": 129.9,
-      "lufs": -12.2,
-      "bpm": 123.0,
-      "first_beat_sec": 0.07,
-      "moods": [
-        "energetic",
-        "electronic",
-        "chiptune",
-        "motion_graphics"
-      ],
-      "energy": 4
-    },
-    {
-      "id": "pixelland",
-      "file": "music/pixelland.mp3",
-      "title": "Pixelland",
-      "artist": "Kevin MacLeod",
-      "license": "CC BY 4.0",
-      "attribution": "\"Pixelland\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
-      "source_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Pixelland.mp3",
-      "duration_sec": 233.8,
-      "lufs": -17.4,
-      "bpm": 117.5,
-      "first_beat_sec": 0.49,
-      "moods": [
-        "playful",
-        "electronic",
-        "chiptune",
-        "light"
-      ],
-      "energy": 3
-    }
-  ]
+ "note": "모두 Mixkit Stock Music Free License (상업·유튜브 사용 가능, 출처 표기 불필요, 원본 파일 단독 재판매 금지). mood = 영상 분위기 선택 기준 (LLM 계획의 music_mood)",
+ "moods": {
+  "calm": "차분, 정보 위주",
+  "bright": "밝고 경쾌 (기본)",
+  "warm": "따뜻, 응원",
+  "playful": "가볍고 장난스러운",
+  "motivating": "힘차고 도전적"
+ },
+ "tracks": [
+  {
+   "id": "serene_view",
+   "file": "music/serene_view.mp3",
+   "title": "Serene View",
+   "artist": "Arulo",
+   "mood": "calm",
+   "tags": [
+    "Chillout",
+    "Atmospheric",
+    "Relaxed",
+    "Background",
+    "Relaxation"
+   ],
+   "bpm": 117.5,
+   "first_beat_sec": 4.11,
+   "lufs": -14.8,
+   "energy": 2,
+   "duration_sec": 113.9,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #443)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "infinity",
+   "file": "music/infinity.mp3",
+   "title": "Infinity",
+   "artist": "Arulo",
+   "mood": "calm",
+   "tags": [
+    "Corporate Music",
+    "Electronic",
+    "Atmospheric",
+    "Relaxed",
+    "Piano",
+    "Relaxation"
+   ],
+   "bpm": 112.3,
+   "first_beat_sec": 18.25,
+   "lufs": -12.2,
+   "energy": 2,
+   "duration_sec": 102.9,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #440)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "night_sky_hip_hop",
+   "file": "music/night_sky_hip_hop.mp3",
+   "title": "Night Sky Hip Hop",
+   "artist": "Michael Ramir C.",
+   "mood": "calm",
+   "tags": [
+    "Pop",
+    "Positive",
+    "Acoustic Guitar",
+    "Motivational",
+    "Beach"
+   ],
+   "bpm": 89.1,
+   "first_beat_sec": 0.7,
+   "lufs": -16.1,
+   "energy": 2,
+   "duration_sec": 257.1,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #970)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "raising_me_higher",
+   "file": "music/raising_me_higher.mp3",
+   "title": "Raising Me Higher",
+   "artist": "Ahjay Stelino",
+   "mood": "bright",
+   "tags": [
+    "Corporate Music",
+    "Relaxed",
+    "Intro",
+    "Motivational"
+   ],
+   "bpm": 112.3,
+   "first_beat_sec": 0.58,
+   "lufs": -9.5,
+   "energy": 4,
+   "duration_sec": 97.6,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #34)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "curiosity",
+   "file": "music/curiosity.mp3",
+   "title": "Curiosity",
+   "artist": "Diego Nava",
+   "mood": "bright",
+   "tags": [
+    "Chillout",
+    "Corporate Music",
+    "Positive",
+    "Melodic",
+    "Fashion"
+   ],
+   "bpm": 80.7,
+   "first_beat_sec": 1.53,
+   "lufs": -11.2,
+   "energy": 4,
+   "duration_sec": 100.1,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #480)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "spring",
+   "file": "music/spring.mp3",
+   "title": "Spring",
+   "artist": "Eugenio Mininni",
+   "mood": "bright",
+   "tags": [
+    "Pop",
+    "Relaxed",
+    "Motivational",
+    "Lifestyle"
+   ],
+   "bpm": 107.7,
+   "first_beat_sec": 1.14,
+   "lufs": -11.1,
+   "energy": 3,
+   "duration_sec": 284.4,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #559)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "you_and_me",
+   "file": "music/you_and_me.mp3",
+   "title": "You and Me",
+   "artist": "Michael Ramir C.",
+   "mood": "bright",
+   "tags": [
+    "Pop",
+    "Relaxed",
+    "Melodic",
+    "Beach"
+   ],
+   "bpm": 92.3,
+   "first_beat_sec": 0.53,
+   "lufs": -16.4,
+   "energy": 2,
+   "duration_sec": 101.2,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #1124)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "just_keep_walking",
+   "file": "music/just_keep_walking.mp3",
+   "title": "Just Keep Walking",
+   "artist": "Michael Ramir C.",
+   "mood": "warm",
+   "tags": [
+    "Indie Pop",
+    "Uplifting",
+    "Acoustic Guitar",
+    "Travel",
+    "Lifestyle"
+   ],
+   "bpm": 95.7,
+   "first_beat_sec": 0.65,
+   "lufs": -15.4,
+   "energy": 2,
+   "duration_sec": 124.7,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #963)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "hope_and_kindness",
+   "file": "music/hope_and_kindness.mp3",
+   "title": "Hope and Kindness",
+   "artist": "Diego Nava",
+   "mood": "warm",
+   "tags": [
+    "Folk",
+    "Hopeful",
+    "Relaxed",
+    "Acoustic Guitar",
+    "Lifestyle"
+   ],
+   "bpm": 89.1,
+   "first_beat_sec": 1.37,
+   "lufs": -9.9,
+   "energy": 4,
+   "duration_sec": 120.0,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #534)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "i_believe_in_us",
+   "file": "music/i_believe_in_us.mp3",
+   "title": "I Believe in Us",
+   "artist": "Michael Ramir C.",
+   "mood": "warm",
+   "tags": [
+    "Pop",
+    "Warm",
+    "Piano",
+    "Lifestyle"
+   ],
+   "bpm": 86.1,
+   "first_beat_sec": 2.16,
+   "lufs": -22.9,
+   "energy": 1,
+   "duration_sec": 167.9,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #1030)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "mountains",
+   "file": "music/mountains.mp3",
+   "title": "Mountains",
+   "artist": "Andrew Ev",
+   "mood": "warm",
+   "tags": [
+    "Electronica",
+    "Uplifting",
+    "Relaxation",
+    "Corporate"
+   ],
+   "bpm": 123.0,
+   "first_beat_sec": 12.93,
+   "lufs": -10.5,
+   "energy": 4,
+   "duration_sec": 277.3,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #187)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "pop_track_03",
+   "file": "music/pop_track_03.mp3",
+   "title": "Pop Track 03",
+   "artist": "Lily J",
+   "mood": "playful",
+   "tags": [
+    "Electronic",
+    "Corporate Music",
+    "Playful",
+    "Melodic",
+    "Technology"
+   ],
+   "bpm": 107.7,
+   "first_beat_sec": 4.48,
+   "lufs": -10.9,
+   "energy": 4,
+   "duration_sec": 96.9,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #729)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "happy_home",
+   "file": "music/happy_home.mp3",
+   "title": "Happy Home",
+   "artist": "Michael Ramir C.",
+   "mood": "playful",
+   "tags": [
+    "Pop",
+    "Happy",
+    "Relaxed",
+    "Acoustic Guitar",
+    "Melodic",
+    "Motivational"
+   ],
+   "bpm": 143.6,
+   "first_beat_sec": 1.74,
+   "lufs": -11.8,
+   "energy": 3,
+   "duration_sec": 110.0,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #801)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "walking_in_the_park",
+   "file": "music/walking_in_the_park.mp3",
+   "title": "Walking in the Park",
+   "artist": "Diego Nava",
+   "mood": "playful",
+   "tags": [
+    "Folk Pop",
+    "Relaxed",
+    "Acoustic Guitar",
+    "Relaxation",
+    "Lifestyle"
+   ],
+   "bpm": 86.1,
+   "first_beat_sec": 0.12,
+   "lufs": -13.4,
+   "energy": 3,
+   "duration_sec": 95.3,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #529)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "i_m_fine",
+   "file": "music/i_m_fine.mp3",
+   "title": "I'm Fine",
+   "artist": "Michael Ramir C.",
+   "mood": "motivating",
+   "tags": [
+    "Corporate Music",
+    "Positive",
+    "Lifestyle"
+   ],
+   "bpm": 117.5,
+   "first_beat_sec": 1.53,
+   "lufs": -17.4,
+   "energy": 2,
+   "duration_sec": 104.0,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #1002)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "crazy_daze",
+   "file": "music/crazy_daze.mp3",
+   "title": "Crazy Daze",
+   "artist": "Michael Ramir C.",
+   "mood": "motivating",
+   "tags": [
+    "Corporate Music",
+    "Positive",
+    "Travel",
+    "Lifestyle"
+   ],
+   "bpm": 143.6,
+   "first_beat_sec": 0.58,
+   "lufs": -13.0,
+   "energy": 3,
+   "duration_sec": 124.8,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #1134)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  },
+  {
+   "id": "happy_times",
+   "file": "music/happy_times.mp3",
+   "title": "Happy Times",
+   "artist": "Alejandro Magaña (A. M.)",
+   "mood": "motivating",
+   "tags": [
+    "Pop",
+    "Indie Pop",
+    "Uplifting",
+    "Confident",
+    "Motivational",
+    "Sports"
+   ],
+   "bpm": 117.5,
+   "first_beat_sec": 0.07,
+   "lufs": -9.7,
+   "energy": 4,
+   "duration_sec": 100.1,
+   "source": "https://mixkit.co/free-stock-music/ (Mixkit #158)",
+   "license": "Mixkit Stock Music Free License — 출처 표기 불필요",
+   "attribution": null
+  }
+ ]
 }

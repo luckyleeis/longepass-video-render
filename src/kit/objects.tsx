@@ -64,8 +64,10 @@ export const CalendarPage: React.FC<{ w: number; sw?: number; ink: string; accen
     <SPath d="M0 32 Q0 10 22 10 H258 Q280 10 280 32 V90 H0 Z" fill={accent} stroke={ink} sw={sw} />
     <SRect x={60} y={0} w={16} h={44} rx={8} fill={ink} />
     <SRect x={204} y={0} w={16} h={44} rx={8} fill={ink} />
-    <text x="140" y="232" textAnchor="middle" fontSize="120" fontWeight="900" fill={ink}>{big}</text>
-    <text x="140" y="280" textAnchor="middle" fontSize="34" fontWeight="900" fill={ink} opacity="0.6">{unit}</text>
+    {/* 글자 수에 맞춰 줄인다 (90 → 120px, 按月審核 → 65px) */}
+    <text x="140" y={232 - Math.max(0, 120 - Math.min(120, 260 / Math.max(1, String(big).length))) * 0.4} textAnchor="middle"
+      fontSize={Math.min(120, 260 / Math.max(1, String(big).length))} fontWeight="900" fill={ink}>{big}</text>
+    {/^\d/.test(String(big)) && <text x="140" y="280" textAnchor="middle" fontSize="34" fontWeight="900" fill={ink} opacity="0.6">{unit}</text>}
   </svg>
 );
 

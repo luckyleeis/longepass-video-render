@@ -24,6 +24,7 @@ Python은 표준 라이브러리만 쓴다 (3.9+). ffmpeg 필요.
 bin/studio catalog  --project longepass --style longepass   # LLM 프롬프트용 템플릿 설명
 bin/studio validate raw_plan.json --project longepass --style longepass
 bin/studio render   job.json                                 # 형식은 studio/render.py 맨 위
+bin/studio thumbnail thumb.json                             # 유튜브 썸네일 JPEG, 형식은 studio/thumbnail.py 맨 위
 bin/studio check                                             # 템플릿 명세·코드 규칙 검사
 bin/studio gallery  [스타일 …] [--only 템플릿,…]               # out/gallery/index.html
 bin/studio list | styles

@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import {
-  AbsoluteFill, Audio, Easing, Sequence, cancelRender, continueRender, delayRender, interpolate, random, staticFile,
+  AbsoluteFill, Audio, Easing, Sequence, interpolate, random, staticFile,
   useCurrentFrame,
 } from 'remotion';
 import { MotionThemeProvider, useMotionTheme } from '../kit/theme';
+import { useFontsReady } from '../kit/fonts';
 import { ease } from '../kit/skin';
 import { MotionCaption, MotionProps, Shot, Surface, Transition } from '../kit/types';
 import { TEMPLATES } from '../templates';
@@ -11,17 +12,6 @@ import { Panel } from '../kit/media';
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 const asset = (src: string) => (/^https?:\/\//.test(src) ? src : staticFile(src.replace(/^\/+/, '')));
-
-const useFontsReady = (font: string) => {
-  const [handle] = useState(() => delayRender('Loading fonts'));
-  useLayoutEffect(() => {
-    const family = font.split(',')[0].replace(/['"]/g, '').trim();
-    Promise.all([700, 900].map((w) => document.fonts.load(`${w} 40px "${family}"`, '字')))
-      .then(() => document.fonts.ready)
-      .then(() => continueRender(handle))
-      .catch((e) => cancelRender(e));
-  }, [font, handle]);
-};
 
 /** 배경 무늬 (스킨이 정함) + 선택: 박자마다 숨쉬기, 회전 장식 링 */
 const ShotBackground: React.FC<{ surf: Surface; beats: number[]; start: number }> = ({ surf, beats, start }) => {

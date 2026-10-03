@@ -4,6 +4,7 @@ video-studio 명령 (외부 API 호출 없음).
   bin/studio catalog  --project P --style S [--format prompt|json]   LLM 계획 프롬프트에 넣을 템플릿 설명
   bin/studio validate RAW.json --project P --style S [--out F]       LLM 계획 검증/보정 → 검증된 계획
   bin/studio render   JOB.json [--no-render]                          작업 파일 → 영상/자막/메타 (render.py 참고)
+  bin/studio thumbnail JOB.json                                       썸네일 JPEG (thumbnail.py 참고)
   bin/studio check                                                    템플릿 명세·코드 규칙 검사 + templates/index.ts 갱신
   bin/studio list                                                     템플릿 목록
   bin/studio styles                                                   스타일 목록
@@ -55,6 +56,13 @@ def cmd_render(a) -> int:
     return 0
 
 
+def cmd_thumbnail(a) -> int:
+    from studio.thumbnail import render_thumbnail
+    with open(a.job, "r", encoding="utf-8") as f:
+        _out(render_thumbnail(json.load(f)))
+    return 0
+
+
 def cmd_check(a) -> int:
     res = catalog.check()
     bad = {k: v for k, v in res.items() if v}
@@ -103,6 +111,7 @@ def main(argv=None) -> int:
     s = sub.add_parser("validate"); s.add_argument("raw"); s.add_argument("--project", required=True); s.add_argument("--style", required=True)
     s.add_argument("--out"); s.set_defaults(fn=cmd_validate)
     s = sub.add_parser("render"); s.add_argument("job"); s.add_argument("--no-render", action="store_true"); s.set_defaults(fn=cmd_render)
+    s = sub.add_parser("thumbnail"); s.add_argument("job"); s.set_defaults(fn=cmd_thumbnail)
     sub.add_parser("check").set_defaults(fn=cmd_check)
     sub.add_parser("list").set_defaults(fn=cmd_list)
     sub.add_parser("styles").set_defaults(fn=cmd_styles)

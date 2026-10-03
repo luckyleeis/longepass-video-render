@@ -64,10 +64,16 @@ def _render_env() -> Dict[str, str]:
     return env
 
 
+def render_concurrency() -> str:
+    """동시 렌더링 수: REMOTION_CONCURRENCY 가 있으면 그 값, 없으면 min(12, CPU 코어 수).
+    Remotion은 코어 수보다 큰 값을 주면 렌더링 전에 바로 실패한다 (8코어 서버에서 12 → 실패)."""
+    return os.getenv("REMOTION_CONCURRENCY") or str(max(1, min(12, os.cpu_count() or 1)))
+
+
 def remotion_render(props_path: str, out_mp4: str, composition: str = "Motion") -> None:
     # 글자 위주 영상이라 프레임 JPEG 압축 손실이 글자 가장자리에 보여 품질을 올린다
     cmd = ["npx", "remotion", "render", composition, os.path.abspath(out_mp4), f"--props={os.path.abspath(props_path)}",
-           "--concurrency", "12", "--jpeg-quality", "95"]
+           "--concurrency", render_concurrency(), "--jpeg-quality", "95"]
     os.makedirs(os.path.dirname(os.path.abspath(out_mp4)), exist_ok=True)
     logger.info(f"[render] Remotion {composition} → {out_mp4}")
     # 진행 로그는 stderr 로 (stdout 은 명령 결과 JSON 전용)

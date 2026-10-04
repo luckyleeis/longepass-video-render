@@ -59,7 +59,11 @@
     },
     "reveal": {
       "kind": "single",
-      "at": 0.7
+      "at": 0.7,
+      "after": {
+        "event": "options",
+        "gap": 20
+      }
     },
     "note": {
       "kind": "single",

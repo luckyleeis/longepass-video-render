@@ -22,7 +22,7 @@ const Counter: React.FC<TemplateProps> = ({ data, ev, ink }) => {
     + (data.suffix ? String(data.suffix).length * 120 + 14 : 0);
   const fit = Math.min(1, (L.W * 0.88) / Math.max(1, estW));
   const impact = t.skin.motion.impact;
-  const start = ev.start ?? 0, end = ev.end ?? 20;
+  const start = ev.start ?? 0, end = Math.max(ev.end ?? 20, start + 1);   // 단서가 겹쳐도 범위가 뒤집히지 않게
   const p = interpolate(frame, [start, end], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
   const slam = impact ? interpolate(frame, [end, end + 3, end + 9], [1, 1.12, 1], clamp) : 1;
   const shake = impact && frame >= end && frame < end + 8 ? Math.sin(frame * 3.1) * (8 - (frame - end)) : 0;

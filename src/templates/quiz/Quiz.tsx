@@ -1,13 +1,11 @@
 import React from 'react';
-import { interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
+import { useCurrentFrame, useVideoConfig } from 'remotion';
 import { TemplateProps } from '../../kit/types';
 import { useMotionTheme } from '../../kit/theme';
 import { useLayout } from '../../kit/layout';
 import { cardPanel, ease, enter, riseTransform } from '../../kit/skin';
 import { Bar, Dot, Panel } from '../../kit/media';
 import { CheckMark, keepAll } from '../../kit/parts';
-
-const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
 /**
  * 맞혀 보기. 문제 → 보기가 하나씩 → 생각할 시간 막대가 줄어듦 → 정답 공개(정답 체크, 나머지 흐리게 + 줄) → 한 줄 설명.
@@ -24,8 +22,8 @@ const Quiz: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
   const narrow = L.W < 1500;
   const qAt = ev.question ?? 0;
   const optAt = (i: number) => (ev.options || [])[i] ?? qAt + 12 + i * 8;
-  const rev = ev.reveal ?? optAt(n - 1) + 40;
-  const think = interpolate(frame, [optAt(n - 1) + 6, rev], [1, 0], clamp);
+  const rev = Math.max(ev.reveal ?? 0, optAt(n - 1) + 12);   // 정답 공개는 마지막 보기보다 늦게
+  const think = 1 - ease(frame, optAt(n - 1) + 6, rev);
   const r = enter(t, frame, rev, fps);
   const revealed = frame >= rev;
   const qp = enter(t, frame, qAt, fps);

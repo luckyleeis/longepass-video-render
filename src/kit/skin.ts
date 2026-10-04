@@ -17,8 +17,9 @@ export const bounce = (t: MotionTheme, frame: number, at: number, fps: number, e
 export const riseTransform = (t: MotionTheme, p: number, scale = 1, axis: 'x' | 'y' = 'y') =>
   `translate${axis.toUpperCase()}(${(1 - p) * t.skin.motion.distance * scale}px) rotate(${(1 - p) * -t.skin.motion.tilt}deg)`;
 
+/** a→b 프레임 동안 0→1. 내레이션 단서로 정한 시점은 같거나 뒤집힐 수 있어서 b <= a 면 a에서 바로 1 (렌더링이 멈추지 않게) */
 export const ease = (frame: number, a: number, b: number) =>
-  interpolate(frame, [a, b], [0, 1], { ...clamp, easing: Easing.bezier(0.22, 1, 0.36, 1) });
+  b > a ? interpolate(frame, [a, b], [0, 1], { ...clamp, easing: Easing.bezier(0.22, 1, 0.36, 1) }) : frame >= a ? 1 : 0;
 
 export const shadowOf = (t: MotionTheme, surf: Surface, strength = 1) => {
   if (t.skin.shadow === 'none') return 'none';

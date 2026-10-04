@@ -15,7 +15,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "A small everyday story or situation told in 2-5 beats: a person (with poses like cheer, think, sad, point, phone, walk) and objects appear one by one on a ground line; poses change; red circle / cross / check / arrow marks point at what matters. Great for 'what happens if…' examples and common mistakes.",

@@ -11,7 +11,9 @@ job.json
   "out_dir": "/절대경로/결과폴더",
   "name": "motion",                        # 결과 파일 이름 (기본 motion)
   "music_mood": "bright",                  # 선택: 없으면 plan.music_mood → 스타일 기본 곡
-  "music": "spring"                        # 선택: 곡을 직접 지정 (public/music/library.json 의 id)
+  "music": "spring",                       # 선택: 곡을 직접 지정 (public/music/library.json 의 id)
+  "aspect": "9:16",                        # 선택: 기본 16:9. 9:16 = 쇼츠 (템플릿은 가운데 정사각형 무대)
+  "header": {"text": "쇼츠 제목\n두 줄", "emphasis": "강조"}   # 선택: 쇼츠 위 제목 띠
 }
 
 결과 (out_dir)
@@ -157,7 +159,7 @@ def render_job(job: Dict[str, Any], render: bool = True) -> Dict[str, Any]:
             link = os.path.join(job_dir, f"v{i:02d}{ext}")
             shutil.copyfile(os.path.abspath(v["audio"]), link)  # 심볼릭 링크는 Remotion 번들 복사에서 빠진다
             voices.append({**v, "audio_src": f"_jobs/{job_id}/v{i:02d}{ext}"})
-        props = timeline.build_long_props(plan, voices, track, style)
+        props = timeline.build_long_props(plan, voices, track, style, aspect=job.get("aspect") or "16:9", header=job.get("header"))
         props_path = os.path.join(out_dir, f"props_{name}.json")
         _json_save(props_path, props)
         if render:
@@ -179,6 +181,7 @@ def render_job(job: Dict[str, Any], render: bool = True) -> Dict[str, Any]:
         "music": {"id": track["id"], "title": track.get("title"), "artist": track.get("artist"), "mood": track.get("mood"),
                   "license": track.get("license"), "attribution": track.get("attribution")},
         "style": job["style"],
+        "aspect": job.get("aspect") or "16:9",
         "shots": len(props["shots"]),
         "sfx": len(props["sfx"]),
     }

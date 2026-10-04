@@ -4,6 +4,7 @@
   bin/studio gallery                                 # 모든 스타일
   bin/studio gallery longepass                       # 특정 스타일만
   bin/studio gallery longepass --only board,flow     # 일부 템플릿만 (작업 중 빠른 확인)
+  bin/studio gallery longepass --aspect 9:16         # 세로 쇼츠 화면에서 (out/gallery/9x16)
 
 결과 (GALLERY_DIR):
   reel_<style>.mp4   예시들을 이어 붙인 무음 영상 (움직임 확인)
@@ -23,13 +24,14 @@ from studio import catalog
 from studio.render import remotion_render
 from studio.styles import get_style, list_styles
 from studio.text import clean_text
-from studio.timeline import FPS, BeatGrid, ChapterNarration, layer_data, shot_events, to_relative
+from studio.timeline import FPS, SIZES, BeatGrid, ChapterNarration, layer_data, shot_events, to_relative
 
 logger = logging.getLogger("studio.gallery")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MUSIC_LIBRARY = os.path.join(ROOT, "public", "music", "library.json")
 GALLERY_DIR = os.getenv("STUDIO_GALLERY_DIR", os.path.join(ROOT, "out", "gallery"))
+SAMPLE_HEADER = {"text": "考照領錢\n四個重點一次看", "emphasis": "四個重點"}   # 세로 갤러리의 제목 띠 예시
 
 MS_PER_CHAR = 221      # 가정한 말 속도
 LEAD = 10              # 샷 시작 후 말 시작까지
@@ -52,12 +54,18 @@ def _bg_for(m: Dict[str, Any]) -> str:
     return m.get("bg") or "base"
 
 
-def build_props(style: Dict[str, Any], only: Optional[List[str]] = None) -> Dict[str, Any]:
+def _gallery_dir(aspect: str) -> str:
+    return GALLERY_DIR if aspect == "16:9" else os.path.join(GALLERY_DIR, aspect.replace(":", "x"))
+
+
+def build_props(style: Dict[str, Any], only: Optional[List[str]] = None, aspect: str = "16:9") -> Dict[str, Any]:
     bpm = next(t["bpm"] for t in json.load(open(MUSIC_LIBRARY, encoding="utf-8"))["tracks"] if t["id"] == style["pacing"]["music"])
     grid = BeatGrid(bpm, 60 * FPS * 20)
     shots, stills, frame = [], [], 0
     for tid, m in catalog.load().items():
         if only and tid not in only:
+            continue
+        if aspect != "16:9" and aspect not in m["aspect"] and not only:
             continue
         for n, ex in enumerate(m["examples"]):
             beats = ex.get("beats")
@@ -80,27 +88,29 @@ def build_props(style: Dict[str, Any], only: Optional[List[str]] = None) -> Dict
             stills.append({"id": tid, "n": n, "frame": frame + min(dur - 6, max(flat or [0]) + 30)})
             frame += dur
     props = {
-        "width": 1920, "height": 1080, "fps": FPS, "total_frames": frame, "bpm": bpm,
+        "width": SIZES[aspect][0], "height": SIZES[aspect][1], "fps": FPS, "total_frames": frame, "bpm": bpm,
         "beat_frames": [b for b in grid.frames if b <= frame], "theme": style["theme"], "shots": shots,
         "transitions": [], "voice": [], "sfx": [], "music": None, "narration_intervals": [], "captions": [], "chapters": [],
+        "hud": {"title": SAMPLE_HEADER["text"], "emphasis": SAMPLE_HEADER["emphasis"]} if aspect != "16:9" else {},
     }
     return {"props": props, "stills": stills}
 
 
-def render_style(name: str, only: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+def render_style(name: str, only: Optional[List[str]] = None, aspect: str = "16:9") -> List[Dict[str, Any]]:
     style = get_style(name)
-    built = build_props(style, only)
-    out_dir = os.path.join(GALLERY_DIR, name)
+    built = build_props(style, only, aspect)
+    gdir = _gallery_dir(aspect)
+    out_dir = os.path.join(gdir, name)
     os.makedirs(out_dir, exist_ok=True)
-    props_path = os.path.join(GALLERY_DIR, f"props_{name}.json")
+    props_path = os.path.join(gdir, f"props_{name}.json")
     with open(props_path, "w", encoding="utf-8") as f:
         json.dump(built["props"], f, ensure_ascii=False)
-    reel = os.path.join(GALLERY_DIR, f"reel_{name}{'_partial' if only else ''}.mp4")
+    reel = os.path.join(gdir, f"reel_{name}{'_partial' if only else ''}.mp4")
     remotion_render(props_path, reel)
     for st in built["stills"]:
         st["file"] = f"{name}/{st['id']}_{st['n']}.png"
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{st['frame'] / FPS:.3f}", "-i", reel, "-frames:v", "1",
-                        "-vf", "scale=960:-1", os.path.join(GALLERY_DIR, st["file"])], check=True)
+                        "-vf", f"scale={960 if aspect == '16:9' else 360}:-1", os.path.join(gdir, st["file"])], check=True)
     logger.info(f"[gallery] {name}: 예시 {len(built['stills'])}개, {built['props']['total_frames'] / FPS:.0f}초")
     return built["stills"]
 

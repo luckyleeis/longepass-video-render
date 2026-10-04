@@ -15,7 +15,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "Connections from one place to other countries or cities (overseas work, international recognition, trade). Statement on the left, arcs drawn one by one.",

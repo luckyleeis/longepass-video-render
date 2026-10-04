@@ -17,8 +17,8 @@ def music_moods() -> list:
         return list(json.load(f).get("moods", {}))
 
 
-def allowed_templates(project: str, style: Dict[str, Any]) -> set:
-    return set(catalog.candidates(project, style))
+def allowed_templates(project: str, style: Dict[str, Any], aspect: str = "16:9") -> set:
+    return set(catalog.candidates(project, style, aspect))
 
 
 def normalize_plan(raw: Dict[str, Any], allowed: Optional[set] = None) -> Dict[str, Any]:

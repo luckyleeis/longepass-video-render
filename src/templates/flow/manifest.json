@@ -15,7 +15,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "A path that BRANCHES and merges: a starting point, then a column with 2-4 options or routes, then a common result. Columns are drawn one by one across beats while the camera follows.",

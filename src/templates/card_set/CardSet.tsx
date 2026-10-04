@@ -5,6 +5,7 @@ import { useMotionTheme } from '../../kit/theme';
 import { ease, enter, riseTransform } from '../../kit/skin';
 import { keepAll } from '../../kit/parts';
 import { CheckCard } from '../../kit/objects';
+import { useLayout } from '../../kit/layout';
 
 /** 조건 카드 세트(체크 가능). data: {label, cards: [title], check: bool}, ev: {label, cards[], checks[]} */
 const CardSet: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
@@ -13,12 +14,16 @@ const CardSet: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
   const t = useMotionTheme();
   const cards: string[] = data.cards || [];
   const n = cards.length;
+  const L = useLayout();
+  // 카드 줄 전체 폭이 무대보다 넓으면 (세로 쇼츠) 줄 전체를 줄인다
+  const fit = Math.min(1, (L.W * 0.92) / Math.max(1, (n - 1) * 330 + 340));
   const lab = enter(t, frame, ev.label ?? 0, fps);
   const colors = t.skin.colorful ? [t.primary, surf.card, t.accent, t.accent2, t.danger] : [surf.card];
   const cardInk = t.skin.colorful ? t.skin.onColorInk : surf.cardInk;
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       {data.label && <div style={{ ...keepAll, position: 'absolute', top: 150, width: '100%', textAlign: 'center', fontSize: 96, fontWeight: 900, color: ink, opacity: lab, transform: riseTransform(t, lab) }}>{data.label}</div>}
+      <div style={{ position: 'absolute', inset: 0, transform: `scale(${fit})`, transformOrigin: '50% 60%' }}>
       {cards.map((title, i) => {
         const p = enter(t, frame, (ev.cards || [])[i] ?? 10 + i * 12, fps);
         const chk = data.check ? ease(frame, (ev.checks || [])[i] ?? 999, ((ev.checks || [])[i] ?? 999) + 12) : 0;
@@ -29,6 +34,7 @@ const CardSet: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
           </div>
         );
       })}
+      </div>
     </div>
   );
 };

@@ -14,7 +14,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "One key message in huge type, line by line. Use strike to cross out a misconception.",

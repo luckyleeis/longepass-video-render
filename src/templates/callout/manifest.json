@@ -14,7 +14,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "An important warning, tip or note in a box, optionally with one big figure (big, e.g. NT$60,000). tone: warning|tip|info.",

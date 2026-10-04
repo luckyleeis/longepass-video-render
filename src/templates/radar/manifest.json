@@ -15,7 +15,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "Profile across 3-6 dimensions scored 0-100 (strengths and weaknesses), optionally against a baseline (base). Big statement on the left.",

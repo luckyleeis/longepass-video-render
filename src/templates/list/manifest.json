@@ -14,7 +14,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "A list of 2-5 items with optional one-line notes (requirements, documents, cautions). style: check|number|doc|bullet.",

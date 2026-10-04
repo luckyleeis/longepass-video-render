@@ -15,7 +15,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "A value changing over time or stages (3-7 points): the line grows point by point while a big number follows its tip. Best for growth or progress.",

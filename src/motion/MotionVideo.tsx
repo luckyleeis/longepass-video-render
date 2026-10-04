@@ -1,14 +1,17 @@
 import React, { useMemo } from 'react';
 import {
   AbsoluteFill, Audio, Easing, Sequence, interpolate, random, staticFile,
-  useCurrentFrame,
+  useCurrentFrame, useVideoConfig,
 } from 'remotion';
 import { MotionThemeProvider, useMotionTheme } from '../kit/theme';
 import { useFontsReady } from '../kit/fonts';
 import { ease } from '../kit/skin';
 import { MotionCaption, MotionProps, Shot, Surface, Transition } from '../kit/types';
 import { TEMPLATES } from '../templates';
-import { Panel } from '../kit/media';
+import { Mark, Panel } from '../kit/media';
+import { StageSize, shortsFrame } from '../kit/layout';
+import { highlightInk, highlightStyle } from '../kit/skin';
+import { keepAll } from '../kit/parts';
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 const asset = (src: string) => (/^https?:\/\//.test(src) ? src : staticFile(src.replace(/^\/+/, '')));
@@ -41,18 +44,28 @@ const ShotBackground: React.FC<{ surf: Surface; beats: number[]; start: number }
 const ShotView: React.FC<{ shot: Shot; beats: number[] }> = ({ shot, beats }) => {
   const t = useMotionTheme();
   const frame = useCurrentFrame();
+  const { width: W, height: H } = useVideoConfig();
   const surf = t.surfaces[shot.bg] || Object.values(t.surfaces)[0];
   const exit = shot.exit ? interpolate(frame, [shot.duration - 7, shot.duration], [1, 0], clamp) : 1;
-  return (
-    <AbsoluteFill style={{ fontFamily: t.font }}>
-      <ShotBackground surf={surf} beats={beats} start={shot.start} />
-      <AbsoluteFill style={{ opacity: exit, transform: `translateY(${(1 - exit) * -t.skin.motion.distance}px) scale(${1 + (t.skin.motion.impact ? 0.025 : 0.012) * Math.min(1, frame / Math.max(1, shot.duration))})` }}>
+  const layers = (
+    <AbsoluteFill style={{ opacity: exit, transform: `translateY(${(1 - exit) * -t.skin.motion.distance}px) scale(${1 + (t.skin.motion.impact ? 0.025 : 0.012) * Math.min(1, frame / Math.max(1, shot.duration))})` }}>
       {shot.layers.map((ly, i) => {
         const M = TEMPLATES[ly.module];
         if (!M) return null;
         return <M key={i} data={ly.data} ev={ly.ev} dur={shot.duration} ink={surf.ink} sub={surf.sub} surf={surf} />;
       })}
-      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+  // 세로 쇼츠: 템플릿은 가운데 정사각형 무대에 그리고, 배경은 화면 전체
+  const fr = H > W ? shortsFrame(W, H) : null;
+  return (
+    <AbsoluteFill style={{ fontFamily: t.font }}>
+      <ShotBackground surf={surf} beats={beats} start={shot.start} />
+      {fr ? (
+        <div style={{ position: 'absolute', left: 0, top: fr.top, width: fr.stage, height: fr.stage, transform: `scale(${fr.scale})`, transformOrigin: '0 0', overflow: 'hidden' }}>
+          <StageSize.Provider value={{ width: fr.stage, height: fr.stage }}>{layers}</StageSize.Provider>
+        </div>
+      ) : layers}
     </AbsoluteFill>
   );
 };
@@ -117,11 +130,49 @@ const TransitionView: React.FC<{ tr: Transition }> = ({ tr }) => {
   return <AbsoluteFill style={{ background: '#ffffff', opacity: o, pointerEvents: 'none' }} />;
 };
 
+/** 세로 쇼츠 위쪽: 브랜드 + 쇼츠 제목 (영상 내내 고정) */
+const ShortsHeader: React.FC<{ props: MotionProps; surf: Surface; accentBg: boolean }> = ({ props, surf, accentBg }) => {
+  const t = useMotionTheme();
+  const fr = shortsFrame(props.width, props.height);
+  const title = props.hud?.title || '';
+  const emphasis = props.hud?.emphasis;
+  const lines = title.split('\n').map((l) => l.trim()).filter(Boolean);
+  const longest = Math.max(...lines.map((l) => l.length), 1);
+  const fs = Math.min(92, (props.width * 0.86) / longest);
+  return (
+    <div style={{ position: 'absolute', left: 0, right: 0, top: fr.titleTop, height: fr.top - fr.titleTop, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: t.font }}>
+      <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: '-0.01em', marginBottom: 18 }}>
+        {t.brand.parts.map((p, i) => <span key={i} style={{ color: p.accent ? (accentBg ? t.accent : t.primary) : surf.ink }}>{p.text}</span>)}
+      </div>
+      {lines.map((line, i) => {
+        const parts = emphasis && line.includes(emphasis) ? line.split(emphasis) : null;
+        return (
+          <div key={i} style={{ ...keepAll, fontSize: fs, fontWeight: 900, lineHeight: 1.15, color: surf.ink, letterSpacing: '-0.03em', whiteSpace: 'nowrap' }}>
+            {parts ? (
+              <>
+                {parts[0]}
+                <span style={{ position: 'relative', display: 'inline-block' }}>
+                  <Mark style={highlightStyle(t, surf, 1, fs)} seed={`short-hl${i}`} />
+                  <span style={{ position: 'relative', zIndex: 1, color: highlightInk(t, surf, surf.ink) }}>{emphasis}</span>
+                </span>
+                {parts.slice(1).join(emphasis)}
+              </>
+            ) : line}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const Hud: React.FC<{ props: MotionProps }> = ({ props }) => {
   const frame = useCurrentFrame();
   const t = useMotionTheme();
   const shot = props.shots.find((s) => frame >= s.start && frame < s.start + s.duration) || props.shots[props.shots.length - 1];
   const surf = t.surfaces[shot.bg] || Object.values(t.surfaces)[0];
+  if (props.height > props.width) {
+    return <AbsoluteFill style={{ pointerEvents: 'none' }}><ShortsHeader props={props} surf={surf} accentBg={shot.bg === 'accent'} /></AbsoluteFill>;
+  }
   const chapters = props.chapters || [];
   let ci = 0;
   chapters.forEach((c, i) => { if (frame >= c.start) ci = i; });
@@ -162,6 +213,8 @@ const Hud: React.FC<{ props: MotionProps }> = ({ props }) => {
 const Captions: React.FC<{ captions: MotionCaption[] }> = ({ captions }) => {
   const frame = useCurrentFrame();
   const t = useMotionTheme();
+  const { width: W, height: H } = useVideoConfig();
+  const portrait = H > W;
   const cap = captions.find((c) => frame >= c.start && frame < c.end);
   if (!cap) return null;
   const local = frame - cap.start;
@@ -175,8 +228,8 @@ const Captions: React.FC<{ captions: MotionCaption[] }> = ({ captions }) => {
     });
   }
   return (
-    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 110, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
-      <Panel fill={t.skin.captionBg} radius={18} seed="caption" fillStyle="solid" style={{ padding: '14px 34px', color: '#fff', fontSize: 50, fontWeight: 800, fontFamily: t.font, transform: `translateY(${(1 - inP) * 10}px)`, opacity: inP }}>
+    <div style={{ position: 'absolute', left: 0, right: 0, ...(portrait ? { top: shortsFrame(W, H).captionTop } : { bottom: 110 }), display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
+      <Panel fill={t.skin.captionBg} radius={18} seed="caption" fillStyle="solid" style={{ padding: portrait ? '16px 30px' : '14px 34px', color: '#fff', fontSize: portrait ? 58 : 50, fontWeight: 800, fontFamily: t.font, transform: `translateY(${(1 - inP) * 10}px)`, opacity: inP }}>
         {nodes}
       </Panel>
     </div>

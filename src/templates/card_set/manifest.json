@@ -14,7 +14,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "2-5 conditions or key points as cards. check=true ticks them one by one (\"all must be met\"). Good for a final recap.",

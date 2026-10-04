@@ -25,8 +25,10 @@ bin/studio catalog  --project longepass --style longepass   # LLM 프롬프트�
 bin/studio validate raw_plan.json --project longepass --style longepass
 bin/studio render   job.json                                 # 형식은 studio/render.py 맨 위
 bin/studio thumbnail thumb.json                             # 유튜브 썸네일 JPEG, 형식은 studio/thumbnail.py 맨 위
+# 세로 쇼츠: render 작업에 "aspect": "9:16" + "header"(위 제목 띠), thumbnail 작업에 "aspect": "9:16", catalog/validate 에 --aspect 9:16
 bin/studio check                                             # 템플릿 명세·코드 규칙 검사
 bin/studio gallery  [스타일 …] [--only 템플릿,…]               # out/gallery/index.html
+bin/studio gallery  longepass --aspect 9:16                # 세로 쇼츠 화면에서 (out/gallery/9x16)
 bin/studio list | styles
 ```
 

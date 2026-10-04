@@ -1,14 +1,15 @@
 """
 video-studio 명령 (외부 API 호출 없음).
 
-  bin/studio catalog  --project P --style S [--format prompt|json]   LLM 계획 프롬프트에 넣을 템플릿 설명
-  bin/studio validate RAW.json --project P --style S [--out F]       LLM 계획 검증/보정 → 검증된 계획
+  bin/studio catalog  --project P --style S [--aspect 9:16] [--format prompt|json]   LLM 계획 프롬프트에 넣을 템플릿 설명
+  bin/studio validate RAW.json --project P --style S [--aspect 9:16] [--out F]       LLM 계획 검증/보정 → 검증된 계획
+  (--aspect 기본 16:9. 9:16 = 쇼츠에서 쓸 수 있는 템플릿만)
   bin/studio render   JOB.json [--no-render]                          작업 파일 → 영상/자막/메타 (render.py 참고)
   bin/studio thumbnail JOB.json                                       썸네일 JPEG (thumbnail.py 참고)
   bin/studio check                                                    템플릿 명세·코드 규칙 검사 + templates/index.ts 갱신
   bin/studio list                                                     템플릿 목록
   bin/studio styles                                                   스타일 목록
-  bin/studio gallery [스타일 …] [--only id,id]                         템플릿 × 스타일 미리보기 (out/gallery)
+  bin/studio gallery [스타일 …] [--only id,id] [--aspect 9:16]        템플릿 × 스타일 미리보기 (out/gallery)
 
 결과 JSON은 stdout, 진행 로그는 stderr 로 나간다.
 """
@@ -27,7 +28,7 @@ def _out(data) -> None:
 
 def cmd_catalog(a) -> int:
     style = get_style(a.style)
-    found = catalog.candidates(a.project, style)
+    found = catalog.candidates(a.project, style, a.aspect)
     if a.format == "json":
         _out({tid: {k: v for k, v in m.items() if not k.startswith("_")} for tid, m in found.items()})
     else:
@@ -39,7 +40,7 @@ def cmd_validate(a) -> int:
     from studio.plan import allowed_templates, normalize_plan
     with open(a.raw, "r", encoding="utf-8") as f:
         raw = json.load(f)
-    plan = normalize_plan(raw, allowed_templates(a.project, get_style(a.style)))
+    plan = normalize_plan(raw, allowed_templates(a.project, get_style(a.style), a.aspect))
     if a.out:
         with open(a.out, "w", encoding="utf-8") as f:
             json.dump(plan, f, ensure_ascii=False, indent=2)
@@ -97,8 +98,9 @@ def cmd_gallery(a) -> int:
     catalog.write_index()
     only = a.only.split(",") if a.only else None
     for n in a.styles or list_styles():
-        gallery.render_style(n, only)
-    print(gallery.write_html())
+        gallery.render_style(n, only, a.aspect)
+    if a.aspect == "16:9":
+        print(gallery.write_html())
     return 0
 
 
@@ -107,15 +109,17 @@ def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="studio", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("catalog"); s.add_argument("--project", required=True); s.add_argument("--style", required=True)
-    s.add_argument("--format", choices=["prompt", "json"], default="prompt"); s.set_defaults(fn=cmd_catalog)
+    s.add_argument("--format", choices=["prompt", "json"], default="prompt"); s.add_argument("--aspect", choices=["16:9", "9:16"], default="16:9")
+    s.set_defaults(fn=cmd_catalog)
     s = sub.add_parser("validate"); s.add_argument("raw"); s.add_argument("--project", required=True); s.add_argument("--style", required=True)
-    s.add_argument("--out"); s.set_defaults(fn=cmd_validate)
+    s.add_argument("--out"); s.add_argument("--aspect", choices=["16:9", "9:16"], default="16:9"); s.set_defaults(fn=cmd_validate)
     s = sub.add_parser("render"); s.add_argument("job"); s.add_argument("--no-render", action="store_true"); s.set_defaults(fn=cmd_render)
     s = sub.add_parser("thumbnail"); s.add_argument("job"); s.set_defaults(fn=cmd_thumbnail)
     sub.add_parser("check").set_defaults(fn=cmd_check)
     sub.add_parser("list").set_defaults(fn=cmd_list)
     sub.add_parser("styles").set_defaults(fn=cmd_styles)
-    s = sub.add_parser("gallery"); s.add_argument("styles", nargs="*"); s.add_argument("--only"); s.set_defaults(fn=cmd_gallery)
+    s = sub.add_parser("gallery"); s.add_argument("styles", nargs="*"); s.add_argument("--only")
+    s.add_argument("--aspect", choices=["16:9", "9:16"], default="16:9"); s.set_defaults(fn=cmd_gallery)
     a = p.parse_args(argv)
     return a.fn(a)
 

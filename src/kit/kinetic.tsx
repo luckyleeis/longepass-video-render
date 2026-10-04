@@ -20,11 +20,14 @@ export const kineticSize = (lines: string[], max: number) => {
 export const KineticLines: React.FC<{
   lines: string[]; highlight?: string; strike?: string; kicker?: string;
   size: number; align: 'left' | 'center'; at: number[]; strikeAt?: number; ink: string; sub: string; surf: Surface;
-}> = ({ lines, highlight, strike, kicker, size, align, at, strikeAt, ink, sub, surf }) => {
+}> = ({ lines, highlight, strike, kicker, size: want, align, at, strikeAt, ink, sub, surf }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = useMotionTheme();
   const L = useLayout();
+  // 가장 긴 줄이 무대 폭을 넘지 않게 (좁은 세로 쇼츠 무대에서만 실제로 줄어든다)
+  const longest = Math.max(1, ...lines.map((x) => x.length));
+  const size = Math.min(want, Math.floor((align === 'left' ? L.contentW : L.W * 0.9) / longest / 0.97));
   const first = at[0] ?? 0;
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: align === 'left' ? 'flex-start' : 'center', padding: align === 'left' ? `0 ${L.padX}px` : 0 }}>

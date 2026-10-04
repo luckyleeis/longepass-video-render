@@ -15,7 +15,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "A ratio or 'K out of N' fact (N up to 24): N people (or objects) appear in rows and K of them change color, with the ratio in big type.",

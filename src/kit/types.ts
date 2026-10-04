@@ -97,7 +97,7 @@ export interface MotionProps {
   music?: { src: string; trimBefore: number; open: number; under_voice: number } | null;
   narration_intervals: Array<[number, number]>;
   captions: MotionCaption[];
-  hud?: { title?: string; meta?: string };
+  hud?: { title?: string; meta?: string; emphasis?: string };   // 세로 쇼츠: title = 위 제목 띠(\n 줄바꿈), emphasis = 그중 강조
   chapters?: Array<{ title: string; start: number }>;
 }
 

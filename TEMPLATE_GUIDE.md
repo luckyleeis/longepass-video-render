@@ -60,7 +60,7 @@ video-studio/
 | `scope` | `"common"`(모든 프로젝트) 또는 `["longepass"]`(전용) |
 | `media` | 지원하는 그림 재료. `clean`(깔끔한 벡터), `sketch`(손그림). 재료 층 부품만 쓰면 둘 다 지원된다 |
 | `continuity` | 지원하는 이어짐 방식. 지금은 `cut`(장면마다 새 화면) |
-| `aspect` | 지원하는 화면비. `16:9`, 나중에 `9:16` |
+| `aspect` | 지원하는 화면비. `16:9`, `9:16`(세로 쇼츠: 화면 가운데 1200×1200 무대에 그려진다. `bin/studio gallery --aspect 9:16 --only <id>` 로 확인해 넘치지 않을 때만 넣는다. 폭은 `useLayout().W` 로 받는다) |
 | `llm` | false면 LLM 후보에서 빠짐 (챕터 카드처럼 시스템이 넣는 것) |
 | `use_when` / `avoid_when` | LLM이 고르는 기준. **영어로**, 특정 프로젝트 내용 없이 |
 | `fields` | LLM이 채울 칸 (아래) |

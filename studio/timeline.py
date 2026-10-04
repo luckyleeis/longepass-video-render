@@ -246,8 +246,19 @@ def _sfx_from(mapping, ev_abs, events, bank: SfxBank, pacing: Dict[str, Any]) ->
     return out
 
 
-def build_long_props(plan, chapter_voices, track, style: Dict[str, Any]) -> Dict[str, Any]:
-    """style: styles.py 프로필 ({"theme", "pacing"})"""
+SIZES = {"16:9": (1920, 1080), "9:16": (1080, 1920)}
+
+
+def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect: str = "16:9",
+                     header: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """
+    style: styles.py 프로필 ({"theme", "pacing"})
+    aspect: "16:9" 롱폼 | "9:16" 쇼츠 (템플릿은 가운데 정사각형 무대에, 위에 header 제목 띠)
+    header: 쇼츠 제목 띠 {"text": "두 줄은 \\n", "emphasis": "강조 구절"}
+    """
+    if aspect not in SIZES:
+        raise ValueError(f"지원하지 않는 화면비: {aspect} (가능: {list(SIZES)})")
+    width, height = SIZES[aspect]
     theme, pacing = style["theme"], style["pacing"]
     grid = BeatGrid(track["bpm"], 60 * FPS * 20)
     bank = SfxBank()
@@ -298,7 +309,7 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any]) -> Dict
         # 자막
         cursor = 0
         caps = []
-        for chunk in split_text_word_safe(chapter_text(ch), max_len=16):
+        for chunk in split_text_word_safe(chapter_text(ch), max_len=16 if aspect == "16:9" else 14):
             n = len(clean_text(chunk))
             if not n:
                 continue
@@ -338,10 +349,11 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any]) -> Dict
 
     gain = lambda target: round(10 ** ((target - track["lufs"]) / 20.0), 4)  # noqa: E731
     return {
-        "width": 1920, "height": 1080, "fps": FPS, "total_frames": total, "bpm": track["bpm"],
+        "width": width, "height": height, "fps": FPS, "total_frames": total, "bpm": track["bpm"],
         "beat_frames": [b for b in grid.frames if b <= total], "theme": theme, "shots": shots,
         "transitions": transitions, "voice": voice, "sfx": sorted(sfx, key=lambda x: x["from"]),
         "music": {"src": track["file"], "trimBefore": round(track.get("first_beat_sec", 0) * FPS),
                   "open": gain(pacing["music_open_lufs"]), "under_voice": gain(pacing["music_under_voice_lufs"])},
         "narration_intervals": intervals, "captions": captions, "chapters": chapters_out,
+        "hud": {"title": (header or {}).get("text") or "", "emphasis": (header or {}).get("emphasis") or ""},
     }

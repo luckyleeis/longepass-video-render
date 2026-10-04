@@ -14,7 +14,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "One key number counting up from 0 (money, people, days). Strong as the opening hook.",

@@ -9,7 +9,7 @@ import { Mark, Panel } from '../kit/media';
 import { Bill, CalendarPage, Certificate, DocumentSheet, IdCard, Passbook } from '../kit/objects';
 
 /**
- * 롱폼 유튜브 썸네일 (1280x720 기준). 작게 보여도 읽히도록 큰 글자 2줄 + 강조 구절 + 사물 하나.
+ * 유튜브 썸네일: 가로 롱폼 (1280x720 기준), 세로 쇼츠 표지 (1080x1920, H > W 이면). 작게 보여도 읽히도록 큰 글자 2줄 + 강조 구절 + 사물 하나.
  * props: theme(스타일), text(큰 글자, 14자 안팎), emphasis(text 안의 강조 구절), badge(왼쪽 위 작은 표), object, object_label
  */
 export interface ThumbnailProps {
@@ -60,8 +60,62 @@ const ObjectArt: React.FC<{ name?: string; label?: string; t: MotionTheme; size:
   }
 };
 
-const Inner: React.FC<ThumbnailProps> = ({ width: W, height: H, theme: t, text, emphasis, badge, object, object_label }) => {
+/** 큰 글자 줄들 (강조 구절은 형광펜) */
+const BigLines: React.FC<{ lines: string[]; emphasis?: string; size: number; surf: any; t: MotionTheme; align?: 'left' | 'center' }> = ({ lines, emphasis, size, surf, t, align = 'left' }) => (
+  <>
+    {lines.map((line, i) => {
+      const parts = emphasis && line.includes(emphasis) ? line.split(emphasis) : null;
+      return (
+        <div key={i} style={{ ...keepAll, fontSize: size, fontWeight: 900, lineHeight: 1.12, color: surf.ink, letterSpacing: '-0.03em', whiteSpace: 'nowrap', textAlign: align }}>
+          {parts ? (
+            <>
+              {parts[0]}
+              <span style={{ position: 'relative', display: 'inline-block' }}>
+                <Mark style={highlightStyle(t, surf, 1, size)} seed={`thumb-hl${i}`} />
+                <span style={{ position: 'relative', zIndex: 1, color: highlightInk(t, surf, surf.ink) }}>{emphasis}</span>
+              </span>
+              {parts.slice(1).join(emphasis)}
+            </>
+          ) : line}
+        </div>
+      );
+    })}
+  </>
+);
+
+/** 세로 (쇼츠 표지 1080x1920): 배지 → 큰 글자 → 사물 → 브랜드, 가운데 정렬. 쇼츠 목록에서 위아래가 잘려도 읽히게 가운데에 모은다 */
+const Portrait: React.FC<ThumbnailProps> = ({ width: W, height: H, theme: t, text, emphasis, badge, object, object_label }) => {
+  const surf = t.surfaces.alt || Object.values(t.surfaces)[0];
+  const s = W / 1080;
+  const lines = splitLines(text || '', emphasis);
+  const longest = Math.max(...lines.map((l) => l.length), 1);
+  const size = Math.min(150, (W * 0.86) / longest);
+  return (
+    <AbsoluteFill style={{ background: surf.bg, fontFamily: t.font, overflow: 'hidden' }}>
+      <AbsoluteFill style={{ backgroundImage: `radial-gradient(${surf.grid} ${3 * s}px, transparent ${3.5 * s}px)`, backgroundSize: `${48 * s}px ${48 * s}px`, opacity: 0.8 }} />
+      <div style={{ position: 'absolute', left: '50%', top: H * 0.66, width: 900 * s, height: 900 * s, marginLeft: -450 * s, marginTop: -450 * s, borderRadius: '50%',
+        background: `radial-gradient(circle, ${t.primary}40 0%, ${t.primary}10 55%, transparent 70%)` }} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: H * 0.2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {badge && (
+          <Panel fill={t.primary} radius={12 * s} seed="thumb-badge" style={{ ...keepAll, padding: `${10 * s}px ${28 * s}px`, color: t.skin.onColorInk, fontSize: 48 * s, fontWeight: 900, marginBottom: 36 * s }}>{badge}</Panel>
+        )}
+        <BigLines lines={lines} emphasis={emphasis} size={size} surf={surf} t={t} align="center" />
+      </div>
+      <div style={{ position: 'absolute', left: '50%', top: H * 0.66, transform: 'translate(-50%, -50%) rotate(-7deg)' }}>
+        <ObjectArt name={object} label={object_label} t={t} size={560 * s} />
+      </div>
+      <div style={{ position: 'absolute', left: 0, right: 0, bottom: H * 0.1, textAlign: 'center', fontSize: 44 * s, fontWeight: 900, letterSpacing: '-0.01em' }}>
+        {t.brand.parts.map((p, i) => <span key={i} style={{ color: p.accent ? t.primary : surf.ink }}>{p.text}</span>)}
+        {t.brand.suffix && <span style={{ color: surf.sub, fontSize: 30 * s, marginLeft: 12 * s }}>{t.brand.suffix}</span>}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const Inner: React.FC<ThumbnailProps> = (props) => {
+  const { width: W, height: H, theme: t, text, emphasis, badge, object, object_label } = props;
   useFontsReady(t.font);
+  if (H > W) return <Portrait {...props} />;
   const surf = t.surfaces.alt || Object.values(t.surfaces)[0];
   const s = W / 1280;
   const lines = splitLines(text || '', emphasis);
@@ -84,23 +138,7 @@ const Inner: React.FC<ThumbnailProps> = ({ width: W, height: H, theme: t, text, 
             <Panel fill={t.primary} radius={10 * s} seed="thumb-badge" style={{ ...keepAll, padding: `${8 * s}px ${22 * s}px`, color: t.skin.onColorInk, fontSize: 38 * s, fontWeight: 900 }}>{badge}</Panel>
           </div>
         )}
-        {lines.map((line, i) => {
-          const parts = emphasis && line.includes(emphasis) ? line.split(emphasis) : null;
-          return (
-            <div key={i} style={{ ...keepAll, fontSize: size * s, fontWeight: 900, lineHeight: 1.12, color: surf.ink, letterSpacing: '-0.03em', whiteSpace: 'nowrap' }}>
-              {parts ? (
-                <>
-                  {parts[0]}
-                  <span style={{ position: 'relative', display: 'inline-block' }}>
-                    <Mark style={highlightStyle(t, surf, 1, size * s)} seed={`thumb-hl${i}`} />
-                    <span style={{ position: 'relative', zIndex: 1, color: highlightInk(t, surf, surf.ink) }}>{emphasis}</span>
-                  </span>
-                  {parts.slice(1).join(emphasis)}
-                </>
-              ) : line}
-            </div>
-          );
-        })}
+        <BigLines lines={lines} emphasis={emphasis} size={size * s} surf={surf} t={t} />
       </div>
       {/* 브랜드 */}
       <div style={{ position: 'absolute', left: 64 * s, bottom: 40 * s, fontSize: 34 * s, fontWeight: 900, letterSpacing: '-0.01em' }}>

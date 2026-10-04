@@ -7,7 +7,8 @@ job
   "thumbnail": {"text": "큰 글자 (14자 안팎)", "emphasis": "text 안의 강조 구절", "badge": "왼쪽 위 작은 표",
                 "object": "certificate|cash|document|calendar|idcard|passbook", "object_label": "사물 위 글자 (선택)"},
   "out": "/절대경로/thumbnail.jpg",
-  "width": 1280, "height": 720            # 선택 (기본 1280x720)
+  "aspect": "9:16",                       # 선택: 기본 16:9 (1280x720), 9:16 = 쇼츠 표지 (1080x1920)
+  "width": 1280, "height": 720            # 선택: 크기를 직접 지정
 }
 """
 import json
@@ -20,6 +21,7 @@ from studio.render import ROOT, _log_tail, _render_env
 from studio.styles import get_style
 
 OBJECTS = ("certificate", "cash", "document", "calendar", "idcard", "passbook")
+SIZES = {"16:9": (1280, 720), "9:16": (1080, 1920)}
 
 
 def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
@@ -30,7 +32,8 @@ def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
         raise ValueError("thumbnail.text 가 비어 있음")
     out = os.path.abspath(job["out"])
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    props = {"width": job.get("width", 1280), "height": job.get("height", 720), "theme": style["theme"], "text": text,
+    w, h = SIZES.get(job.get("aspect") or "16:9", SIZES["16:9"])
+    props = {"width": job.get("width", w), "height": job.get("height", h), "theme": style["theme"], "text": text,
              "emphasis": spec.get("emphasis") if spec.get("emphasis") and spec["emphasis"] in text else None,
              "badge": spec.get("badge"), "object": spec.get("object") if spec.get("object") in OBJECTS else "certificate",
              "object_label": spec.get("object_label")}

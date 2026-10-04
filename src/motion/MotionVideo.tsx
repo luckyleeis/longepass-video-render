@@ -48,7 +48,8 @@ const ShotView: React.FC<{ shot: Shot; beats: number[] }> = ({ shot, beats }) =>
   const surf = t.surfaces[shot.bg] || Object.values(t.surfaces)[0];
   const exit = shot.exit ? interpolate(frame, [shot.duration - 7, shot.duration], [1, 0], clamp) : 1;
   const layers = (
-    <AbsoluteFill style={{ opacity: exit, transform: `translateY(${(1 - exit) * -t.skin.motion.distance}px) scale(${1 + (t.skin.motion.impact ? 0.025 : 0.012) * Math.min(1, frame / Math.max(1, shot.duration))})` }}>
+    // 장면 내내 천천히 확대하던 효과는 뺐다: 글자가 매 프레임 조금씩 다른 크기로 다시 그려지며 떨려 보인다
+    <AbsoluteFill style={{ opacity: exit, transform: exit < 1 ? `translateY(${(1 - exit) * -t.skin.motion.distance}px)` : 'none' }}>
       {shot.layers.map((ly, i) => {
         const M = TEMPLATES[ly.module];
         if (!M) return null;

@@ -5,9 +5,15 @@ import type { PanelProps } from './media';
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
-/** 스킨의 움직임 값으로 등장 (0→1) */
-export const enter = (t: MotionTheme, frame: number, at: number, fps: number, extraDamping = 0) =>
-  spring({ frame: frame - at, fps, config: { damping: t.skin.motion.damping + extraDamping, stiffness: t.skin.motion.stiffness, mass: t.skin.motion.mass } });
+/**
+ * 스킨의 움직임 값으로 등장 (0→1).
+ * 스프링은 1에 끝없이 가까워지기만 해서, 다 나타난 글자가 0.01px씩 계속 움직이며 매 프레임 다시 그려진다 (떨림).
+ * 1에 충분히 가까워지면 정확히 1로 맞춘다.
+ */
+export const enter = (t: MotionTheme, frame: number, at: number, fps: number, extraDamping = 0) => {
+  const v = spring({ frame: frame - at, fps, config: { damping: t.skin.motion.damping + extraDamping, stiffness: t.skin.motion.stiffness, mass: t.skin.motion.mass } });
+  return frame - at > 4 && Math.abs(1 - v) < 0.004 ? 1 : v;
+};
 
 /** 튀는 등장: 충격 연출이 켜진 스킨에서만 감쇠를 낮춰 더 튀게 한다 */
 export const bounce = (t: MotionTheme, frame: number, at: number, fps: number, extraDamping: number) =>
@@ -15,7 +21,7 @@ export const bounce = (t: MotionTheme, frame: number, at: number, fps: number, e
 
 /** 등장 진행도 p(0→1)에 맞춘 이동 + 기울기 */
 export const riseTransform = (t: MotionTheme, p: number, scale = 1, axis: 'x' | 'y' = 'y') =>
-  `translate${axis.toUpperCase()}(${(1 - p) * t.skin.motion.distance * scale}px) rotate(${(1 - p) * -t.skin.motion.tilt}deg)`;
+  p >= 1 ? 'none' : `translate${axis.toUpperCase()}(${(1 - p) * t.skin.motion.distance * scale}px) rotate(${(1 - p) * -t.skin.motion.tilt}deg)`;
 
 /** a→b 프레임 동안 0→1. 내레이션 단서로 정한 시점은 같거나 뒤집힐 수 있어서 b <= a 면 a에서 바로 1 (렌더링이 멈추지 않게) */
 export const ease = (frame: number, a: number, b: number) =>

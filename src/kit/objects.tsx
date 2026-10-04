@@ -94,15 +94,39 @@ export const Passbook: React.FC<{ w: number; sw?: number; ink: string; accent: s
   </svg>
 );
 
-/** 도장 찍힌 자국 (원형 테두리 + 글자) */
-export const StampMark: React.FC<{ d: number; sw?: number; color: string; text: string; sub?: string }> = ({ d, sw = 6, color, text, sub }) => (
-  <svg width={d} height={d} viewBox="0 0 200 200">
-    <SCircle cx={100} cy={100} r={90} fill="none" stroke={color} sw={10} />
-    <SCircle cx={100} cy={100} r={72} fill="none" stroke={color} sw={4} strokeDasharray="6 6" />
-    <text x="100" y="115" textAnchor="middle" fontSize="54" fontWeight="900" fill={color}>{text}</text>
-    {sub && <text x="100" y="150" textAnchor="middle" fontSize="20" fontWeight="800" fill={color} letterSpacing="3">{sub}</text>}
-  </svg>
-);
+/**
+ * 도장 찍힌 자국 (원형 테두리 + 글자). 글자는 안쪽 원 안에 들어가게 크기를 맞추고, 4자 이상이면 두 줄로.
+ * sub(작은 글자)는 안쪽 점선 원을 따라 아래쪽에 둥글게.
+ */
+export const StampMark: React.FC<{ d: number; sw?: number; color: string; text: string; sub?: string }> = ({ d, color, text, sub }) => {
+  const arcId = `stamp-arc-${React.useId().replace(/[^a-zA-Z0-9]/g, '')}`;
+  const chars = Array.from(text || '');
+  const lines = chars.length >= 4 ? [chars.slice(0, Math.ceil(chars.length / 2)).join(''), chars.slice(Math.ceil(chars.length / 2)).join('')] : [chars.join('')];
+  const per = Math.max(...lines.map((l) => Array.from(l).length), 1);
+  // 안쪽 점선 원(반지름 72) 안의 글자 칸: 폭은 한 줄 ~116 / 두 줄 ~100, 높이는 sub(아래 둥근 글자)가 있으면 그 위까지
+  const top = 44, bottom = sub ? 126 : 156;
+  const fs = Math.min(56, (lines.length > 1 ? 100 : 116) / per, (bottom - top) / (lines.length * 1.04));
+  const cy = (top + bottom) / 2;
+  const subChars = Array.from(sub || '').length;
+  const subFs = Math.min(18, 110 / Math.max(1, subChars * 0.8));
+  return (
+    <svg width={d} height={d} viewBox="0 0 200 200">
+      <SCircle cx={100} cy={100} r={90} fill="none" stroke={color} sw={10} />
+      <SCircle cx={100} cy={100} r={72} fill="none" stroke={color} sw={4} strokeDasharray="6 6" />
+      {lines.map((l, i) => (
+        <text key={i} x="100" y={cy + fs * 0.36 + (i - (lines.length - 1) / 2) * fs * 1.04} textAnchor="middle" fontSize={fs} fontWeight="900" fill={color}>{l}</text>
+      ))}
+      {sub && (
+        <>
+          <defs><path id={arcId} d="M 42 100 A 58 58 0 0 0 158 100" fill="none" /></defs>
+          <text fontSize={subFs} fontWeight="800" fill={color} letterSpacing="2">
+            <textPath href={`#${arcId}`} startOffset="50%" textAnchor="middle">{sub}</textPath>
+          </text>
+        </>
+      )}
+    </svg>
+  );
+};
 
 /** 체크박스가 있는 조건 카드 */
 export const CheckCard: React.FC<{ w: number; sw?: number; stroke?: string; ink: string; bg: string; primary: string; title: string; checked: number; idx: number }> = ({

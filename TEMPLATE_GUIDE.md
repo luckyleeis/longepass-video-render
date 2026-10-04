@@ -67,7 +67,7 @@ video-studio/
 | `events` | 화면에서 일어나는 순간 (아래) |
 | `sfx` | 이벤트별 효과음 종류 |
 | `sfx_when` | data 조건에 따른 효과음 덮어쓰기. 예: `{"if": {"tone": "warning"}, "sfx": {"in": "error"}}` |
-| `bg` | 강제 배경 역할 `base`·`alt`·`accent`·`deep`, 또는 `null`(챕터 기본 배경) |
+| `bg` | 강제 배경 역할 `base`·`alt`·`accent`·`deep`·`primary`(스타일의 주 바탕 `theme.primary_surface`), 또는 `null`(챕터 기본 배경: 주 바탕과 반대 바탕을 챕터마다 번갈아) |
 | `duration` | 샷 길이 권장 범위(초) |
 | `examples` | 실제로 채운 예시 1개 이상: `narration`, `data`, `cues`. 갤러리와 검사에 쓰인다 |
 

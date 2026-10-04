@@ -1,0 +1,138 @@
+{
+  "id": "document_form",
+  "version": 1,
+  "name": "서류 목업",
+  "component": "DocumentForm.tsx",
+  "category": "organize",
+  "inspired_by": "설명 영상 — 실제 서류 위에 값이 써지고 중요한 칸에 형광펜, 도장",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "What to fill in on an application form, or which fields to check on a certificate/document (dates, amounts, names). 2-5 label/value rows written one by one; highlight marks the key field; optional stamp (e.g. approved) and a side note.",
+  "avoid_when": "A plain list of required documents (use list). No form or document is involved.",
+  "fields": {
+    "doc_title": {
+      "type": "text",
+      "max": 12,
+      "required": true
+    },
+    "fields": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "max": 6,
+            "required": true
+          },
+          "value": {
+            "type": "text",
+            "max": 12,
+            "required": true
+          }
+        },
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    },
+    "highlight": {
+      "type": "int",
+      "desc": "1-based index of the field to highlight (optional)"
+    },
+    "stamp": {
+      "type": "text",
+      "max": 4,
+      "desc": "stamp text at the end, e.g. 核准 (optional)"
+    },
+    "note": {
+      "type": "text",
+      "max": 18,
+      "desc": "one-line tip beside the document (optional)"
+    }
+  },
+  "events": {
+    "doc": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "fields": {
+      "kind": "each",
+      "of": "fields",
+      "start": 0.1
+    },
+    "stamp": {
+      "kind": "single",
+      "at": 0.85,
+      "when": "stamp",
+      "after": {
+        "event": "fields",
+        "gap": 12
+      }
+    },
+    "note": {
+      "kind": "single",
+      "at": 0.9,
+      "when": "note",
+      "after": {
+        "event": "fields",
+        "gap": 8
+      }
+    }
+  },
+  "sfx": {
+    "fields": "click",
+    "stamp": "stamp"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "申請書上要填的其實只有幾格：姓名、證照名稱，還有最重要的生效日期，一定要跟證照上寫的一樣，填好送出就等核准。",
+      "data": {
+        "doc_title": "獎勵金申請書",
+        "fields": [
+          {
+            "label": "姓名",
+            "value": "王小明"
+          },
+          {
+            "label": "證照名稱",
+            "value": "男子理髮乙級"
+          },
+          {
+            "label": "生效日期",
+            "value": "2026.03.15"
+          }
+        ],
+        "highlight": 3,
+        "stamp": "核准",
+        "note": "日期要和證照一致"
+      },
+      "cues": {
+        "fields": [
+          "姓名",
+          "證照名稱",
+          "生效日期"
+        ],
+        "stamp": "等核准",
+        "note": "一定要跟證照"
+      }
+    }
+  ]
+}

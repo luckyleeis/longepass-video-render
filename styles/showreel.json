@@ -54,6 +54,7 @@
         "fillStrong": "#6f8cf5"
       }
     },
+    "primary_surface": "base",
     "primary": "#FFCC00",
     "accent": "#3D5AFE",
     "accent2": "#4ADE80",

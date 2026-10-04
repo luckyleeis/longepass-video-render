@@ -1,0 +1,121 @@
+{
+  "id": "phone_screen",
+  "version": 1,
+  "name": "휴대폰 화면",
+  "component": "PhoneScreen.tsx",
+  "category": "organize",
+  "inspired_by": "앱 소개 영상 — 휴대폰 목업 위에서 메뉴를 누르는 손가락",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "Something done on a phone: an online application or registration flow, or using the app (practice questions, wrong-answer notes, mock exams). A title + caption beside a phone whose screen lists 2-5 menu rows; one row can be tapped.",
+  "avoid_when": "Nothing happens on a phone or website. Steps that happen in person (use steps).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 14,
+      "required": true
+    },
+    "caption": {
+      "type": "text",
+      "max": 26
+    },
+    "screen_title": {
+      "type": "text",
+      "max": 10,
+      "required": true,
+      "desc": "title at the top of the phone screen (site/app page name)"
+    },
+    "rows": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "text": {
+            "type": "text",
+            "max": 10,
+            "required": true
+          }
+        },
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    },
+    "tap": {
+      "type": "int",
+      "desc": "1-based index of the row the finger taps (optional)"
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "rows": {
+      "kind": "each",
+      "of": "rows",
+      "start": 0.15
+    },
+    "tap": {
+      "kind": "single",
+      "at": 0.8,
+      "when": "tap",
+      "after": {
+        "event": "rows",
+        "gap": 10
+      }
+    }
+  },
+  "sfx": {
+    "rows": "pop",
+    "tap": "click"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 14
+  },
+  "examples": [
+    {
+      "narration": "報名不用跑櫃台，打開台灣就業通，先登入會員，找到職前訓練課程，按下線上報名就完成了。",
+      "data": {
+        "title": "線上就能報名",
+        "caption": "不用跑櫃台，手機就能完成",
+        "screen_title": "台灣就業通",
+        "rows": [
+          {
+            "text": "登入會員"
+          },
+          {
+            "text": "職前訓練課程"
+          },
+          {
+            "text": "線上報名"
+          }
+        ],
+        "tap": 3
+      },
+      "cues": {
+        "title": "報名不用跑櫃台",
+        "rows": [
+          "登入會員",
+          "職前訓練",
+          "線上報名"
+        ],
+        "tap": "按下線上報名"
+      }
+    }
+  ]
+}

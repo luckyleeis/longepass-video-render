@@ -1,0 +1,126 @@
+{
+  "id": "timeline",
+  "version": 1,
+  "name": "시간 흐름·기한",
+  "component": "Timeline.tsx",
+  "category": "organize",
+  "inspired_by": "일정 설명 — 축 위에 시점이 찍히고 마감일에 빨간 깃발",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "Things that happen at points in time: deadlines, exam schedule, 'within 90 days of X', training period then subsidy payment. 2-5 points with a time label (when) and what happens; deadline marks the point that must not be missed.",
+  "avoid_when": "Steps without times or dates (use steps). Only one date (use counter or callout).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "points": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "when": {
+            "type": "text",
+            "max": 8,
+            "required": true
+          },
+          "label": {
+            "type": "text",
+            "max": 8,
+            "required": true
+          },
+          "sub": {
+            "type": "text",
+            "max": 14
+          }
+        },
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    },
+    "deadline": {
+      "type": "int",
+      "desc": "1-based index of the point that is the deadline (optional)"
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "points": {
+      "kind": "each",
+      "of": "points",
+      "start": 0.1
+    },
+    "deadline": {
+      "kind": "single",
+      "at": 0.85,
+      "when": "deadline",
+      "after": {
+        "event": "points",
+        "gap": 10
+      }
+    }
+  },
+  "sfx": {
+    "points": "pop",
+    "deadline": "bong"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "時間要抓好：拿到證照那天開始算，九十天內要送出申請，審核大約一個月，通過後獎勵金就會匯進你的帳戶。",
+      "data": {
+        "title": "申請時間怎麼抓",
+        "points": [
+          {
+            "when": "第 1 天",
+            "label": "取得證照"
+          },
+          {
+            "when": "90 天內",
+            "label": "送出申請",
+            "sub": "超過就不受理"
+          },
+          {
+            "when": "約 1 個月",
+            "label": "審核"
+          },
+          {
+            "when": "通過後",
+            "label": "匯款入帳"
+          }
+        ],
+        "deadline": 2
+      },
+      "cues": {
+        "title": "時間要抓好",
+        "points": [
+          "拿到證照",
+          "九十天內",
+          "審核大約",
+          "通過後"
+        ],
+        "deadline": "九十天內"
+      }
+    }
+  ]
+}

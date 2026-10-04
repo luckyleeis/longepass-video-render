@@ -48,3 +48,7 @@ bin/studio list | styles
 
 서버는 `VIDEO_STUDIO_DIR`(기본 `~/Project/video-studio`)에서 `python -m studio …`를 실행한다.
 비밀값은 넘기지 않는다 (PATH/HOME/언어/임시폴더만).
+
+### 스타일의 주 바탕과 채널 인트로
+- `theme.primary_surface`: 주 바탕 (첫 장·첫 화면·마지막 화면·썸네일·쇼츠). 본문 챕터는 주 바탕과 반대 바탕을 번갈아 쓴다
+- `theme.brand.tagline`, `pacing.brand_intro: {"sec": 2.2, "sfx": [[종류, 위치 0~1, gain_db]]}`: 있으면 롱폼의 훅(첫 샷) 바로 뒤에 채널 인트로(brand_intro)를 자동으로 넣는다 (첫 장 음성은 그 자리에서 나눠 재생)

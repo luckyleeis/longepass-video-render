@@ -48,7 +48,8 @@ export interface MotionTheme {
   accent: string;
   accent2: string;
   danger: string;
-  brand: { parts: Array<{ text: string; accent?: boolean }>; suffix?: string };
+  brand: { parts: Array<{ text: string; accent?: boolean }>; suffix?: string; tagline?: string };
+  primary_surface?: string;   // 주 바탕 (첫 화면·마지막 화면·썸네일·쇼츠). 없으면 base
   skin: Skin;
   media?: MediaSpec;   // 그림 재료 (없으면 clean)
   lang?: string;       // 화면 글자 언어 (zh-tw, ko, en …). 템플릿 기본 이름표 등에 쓴다

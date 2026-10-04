@@ -170,6 +170,7 @@ const Hud: React.FC<{ props: MotionProps }> = ({ props }) => {
   const t = useMotionTheme();
   const shot = props.shots.find((s) => frame >= s.start && frame < s.start + s.duration) || props.shots[props.shots.length - 1];
   const surf = t.surfaces[shot.bg] || Object.values(t.surfaces)[0];
+  if (shot.label === 'BRAND') return null;   // 채널 인트로 동안은 구석 로고·챕터 표시 없음
   if (props.height > props.width) {
     return <AbsoluteFill style={{ pointerEvents: 'none' }}><ShortsHeader props={props} surf={surf} accentBg={shot.bg === 'accent'} /></AbsoluteFill>;
   }

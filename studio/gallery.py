@@ -50,8 +50,9 @@ def _flatten(v, out: List[int]):
         out.append(v)
 
 
-def _bg_for(m: Dict[str, Any]) -> str:
-    return m.get("bg") or "base"
+def _bg_for(m: Dict[str, Any], theme: Dict[str, Any]) -> str:
+    bg = m.get("bg") or "base"
+    return (theme.get("primary_surface") or "base") if bg == "primary" else bg
 
 
 def _gallery_dir(aspect: str) -> str:
@@ -83,7 +84,7 @@ def build_props(style: Dict[str, Any], only: Optional[List[str]] = None, aspect:
             ev = to_relative(ev_abs, frame)
             flat: List[int] = []
             _flatten(ev, flat)
-            shots.append({"id": f"{tid}_{n}", "label": tid, "bg": _bg_for(m), "start": frame, "duration": dur,
+            shots.append({"id": f"{tid}_{n}", "label": tid, "bg": _bg_for(m, style["theme"]), "start": frame, "duration": dur,
                           "layers": [{"module": tid, "data": layer_data(shot), "ev": ev}]})
             stills.append({"id": tid, "n": n, "frame": frame + min(dur - 6, max(flat or [0]) + 30)})
             frame += dur

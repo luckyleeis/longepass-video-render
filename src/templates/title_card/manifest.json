@@ -56,7 +56,7 @@
     "sub": "glass"
   },
   "sfx_when": [],
-  "bg": "base",
+  "bg": "primary",
   "duration": {
     "min_sec": 4,
     "max_sec": 14

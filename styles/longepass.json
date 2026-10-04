@@ -54,6 +54,7 @@
         "fillStrong": "#6B83C4"
       }
     },
+    "primary_surface": "alt",
     "primary": "#EAB308",
     "accent": "#3B82F6",
     "accent2": "#10B981",
@@ -71,7 +72,8 @@
           "text": "PASS"
         }
       ],
-      "suffix": "容易通"
+      "suffix": "容易通",
+      "tagline": "考照刷題首選"
     },
     "skin": {
       "cardBorder": 2,
@@ -133,6 +135,21 @@
       "scratch": null,
       "error": "bong"
     },
-    "stagger_sfx_every": 6
+    "stagger_sfx_every": 6,
+    "brand_intro": {
+      "sec": 2.2,
+      "sfx": [
+        [
+          "swish_up",
+          0.0,
+          -4.0
+        ],
+        [
+          "ding",
+          0.42,
+          -8.0
+        ]
+      ]
+    }
   }
 }

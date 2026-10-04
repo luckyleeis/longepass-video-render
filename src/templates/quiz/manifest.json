@@ -1,0 +1,109 @@
+{
+  "id": "quiz",
+  "version": 1,
+  "name": "맞혀 보기 퀴즈",
+  "component": "Quiz.tsx",
+  "category": "emphasis",
+  "inspired_by": "퀴즈 쇼츠 — 문제·보기 → 생각할 시간 → 정답 공개",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "Let viewers guess a key fact from the article before revealing it (a deadline, an amount, a rule people often get wrong). Question + 2-4 options, the answer is revealed when the narration says it. Great as a short-form hook or a mid-video attention reset.",
+  "avoid_when": "The fact is not surprising, or the correct answer is not stated in the article. More than once per video.",
+  "fields": {
+    "question": {
+      "type": "text",
+      "max": 28,
+      "required": true
+    },
+    "options": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 10,
+        "required": true
+      },
+      "min": 2,
+      "max": 4
+    },
+    "answer": {
+      "type": "int",
+      "required": true,
+      "desc": "1-based index of the correct option (must be the fact stated in the article/narration)"
+    },
+    "note": {
+      "type": "text",
+      "max": 22,
+      "desc": "one-line reason shown after the reveal"
+    }
+  },
+  "events": {
+    "question": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "options": {
+      "kind": "each",
+      "of": "options",
+      "start": 0.15
+    },
+    "reveal": {
+      "kind": "single",
+      "at": 0.7
+    },
+    "note": {
+      "kind": "single",
+      "at": 0.85,
+      "when": "note",
+      "after": {
+        "event": "reveal",
+        "gap": 12
+      }
+    }
+  },
+  "sfx": {
+    "options": "pop",
+    "reveal": "ding"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 6,
+    "max_sec": 15
+  },
+  "examples": [
+    {
+      "narration": "考一題：取得證照之後，最晚幾天內要申請獎勵金？三十天、六十天，還是九十天？答案是九十天，超過就一毛都拿不到。",
+      "data": {
+        "question": "取得證照後，最晚幾天內要申請？",
+        "options": [
+          "30 天",
+          "60 天",
+          "90 天"
+        ],
+        "answer": 3,
+        "note": "超過期限就領不到"
+      },
+      "cues": {
+        "question": "最晚幾天內",
+        "options": [
+          "三十天",
+          "六十天",
+          "九十天？"
+        ],
+        "reveal": "答案是九十天",
+        "note": "超過就"
+      }
+    }
+  ]
+}

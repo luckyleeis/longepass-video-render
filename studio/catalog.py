@@ -36,7 +36,7 @@ def icon_names() -> List[str]:
     block = src[src.index("const ICONS"):src.index("};", src.index("const ICONS"))]
     return re.findall(r"(\w+): 'Tb", block)
 
-BG_ROLES = ["base", "alt", "accent", "deep"]
+BG_ROLES = ["base", "alt", "accent", "deep", "primary"]   # primary = 스타일의 주 바탕 (theme.primary_surface)
 CATEGORIES = ["opener", "structure", "emphasis", "number", "organize", "compare", "chart", "space", "story", "outro"]
 FIELD_TYPES = ["text", "number", "int", "bool", "enum", "list", "object"]
 EVENT_KINDS = ["single", "each", "stagger"]

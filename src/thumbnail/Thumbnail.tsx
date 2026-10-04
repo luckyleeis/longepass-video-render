@@ -85,7 +85,7 @@ const BigLines: React.FC<{ lines: string[]; emphasis?: string; size: number; sur
 
 /** 세로 (쇼츠 표지 1080x1920): 배지 → 큰 글자 → 사물 → 브랜드, 가운데 정렬. 쇼츠 목록에서 위아래가 잘려도 읽히게 가운데에 모은다 */
 const Portrait: React.FC<ThumbnailProps> = ({ width: W, height: H, theme: t, text, emphasis, badge, object, object_label }) => {
-  const surf = t.surfaces.alt || Object.values(t.surfaces)[0];
+  const surf = t.surfaces[t.primary_surface || 'base'] || Object.values(t.surfaces)[0];
   const s = W / 1080;
   const lines = splitLines(text || '', emphasis);
   const longest = Math.max(...lines.map((l) => l.length), 1);
@@ -116,7 +116,7 @@ const Inner: React.FC<ThumbnailProps> = (props) => {
   const { width: W, height: H, theme: t, text, emphasis, badge, object, object_label } = props;
   useFontsReady(t.font);
   if (H > W) return <Portrait {...props} />;
-  const surf = t.surfaces.alt || Object.values(t.surfaces)[0];
+  const surf = t.surfaces[t.primary_surface || 'base'] || Object.values(t.surfaces)[0];
   const s = W / 1280;
   const lines = splitLines(text || '', emphasis);
   const longest = Math.max(...lines.map((l) => l.length), 1);

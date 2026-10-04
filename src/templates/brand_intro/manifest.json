@@ -1,0 +1,50 @@
+{
+  "id": "brand_intro",
+  "version": 1,
+  "name": "채널 인트로",
+  "component": "BrandIntro.tsx",
+  "category": "structure",
+  "inspired_by": "채널 아이덴트 — 로고 한 자씩 + 밑줄",
+  "scope": "common",
+  "media": [
+    "clean",
+    "sketch"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": false,
+  "use_when": "Inserted automatically right after the opening hook in long-form videos (style pacing.brand_intro). Not chosen by the LLM.",
+  "avoid_when": "",
+  "fields": {
+    "tagline": {
+      "type": "text",
+      "max": 16
+    }
+  },
+  "events": {
+    "in": {
+      "kind": "single",
+      "at": 0.0
+    }
+  },
+  "sfx": {},
+  "sfx_when": [],
+  "bg": "primary",
+  "duration": {
+    "min_sec": 2,
+    "max_sec": 3.5
+  },
+  "examples": [
+    {
+      "narration": "",
+      "data": {
+        "tagline": "考照刷題首選"
+      },
+      "cues": {}
+    }
+  ]
+}

@@ -69,6 +69,11 @@ def check_style(style: Dict[str, Any]) -> List[str]:
         bad = [m for m in pc.get("music_moods", []) if m not in lib.get("moods", {})]
         if bad:
             errs.append(f"pacing.music_moods 에 없는 분위기 {bad} (가능: {list(lib.get('moods', {}))})")
+    if th.get("primary_surface", "base") not in SURFACE_ROLES:
+        errs.append(f"theme.primary_surface 는 {SURFACE_ROLES} 중 하나")
+    bi = pc.get("brand_intro")
+    if bi is not None and not (isinstance(bi, dict) and all(isinstance(x, list) and len(x) == 3 for x in bi.get("sfx", []))):
+        errs.append("pacing.brand_intro 는 {sec: 길이(초), sfx: [[효과음 종류, 위치 0~1, gain_db]]}")
     for k in ("chapter", "counter", "default"):
         if k not in pc.get("transitions", {}):
             errs.append(f"pacing.transitions.{k} 없음")

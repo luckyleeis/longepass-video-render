@@ -28,12 +28,12 @@ const Board: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
   const beats: BeatEv[] = ev.beats?.length ? ev.beats : [{ at: 0 }];
   const { i, p, frame } = useBeat(beats);
   const n = items.length;
-  const cy = L.H * 0.52;
+  const cy = L.H * 0.47;   // 아래는 비트 설명(note)과 자막 자리
   const center: Camera = { cx: L.W / 2, cy: L.H / 2, zoom: 1 };
 
   const scatter = (): Frame => {
     const poses: Record<string, Pose> = {};
-    const rx = Math.min(640, L.contentW / 2 - CW / 2), ry = 230;
+    const rx = Math.min(640, L.contentW / 2 - CW / 2), ry = Math.min(170, L.H * 0.16);
     items.forEach((_, k) => {
       const a = -Math.PI / 2 + ((k + 0.5) * 2 * Math.PI) / n;
       poses[`i${k}`] = {
@@ -83,20 +83,21 @@ const Board: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
 
   // 비트별 자리표 (focus는 직전 배치를 그대로 두고 강조만)
   const frames: Frame[] = [];
-  beatsData.forEach((b, k) => {
+  let base: Frame | null = null;   // 마지막 일반 배치 (강조 비트가 이어져도 흐림·확대가 쌓이지 않게 여기서 계산)
+  beatsData.forEach((b) => {
     if (b.layout === 'focus') {
-      const prev = frames[k - 1] || scatter();
+      const prev = base || scatter();
       const focus = new Set(items.map((it, j) => ((b.focus || []).includes(it.label) ? j : -1)).filter((j) => j >= 0));
       const poses: Record<string, Pose> = {};
       Object.entries(prev.poses).forEach(([id, ps]) => {
         const j = id.startsWith('i') ? Number(id.slice(1)) : -1;
-        poses[id] = j < 0 ? ps : focus.has(j) ? { ...ps, s: (ps.s ?? 1) * 1.1, r: 0 } : { ...ps, o: 0.3 };
+        poses[id] = j < 0 ? ps : focus.has(j) ? { ...ps, s: (ps.s ?? 1) * 1.1, r: 0, o: 1 } : { ...ps, o: 0.3 };
       });
-      const fx = [...focus].map((j) => prev.poses[`i${j}`]).filter(Boolean);
-      const cam = fx.length ? { cx: mean(fx.map((q) => q.x)) * 0.3 + (L.W / 2) * 0.7, cy: mean(fx.map((q) => q.y)) * 0.3 + (L.H / 2) * 0.7, zoom: 1.05 } : center;
-      frames.push({ ...prev, poses, focus, cam });
+      // 카메라는 움직이지 않는다 (강조 카드 쪽으로 화면이 밀리면 어긋나 보이고 아래 카드가 설명 상자에 가려진다)
+      frames.push({ ...prev, poses, focus, cam: prev.cam });
     } else {
-      frames.push(b.layout === 'row' ? row() : b.layout === 'group' ? group() : scatter());
+      base = b.layout === 'row' ? row() : b.layout === 'group' ? group() : scatter();
+      frames.push(base);
     }
   });
   if (!frames.length) frames.push(scatter());
@@ -162,6 +163,5 @@ const Board: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
   );
 };
 
-const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / Math.max(1, xs.length);
 
 export default Board;

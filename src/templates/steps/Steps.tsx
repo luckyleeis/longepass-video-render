@@ -30,9 +30,12 @@ const Steps: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
           const p = enter(t, frame, at(i), fps);
           const on = frame >= at(i);
           return (
-            <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', opacity: 0.25 + 0.75 * p }}>
-              <Dot size={116} fill={on ? t.primary : surf.card} stroke={cardPanel(t, surf).stroke} sw={t.skin.cardBorder} seed={`step${i}`} draw={p} style={{ fontSize: 54, fontWeight: 900, color: on ? t.skin.onColorInk : surf.cardInk, zIndex: 1, transform: `scale(${0.85 + 0.15 * p})` }}>{i + 1}</Dot>
-              <Panel {...cardPanel(t, surf)} draw={p} seed={`stepcard${i}`} style={{ color: surf.cardInk, marginTop: 30, padding: '26px 20px', width: '100%', transform: riseTransform(t, p) }}>
+            <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              {/* 원은 불투명하게 (뒤의 진행선이 비치지 않게), 아직 차례가 아닌 단계는 숫자와 카드만 흐리게 */}
+              <Dot size={116} fill={on ? t.primary : surf.card} stroke={cardPanel(t, surf).stroke} sw={t.skin.cardBorder} seed={`step${i}`} style={{ fontSize: 54, fontWeight: 900, color: on ? t.skin.onColorInk : surf.cardInk, zIndex: 1, transform: `scale(${0.85 + 0.15 * p})` }}>
+                <span style={{ opacity: 0.3 + 0.7 * p }}>{i + 1}</span>
+              </Dot>
+              <Panel {...cardPanel(t, surf)} draw={p} seed={`stepcard${i}`} style={{ color: surf.cardInk, marginTop: 30, padding: '26px 20px', width: '100%', opacity: 0.25 + 0.75 * p, transform: riseTransform(t, p) }}>
                 <div style={{ ...keepAll, fontSize: 50, fontWeight: 900, color: surf.cardInk }}>{st.title}</div>
                 {st.sub && <div style={{ ...keepAll, fontSize: 32, fontWeight: 700, color: surf.cardInk, opacity: 0.6, marginTop: 10, lineHeight: 1.4 }}>{st.sub}</div>}
               </Panel>

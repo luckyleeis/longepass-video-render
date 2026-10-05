@@ -77,7 +77,7 @@ def _speech_intervals(nar, gap_ms: float = 300.0) -> List[List[int]]:
     """글자 사이가 gap_ms 이상 비면 끊어서, 실제로 말하는 구간만 (음악은 쉼에서 다시 올라온다). nar: ChapterNarration"""
     out, a = [], 0
     for i in range(1, len(nar.times)):
-        if nar.times[i][0] - nar.times[i - 1][1] > gap_ms or i == nar.shift_at:
+        if nar.times[i][0] - nar.times[i - 1][1] > gap_ms or i in nar.pauses:
             out.append([nar.f_start(a), nar.f_end(i - 1)])
             a = i
     out.append([nar.f_start(a), nar.f_end(len(nar.times) - 1)])
@@ -90,6 +90,9 @@ END_TAIL = 45
 CHAPTER_CARD_BEATS = 4
 BRAND_HOLD = 10        # 훅 내레이션이 끝나고 브랜드 인트로가 시작되기까지
 FIRST_EVENT_MAX = 15   # 샷이 시작되고 첫 요소가 나타나기까지 최대 (그 전엔 화면이 비어 보인다)
+# 샷의 마지막 요소가 나타난 뒤 다음 샷(또는 장 끝)까지 최소 프레임 = 등장 애니메이션 + 멈춰 보이는 시간 + 전환 앞 절반.
+# 모자라면 다음 샷 내레이션 앞에 쉼을 넣는다 (음성을 그 자리에서 나눠 뒤로 민다). 장의 마지막 샷이면 장 끝을 늘린다
+LAST_EVENT_HOLD = 45
 # 배경 역할 이름 (실제 색은 styles.py 프로필). 챕터마다 주 바탕(theme.primary_surface)과 반대 바탕을 번갈아 쓴다.
 # 명세의 bg "primary" = 주 바탕
 
@@ -108,16 +111,33 @@ def chapter_text(ch: Dict[str, Any]) -> str:
 class ChapterNarration:
     """
     챕터 내레이션(TTS 한 파일)의 글자별 시각 → 영상 프레임.
-    shift_at/shift: shift_at 번째 글자부터 shift 프레임 뒤로 민다 (중간에 무음 장면을 끼울 때, 음성도 그 자리에서 나눠 재생)
+    pauses: {글자 위치: 프레임} 그 글자부터 뒤를 그만큼 더 민다 (무음 장면을 끼우거나 샷의 마지막 요소를 보여 줄 쉼.
+            음성도 그 자리에서 나눠 재생 — voice_clips)
     """
-    def __init__(self, text: str, char_times: List[Tuple[float, float]], lead: int, shift_at: Optional[int] = None, shift: int = 0):
+    def __init__(self, text: str, char_times: List[Tuple[float, float]], lead: int, pauses: Optional[Dict[int, int]] = None):
         self.clean = clean_text(text)
         self.times = char_times
         self.lead = lead
-        self.shift_at, self.shift = shift_at, shift
+        self.pauses = dict(sorted((pauses or {}).items()))
 
     def _off(self, i: int) -> int:
-        return self.shift if self.shift_at is not None and i >= self.shift_at else 0
+        return sum(f for at, f in self.pauses.items() if i >= at)
+
+    def cut(self, i: int) -> int:
+        """i 번째 글자 앞에서 음성을 자를 위치 (음성 파일 기준 프레임, 앞 글자 끝과 이 글자 시작의 가운데)"""
+        return round((self.times[i - 1][1] + self.times[i][0]) / 2 * FPS / 1000)
+
+    def voice_clips(self, src: str, clip: int) -> List[Dict[str, Any]]:
+        """쉼 자리마다 음성을 나눠 미룬 재생 목록"""
+        cuts = [0] + [self.cut(at) for at in self.pauses] + [clip]
+        offs = [0] + [self._off(at) for at in self.pauses]
+        out = []
+        for j in range(len(cuts) - 1):
+            c = {"src": src, "from": self.lead + cuts[j] + offs[j], "duration": max(1, cuts[j + 1] - cuts[j])}
+            if j:
+                c["trimBefore"] = cuts[j]
+            out.append(c)
+        return out
 
     def f_start(self, i: int) -> int:
         i = min(i, len(self.times) - 1)
@@ -174,9 +194,20 @@ def _events(spec: Dict[str, Any], data: Dict[str, Any], cues: Dict[str, Any], na
             continue
         phrases = cues.get(name) if isinstance(cues.get(name), list) else []
         base = sp.get("start", 0.05)
+        cued = [at_phrase(phrases[i]) if i < len(phrases) else None for i in range(count)]
+        # 항목은 순서대로 나타나야 한다. 단서 구절을 말하는 순서가 항목 순서와 어긋나면(예: 1번 항목 구절을 문장 끝에서 말함)
+        # 뒤 항목들이 모두 그 뒤로 밀려 샷 끝에 몰려 나온다 → 말하는 순서가 맞는 단서들만 그대로 쓰고,
+        # 어긋난 단서의 항목은 앞뒤로 맞는 단서 사이에 고르게 놓는다
+        keep = _in_order(cued)
         frames = []
         for i in range(count):
-            f = at_phrase(phrases[i]) if i < len(phrases) else None
+            f = cued[i]
+            if f is not None and i not in keep:
+                left = max((k for k in keep if k < i), default=None)
+                right = min((k for k in keep if k > i), default=None)
+                li, lf = (left, cued[left]) if left is not None else (-1, sp_a)
+                ri, rf = (right, cued[right]) if right is not None else (count, sp_b)
+                f = round(lf + (rf - lf) * (i - li) / (ri - li))
             if f is None:
                 f = grid.snap(round(sp_a + span * (base + 0.75 * i / max(count, 1))))
             frames.append(f)
@@ -188,6 +219,16 @@ def _events(spec: Dict[str, Any], data: Dict[str, Any], cues: Dict[str, Any], na
             frames[i] = max(frames[i], frames[i - 1] + 8)
         ev[name] = frames
     return ev
+
+
+def _in_order(frames: List[Optional[int]]) -> set:
+    """단서 시점 목록에서 항목 순서대로 증가하는 가장 긴 묶음의 위치들 (None 은 빼고). 모두 순서대로면 전부"""
+    idx = [i for i, f in enumerate(frames) if f is not None]
+    best: Dict[int, List[int]] = {}
+    for i in idx:
+        prev = [best[j] for j in best if frames[j] < frames[i]]
+        best[i] = max(prev, key=len, default=[]) + [i]
+    return set(max(best.values(), key=len, default=[]))
 
 
 def _map_frames(ev, fn):
@@ -280,6 +321,53 @@ def _sfx_from(mapping, ev_abs, events, bank: SfxBank, pacing: Dict[str, Any]) ->
     return out
 
 
+def _layout_chapter(ch, char_times, frame: int, ranges: List[Tuple[int, int]], split: Optional[int], brand_len: int,
+                    grid: BeatGrid, pacing: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    장 하나의 샷 배치 → {nar, brand_at, ch_end, shots: [(시작, 끝, 이벤트)]}.
+    샷 경계 = 다음 샷 내레이션 시작. 샷의 마지막 요소가 나온 뒤 LAST_EVENT_HOLD 가 안 되면 다음 샷 앞에 쉼을 넣고
+    (장의 마지막 샷이면 장 끝을 늘리고) 처음부터 다시 배치한다 — 나타나자마자 화면이 넘어가 요소를 못 보는 일 방지.
+    split: 훅(첫 샷) 뒤 브랜드 인트로를 끼울 글자 위치 (없으면 None)
+    """
+    holds: Dict[int, int] = {}   # 글자 위치 → 앞 샷의 마지막 요소를 보여 줄 쉼 (프레임)
+    tail = 0
+    for _ in range(8 * len(ranges) + 8):
+        pauses = dict(holds)
+        if split is not None:
+            pauses[split] = pauses.get(split, 0) + BRAND_HOLD + brand_len
+        nar = ChapterNarration(chapter_text(ch), char_times, frame + VOICE_LEAD, pauses)
+        brand_at = nar.lead + nar.cut(split) + holds.get(split, 0) + BRAND_HOLD if split is not None else None
+        starts: List[int] = []
+        for si, (lo, _hi) in enumerate(ranges):
+            st = frame if si == 0 else max(starts[-1] + 15, grid.snap(nar.f_start(lo) - 3))
+            if si == 1 and brand_at is not None:
+                st = max(st, brand_at + brand_len)
+            starts.append(st)
+        ch_end = nar.last_frame + CHAPTER_TAIL + tail
+        placed, grow = [], None
+        for si, s in enumerate(ch["shots"]):
+            s_start = starts[si]
+            s_end = starts[si + 1] if si + 1 < len(starts) else ch_end
+            if si == 0 and brand_at is not None:
+                s_end = brand_at
+            ev_abs = shot_events(s, nar, ranges[si], s_start, s_end, grid, pacing["stagger_beats"])
+            placed.append((s_start, s_end, ev_abs))
+            frames: List[int] = []
+            _map_frames(ev_abs, frames.append)
+            need = max(frames, default=s_start) + LAST_EVENT_HOLD - s_end
+            if need > 0 and grow is None:
+                grow = (si, need)
+        if grow is None:
+            break
+        si, need = grow
+        at = ranges[si + 1][0] if si + 1 < len(ranges) else None
+        if at is not None and 0 < at < len(char_times):
+            holds[at] = holds.get(at, 0) + need
+        else:
+            tail += need
+    return {"nar": nar, "brand_at": brand_at, "ch_end": ch_end, "shots": placed}
+
+
 SIZES = {"16:9": (1920, 1080), "9:16": (1080, 1920)}
 
 
@@ -324,28 +412,15 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
             ranges.append((pos, pos + n))
             pos += n
         clip = math.ceil(v["clip_end"] * FPS / 1000)
-        split, brand_at, brand_len = None, None, 0
+        split, brand_len = None, 0
         if ci == 0 and brand and len(ch["shots"]) >= 2 and 0 < ranges[1][0] < len(v["char_times"]):
-            split = ranges[1][0]
-            t = v["char_times"]
-            cut = round((t[split - 1][1] + t[split][0]) / 2 * FPS / 1000)   # 훅 마지막 글자와 다음 글자 사이
+            split = ranges[1][0]   # 훅(첫 샷) 마지막 글자와 다음 글자 사이에 브랜드 인트로
             brand_len = round(max(2, round(brand.get("sec", 2.2) * FPS / grid.fpb)) * grid.fpb)   # 약 sec 초, 박자 단위
-            nar = ChapterNarration(chapter_text(ch), t, frame + VOICE_LEAD, shift_at=split, shift=BRAND_HOLD + brand_len)
-            brand_at = nar.lead + cut + BRAND_HOLD
-            voice += [{"src": v["audio_src"], "from": nar.lead, "duration": cut},
-                      {"src": v["audio_src"], "from": nar.lead + cut + nar.shift, "duration": max(1, clip - cut), "trimBefore": cut}]
-        else:
-            nar = ChapterNarration(chapter_text(ch), v["char_times"], frame + VOICE_LEAD)
-            voice.append({"src": v["audio_src"], "from": nar.lead, "duration": clip})
+        lay = _layout_chapter(ch, v["char_times"], frame, ranges, split, brand_len, grid, pacing)
+        nar, brand_at, ch_end = lay["nar"], lay["brand_at"], lay["ch_end"]
+        voice += nar.voice_clips(v["audio_src"], clip)
         intervals += _speech_intervals(nar)  # type: ignore[arg-type]
 
-        starts = []
-        for si, (lo, hi) in enumerate(ranges):
-            st = frame if si == 0 else max(starts[-1] + 15, grid.snap(nar.f_start(lo) - 3))
-            if si == 1 and brand_at is not None:
-                st = max(st, brand_at + brand_len)
-            starts.append(st)
-        ch_end = nar.last_frame + CHAPTER_TAIL
         for si, s in enumerate(ch["shots"]):
             if si == 1 and brand_at is not None:
                 shots.append({"id": "brand", "label": "BRAND", "bg": prim, "start": brand_at, "duration": brand_len,
@@ -355,11 +430,7 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
                     c = bank.clip(cat, brand_at + round(at * brand_len), gain_db=gain)
                     if c:
                         sfx.append(c)
-            s_start = starts[si]
-            s_end = starts[si + 1] if si + 1 < len(starts) else ch_end
-            if si == 0 and brand_at is not None:
-                s_end = brand_at
-            ev_abs = shot_events(s, nar, ranges[si], s_start, s_end, grid, pacing["stagger_beats"])
+            s_start, s_end, ev_abs = lay["shots"][si]
             sfx += [c for c in _sfx_for(s, ev_abs, bank, pacing) if c["from"] < s_end]
             ev_rel = to_relative(ev_abs, s_start)
             bg = catalog.get(s["module"]).get("bg") or base

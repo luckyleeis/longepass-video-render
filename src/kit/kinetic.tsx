@@ -51,7 +51,7 @@ export const KineticLines: React.FC<{
         );
       })}
       {kicker && (
-        <div style={{ marginTop: size * 0.35, fontFamily: t.mono, fontSize: size * 0.17, fontWeight: 700, letterSpacing: '0.2em', color: sub, opacity: ease(frame, first + 6, first + 16) }}>
+        <div style={{ marginTop: size * 0.35, fontFamily: t.mono, fontSize: Math.max(34, Math.round(size * 0.26)), fontWeight: 700, letterSpacing: '0.2em', color: sub, opacity: ease(frame, first + 6, first + 16) }}>
           {kicker}
         </div>
       )}

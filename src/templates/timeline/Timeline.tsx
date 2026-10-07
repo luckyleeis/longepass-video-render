@@ -32,9 +32,13 @@ const Timeline: React.FC<TemplateProps> = ({ data, ev, ink, sub, surf }) => {
   const dotColor = (i: number, on: boolean) => (i === dl && frame >= dlAt ? t.danger : on ? line : surf.card);
 
   if (vertical) {
-    const top = L.contentTop + 20, bottom = L.H - 140;
+    // 시점 i 의 원 중심 = (x, top + gap*i). 막대도 첫 원 중심 ~ 마지막 원 중심.
+    // 원은 제목(label) 줄과 한 줄로 묶어 그 줄 가운데를 y 에 두고, when 은 그 위·sub 는 그 아래에 붙인다
+    // (글자 줄 높이나 sub 유무와 상관없이 원이 막대 위에 온다)
+    const top = L.contentTop + 80, bottom = L.H - 120;
     const gap = n > 1 ? (bottom - top) / (n - 1) : 0;
     const x = L.padX + 50;
+    const textW = L.W - L.padX - (x + 64);
     return (
       <div style={{ position: 'absolute', inset: 0 }}>
         <Title text={data.title} at={ev.title ?? 0} ink={ink} />
@@ -44,14 +48,14 @@ const Timeline: React.FC<TemplateProps> = ({ data, ev, ink, sub, surf }) => {
           const p = enter(t, frame, at(i), fps);
           const y = top + gap * i;
           return (
-            <div key={i} style={{ position: 'absolute', left: x - 30, top: y - 30, right: L.padX, display: 'flex', alignItems: 'center', gap: 34, opacity: 0.3 + 0.7 * p }}>
+            <div key={i} style={{ position: 'absolute', left: x - 30, top: y, right: L.padX, transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', gap: 34, opacity: 0.3 + 0.7 * p }}>
               <Dot size={60} fill={dotColor(i, frame >= at(i))} stroke={line} sw={5} seed={`tl-dot${i}`} style={{ flexShrink: 0, transform: `scale(${0.8 + 0.2 * p})` }} />
-              <div style={{ transform: riseTransform(t, p, 0.8, 'x') }}>
-                <div style={{ ...keepAll, fontSize: 40, fontWeight: 900, color: i === dl && frame >= dlAt ? t.danger : t.primary }}>
+              <div style={{ position: 'relative', transform: riseTransform(t, p, 0.8, 'x') }}>
+                <div style={{ ...keepAll, position: 'absolute', left: 0, bottom: '100%', width: 'max-content', maxWidth: textW, fontSize: 40, fontWeight: 900, color: i === dl && frame >= dlAt ? t.danger : t.primary }}>
                   {pt.when}{i === dl && <span style={{ display: 'inline-block', marginLeft: 14, verticalAlign: 'middle', opacity: dlP, transform: `scale(${0.6 + 0.4 * dlP})` }}><Icon name="flag" size={40} color={t.danger} sw={2.4} /></span>}
                 </div>
                 <div style={{ ...keepAll, fontSize: 48, fontWeight: 900, color: ink }}>{pt.label}</div>
-                {pt.sub && <div style={{ ...keepAll, fontSize: 30, fontWeight: 700, color: sub }}>{pt.sub}</div>}
+                {pt.sub && <div style={{ ...keepAll, position: 'absolute', left: 0, top: '100%', width: 'max-content', maxWidth: textW, fontSize: 30, fontWeight: 700, color: sub }}>{pt.sub}</div>}
               </div>
             </div>
           );

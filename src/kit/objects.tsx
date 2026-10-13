@@ -144,3 +144,78 @@ export const CheckCard: React.FC<{ w: number; sw?: number; stroke?: string; ink:
     <text x="112" y="238" textAnchor="middle" fontSize="34" fontWeight="900" fill={ink}>{title}</text>
   </svg>
 );
+
+/** 자동차 실루엣 */
+export const Car: React.FC<{ w: number; sw?: number; color: string; ink: string; accent?: string }> = ({
+  w, sw = 6, color, ink, accent,
+}) => (
+  <svg width={w} height={w * 0.56} viewBox="0 0 320 180">
+    <ShadowRect x={10} y={14} w={300} h={150} rx={18} opacity={0.12} />
+    <SPath d="M70 95 L110 35 H220 L265 95 Z" fill={color} stroke={ink} sw={sw} strokeLinejoin="round" />
+    <SPath d="M115 45 H160 V90 H85 Z" fill="#ffffff" stroke={ink} sw={3} opacity={0.85} strokeLinejoin="round" />
+    <SPath d="M170 45 H215 L245 90 H170 Z" fill="#ffffff" stroke={ink} sw={3} opacity={0.85} strokeLinejoin="round" />
+    <SRect x={15} y={85} w={290} h={55} rx={16} fill={color} stroke={ink} sw={sw} />
+    <SRect x={285} y={98} w={18} h={16} rx={4} fill={accent || '#FACC15'} stroke={ink} sw={2} />
+    <SRect x={16} y={98} w={14} h={16} rx={4} fill="#EF4444" stroke={ink} sw={2} />
+    <SCircle cx={85} cy={140} r={26} fill="#1E293B" stroke={ink} sw={sw} />
+    <SCircle cx={85} cy={140} r={12} fill="#94A3B8" stroke={ink} sw={2} />
+    <SCircle cx={235} cy={140} r={26} fill="#1E293B" stroke={ink} sw={sw} />
+    <SCircle cx={235} cy={140} r={12} fill="#94A3B8" stroke={ink} sw={2} />
+  </svg>
+);
+
+/** 스쿠터 / 기차(機車) 실루엣 */
+export const Scooter: React.FC<{ w: number; sw?: number; color: string; ink: string; accent?: string }> = ({
+  w, sw = 6, color, ink, accent,
+}) => (
+  <svg width={w} height={w * 0.75} viewBox="0 0 300 225">
+    <ShadowRect x={10} y={15} w={280} h={195} rx={18} opacity={0.12} />
+    <SPath d="M205 45 L180 145" stroke={ink} sw={sw} strokeLinecap="round" />
+    <SRect x={190} y={35} w={40} h={18} rx={6} fill={color} stroke={ink} sw={sw} />
+    <SCircle cx={225} cy={44} r={8} fill={accent || '#FACC15'} stroke={ink} sw={2} />
+    <SPath d="M80 95 Q130 95 155 115 L185 140 H130 L95 150 Z" fill={color} stroke={ink} sw={sw} strokeLinejoin="round" />
+    <SRect x={75} y={85} w={75} h={16} rx={8} fill="#1E293B" stroke={ink} sw={3} />
+    <SCircle cx={205} cy={175} r={28} fill="#1E293B" stroke={ink} sw={sw} />
+    <SCircle cx={205} cy={175} r={12} fill="#94A3B8" stroke={ink} sw={2} />
+    <SCircle cx={85} cy={175} r={28} fill="#1E293B" stroke={ink} sw={sw} />
+    <SCircle cx={85} cy={175} r={12} fill="#94A3B8" stroke={ink} sw={2} />
+  </svg>
+);
+
+/** 삼각 경고/주의 표지판 */
+export const WarningSign: React.FC<{ w: number; sw?: number; color: string; ink: string; label?: string }> = ({
+  w, sw = 6, color, ink, label = '!'
+}) => (
+  <svg width={w} height={w * 0.9} viewBox="0 0 300 270">
+    <ShadowRect x={15} y={15} w={270} h={240} rx={22} opacity={0.12} />
+    <SPath d="M150 20 L285 245 H15 Z" fill={color} stroke={ink} sw={sw} strokeLinejoin="round" />
+    <SPath d="M150 48 L265 232 H35 Z" fill="none" stroke={ink} sw={4} opacity={0.65} strokeLinejoin="round" />
+    <text x="150" y="200" textAnchor="middle" fontSize={label.length > 1 ? 65 : 110} fontWeight="900" fill={ink}>{label}</text>
+  </svg>
+);
+
+/** 원형 속도 제한 / 규제 표지판 */
+export const SpeedLimitSign: React.FC<{ w: number; sw?: number; ink: string; label?: string; danger?: string }> = ({
+  w, sw = 6, ink, label = '50', danger = '#EF4444'
+}) => (
+  <svg width={w} height={w} viewBox="0 0 260 260">
+    <ShadowRect x={10} y={14} w={240} h={240} rx={120} opacity={0.12} />
+    <SCircle cx={130} cy={130} r={118} fill="#ffffff" stroke={danger} sw={22} />
+    <SCircle cx={130} cy={130} r={118} fill="none" stroke={ink} sw={sw} />
+    <text x="130" y="160" textAnchor="middle" fontSize={label.length > 2 ? 72 : 96} fontWeight="900" fill={ink}>{label}</text>
+  </svg>
+);
+
+/** 3색 신호등 */
+export const TrafficLight: React.FC<{ w: number; sw?: number; ink: string; active?: 'red' | 'yellow' | 'green' }> = ({
+  w, sw = 6, ink, active = 'green'
+}) => (
+  <svg width={w} height={w * 2.25} viewBox="0 0 140 315">
+    <ShadowRect x={8} y={12} w={124} h={290} rx={32} opacity={0.14} />
+    <SRect x={0} y={0} w={124} h={290} rx={32} fill="#1E293B" stroke={ink} sw={sw} />
+    <SCircle cx={62} cy={55} r={32} fill={active === 'red' ? '#EF4444' : '#7F1D1D'} stroke={ink} sw={4} />
+    <SCircle cx={62} cy={145} r={32} fill={active === 'yellow' ? '#FACC15' : '#713F12'} stroke={ink} sw={4} />
+    <SCircle cx={62} cy={235} r={32} fill={active === 'green' ? '#10B981' : '#064E3B'} stroke={ink} sw={4} />
+  </svg>
+);
+

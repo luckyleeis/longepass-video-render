@@ -342,6 +342,41 @@ def check_manifest(m: Dict[str, Any], sfx_categories: set) -> List[str]:
             _, _, reason = validate_beats({"module": tid, "beats": ex.get("beats")})
         if reason:
             errs.append(f"examples[{i}]: {reason}")
+def _luminance(hex_str: str) -> float:
+    c = hex_str.lstrip('#')
+    if len(c) < 6:
+        return 0.5
+    r, g, b = [int(c[i:i+2], 16) / 255.0 for i in (0, 2, 4)]
+    rgb_lin = [v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4 for v in (r, g, b)]
+    return 0.2126 * rgb_lin[0] + 0.7152 * rgb_lin[1] + 0.0722 * rgb_lin[2]
+
+
+def _contrast_ratio(c1: str, c2: str) -> float:
+    l1, l2 = _luminance(c1), _luminance(c2)
+    return (max(l1, l2) + 0.05) / (min(l1, l2) + 0.05)
+
+
+def check_thumbnail_rules() -> List[str]:
+    """썸네일 가드레일: 전 스타일 서피스 대비율 검사 (Contrast >= 4.5)"""
+    from studio.styles import list_styles, get_style
+    errs = []
+    for style_name in list_styles():
+        st = get_style(style_name)
+        theme = st.get("theme", {})
+        surfaces = theme.get("surfaces", {})
+        primary = theme.get("primary", "#FFFFFF")
+        for role, surf in surfaces.items():
+            bg, ink = surf.get("bg"), surf.get("ink")
+            if bg and ink:
+                ratio = _contrast_ratio(ink, bg)
+                if ratio < 4.5:
+                    errs.append(f"스타일 {style_name} 서피스 '{role}': 본문 ink({ink})와 bg({bg}) 대비율 {ratio:.2f} < 4.5")
+            if bg:
+                primary_ratio = _contrast_ratio(primary, bg)
+                stat_final = primary if primary_ratio >= 4.5 else ink
+                final_ratio = _contrast_ratio(stat_final, bg)
+                if final_ratio < 4.5:
+                    errs.append(f"스타일 {style_name} 서피스 '{role}': 썸네일 stat 대비율 부족 ({stat_final} on {bg}: {final_ratio:.2f} < 4.5)")
     return errs
 
 
@@ -349,7 +384,38 @@ def check() -> Dict[str, List[str]]:
     load.cache_clear()
     with open(SFX_LIBRARY, "r", encoding="utf-8") as f:
         cats = {s["category"] for s in json.load(f)["sounds"]}
-    return {tid: check_manifest(m, cats) for tid, m in load().items()}
+    res = {tid: check_manifest(m, cats) for tid, m in load().items()}
+    thumb_errs = check_thumbnail_rules()
+    if thumb_errs:
+        res["thumbnail"] = thumb_errs
+    return res
+
+
+def write_mock_props() -> str:
+    """Remotion Studio 2단 뷰어용 템플릿별 목업 props 생성"""
+    from studio.gallery import build_props
+    from studio.styles import get_style
+    style = get_style("longepass")
+    all_templates = load()
+    mock_data = {}
+    for tid in sorted(all_templates.keys()):
+        m = all_templates[tid]
+        bp = build_props(style, only=[tid], aspect="16:9")
+        mock_data[tid] = {
+            "id": tid,
+            "name": m["name"],
+            "category": m["category"],
+            "use_when": m["use_when"],
+            "total_frames": bp["props"]["total_frames"],
+            "fps": bp["props"]["fps"],
+            "width": bp["props"]["width"],
+            "height": bp["props"]["height"],
+            "props": bp["props"],
+        }
+    path = os.path.join(TEMPLATES_DIR, "mockProps.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(mock_data, f, ensure_ascii=False, indent=2)
+    return path
 
 
 def write_index() -> str:
@@ -369,4 +435,6 @@ def write_index() -> str:
     text = "\n".join(lines) + "\n"
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
+    write_mock_props()
     return path
+

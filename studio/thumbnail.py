@@ -4,8 +4,20 @@
 job
 {
   "style": "longepass",
-  "thumbnail": {"text": "큰 글자 (14자 안팎)", "emphasis": "text 안의 강조 구절", "badge": "왼쪽 위 작은 표",
-                "object": "certificate|cash|document|calendar|idcard|passbook", "object_label": "사물 위 글자 (선택)"},
+  "thumbnail": {
+    "layout": "focus|split|stat|quiz",               # 선택: 기본 focus
+    "surface": "alt|base|accent|deep",               # 선택: 배경 색상 테마 (기본 primary_surface)
+    "text": "큰 글자 (14자 안팎)",
+    "emphasis": "text 안의 강조 구절",
+    "badge": "왼쪽 위 작은 표 (선택)",
+    "sub_text": "보조 설명 문구 (선택)",
+    "object": "certificate|cash|document|calendar|idcard|passbook|car|scooter|sign_warning|speed_limit|traffic_light|stamp",
+    "object_label": "사물 위 글자 (선택)",
+    "stat": "수치 (stat 레이아웃용, 예: 3,600, 90, 100%)",
+    "stat_unit": "수치 단위 (예: 元, 天, 分)",
+    "split_left": {"text": "좌측 문구", "tag": "주의", "object": "sign_warning"},
+    "split_right": {"text": "우측 문구", "tag": "정답", "object": "certificate", "is_good": true}
+  },
   "out": "/절대경로/thumbnail.jpg",
   "aspect": "9:16",                       # 선택: 기본 16:9 (1280x720), 9:16 = 쇼츠 표지 (1080x1920)
   "width": 1280, "height": 720            # 선택: 크기를 직접 지정
@@ -20,7 +32,11 @@ from typing import Any, Dict
 from studio.render import ROOT, _log_tail, _render_env
 from studio.styles import get_style
 
-OBJECTS = ("certificate", "cash", "document", "calendar", "idcard", "passbook")
+OBJECTS = (
+    "certificate", "cash", "document", "calendar", "idcard", "passbook",
+    "car", "scooter", "sign_warning", "speed_limit", "traffic_light", "stamp"
+)
+LAYOUTS = ("focus", "split", "stat", "quiz")
 SIZES = {"16:9": (1280, 720), "9:16": (1080, 1920)}
 
 
@@ -28,15 +44,34 @@ def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
     style = get_style(job["style"])
     spec = job.get("thumbnail") or {}
     text = (spec.get("text") or "").strip()
-    if not text:
+    layout = spec.get("layout") if spec.get("layout") in LAYOUTS else "focus"
+
+    # split 레이아웃에서는 text가 없어도 split_left, split_right로 대체 가능
+    if not text and layout != "split":
         raise ValueError("thumbnail.text 가 비어 있음")
+
     out = os.path.abspath(job["out"])
     os.makedirs(os.path.dirname(out), exist_ok=True)
     w, h = SIZES.get(job.get("aspect") or "16:9", SIZES["16:9"])
-    props = {"width": job.get("width", w), "height": job.get("height", h), "theme": style["theme"], "text": text,
-             "emphasis": spec.get("emphasis") if spec.get("emphasis") and spec["emphasis"] in text else None,
-             "badge": spec.get("badge"), "object": spec.get("object") if spec.get("object") in OBJECTS else "certificate",
-             "object_label": spec.get("object_label")}
+
+    props = {
+        "width": job.get("width", w),
+        "height": job.get("height", h),
+        "theme": style["theme"],
+        "layout": layout,
+        "surface": spec.get("surface"),
+        "text": text,
+        "emphasis": spec.get("emphasis") if spec.get("emphasis") and spec["emphasis"] in text else None,
+        "badge": spec.get("badge"),
+        "sub_text": spec.get("sub_text"),
+        "object": spec.get("object") if spec.get("object") in OBJECTS else "certificate",
+        "object_label": spec.get("object_label"),
+        "stat": spec.get("stat"),
+        "stat_unit": spec.get("stat_unit"),
+        "split_left": spec.get("split_left"),
+        "split_right": spec.get("split_right"),
+    }
+
     with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
         json.dump(props, f, ensure_ascii=False)
         props_path = f.name
@@ -52,4 +87,4 @@ def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
     if proc.returncode != 0 or not os.path.exists(out):
         raise RuntimeError(f"썸네일 렌더링 실패 (exit {proc.returncode}). 로그 {log_path} 끝부분:\n{_log_tail(log_path)}")
     os.remove(log_path)
-    return {"thumbnail": out, "text": text, "object": props["object"]}
+    return {"thumbnail": out, "layout": layout, "text": text, "object": props["object"]}

@@ -145,6 +145,8 @@ def write_html() -> str:
   <div class="row">{''.join(imgs)}</div>
 </section>""")
     reels = " · ".join(f'<a href="reel_{s}.mp4">{html.escape(s)} 릴 영상</a>' for s in styles)
+    if os.path.exists(os.path.join(GALLERY_DIR, "thumbnails.html")):
+        reels += ' · <a href="thumbnails.html" style="font-weight:bold;color:var(--ink);">🎨 썸네일 갤러리</a>'
     page = f"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Template Gallery</title>
 <style>

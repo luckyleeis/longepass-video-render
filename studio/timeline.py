@@ -405,7 +405,21 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
             shots.append({"id": f"ch{ci}", "label": "CHAPTER", "bg": "deep", "start": frame, "duration": card,
                           "layers": [{"module": "chapter_card", "data": {"index": ci, "title": ch["title"]}, "ev": {"in": 3}}], "_module": "chapter_card"})
             frame += card
-        v = chapter_voices[ci]
+        if ci < len(chapter_voices):
+            v = chapter_voices[ci]
+        else:
+            # 더미 음성 (프리뷰/검수용: 글자당 200ms 기준 더미 타이밍)
+            clean_ch = "".join(clean_text(s["narration"]) for s in ch["shots"])
+            dummy_char_times = []
+            cur_ms = 0.0
+            for _ in clean_ch:
+                dummy_char_times.append([cur_ms, cur_ms + 180.0])
+                cur_ms += 200.0
+            v = {
+                "audio_src": "",
+                "char_times": dummy_char_times,
+                "clip_end": cur_ms + 300.0
+            }
         ranges, pos = [], 0
         for s in ch["shots"]:
             n = len(clean_text(s["narration"]))

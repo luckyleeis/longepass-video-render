@@ -64,6 +64,14 @@ def cmd_thumbnail(a) -> int:
     return 0
 
 
+def cmd_preview(a) -> int:
+    from studio.preview import render_preview
+    with open(a.job, "r", encoding="utf-8") as f:
+        job = json.load(f)
+    _out(render_preview(job, max_shots=a.max_shots, extract_all=a.all))
+    return 0
+
+
 def cmd_check(a) -> int:
     res = catalog.check()
     bad = {k: v for k, v in res.items() if v}
@@ -115,6 +123,7 @@ def main(argv=None) -> int:
     s.add_argument("--out"); s.add_argument("--aspect", choices=["16:9", "9:16"], default="16:9"); s.set_defaults(fn=cmd_validate)
     s = sub.add_parser("render"); s.add_argument("job"); s.add_argument("--no-render", action="store_true"); s.set_defaults(fn=cmd_render)
     s = sub.add_parser("thumbnail"); s.add_argument("job"); s.set_defaults(fn=cmd_thumbnail)
+    s = sub.add_parser("preview"); s.add_argument("job"); s.add_argument("--max-shots", type=int, default=6); s.add_argument("--all", action="store_true"); s.set_defaults(fn=cmd_preview)
     sub.add_parser("check").set_defaults(fn=cmd_check)
     sub.add_parser("list").set_defaults(fn=cmd_list)
     sub.add_parser("styles").set_defaults(fn=cmd_styles)

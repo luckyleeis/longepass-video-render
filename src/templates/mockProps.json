@@ -1,0 +1,5538 @@
+{
+  "bar_chart": {
+    "id": "bar_chart",
+    "name": "가로 막대 차트",
+    "category": "chart",
+    "use_when": "Ranking or comparing 3-7 numbers (e.g. amounts by city). highlight = index of the item to emphasise.",
+    "total_frames": 490,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 490,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "bar_chart_0",
+          "label": "bar_chart",
+          "bg": "base",
+          "start": 0,
+          "duration": 490,
+          "layers": [
+            {
+              "module": "bar_chart",
+              "data": {
+                "title": "直轄市甲級獎勵金比較",
+                "unit": "元",
+                "items": [
+                  {
+                    "label": "桃園市",
+                    "value": 20000.0,
+                    "note": "30歲青年"
+                  },
+                  {
+                    "label": "台北市",
+                    "value": 10000.0,
+                    "note": "在職勞工"
+                  },
+                  {
+                    "label": "新北市",
+                    "value": 10000.0,
+                    "note": "現職相關"
+                  },
+                  {
+                    "label": "台中市",
+                    "value": 5000.0,
+                    "note": "在職勞工"
+                  }
+                ],
+                "highlight": 0
+              },
+              "ev": {
+                "title": 15,
+                "bars": [
+                  150,
+                  301,
+                  329,
+                  337
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "board": {
+    "id": "board",
+    "name": "카드 보드 (무대)",
+    "category": "organize",
+    "use_when": "A set of 3-6 things (documents, tasks, conditions, options) that the narration first introduces, then lines up (optionally with a value each), sorts into 2-4 groups, and/or highlights. The same cards stay on screen and rearrange across beats.",
+    "total_frames": 842,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 842,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489,
+        508,
+        527,
+        545,
+        564,
+        583,
+        602,
+        621,
+        639,
+        658,
+        677,
+        696,
+        715,
+        734,
+        752,
+        771,
+        790,
+        809,
+        828
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "board_0",
+          "label": "board",
+          "bg": "base",
+          "start": 0,
+          "duration": 842,
+          "layers": [
+            {
+              "module": "board",
+              "data": {
+                "subject": "考生",
+                "items": [
+                  {
+                    "label": "證照影本",
+                    "icon": "certificate",
+                    "value": "正反面",
+                    "group": 0
+                  },
+                  {
+                    "label": "身分證",
+                    "icon": "id",
+                    "value": "影本",
+                    "group": 0
+                  },
+                  {
+                    "label": "戶口名簿",
+                    "icon": "home",
+                    "value": "設籍證明",
+                    "group": 0
+                  },
+                  {
+                    "label": "存摺封面",
+                    "icon": "bank",
+                    "value": "本人帳戶",
+                    "group": 0
+                  },
+                  {
+                    "label": "申請書",
+                    "icon": "doc",
+                    "value": "官網下載",
+                    "group": 0
+                  },
+                  {
+                    "label": "在職證明",
+                    "icon": "briefcase",
+                    "value": "勞保明細",
+                    "group": 1
+                  }
+                ],
+                "groups": [
+                  "人人必備",
+                  "依身分加附"
+                ],
+                "beats": [
+                  {
+                    "layout": "scatter",
+                    "title": "申請要準備什麼？"
+                  },
+                  {
+                    "layout": "row",
+                    "title": "申請文件一覽"
+                  },
+                  {
+                    "layout": "group",
+                    "title": "兩類文件"
+                  },
+                  {
+                    "layout": "focus",
+                    "focus": [
+                      "證照影本",
+                      "存摺封面"
+                    ],
+                    "note": "影本要看得到生效日期"
+                  }
+                ]
+              },
+              "ev": {
+                "beats": [
+                  {
+                    "items": [
+                      15,
+                      94,
+                      103,
+                      132,
+                      169,
+                      207
+                    ],
+                    "at": 0
+                  },
+                  {
+                    "at": 216
+                  },
+                  {
+                    "at": 376
+                  },
+                  {
+                    "focus": 611,
+                    "at": 597
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "brand_intro": {
+    "id": "brand_intro",
+    "name": "채널 인트로",
+    "category": "structure",
+    "use_when": "Inserted automatically right after the opening hook in long-form videos (style pacing.brand_intro). Not chosen by the LLM.",
+    "total_frames": 90,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 90,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "brand_intro_0",
+          "label": "brand_intro",
+          "bg": "alt",
+          "start": 0,
+          "duration": 90,
+          "layers": [
+            {
+              "module": "brand_intro",
+              "data": {
+                "tagline": "考照刷題首選"
+              },
+              "ev": {
+                "in": 3
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "callout": {
+    "id": "callout",
+    "name": "주의/팁 박스",
+    "category": "emphasis",
+    "use_when": "An important warning, tip or note in a box, optionally with one big figure (big, e.g. NT$60,000). tone: warning|tip|info.",
+    "total_frames": 484,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 484,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "callout_0",
+          "label": "callout",
+          "bg": "base",
+          "start": 0,
+          "duration": 484,
+          "layers": [
+            {
+              "module": "callout",
+              "data": {
+                "tone": "warning",
+                "title": "原住民專屬高額獎勵",
+                "body": "請暫緩申請縣市獎勵金，優先選擇中央原民會專案！",
+                "big": "NT$60,000"
+              },
+              "ev": {
+                "in": 15,
+                "big": 226
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "card_set": {
+    "id": "card_set",
+    "name": "조건 카드 세트",
+    "category": "organize",
+    "use_when": "2-5 conditions or key points as cards. check=true ticks them one by one (\"all must be met\"). Good for a final recap.",
+    "total_frames": 1020,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 1020,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489,
+        508,
+        527,
+        545,
+        564,
+        583,
+        602,
+        621,
+        639,
+        658,
+        677,
+        696,
+        715,
+        734,
+        752,
+        771,
+        790,
+        809,
+        828,
+        846,
+        865,
+        884,
+        903,
+        922,
+        940,
+        959,
+        978,
+        997,
+        1016
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "card_set_0",
+          "label": "card_set",
+          "bg": "base",
+          "start": 0,
+          "duration": 517,
+          "layers": [
+            {
+              "module": "card_set",
+              "data": {
+                "label": "資格檢核四大條件",
+                "cards": [
+                  "身分限定",
+                  "設籍要求",
+                  "級別限制",
+                  "時效限制"
+                ],
+                "check": true
+              },
+              "ev": {
+                "label": 15,
+                "cards": [
+                  226,
+                  245,
+                  310,
+                  428
+                ],
+                "checks": [
+                  236,
+                  269,
+                  329,
+                  451
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "card_set_1",
+          "label": "card_set",
+          "bg": "base",
+          "start": 517,
+          "duration": 503,
+          "layers": [
+            {
+              "module": "card_set",
+              "data": {
+                "label": "考照領錢四要點",
+                "cards": [
+                  "先查經費額度",
+                  "牢記 90 天",
+                  "備齊四文件",
+                  "疊加費用減免"
+                ],
+                "check": false
+              },
+              "ev": {
+                "label": 15,
+                "cards": [
+                  141,
+                  198,
+                  273,
+                  358
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "chapter_card": {
+    "id": "chapter_card",
+    "name": "챕터 구분 카드",
+    "category": "structure",
+    "use_when": "Inserted automatically at the start of every chapter after the first. Not chosen by the LLM.",
+    "total_frames": 90,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 90,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "chapter_card_0",
+          "label": "chapter_card",
+          "bg": "deep",
+          "start": 0,
+          "duration": 90,
+          "layers": [
+            {
+              "module": "chapter_card",
+              "data": {
+                "index": 2,
+                "title": "全台縣市金額盤點"
+              },
+              "ev": {
+                "in": 3
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "compare": {
+    "id": "compare",
+    "name": "A vs B 비교",
+    "category": "compare",
+    "use_when": "Comparing two things side by side; value can hold an amount or key figure; verdict sums it up.",
+    "total_frames": 503,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 503,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "compare_0",
+          "label": "compare",
+          "bg": "base",
+          "start": 0,
+          "duration": 503,
+          "layers": [
+            {
+              "module": "compare",
+              "data": {
+                "title": "0 元考照疊加方案",
+                "left": {
+                  "label": "第一步：勞動部",
+                  "value": "費用全免",
+                  "points": [
+                    "免繳報名費",
+                    "免繳測試費"
+                  ]
+                },
+                "right": {
+                  "label": "第二步：縣政府",
+                  "value": "領獎勵金",
+                  "points": [
+                    "最高領取 2 萬",
+                    "現金直接匯款"
+                  ]
+                },
+                "verdict": "達成真正的 0 成本升級！"
+              },
+              "ev": {
+                "title": 15,
+                "left": 169,
+                "right": 329,
+                "verdict": 423
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "contrast": {
+    "id": "contrast",
+    "name": "전환점 한 글자",
+    "category": "emphasis",
+    "use_when": "A turning point: one huge character (e.g. 但, 其實) plus a short sentence.",
+    "total_frames": 464,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 464,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "contrast_0",
+          "label": "contrast",
+          "bg": "alt",
+          "start": 0,
+          "duration": 464,
+          "layers": [
+            {
+              "module": "contrast",
+              "data": {
+                "char": "但",
+                "text": "獎勵金並非人人可領"
+              },
+              "ev": {
+                "char": 9,
+                "text": 156
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "counter": {
+    "id": "counter",
+    "name": "숫자 카운트업",
+    "category": "number",
+    "use_when": "One key number counting up from 0 (money, people, days). Strong as the opening hook.",
+    "total_frames": 484,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 484,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "counter_0",
+          "label": "counter",
+          "bg": "accent",
+          "start": 0,
+          "duration": 484,
+          "layers": [
+            {
+              "module": "counter",
+              "data": {
+                "label": "最高證照獎勵金",
+                "prefix": "NT$",
+                "value": 20000.0,
+                "burst": true
+              },
+              "ev": {
+                "start": 15,
+                "end": 414
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "document_form": {
+    "id": "document_form",
+    "name": "서류 목업",
+    "category": "organize",
+    "use_when": "What to fill in on an application form, or which fields to check on a certificate/document (dates, amounts, names). 2-5 label/value rows written one by one; highlight marks the key field; optional stamp (e.g. approved) and a side note.",
+    "total_frames": 364,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 364,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "document_form_0",
+          "label": "document_form",
+          "bg": "base",
+          "start": 0,
+          "duration": 364,
+          "layers": [
+            {
+              "module": "document_form",
+              "data": {
+                "doc_title": "獎勵金申請書",
+                "fields": [
+                  {
+                    "label": "姓名",
+                    "value": "王小明"
+                  },
+                  {
+                    "label": "證照名稱",
+                    "value": "男子理髮乙級"
+                  },
+                  {
+                    "label": "生效日期",
+                    "value": "2026.03.15"
+                  }
+                ],
+                "highlight": 3,
+                "stamp": "核准",
+                "note": "日期要和證照一致"
+              },
+              "ev": {
+                "doc": 4,
+                "fields": [
+                  94,
+                  113,
+                  179
+                ],
+                "stamp": 310,
+                "note": 202
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "doodle_scene": {
+    "id": "doodle_scene",
+    "name": "낙서 장면 (무대)",
+    "category": "story",
+    "use_when": "A small everyday story or situation told in 2-5 beats: a person (with poses like cheer, think, sad, point, phone, walk) and objects appear one by one on a ground line; poses change; red circle / cross / check / arrow marks point at what matters. Great for 'what happens if…' examples and common mistakes.",
+    "total_frames": 603,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 603,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489,
+        508,
+        527,
+        545,
+        564,
+        583,
+        602
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "doodle_scene_0",
+          "label": "doodle_scene",
+          "bg": "base",
+          "start": 0,
+          "duration": 603,
+          "layers": [
+            {
+              "module": "doodle_scene",
+              "data": {
+                "beats": [
+                  {
+                    "title": "阿明的獎勵金",
+                    "add": [
+                      {
+                        "kind": "person",
+                        "pose": "cheer",
+                        "label": "阿明"
+                      },
+                      {
+                        "kind": "prop",
+                        "prop": "certificate",
+                        "label": "乙級證照",
+                        "tone": "accent"
+                      }
+                    ]
+                  },
+                  {
+                    "add": [
+                      {
+                        "kind": "prop",
+                        "prop": "briefcase",
+                        "label": "忙著上班"
+                      }
+                    ],
+                    "change": [
+                      {
+                        "target": 1,
+                        "pose": "phone"
+                      }
+                    ],
+                    "mark": {
+                      "target": 3,
+                      "kind": "arrow",
+                      "text": "一拖再拖"
+                    }
+                  },
+                  {
+                    "add": [
+                      {
+                        "kind": "prop",
+                        "prop": "calendar",
+                        "label": "超過90天",
+                        "tone": "danger"
+                      }
+                    ],
+                    "change": [
+                      {
+                        "target": 1,
+                        "pose": "sad"
+                      }
+                    ],
+                    "mark": {
+                      "target": 4,
+                      "kind": "cross",
+                      "text": "申請失敗"
+                    }
+                  },
+                  {
+                    "change": [
+                      {
+                        "target": 1,
+                        "pose": "point"
+                      }
+                    ],
+                    "mark": {
+                      "target": 2,
+                      "kind": "circle",
+                      "text": "馬上送件"
+                    },
+                    "note": "生效日起九十天內申請"
+                  }
+                ]
+              },
+              "ev": {
+                "beats": [
+                  {
+                    "add": [
+                      9,
+                      66
+                    ],
+                    "at": 0
+                  },
+                  {
+                    "add": [
+                      160
+                    ],
+                    "change": 235,
+                    "mark": 235,
+                    "at": 126
+                  },
+                  {
+                    "add": [
+                      329
+                    ],
+                    "change": 423,
+                    "mark": 423,
+                    "at": 263
+                  },
+                  {
+                    "change": 489,
+                    "mark": 540,
+                    "at": 442
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "flow": {
+    "id": "flow",
+    "name": "흐름도 (무대)",
+    "category": "organize",
+    "use_when": "A path that BRANCHES and merges: a starting point, then a column with 2-4 options or routes, then a common result. Columns are drawn one by one across beats while the camera follows.",
+    "total_frames": 702,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 702,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489,
+        508,
+        527,
+        545,
+        564,
+        583,
+        602,
+        621,
+        639,
+        658,
+        677,
+        696
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "flow_0",
+          "label": "flow",
+          "bg": "base",
+          "start": 0,
+          "duration": 702,
+          "layers": [
+            {
+              "module": "flow",
+              "data": {
+                "columns": [
+                  {
+                    "label": "起點",
+                    "nodes": [
+                      {
+                        "label": "考取證照",
+                        "sub": "乙級或甲級",
+                        "icon": "certificate"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "三種身分",
+                    "nodes": [
+                      {
+                        "label": "在職勞工",
+                        "sub": "縣市獎勵金",
+                        "icon": "briefcase"
+                      },
+                      {
+                        "label": "三十歲以下",
+                        "sub": "青年加碼",
+                        "icon": "school"
+                      },
+                      {
+                        "label": "原住民",
+                        "sub": "原民會專案",
+                        "icon": "users"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "結果",
+                    "nodes": [
+                      {
+                        "label": "領取獎勵金",
+                        "sub": "九十天內申請",
+                        "icon": "cash"
+                      }
+                    ]
+                  }
+                ],
+                "beats": [
+                  {
+                    "show": 0,
+                    "title": "你走哪一條路？"
+                  },
+                  {
+                    "show": 1
+                  },
+                  {
+                    "show": 1,
+                    "focus": [
+                      "原住民"
+                    ],
+                    "note": "原民會最高六萬元"
+                  },
+                  {
+                    "show": 2,
+                    "focus": [
+                      "領取獎勵金"
+                    ]
+                  }
+                ]
+              },
+              "ev": {
+                "beats": [
+                  {
+                    "at": 0
+                  },
+                  {
+                    "at": 150
+                  },
+                  {
+                    "focus": 357,
+                    "at": 329
+                  },
+                  {
+                    "focus": 555,
+                    "at": 484
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "globe": {
+    "id": "globe",
+    "name": "지구본",
+    "category": "space",
+    "use_when": "Connections from one place to other countries or cities (overseas work, international recognition, trade). Statement on the left, arcs drawn one by one.",
+    "total_frames": 305,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 305,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "globe_0",
+          "label": "globe",
+          "bg": "base",
+          "start": 0,
+          "duration": 305,
+          "layers": [
+            {
+              "module": "globe",
+              "data": {
+                "lines": [
+                  "證照技能",
+                  "走向海外"
+                ],
+                "highlight": "走向海外",
+                "origin": "taiwan",
+                "targets": [
+                  {
+                    "place": "japan"
+                  },
+                  {
+                    "place": "australia"
+                  },
+                  {
+                    "place": "newzealand"
+                  },
+                  {
+                    "place": "canada"
+                  }
+                ]
+              },
+              "ev": {
+                "lines": [
+                  15,
+                  47
+                ],
+                "targets": [
+                  122,
+                  132,
+                  150,
+                  179
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "growth_line": {
+    "id": "growth_line",
+    "name": "성장 곡선",
+    "category": "chart",
+    "use_when": "A value changing over time or stages (3-7 points): the line grows point by point while a big number follows its tip. Best for growth or progress.",
+    "total_frames": 437,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 437,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "growth_line_0",
+          "label": "growth_line",
+          "bg": "base",
+          "start": 0,
+          "duration": 437,
+          "layers": [
+            {
+              "module": "growth_line",
+              "data": {
+                "title": "每天刷題的分數變化",
+                "label": "模擬考平均",
+                "unit": "分",
+                "points": [
+                  {
+                    "label": "第1週",
+                    "value": 42
+                  },
+                  {
+                    "label": "第2週",
+                    "value": 55
+                  },
+                  {
+                    "label": "第4週",
+                    "value": 63
+                  },
+                  {
+                    "label": "第6週",
+                    "value": 74
+                  },
+                  {
+                    "label": "第8週",
+                    "value": 86,
+                    "note": "穩過及格線"
+                  }
+                ]
+              },
+              "ev": {
+                "title": 4,
+                "points": [
+                  156,
+                  202,
+                  245,
+                  292,
+                  339
+                ],
+                "end": 362
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "headline": {
+    "id": "headline",
+    "name": "큰 글자 한 줄",
+    "category": "emphasis",
+    "use_when": "One key message in huge type, line by line. Use strike to cross out a misconception.",
+    "total_frames": 517,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 517,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489,
+        508
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "headline_0",
+          "label": "headline",
+          "bg": "base",
+          "start": 0,
+          "duration": 517,
+          "layers": [
+            {
+              "module": "headline",
+              "data": {
+                "lines": [
+                  "單一級證照",
+                  "比照甲乙級發放"
+                ],
+                "highlight": "單一級證照",
+                "kicker": "別以為單一級只能領丙級金額"
+              },
+              "ev": {
+                "lines": [
+                  15,
+                  269
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "headline_object": {
+    "id": "headline_object",
+    "name": "큰 글자 + 사물 그림",
+    "category": "emphasis",
+    "use_when": "A key message paired with a concrete object (certificate, cash, document, calendar with a number, ID card, bankbook).",
+    "total_frames": 484,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 484,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "headline_object_0",
+          "label": "headline_object",
+          "bg": "base",
+          "start": 0,
+          "duration": 484,
+          "layers": [
+            {
+              "module": "headline_object",
+              "data": {
+                "lines": [
+                  "把握 90 天",
+                  "黃金申請期"
+                ],
+                "highlight": "黃金申請期",
+                "object": "calendar",
+                "object_label": "90"
+              },
+              "ev": {
+                "lines": [
+                  15,
+                  94
+                ],
+                "object": 150
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "icon_series": {
+    "id": "icon_series",
+    "name": "아이콘 시리즈",
+    "category": "organize",
+    "use_when": "Introducing 2-5 categories or kinds one at a time, each with a big keyword, a short subtitle and an icon.",
+    "total_frames": 344,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 344,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "icon_series_0",
+          "label": "icon_series",
+          "bg": "base",
+          "start": 0,
+          "duration": 344,
+          "layers": [
+            {
+              "module": "icon_series",
+              "data": {
+                "kicker": "四種補助一次看",
+                "items": [
+                  {
+                    "title": "證照獎勵金",
+                    "sub": "各縣市發放・最高兩萬元",
+                    "icon": "cash"
+                  },
+                  {
+                    "title": "考試費減免",
+                    "sub": "勞動部・報名費全免",
+                    "icon": "coin"
+                  },
+                  {
+                    "title": "原民會專案",
+                    "sub": "原住民身分・最高六萬元",
+                    "icon": "users"
+                  },
+                  {
+                    "title": "青年加碼",
+                    "sub": "三十歲以下・桃園市",
+                    "icon": "school"
+                  }
+                ]
+              },
+              "ev": {
+                "items": [
+                  15,
+                  156,
+                  216,
+                  282
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "list": {
+    "id": "list",
+    "name": "목록",
+    "category": "organize",
+    "use_when": "A list of 2-5 items with optional one-line notes (requirements, documents, cautions). style: check|number|doc|bullet.",
+    "total_frames": 503,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 503,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "list_0",
+          "label": "list",
+          "bg": "base",
+          "start": 0,
+          "duration": 503,
+          "layers": [
+            {
+              "module": "list",
+              "data": {
+                "title": "申請必備四樣文件",
+                "style": "doc",
+                "items": [
+                  {
+                    "text": "證照正反面影本",
+                    "sub": "生效日期需清晰可見"
+                  },
+                  {
+                    "text": "身分證與戶口名簿",
+                    "sub": "證明設籍與居住地"
+                  },
+                  {
+                    "text": "本人金融存摺封面",
+                    "sub": "獎勵金直接匯入戶頭"
+                  },
+                  {
+                    "text": "申請書",
+                    "sub": "各縣市官網下載"
+                  }
+                ]
+              },
+              "ev": {
+                "title": 15,
+                "items": [
+                  197,
+                  245,
+                  339,
+                  451
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "outro": {
+    "id": "outro",
+    "name": "끝 화면 + 도장",
+    "category": "outro",
+    "use_when": "The last shot: big title with a stamp as the call to action.",
+    "total_frames": 324,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 324,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "outro_0",
+          "label": "outro",
+          "bg": "alt",
+          "start": 0,
+          "duration": 324,
+          "layers": [
+            {
+              "module": "outro",
+              "data": {
+                "kicker": "考照刷題首選",
+                "title": "LONGEPASS 容易通",
+                "highlight": "容易通",
+                "sub": "隨時隨地練習考題，一次過關領獎金",
+                "stamp": "下載",
+                "stamp_sub": "LONGEPASS"
+              },
+              "ev": {
+                "title": 15,
+                "stamp": 207,
+                "sub": 263
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "people_ratio": {
+    "id": "people_ratio",
+    "name": "그림 비율",
+    "category": "number",
+    "use_when": "A ratio or 'K out of N' fact (N up to 24): N people (or objects) appear in rows and K of them change color, with the ratio in big type.",
+    "total_frames": 324,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 324,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "people_ratio_0",
+          "label": "people_ratio",
+          "bg": "base",
+          "start": 0,
+          "duration": 324,
+          "layers": [
+            {
+              "module": "people_ratio",
+              "data": {
+                "total": 22,
+                "highlight": 7,
+                "unit": "pin",
+                "tone": "danger",
+                "big": "7/22",
+                "label": "沒有一般勞工獎勵金的縣市",
+                "sub": "申請前先確認自己的縣市"
+              },
+              "ev": {
+                "units": 15,
+                "highlight": 75,
+                "big": 103
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "phone_screen": {
+    "id": "phone_screen",
+    "name": "휴대폰 화면",
+    "category": "organize",
+    "use_when": "Something done on a phone: an online application or registration flow, or using the app (practice questions, wrong-answer notes, mock exams). A title + caption beside a phone whose screen lists 2-5 menu rows; one row can be tapped.",
+    "total_frames": 291,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 291,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "phone_screen_0",
+          "label": "phone_screen",
+          "bg": "base",
+          "start": 0,
+          "duration": 291,
+          "layers": [
+            {
+              "module": "phone_screen",
+              "data": {
+                "title": "線上就能報名",
+                "caption": "不用跑櫃台，手機就能完成",
+                "screen_title": "台灣就業通",
+                "rows": [
+                  {
+                    "text": "登入會員"
+                  },
+                  {
+                    "text": "職前訓練課程"
+                  },
+                  {
+                    "text": "線上報名"
+                  }
+                ],
+                "tap": 3
+              },
+              "ev": {
+                "title": 9,
+                "rows": [
+                  113,
+                  150,
+                  202
+                ],
+                "tap": 212
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "quiz": {
+    "id": "quiz",
+    "name": "맞혀 보기 퀴즈",
+    "category": "emphasis",
+    "use_when": "Let viewers guess a key fact from the article before revealing it (a deadline, an amount, a rule people often get wrong). Question + 2-4 options, the answer is revealed when the narration says it. Great as a short-form hook or a mid-video attention reset.",
+    "total_frames": 351,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 351,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "quiz_0",
+          "label": "quiz",
+          "bg": "base",
+          "start": 0,
+          "duration": 351,
+          "layers": [
+            {
+              "module": "quiz",
+              "data": {
+                "question": "取得證照後，最晚幾天內要申請？",
+                "options": [
+                  "30 天",
+                  "60 天",
+                  "90 天"
+                ],
+                "answer": 3,
+                "note": "超過期限就領不到"
+              },
+              "ev": {
+                "question": 15,
+                "options": [
+                  141,
+                  160,
+                  197
+                ],
+                "reveal": 217,
+                "note": 254
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "radar": {
+    "id": "radar",
+    "name": "레이더 차트",
+    "category": "chart",
+    "use_when": "Profile across 3-6 dimensions scored 0-100 (strengths and weaknesses), optionally against a baseline (base). Big statement on the left.",
+    "total_frames": 258,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 258,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "radar_0",
+          "label": "radar",
+          "bg": "base",
+          "start": 0,
+          "duration": 258,
+          "layers": [
+            {
+              "module": "radar",
+              "data": {
+                "lines": [
+                  "找出你的",
+                  "弱點科目"
+                ],
+                "highlight": "弱點科目",
+                "axes": [
+                  {
+                    "label": "學科",
+                    "value": 82,
+                    "base": 60
+                  },
+                  {
+                    "label": "工安",
+                    "value": 75,
+                    "base": 60
+                  },
+                  {
+                    "label": "法規",
+                    "value": 66,
+                    "base": 60
+                  },
+                  {
+                    "label": "術科",
+                    "value": 45,
+                    "base": 60
+                  }
+                ],
+                "legend": [
+                  "你的分數",
+                  "及格線"
+                ]
+              },
+              "ev": {
+                "lines": [
+                  15,
+                  179
+                ],
+                "axes": [
+                  75,
+                  94,
+                  113,
+                  207
+                ],
+                "shape": 215
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "steps": {
+    "id": "steps",
+    "name": "단계",
+    "category": "organize",
+    "use_when": "A process of 3-5 ordered steps.",
+    "total_frames": 497,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 497,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "steps_0",
+          "label": "steps",
+          "bg": "base",
+          "start": 0,
+          "duration": 497,
+          "layers": [
+            {
+              "module": "steps",
+              "data": {
+                "title": "獎勵金申請四步驟",
+                "steps": [
+                  {
+                    "title": "確認資格",
+                    "sub": "自我檢核身分與設籍"
+                  },
+                  {
+                    "title": "準備文件",
+                    "sub": "備妥證照存摺影本"
+                  },
+                  {
+                    "title": "提出申請",
+                    "sub": "規定期限內掛號郵寄"
+                  },
+                  {
+                    "title": "審核撥款",
+                    "sub": "審核通過直接匯款"
+                  }
+                ]
+              },
+              "ev": {
+                "title": 15,
+                "steps": [
+                  103,
+                  179,
+                  202,
+                  386
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "taiwan_map": {
+    "id": "taiwan_map",
+    "name": "대만 지도",
+    "category": "space",
+    "use_when": "Comparing regions of Taiwan: colour 1-4 groups of counties and label them. Use county names like 台北市.",
+    "total_frames": 457,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 457,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "taiwan_map_0",
+          "label": "taiwan_map",
+          "bg": "base",
+          "start": 0,
+          "duration": 457,
+          "layers": [
+            {
+              "module": "taiwan_map",
+              "data": {
+                "title": "無一般勞工獎勵金縣市",
+                "groups": [
+                  {
+                    "counties": [
+                      "台南市",
+                      "高雄市",
+                      "彰化縣",
+                      "南投縣",
+                      "屏東縣",
+                      "雲林縣",
+                      "新竹市"
+                    ],
+                    "label": "無一般勞工補助",
+                    "color": "danger",
+                    "value": "無補助"
+                  }
+                ]
+              },
+              "ev": {
+                "title": 15,
+                "groups": [
+                  169
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "tiles": {
+    "id": "tiles",
+    "name": "이름표 타일",
+    "category": "space",
+    "use_when": "Many short labels (e.g. 20 county names) filling in one by one, then one big word in the middle.",
+    "total_frames": 497,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 497,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470,
+        489
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "tiles_0",
+          "label": "tiles",
+          "bg": "base",
+          "start": 0,
+          "duration": 497,
+          "layers": [
+            {
+              "module": "tiles",
+              "data": {
+                "labels": [
+                  "台北市",
+                  "新北市",
+                  "桃園市",
+                  "台中市",
+                  "台南市",
+                  "高雄市",
+                  "基隆市",
+                  "新竹縣",
+                  "苗栗縣",
+                  "彰化縣",
+                  "南投縣",
+                  "雲林縣",
+                  "嘉義縣",
+                  "屏東縣",
+                  "宜蘭縣",
+                  "花蓮縣",
+                  "台東縣",
+                  "澎湖縣",
+                  "金門縣",
+                  "連江縣"
+                ],
+                "center": "特色專案",
+                "center_sub": "退費與區域加碼"
+              },
+              "ev": {
+                "tiles": [
+                  14,
+                  23,
+                  33,
+                  42,
+                  52,
+                  61,
+                  70,
+                  80,
+                  89,
+                  99,
+                  108,
+                  117,
+                  127,
+                  136,
+                  146,
+                  155,
+                  164,
+                  174,
+                  183,
+                  193
+                ],
+                "center": 201
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "timeline": {
+    "id": "timeline",
+    "name": "시간 흐름·기한",
+    "category": "organize",
+    "use_when": "Things that happen at points in time: deadlines, exam schedule, 'within 90 days of X', training period then subsidy payment. 2-5 points with a time label (when) and what happens; deadline marks the point that must not be missed.",
+    "total_frames": 338,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 338,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "timeline_0",
+          "label": "timeline",
+          "bg": "base",
+          "start": 0,
+          "duration": 338,
+          "layers": [
+            {
+              "module": "timeline",
+              "data": {
+                "title": "申請時間怎麼抓",
+                "points": [
+                  {
+                    "when": "第 1 天",
+                    "label": "取得證照"
+                  },
+                  {
+                    "when": "90 天內",
+                    "label": "送出申請",
+                    "sub": "超過就不受理"
+                  },
+                  {
+                    "when": "約 1 個月",
+                    "label": "審核"
+                  },
+                  {
+                    "when": "通過後",
+                    "label": "匯款入帳"
+                  }
+                ],
+                "deadline": 2
+              },
+              "ev": {
+                "title": 9,
+                "points": [
+                  43,
+                  103,
+                  160,
+                  207
+                ],
+                "deadline": 217
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "title_card": {
+    "id": "title_card",
+    "name": "영상 제목 카드",
+    "category": "opener",
+    "use_when": "Right after the opening hook: names the video topic and what the viewer will learn.",
+    "total_frames": 484,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 484,
+      "bpm": 95.7,
+      "beat_frames": [
+        0,
+        19,
+        38,
+        56,
+        75,
+        94,
+        113,
+        132,
+        150,
+        169,
+        188,
+        207,
+        226,
+        245,
+        263,
+        282,
+        301,
+        320,
+        339,
+        357,
+        376,
+        395,
+        414,
+        433,
+        451,
+        470
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "'Noto Sans TC', sans-serif",
+        "surfaces": {
+          "base": {
+            "bg": "#F4F6FA",
+            "ink": "#0F172A",
+            "sub": "#64748B",
+            "grid": "#D5DCE6",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#D6DCE5",
+            "fill": "#D5DCE6",
+            "fillStrong": "#94A3B8"
+          },
+          "alt": {
+            "bg": "#0B1426",
+            "ink": "#F1F5F9",
+            "sub": "#94A3B8",
+            "grid": "#1A2740",
+            "card": "#13203A",
+            "cardInk": "#F1F5F9",
+            "line": "#24324F",
+            "dark": true,
+            "fill": "#334155",
+            "fillStrong": "#64748B"
+          },
+          "accent": {
+            "bg": "#FACC15",
+            "ink": "#0F172A",
+            "sub": "#854D0E",
+            "grid": "#EAB308",
+            "card": "#FFFFFF",
+            "cardInk": "#0F172A",
+            "line": "#E0B10C",
+            "fill": "#E8B90E",
+            "fillStrong": "#A16207"
+          },
+          "deep": {
+            "bg": "#1E3A8A",
+            "ink": "#FFFFFF",
+            "sub": "#BFDBFE",
+            "grid": "#2A4799",
+            "card": "#1E40AF",
+            "cardInk": "#FFFFFF",
+            "line": "#3554B0",
+            "dark": true,
+            "fill": "#2E4C9E",
+            "fillStrong": "#6B83C4"
+          }
+        },
+        "primary_surface": "alt",
+        "primary": "#EAB308",
+        "accent": "#3B82F6",
+        "accent2": "#10B981",
+        "danger": "#F43F5E",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通",
+          "tagline": "考照刷題首選"
+        },
+        "skin": {
+          "cardBorder": 2,
+          "cardBorderColor": "line",
+          "radius": 22,
+          "shadow": "soft",
+          "objectStroke": 4,
+          "grid": "dots",
+          "ring": false,
+          "beatPulse": false,
+          "highlight": "marker",
+          "onColorInk": "#0F172A",
+          "onAccentInk": "#FFFFFF",
+          "colorful": false,
+          "captionBg": "rgba(11,20,38,0.88)",
+          "motion": {
+            "damping": 18,
+            "stiffness": 120,
+            "mass": 0.8,
+            "distance": 28,
+            "tilt": 0,
+            "impact": false
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "title_card_0",
+          "label": "title_card",
+          "bg": "alt",
+          "start": 0,
+          "duration": 484,
+          "layers": [
+            {
+              "module": "title_card",
+              "data": {
+                "kicker": "2026 全台 22 縣市攻略",
+                "title": "證照獎勵金懶人包",
+                "highlight": "獎勵金",
+                "sub": "完整盤點補助標準，教你領回萬元現金"
+              },
+              "ev": {
+                "title": 15,
+                "sub": 423
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  }
+}

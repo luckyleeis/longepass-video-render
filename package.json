@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Template-based motion video renderer (no external APIs)",
   "scripts": {
-    "studio": "remotion studio",
+    "studio": "remotion studio --port 3333",
     "render": "remotion render"
   },
   "dependencies": {

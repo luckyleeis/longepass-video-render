@@ -263,6 +263,9 @@ const MusicTrack: React.FC<{ props: MotionProps }> = ({ props }) => {
 };
 
 export const MotionVideo: React.FC<MotionProps> = (props) => {
+  if (!props || !props.theme || !props.shots) {
+    return <AbsoluteFill style={{ background: '#0B1426', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Props not loaded</AbsoluteFill>;
+  }
   useFontsReady(props.theme.font);
   return (
     <MotionThemeProvider theme={props.theme}>

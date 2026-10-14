@@ -34,10 +34,15 @@ const Counter: React.FC<TemplateProps> = ({ data, ev, ink }) => {
     <div style={{ position: 'absolute', inset: 0 }}>
       {burst >= 0 && data.burst === true && Array.from({ length: impact ? 16 : 8 }).map((_, i) => {
         const ang = random(`b-a-${i}`) * Math.PI * 2;
-        const dist = (impact ? 380 : 520) + random(`b-d-${i}`) * (impact ? 520 : 260);
+        // 숫자 덩어리(가로 boxW × 세로 boxH) 밖에서 멈추게: 그 방향으로 상자를 벗어나는 거리 + 여유
+        const boxW = Math.max(700, estW * fit) / 2 + 160, boxH = 300;
+        const clear = Math.min(boxW / Math.max(0.01, Math.abs(Math.cos(ang))), boxH / Math.max(0.01, Math.abs(Math.sin(ang))));
+        const dist = clear + random(`b-d-${i}`) * (impact ? 360 : 220);
         const life = Math.min(1, burst / (impact ? 22 : 40));
-        const x = Math.cos(ang) * dist * Easing.out(Easing.cubic)(life);
-        const y = Math.sin(ang) * dist * Easing.out(Easing.cubic)(life) + (impact ? burst * burst * 0.25 : 0);
+        // 숫자 상자 가장자리에서 출발해 바깥으로 (숫자 위를 지나가지 않게)
+        const r = clear * 0.9 + (dist - clear * 0.9) * Easing.out(Easing.cubic)(life);
+        const x = Math.cos(ang) * r;
+        const y = Math.sin(ang) * r + (impact ? Math.min(burst * burst * 0.25, 240) * Math.max(0, Math.sin(ang)) : 0);
         const rot = random(`b-r-${i}`) * (impact ? 720 : 90) * life;
         return (
           <div key={i} style={{ position: 'absolute', left: '50%', top: '52%', transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${rot}deg) scale(${0.5 + random(`b-s-${i}`) * 0.6})`, opacity: impact ? 1 - Math.max(0, (burst - 30) / 15) : Math.min(1, burst / 8) * 0.9 }}>
@@ -45,7 +50,7 @@ const Counter: React.FC<TemplateProps> = ({ data, ev, ink }) => {
           </div>
         );
       })}
-      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: `translate(-50%, -50%) translate(${shake}px, ${shake * 0.5}px)`, textAlign: 'center' }}>
+      <div style={{ position: 'absolute', left: '50%', top: '50%', zIndex: 1, transform: `translate(-50%, -50%) translate(${shake}px, ${shake * 0.5}px)`, textAlign: 'center' }}>
         <div style={{ fontSize: 64, fontWeight: 900, color: ink, opacity: labelIn, transform: riseTransform(t, labelIn, 0.5) }}>{data.label}</div>
         <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'baseline', justifyContent: 'center', transform: `scale(${slam * fit})`, fontVariantNumeric: 'tabular-nums' }}>
           {data.prefix && <span style={{ fontSize: 120, fontWeight: 900, color: ink, marginRight: 18 }}>{data.prefix}</span>}

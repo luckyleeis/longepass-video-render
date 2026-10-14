@@ -4,20 +4,23 @@
   "project": "longepass",
   "style": "showreel",
   "tts": {
-    "_comment": "다큐 그곳과 같은 TTS 서버를 쓴다 (2026-10-14 사용자). 목소리는 바꿀 수 있다",
+    "_comment": "다큐 그곳과 같은 TTS 서버 (모델은 서버 쪽 gemini-3.8-flash-lite-tts). 응답의 audio_url 을 받고 timestamp 로 글자 시각을 만든다. 읽기 지시(instructions)의 기본값은 agent/config.py (롱폼/숏폼) — 바꿀 때만 여기에 {\"longform\": …, \"shortform\": …}",
     "url": "http://192.168.45.21:8005/v1/audio/speech",
-    "voice": "Charon",
-    "model": "",
+    "provider": "gemini",
+    "voice": "Aoede",
+    "language": "zh-tw",
     "speed": 1.0,
-    "pause_ms": 350,
+    "format": "mp3",
+    "path_prefix": "longepass",
+    "pause_ms": {
+      "longform": 250,
+      "shortform": 120
+    },
+    "chunk_chars": 300,
+    "min_ratio": 0.9,
+    "_local_root": "선택: NAS 를 맥에 연결해 두었다면 audio_url 의 경로가 시작되는 로컬 폴더 (예: /Volumes/home) — 있으면 받지 않고 복사",
+    "local_root": "",
     "extra": {}
-  },
-  "stt": {
-    "_comment": "선택: 받아쓰기로 TTS 가 대본대로 읽었는지 확인 (OpenAI 호환 /v1/audio/transcriptions). 비워 두면 끔",
-    "url": "",
-    "model": "",
-    "language": "zh",
-    "min_ratio": 0.85
   },
   "chrome": ""
 }

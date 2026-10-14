@@ -5,7 +5,7 @@ import { MotionThemeProvider } from '../kit/theme';
 import { useFontsReady } from '../kit/fonts';
 import { highlightInk, highlightStyle } from '../kit/skin';
 import { keepAll } from '../kit/parts';
-import { Mark, Panel, SCircle } from '../kit/media';
+import { Dot, Mark, Panel, SCircle } from '../kit/media';
 import {
   Bill, CalendarPage, Certificate, DocumentSheet, IdCard, Passbook,
   Car, Scooter, WarningSign, SpeedLimitSign, TrafficLight, StampMark
@@ -80,7 +80,7 @@ export const contrastSafe = (preferred: string, bg: string, fallback: string): s
   if (ratio >= 4.5) return preferred;
   const fbRatio = getContrastRatio(fallback, bg);
   if (fbRatio >= 4.5) return fallback;
-  return getLuminance(bg) > 0.5 ? '#0F172A' : '#FFFFFF';
+  return fbRatio >= ratio ? fallback : preferred;   // 둘 다 모자라면 그나마 나은 쪽 (스타일 밖의 색을 만들지 않는다)
 };
 
 /**
@@ -239,6 +239,9 @@ const ObjectArt: React.FC<{ name?: string; label?: string; t: MotionTheme; size:
 };
 
 /** 큰 글자 줄들 (강조 구절은 형광펜) */
+/** 전각 여는 괄호: 글리프가 칸의 오른쪽 절반에 그려져 줄 첫머리에서 들여쓴 것처럼 보인다 */
+const OPEN_BRACKETS = ['【', '（', '「', '『', '《', '〈', '〔'];
+
 const BigLines: React.FC<{ lines: string[]; emphasis?: string; size: number; surf: Surface; t: MotionTheme; align?: 'left' | 'center' }> = ({
   lines, emphasis, size, surf, t, align = 'left'
 }) => (
@@ -246,7 +249,8 @@ const BigLines: React.FC<{ lines: string[]; emphasis?: string; size: number; sur
     {lines.map((line, i) => {
       const parts = emphasis && line.includes(emphasis) ? line.split(emphasis) : null;
       return (
-        <div key={i} style={{ ...keepAll, fontSize: size, fontWeight: 900, lineHeight: 1.15, color: surf.ink, letterSpacing: '-0.03em', whiteSpace: 'nowrap', textAlign: align }}>
+        <div key={i} style={{ ...keepAll, fontSize: size, fontWeight: 900, lineHeight: 1.15, color: surf.ink, letterSpacing: '-0.03em', whiteSpace: 'nowrap', textAlign: align,
+          marginLeft: align === 'left' && OPEN_BRACKETS.includes(line[0]) ? -size * 0.5 : 0 }}>
           {parts ? (
             <>
               {parts[0]}
@@ -333,16 +337,14 @@ const LandscapeSplit: React.FC<ThumbnailProps & { s: number; surf: Surface }> = 
       </div>
 
       {/* 좌측 카드 */}
-      <div style={{
-        position: 'absolute', left: 40 * s, top: 110 * s, bottom: 80 * s, width: (W / 2) - 60 * s,
-        background: left.is_good ? `${t.accent2}18` : `${t.danger}18`,
-        border: `3px solid ${left.is_good ? t.accent2 : t.danger}`,
-        borderRadius: 24 * s, padding: 32 * s, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'
-      }}>
+      <Panel fill={left.is_good ? `${t.accent2}18` : `${t.danger}18`} stroke={left.is_good ? t.accent2 : t.danger} sw={3} radius={24 * s} seed="thumb-split-l"
+        style={{ position: 'absolute', left: 40 * s, top: 110 * s, bottom: 80 * s, width: (W / 2) - 60 * s, boxSizing: 'border-box',
+          padding: 32 * s, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
         {left.tag && (
-          <div style={{ background: left.is_good ? t.accent2 : t.danger, color: '#fff', padding: `${6 * s}px ${20 * s}px`, borderRadius: 12 * s, fontSize: 28 * s, fontWeight: 900 }}>
+          <Panel fill={left.is_good ? t.accent2 : t.danger} radius={12 * s} seed="thumb-split-ltag"
+            style={{ padding: `${6 * s}px ${20 * s}px`, color: left.is_good ? t.skin.onColorInk : t.skin.onAccentInk, fontSize: 28 * s, fontWeight: 900 }}>
             {left.tag}
-          </div>
+          </Panel>
         )}
         <div style={{ transform: 'scale(0.85)' }}>
           <ObjectArt name={left.object} label={left.label} t={t} size={280 * s} />
@@ -350,29 +352,24 @@ const LandscapeSplit: React.FC<ThumbnailProps & { s: number; surf: Surface }> = 
         <div style={{ fontSize: 44 * s, fontWeight: 900, color: surf.ink, textAlign: 'center', lineHeight: 1.2 }}>
           {left.text}
         </div>
-      </div>
+      </Panel>
 
       {/* 중앙 VS 배지 */}
-      <div style={{
-        position: 'absolute', left: '50%', top: '52%', transform: 'translate(-50%, -50%)', zIndex: 20,
-        width: 86 * s, height: 86 * s, borderRadius: '50%', background: t.primary,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', border: `4px solid ${surf.bg}`,
-        color: t.skin.onColorInk, fontSize: 34 * s, fontWeight: 900, boxShadow: '0 8px 24px rgba(0,0,0,0.25)'
-      }}>
+      <Dot size={86 * s} fill={t.primary} stroke={surf.bg} sw={4} seed="thumb-vs"
+        style={{ position: 'absolute', left: '50%', top: '52%', transform: 'translate(-50%, -50%)', zIndex: 20, boxSizing: 'border-box',
+          color: t.skin.onColorInk, fontSize: 34 * s, fontWeight: 900, boxShadow: '0 8px 24px rgba(0,0,0,0.25)' }}>
         VS
-      </div>
+      </Dot>
 
       {/* 우측 카드 */}
-      <div style={{
-        position: 'absolute', right: 40 * s, top: 110 * s, bottom: 80 * s, width: (W / 2) - 60 * s,
-        background: right.is_good ? `${t.accent2}18` : `${t.accent}18`,
-        border: `3px solid ${right.is_good ? t.accent2 : t.primary}`,
-        borderRadius: 24 * s, padding: 32 * s, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'
-      }}>
+      <Panel fill={right.is_good ? `${t.accent2}18` : `${t.accent}18`} stroke={right.is_good ? t.accent2 : t.primary} sw={3} radius={24 * s} seed="thumb-split-r"
+        style={{ position: 'absolute', right: 40 * s, top: 110 * s, bottom: 80 * s, width: (W / 2) - 60 * s, boxSizing: 'border-box',
+          padding: 32 * s, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
         {right.tag && (
-          <div style={{ background: right.is_good ? t.accent2 : t.primary, color: right.is_good ? '#fff' : t.skin.onColorInk, padding: `${6 * s}px ${20 * s}px`, borderRadius: 12 * s, fontSize: 28 * s, fontWeight: 900 }}>
+          <Panel fill={right.is_good ? t.accent2 : t.primary} radius={12 * s} seed="thumb-split-rtag"
+            style={{ padding: `${6 * s}px ${20 * s}px`, color: t.skin.onColorInk, fontSize: 28 * s, fontWeight: 900 }}>
             {right.tag}
-          </div>
+          </Panel>
         )}
         <div style={{ transform: 'scale(0.85)' }}>
           <ObjectArt name={right.object} label={right.label} t={t} size={280 * s} />
@@ -380,7 +377,7 @@ const LandscapeSplit: React.FC<ThumbnailProps & { s: number; surf: Surface }> = 
         <div style={{ fontSize: 44 * s, fontWeight: 900, color: surf.ink, textAlign: 'center', lineHeight: 1.2 }}>
           {right.text}
         </div>
-      </div>
+      </Panel>
 
       <BrandFooter t={t} surf={surf} s={s} />
     </>
@@ -450,21 +447,18 @@ const LandscapeQuiz: React.FC<ThumbnailProps & { s: number; surf: Surface }> = (
         <div style={{ position: 'relative' }}>
           <ObjectArt name={object || 'sign_warning'} label={object_label} t={t} size={420 * s} />
           {/* 거대 물음표/퀴즈 표식 */}
-          <div style={{
-            position: 'absolute', right: -24 * s, top: -24 * s, width: 110 * s, height: 110 * s,
-            borderRadius: '50%', background: t.danger, color: '#fff',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 72 * s, fontWeight: 900, boxShadow: '0 6px 20px rgba(0,0,0,0.3)', transform: 'rotate(12deg)'
-          }}>
+          <Dot size={110 * s} fill={t.danger} seed="thumb-quiz-mark"
+            style={{ position: 'absolute', right: -24 * s, top: -24 * s, color: t.skin.onAccentInk,
+              fontSize: 72 * s, fontWeight: 900, boxShadow: '0 6px 20px rgba(0,0,0,0.3)', transform: 'rotate(12deg)' }}>
             ?
-          </div>
+          </Dot>
         </div>
       </div>
 
       {/* 좌측 질문 카피 */}
       <div style={{ position: 'absolute', left: 70 * s, top: 0, bottom: 0, width: W * 0.58, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div style={{ display: 'flex', gap: 12 * s, marginBottom: 24 * s }}>
-          <Panel fill={t.danger} radius={10 * s} seed="thumb-q-badge" style={{ ...keepAll, padding: `${8 * s}px ${20 * s}px`, color: '#fff', fontSize: 34 * s, fontWeight: 900 }}>
+          <Panel fill={t.danger} radius={10 * s} seed="thumb-q-badge" style={{ ...keepAll, padding: `${8 * s}px ${20 * s}px`, color: t.skin.onAccentInk, fontSize: 34 * s, fontWeight: 900 }}>
             {badge || '考照必答'}
           </Panel>
           <Panel fill={t.primary} radius={10 * s} seed="thumb-q-badge2" style={{ ...keepAll, padding: `${8 * s}px ${20 * s}px`, color: t.skin.onColorInk, fontSize: 34 * s, fontWeight: 900 }}>

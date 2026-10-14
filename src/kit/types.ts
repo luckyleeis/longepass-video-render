@@ -71,6 +71,7 @@ export interface Shot {
   duration: number;
   layers: Layer[];
   exit?: boolean;
+  hud?: boolean;   // false = 이 샷 동안 구석 로고·챕터 표시·진행 막대를 숨긴다 (템플릿 명세 "hud": false)
 }
 
 export interface Transition {

@@ -7065,7 +7065,8 @@
                 "tail": 107
               }
             }
-          ]
+          ],
+          "hud": false
         }
       ],
       "transitions": [],

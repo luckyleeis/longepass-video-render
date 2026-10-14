@@ -4,11 +4,13 @@ API 키는 longepass.keys.json (git에 올리지 않음) 에서만 읽고, 화�
 
 longepass.config.json (예시: longepass.config.example.json)
 {
-  "workspace": "out/agent",                 # 작업 폴더 (상대 경로는 저장소 기준). NAS 등 다른 곳도 가능
+  "workspace": "out/agent",                 # 작업 폴더 — 보통 .env 의 LP_WORKSPACE (NAS) 가 앞선다
   "project": "longepass", "style": "showreel",
-  "tts": {"url": "http://…/v1/audio/speech", "voice": "…", "model": "", "speed": 1.0, "instructions": "…",
-          "format": "mp3", "pause_ms": 350, "extra": {}},
-  "stt": {"url": "", "model": "", "language": "zh", "min_ratio": 0.85},   # 선택: TTS가 대본대로 읽었는지 받아쓰기로 확인
+  "tts": {"url": "http://…/v1/audio/speech", "provider": "gemini", "voice": "Aoede", "language": "zh-tw", "speed": 1.0,
+          "format": "mp3", "path_prefix": "longepass",
+          "instructions": {"longform": "…", "shortform": "…"},   # 롱폼/숏폼 읽기 지시
+          "pause_ms": {"longform": 250, "shortform": 120},        # 조각 사이 쉼
+          "chunk_chars": 300, "min_ratio": 0.9, "local_root": "", "extra": {}},   # 형식은 agent/tts.py 맨 위
   "chrome": ""                              # 선택: 화면 캡처에 쓸 크롬 경로 (없으면 맥의 Google Chrome)
 }
 longepass.keys.json
@@ -58,11 +60,18 @@ DEFAULTS: Dict[str, Any] = {
     "project": "longepass",
     "style": "showreel",
     "tts": {
-        "url": "", "voice": "", "model": "", "speed": 1.0, "format": "mp3", "pause_ms": 350, "extra": {},
-        # 대만 표준 중국어, 또렷하고 빠르게. 서버가 instructions 를 모르면 config 에서 "" 로 끈다
-        "instructions": "以台灣華語（繁體中文）自然、清楚、明快地朗讀，語速稍快且穩定，不要拖長尾音，不要加入任何原文沒有的字。",
+        "url": "", "provider": "gemini", "voice": "Aoede", "language": "zh-tw", "model": "", "speed": 1.0, "format": "mp3",
+        "path_prefix": "longepass", "chunk_chars": 300, "min_ratio": 0.9, "local_root": "", "extra": {},
+        "pause_ms": {"longform": 250, "shortform": 120},
+        # 2026-10-14 사용자가 정한 읽기 지시 (서버 모델: gemini-3.8-flash-lite-tts)
+        "instructions": {
+            "longform": ("Read in standard Taiwanese Mandarin with a smart, friendly, and well-articulated explanatory tone, "
+                         "like an encouraging study mentor. Keep a steady, engaging pace so the listener stays focused throughout the breakdown."),
+            "shortform": ("Speak in standard Taiwanese Mandarin with a brisk, upbeat, energetic pace for a short vertical video. "
+                          "Keep pauses between sentences short and transitions tight, but say numbers, amounts, dates and key terms "
+                          "clearly so they are easy to catch."),
+        },
     },
-    "stt": {"url": "", "model": "", "language": "zh", "min_ratio": 0.85},
     "chrome": "",
 }
 

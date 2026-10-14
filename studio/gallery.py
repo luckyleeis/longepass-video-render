@@ -88,7 +88,7 @@ def build_props(style: Dict[str, Any], only: Optional[List[str]] = None, aspect:
             flat: List[int] = []
             _flatten(ev, flat)
             shots.append({"id": f"{tid}_{n}", "label": tid, "bg": _bg_for(m, style["theme"]), "start": frame, "duration": dur,
-                          "layers": [{"module": tid, "data": layer_data(shot), "ev": ev}]})
+                          "layers": [{"module": tid, "data": layer_data(shot), "ev": ev}], **({"hud": False} if m.get("hud") is False else {})})
             stills.append({"id": tid, "n": n, "frame": frame + min(dur - 6, max(flat or [0]) + 30)})
             frame += dur
     props = {

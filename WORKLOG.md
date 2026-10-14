@@ -5,6 +5,61 @@
 
 ---
 
+## 2026-10-14 (5) — 남은 화면 문제 5건 수정, TTS를 실제 서버 형식으로, 숏폼 작업
+
+### 화면 수정 (showreel 갤러리와 릴 프레임으로 확인)
+- `counter`: 지폐·동전이 숫자 덩어리 **가장자리에서 출발**해 바깥으로 퍼진다. 퍼지는 도중에도 「NT$」와 숫자를 가리지 않는다. 중력 낙하는 아래 방향으로만 하고, 숫자는 zIndex로 위에 둔다.
+- `flow`: 메모(`note`)가 있는 비트는 보이는 내용(열 이름~맨 아래 노드)을 제목 아래~메모 위 사이에 맞춘다. 확대는 필요한 만큼만 줄이고 카메라를 옮긴다.
+- `doodle_scene`: 원 표시의 아래 끝을 바닥선에 맞춰 이름표를 지나가지 않게 했다.
+- `timeline`: 위쪽 날짜 글자가 강조색(노랑)이라 크림 바탕에서 옅었다.
+  - `kit/skin.ts`에 `readableAccent()`·`contrastRatio()`를 추가했다. 대비 3 미만이면 글자색을 쓴다.
+- `word_slam`: manifest에 `"hud": false`를 넣었다. 이 샷 동안 가로 화면의 구석 로고·챕터 표시·진행 막대를 숨긴다.
+  - 타임라인과 갤러리가 `shot.hud`를 넘기고, `MotionVideo` Hud가 처리한다. TEMPLATE_GUIDE에 칸 설명을 추가했다.
+- 썸네일(`src/thumbnail/Thumbnail.tsx`)
+  - `'#fff'` → `t.skin.onAccentInk`/`onColorInk`로 바꿨다.
+  - div 배지·원·카드 → `Panel`/`Dot`으로 바꿨다.
+  - `contrastSafe`가 스타일 밖 색을 만들지 않게 했다.
+  - 줄 첫머리 전각 여는 괄호(【「（…)를 반 글자 당겼다.
+  - 남은 직접 색은 "Props not loaded" 디버그 화면과 원광 그라데이션뿐이다.
+
+### TTS (사용자가 알려 준 실제 서버 형식)
+- 서버: `POST http://192.168.45.21:8005/v1/audio/speech`
+  - 요청: `{input, provider: gemini, voice: Aoede, language: zh-tw, speed, response_format: mp3, instructions, path}`
+  - 응답: `{id, audio_url, timestamp: [{word, start, end}]}`
+  - 모델은 서버 쪽 `gemini-3.8-flash-lite-tts`다.
+- `agent/tts.py`를 다시 썼다.
+  - 장마다 문장 경계에서 `chunk_chars`(300) 안쪽 조각으로 나눠 부른다. `path`는 `longepass/<form>/<slug>/chNN[_KK]`다.
+  - `audio_url`을 받는다. `tts.local_root`가 있고 그 아래 같은 경로 파일이 있으면 복사한다(NAS 연결 시).
+  - **타임스탬프 → 글자 시각**: 대본 clean_text와 타임스탬프 글자를 difflib로 맞추고, 안 맞는 글자는 앞뒤 사이에 고르게 넣는다.
+  - 일치율(숫자 표기 차이는 무시)이 `min_ratio`(0.9) 미만이면 한 번 다시 만들고, 그래도 낮으면 경고한다.
+  - 서버가 음성만 주면 고르게 나눈다.
+  - 무음 자르기는 하지 않는다 (타임스탬프 기준을 지킨다).
+  - 받아쓰기(stt) 설정은 없앴다 (타임스탬프가 대신한다).
+- 읽기 지시: 롱폼/숏폼 문구를 `agent/config.py` 기본값으로 넣었다. 조각 사이 쉼은 롱폼 250ms, 숏폼 120ms다.
+- 숏폼 작업: `bin/lp new … --short`
+  - status에 `form: shortform`이 들어간다.
+  - plan은 9:16 템플릿만 허용하고, `header`(위 제목 띠)를 쓴다.
+  - job은 `aspect: 9:16`, thumb도 9:16이다.
+  - `bin/lp templates --short`가 있다.
+- 음성 파일 이름은 `voice/ch01.mp3`부터다 (서버 path와 같은 번호). `--chapter N`도 1부터다.
+
+### 확인한 것
+- `bin/studio check` 0건, 타입 검사 0건.
+- 갤러리: counter(퍼지는 중·끝), flow 4비트, doodle_scene 4비트, timeline, word_slam.
+- 썸네일 4종(showreel)을 확인했다.
+- 가짜 TTS 서버(새 형식: JSON + audio_url + 글자 타임스탬프)로 시험했다.
+  - 롱폼 2장(조각 나눔, path, 지시문)과 다르게 읽은 조각 경고를 확인했다.
+  - 숏폼 1편은 `new --short` → plan → tts(shortform 지시) → job → **9:16 mp4 렌더링** → 썸네일까지 했다.
+- `align` 단위 확인: 「90」이 타임스탬프에서 「九十」이어도 시각을 보간하고, 일치율은 1.0이다.
+
+### 확인하지 않은 것
+- 실제 TTS 서버 응답(타임스탬프의 `word`가 한 글자인지 단어인지, 숫자를 어떻게 적는지, 문장부호가 들어오는지).
+  - 어느 경우든 동작하게 짰지만, 첫 실행 때 `voice/voices.json`의 `parts[].ratio`를 본다.
+- `audio_url`(https://home.nlshome.synology.me/…)을 맥에서 받을 수 있는지.
+  - 안 되면 `tts.local_root`에 NAS 연결 경로를 넣는다.
+
+---
+
 ## 2026-10-14 (4) — AI 이미지 금지, showreel 전체 갤러리·세로 쇼츠 확인
 
 ### 사용자가 정한 것

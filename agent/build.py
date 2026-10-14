@@ -39,7 +39,9 @@ def make_plan(ep: Episode) -> Dict[str, Any]:
     from studio.plan import allowed_templates, normalize_plan
     from studio.styles import get_style
     raw = _load(ep.p("raw_plan.json"))
-    plan = normalize_plan(raw, allowed_templates(ep.cfg["project"], get_style(ep.cfg["style"])))
+    plan = normalize_plan(raw, allowed_templates(ep.cfg["project"], get_style(ep.cfg["style"]), ep.aspect))
+    if ep.form == "shortform":   # 쇼츠 위 제목 띠 (raw_plan 의 header, 없으면 작업 제목)
+        plan["header"] = raw.get("header") or {"text": ep.status().get("title", "")}
     have = credits.load(ep)
     missing = [r for r in asset_refs(plan) if r["ref"] not in have and not os.path.exists(os.path.join(ep.dir, r["ref"]))]
     plan["report"]["missing_assets"] = missing
@@ -54,6 +56,9 @@ def make_job(ep: Episode, silent: bool = False) -> Dict[str, Any]:
            "assets": credits.to_job_assets(ep)}
     if plan.get("music_mood"):
         job["music_mood"] = plan["music_mood"]
+    if ep.form == "shortform":
+        job["aspect"] = "9:16"
+        job["header"] = plan.get("header") or {"text": ep.status().get("title", "")}
     _save(ep.p("job.json"), job)
     return job
 
@@ -85,4 +90,4 @@ def thumbnail(ep: Episode) -> Dict[str, Any]:
     spec = plan.get("thumbnail") or {}
     if not spec:
         raise ValueError("raw_plan.json 에 thumbnail 이 없음 (형식: studio/thumbnail.py 맨 위)")
-    return render_thumbnail({"style": ep.cfg["style"], "thumbnail": spec, "out": ep.p("render", "thumbnail.jpg")})
+    return render_thumbnail({"style": ep.cfg["style"], "thumbnail": spec, "out": ep.p("render", "thumbnail.jpg"), "aspect": ep.aspect})

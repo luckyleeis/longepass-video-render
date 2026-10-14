@@ -2,7 +2,7 @@
 LONGEPASS 에이전트 방식 명령 (bin/lp). 순서는 .claude/skills/make-video/SKILL.md, 규칙은 CHANNEL.md.
 
   bin/lp where | list
-  bin/lp new <slug> "제목" [--draft 초안.md]       작업 폴더 만들기
+  bin/lp new <slug> "제목" [--draft 초안.md] [--short]   작업 폴더 만들기 (--short = 세로 쇼츠)
   bin/lp status <slug> | stage <slug> <단계> [남은 일 …] | log <slug> "결정 내용"
   bin/lp templates                                  쓸 수 있는 템플릿과 칸 (studio catalog)
   bin/lp search <slug> "검색어" [--site a,b] [--video] [--portrait]     소재 찾기 (스톡·커먼즈)
@@ -10,7 +10,7 @@ LONGEPASS 에이전트 방식 명령 (bin/lp). 순서는 .claude/skills/make-vid
   bin/lp capture <slug> <URL> <id> --name "출처" [--width W --height H] [--mobile]   화면 캡처 (공고·기사)
   bin/lp add <slug> <파일> <id> --credit "…" --license "…" [--source URL]   직접 가진 파일
   bin/lp plan <slug>                                raw_plan.json → plan.json (검증·자료 확인)
-  bin/lp tts <slug> [--force] [--chapter N …]       나레이션 음성 + 글자 시각
+  bin/lp tts <slug> [--force] [--chapter N …]       나레이션 음성 + 글자 시각 (서버 타임스탬프, 장 번호는 1부터)
   bin/lp job <slug> [--silent]                      job.json + 렌더링 없이 점검
   bin/lp preview <slug> [--key]                     샷별 정지 화면 (render/preview/)
   bin/lp render <slug>                              최종 영상 (사람이 요청할 때만)
@@ -38,8 +38,9 @@ def main(argv=None) -> int:
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("where")
     sub.add_parser("list")
-    sub.add_parser("templates")
+    s = sub.add_parser("templates"); s.add_argument("--short", action="store_true", help="쇼츠(9:16)에서 쓸 수 있는 것만")
     s = sub.add_parser("new"); s.add_argument("slug"); s.add_argument("title"); s.add_argument("--draft")
+    s.add_argument("--short", action="store_true", help="세로 쇼츠 (9:16, 숏폼 읽기 지시)")
     s = sub.add_parser("status"); s.add_argument("slug")
     s = sub.add_parser("stage"); s.add_argument("slug"); s.add_argument("stage", choices=episode.STAGES); s.add_argument("todo", nargs="*")
     s = sub.add_parser("log"); s.add_argument("slug"); s.add_argument("text")
@@ -67,7 +68,7 @@ def main(argv=None) -> int:
     if a.cmd == "where":
         _out({"workspace": cfg["workspace"], "workspace_ok": os.path.isdir(cfg["workspace"]),
               "env": config.ENV_PATH if os.path.exists(config.ENV_PATH) else None, "config": config.CONFIG_PATH, "keys": config.KEYS_PATH,
-              "tts": bool(cfg["tts"].get("url")), "stt": bool(cfg["stt"].get("url")), "key_sites": sorted(config.keys())})
+              "tts": cfg["tts"].get("url") or None, "voice": cfg["tts"].get("voice"), "key_sites": sorted(config.keys())})
         return 0
     if a.cmd == "list":
         _out(episode.list_episodes(cfg))
@@ -75,11 +76,11 @@ def main(argv=None) -> int:
     if a.cmd == "templates":
         from studio import catalog
         from studio.styles import get_style
-        sys.stdout.write(catalog.catalog_text(catalog.candidates(cfg["project"], get_style(cfg["style"]))) + "\n")
+        sys.stdout.write(catalog.catalog_text(catalog.candidates(cfg["project"], get_style(cfg["style"]), "9:16" if a.short else "16:9")) + "\n")
         return 0
     ep = Episode(a.slug, cfg)
     if a.cmd == "new":
-        ep.create(a.title, a.draft)
+        ep.create(a.title, a.draft, short=a.short)
         _out({"dir": ep.dir, **ep.status()})
         return 0
     ep.require()
@@ -111,7 +112,8 @@ def main(argv=None) -> int:
             plan = json.load(f)
         res = tts.build_voices(ep, plan, force=a.force, only=a.chapter)
         ep.log(f"나레이션 음성 {len(res['chapters'])}장 (경고 {len(res['warnings'])})")
-        _out({"chapters": [{"audio": c["audio"], "sec": round(c["clip_end"] / 1000, 1), "sentences": len(c.get("sentences", []))} for c in res["chapters"]],
+        _out({"form": res["form"], "chapters": [{"audio": c["audio"], "sec": round(c["clip_end"] / 1000, 1), "parts": len(c.get("parts", [])),
+                                                 "timing": sorted({p["timing"] for p in c.get("parts", [])})} for c in res["chapters"]],
               "warnings": res["warnings"]})
     elif a.cmd == "job":
         job = build.make_job(ep, a.silent)

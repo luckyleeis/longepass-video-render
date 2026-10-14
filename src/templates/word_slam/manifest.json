@@ -52,6 +52,7 @@
   },
   "sfx_when": [],
   "bg": "accent",
+  "hud": false,
   "duration": {
     "min_sec": 2,
     "max_sec": 7

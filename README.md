@@ -27,7 +27,7 @@ Python은 표준 라이브러리만 쓴다 (3.9+). ffmpeg 필요.
 
 에이전트 방식을 쓰려면 다음을 준비한다 (둘 다 git에 올라가지 않는다).
 - `.env.example`을 `.env`로 복사하고 `LP_WORKSPACE`에 NAS 작업 폴더 경로를 적는다.
-- `longepass.config.example.json`을 `longepass.config.json`으로 복사한다 (TTS는 다큐 그곳 서버, 목소리 기본 `Charon`).
+- `longepass.config.example.json`을 `longepass.config.json`으로 복사한다 (TTS는 다큐 그곳 서버, `gemini`·`Aoede`·`zh-tw`).
 - `longepass.keys.json`에 `{"pexels": "…", "pixabay": "…", "unsplash": "…"}`를 넣는다 (있는 것만).
 - 화면 캡처에는 Google Chrome이 필요하다.
 - 확인: `bin/lp where`

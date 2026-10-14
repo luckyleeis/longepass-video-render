@@ -12,7 +12,7 @@ description: 사용자 초안(글·메모·기사·링크)으로 LONGEPASS 영�
 이 저장소는 사용자의 맥에서 로컬로 돌아간다. 처음 한 번 준비할 것:
 - `npm ci && npx remotion browser ensure`
 - `.env.example`을 `.env`로 복사하고 `LP_WORKSPACE`(NAS 작업 폴더)를 적는다.
-- `longepass.config.example.json`을 `longepass.config.json`으로 복사한다 (TTS는 다큐 그곳 서버, 목소리 기본 `Charon`).
+- `longepass.config.example.json`을 `longepass.config.json`으로 복사한다 (TTS는 다큐 그곳 서버, `gemini`·`Aoede`·`zh-tw`).
 - `longepass.keys.json`에 스톡 API 키를 넣는다 (Pexels, Pixabay, Unsplash 중 있는 것).
 - 화면 캡처용 Google Chrome
 - 확인: `bin/lp where`
@@ -46,7 +46,7 @@ description: 사용자 초안(글·메모·기사·링크)으로 LONGEPASS 영�
 
 ### 0. 시작 / 이어 하기
 ```bash
-bin/lp new <slug> "영상 제목" --draft 초안.md   # slug: 영문 소문자·숫자·-
+bin/lp new <slug> "영상 제목" --draft 초안.md [--short]   # slug: 영문 소문자·숫자·-, --short = 세로 쇼츠
 bin/lp status <slug>                            # 이어 하기: 단계·남은 일 + log.md 를 읽고 남은 일부터
 ```
 
@@ -73,7 +73,8 @@ bin/lp status <slug>                            # 이어 하기: 단계·남은 
     ]
   }
   ```
-  - `narration`은 zh-tw다. 문장은 짧게 쓰고 `。！？`로 끝낸다 (TTS가 문장마다 읽는다).
+  - `narration`은 zh-tw다. 문장은 짧게 쓰고 `。！？`로 끝낸다 (긴 장은 문장 경계에서 나눠 읽힌다).
+  - 쇼츠(`--short`)는 `bin/lp templates --short`의 템플릿만 쓰고, 위 제목 띠를 `"header": {"text": "…\n…", "emphasis": "…"}`로 정한다.
   - asset 칸(`image` 등)에는 **소재 id**(assets/의 파일 이름에서 확장자를 뺀 것)를 쓴다. 아직 없어도 된다. 3단계에서 그 이름으로 받는다.
   - `cues`는 그 샷 나레이션에 실제로 있는 단어여야 한다.
   - 화면 리듬은 CHANNEL.md 「화면 리듬」을 따른다 (같은 템플릿 연속 금지, 4~5샷마다 카드 없는 화면, 근거는 `screen_focus`/`quote_card`).
@@ -101,9 +102,10 @@ bin/lp add <slug> <파일> <id> --credit "…" --license "…" [--source URL]   
 ### 4. 나레이션 → `voice/`
 ```bash
 bin/lp tts <slug>                 # 바뀐 장만 다시 (문장 캐시)
-bin/lp tts <slug> --chapter 2     # 특정 장만 / --force 전부 새로
+bin/lp tts <slug> --chapter 2     # 특정 장만 (1부터) / --force 전부 새로
 ```
-- `warnings`에 "대본과 다르게 읽음"이 있으면 그 문장을 고쳐 쓰거나(숫자 표기, 쉼표) 다시 만든다.
+- 서버의 글자별 타임스탬프로 시각을 맞춘다 (`voices.json`의 `timing: timestamp`).
+- `warnings`에 "대본과 다르게 읽음"이 있으면 그 문장을 고쳐 쓰거나(숫자 표기, 쉼표) `--chapter N`으로 다시 만든다.
 - TTS 서버를 쓸 수 없으면 `bin/lp job <slug> --silent`로 무음 영상을 만들고, 그 사실을 보고한다.
 
 ### 5. 점검 → `job.json`, 그리고 정지 화면으로 고치기

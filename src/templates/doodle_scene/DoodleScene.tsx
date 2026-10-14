@@ -120,8 +120,9 @@ const DoodleScene: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
       {/* 표시 */}
       {mark && target && mp > 0 && (() => {
         const { w, h } = elBox(target);
-        const cx = xOf(target), cy = ground - h / 2;
         const rx = Math.max(w, h * 0.55) * 0.75, ry = h * 0.62;
+        // 원 아래 끝이 바닥선에 오게 (아래 이름표·비트 설명을 가리지 않게)
+        const cx = xOf(target), cy = mark.kind === 'circle' ? ground - ry + 4 : ground - h / 2;
         const o = markOut;
         let shape: React.ReactNode = null;
         if (mark.kind === 'circle') {

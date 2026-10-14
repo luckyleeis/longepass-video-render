@@ -452,8 +452,11 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
             bg = prim if bg == "primary" else bg
             if bg == base == "alt" and s["module"] == "contrast":
                 bg = "deep"
-            shots.append({"id": s["id"], "label": s["module"].upper(), "bg": bg, "start": s_start, "duration": s_end - s_start,
-                          "layers": [{"module": s["module"], "data": layer_data(s), "ev": ev_rel}], "_module": s["module"]})
+            shot_out = {"id": s["id"], "label": s["module"].upper(), "bg": bg, "start": s_start, "duration": s_end - s_start,
+                        "layers": [{"module": s["module"], "data": layer_data(s), "ev": ev_rel}], "_module": s["module"]}
+            if catalog.get(s["module"]).get("hud") is False:
+                shot_out["hud"] = False
+            shots.append(shot_out)
 
         # 자막 (브랜드 인트로로 나뉜 장은 앞뒤를 따로: 인트로 동안 자막이 남지 않게)
         cursor = 0

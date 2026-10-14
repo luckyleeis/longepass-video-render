@@ -63,6 +63,18 @@ class Episode:
         return os.path.join(self.dir, *parts)
 
     @property
+    def form(self) -> str:
+        """longform (16:9) | shortform (9:16 쇼츠) — bin/lp new --short"""
+        try:
+            return self.status().get("form") or "longform"
+        except FileNotFoundError:
+            return "longform"
+
+    @property
+    def aspect(self) -> str:
+        return "9:16" if self.form == "shortform" else "16:9"
+
+    @property
     def assets(self) -> str:
         return self.p("assets")
 
@@ -104,7 +116,7 @@ class Episode:
             f.write(f"- {now()} {text.strip()}\n")
 
     # ------------------------------------------------------------ 만들기
-    def create(self, title: str, draft: Optional[str] = None) -> None:
+    def create(self, title: str, draft: Optional[str] = None, short: bool = False) -> None:
         if self.exists():
             raise FileExistsError(f"이미 있음: {self.dir}")
         ws = self.cfg["workspace"]
@@ -123,7 +135,8 @@ class Episode:
             f.write("{}\n")
         with open(self.p("log.md"), "w", encoding="utf-8") as f:
             f.write(f"# 결정 기록 — {title}\n\n")
-        self.save_status({"slug": self.slug, "title": title, "stage": "draft", "todo": ["초안 분석·사실 확인 → notes.md"], "created": now()})
+        self.save_status({"slug": self.slug, "title": title, "form": "shortform" if short else "longform", "stage": "draft",
+                          "todo": ["초안 분석·사실 확인 → notes.md"], "created": now()})
         self.log("작업 폴더 만듦" + (f" (초안: {os.path.basename(draft)})" if draft else ""))
 
 

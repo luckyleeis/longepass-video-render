@@ -7,7 +7,7 @@ LONGEPASS 에이전트 방식 명령 (bin/lp). 순서는 .claude/skills/make-vid
   bin/lp templates                                  쓸 수 있는 템플릿과 칸 (studio catalog)
   bin/lp search <slug> "검색어" [--site a,b] [--video] [--portrait]     소재 찾기 (스톡·커먼즈)
   bin/lp get <slug> <번호|File:…> <id> [--start 초 --dur 초] [--focus x,y]   받기 + 출처 기록
-  bin/lp capture <slug> <URL> <id> [--width W --height H] [--mobile]   화면 캡처
+  bin/lp capture <slug> <URL> <id> --name "출처" [--width W --height H] [--mobile]   화면 캡처 (공고·기사)
   bin/lp add <slug> <파일> <id> --credit "…" --license "…" [--source URL]   직접 가진 파일
   bin/lp plan <slug>                                raw_plan.json → plan.json (검증·자료 확인)
   bin/lp tts <slug> [--force] [--chapter N …]       나레이션 음성 + 글자 시각
@@ -21,6 +21,7 @@ LONGEPASS 에이전트 방식 명령 (bin/lp). 순서는 .claude/skills/make-vid
 import argparse
 import json
 import logging
+import os
 import sys
 
 from agent import build, capture, config, episode, sources, tts
@@ -48,6 +49,7 @@ def main(argv=None) -> int:
     s.add_argument("--dur", type=float); s.add_argument("--focus")
     s = sub.add_parser("capture"); s.add_argument("slug"); s.add_argument("url"); s.add_argument("id"); s.add_argument("--width", type=int, default=1440)
     s.add_argument("--height", type=int, default=1000); s.add_argument("--mobile", action="store_true"); s.add_argument("--wait", type=int, default=2000)
+    s.add_argument("--name", default="", help="출처 이름 (기관명, 언론사 + 날짜) — 화면 오른쪽 옆에 표기")
     s = sub.add_parser("add"); s.add_argument("slug"); s.add_argument("file"); s.add_argument("id"); s.add_argument("--credit", required=True)
     s.add_argument("--license", required=True); s.add_argument("--source", default=""); s.add_argument("--title", default=""); s.add_argument("--focus")
     s = sub.add_parser("plan"); s.add_argument("slug")
@@ -63,7 +65,8 @@ def main(argv=None) -> int:
         focus = [float(x) for x in a.focus.split(",")][:2]
 
     if a.cmd == "where":
-        _out({"workspace": cfg["workspace"], "config": config.CONFIG_PATH, "keys": config.KEYS_PATH,
+        _out({"workspace": cfg["workspace"], "workspace_ok": os.path.isdir(cfg["workspace"]),
+              "env": config.ENV_PATH if os.path.exists(config.ENV_PATH) else None, "config": config.CONFIG_PATH, "keys": config.KEYS_PATH,
               "tts": bool(cfg["tts"].get("url")), "stt": bool(cfg["stt"].get("url")), "key_sites": sorted(config.keys())})
         return 0
     if a.cmd == "list":
@@ -97,7 +100,7 @@ def main(argv=None) -> int:
     elif a.cmd == "get":
         _out(sources.get(ep, a.ref, a.id, a.start, a.dur, focus))
     elif a.cmd == "capture":
-        _out(capture.capture(ep, a.url, a.id, a.width, a.height, a.mobile, a.wait))
+        _out(capture.capture(ep, a.url, a.id, a.width, a.height, a.mobile, a.wait, source_name=a.name))
     elif a.cmd == "add":
         _out(sources.add_local(ep, a.file, a.id, a.credit, a.license, a.source, a.title, focus))
     elif a.cmd == "plan":

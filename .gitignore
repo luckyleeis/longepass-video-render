@@ -9,3 +9,4 @@ __pycache__/
 longepass.config.json
 longepass.keys.json
 *.keys.json
+.env

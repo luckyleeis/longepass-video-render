@@ -1,11 +1,13 @@
 """
 웹 페이지 화면 캡처 (screen_focus 소재): 헤드리스 크롬으로 PNG.
 
-  bin/lp capture <slug> <URL> <id> [--width 1440 --height 1000] [--mobile] [--wait 2000]
+  bin/lp capture <slug> <URL> <id> --name "勞動部" [--width 1440 --height 1000] [--mobile] [--wait 2000]
+  --name: 화면 오른쪽 옆에 쓰일 출처 이름 (기관명, 언론사 + 날짜). 없으면 사이트 주소
 
 크롬은 config 의 chrome → 환경 변수 LP_CHROME → macOS Google Chrome/Chromium/Edge → PATH 의 chrome/chromium
 순서로 찾는다. 출처는 그 사이트 이름과 주소로 자동 기록한다.
-캡처는 '인용'이다: 정부·기관 공고처럼 근거를 보여 줄 때만 쓰고 (CHANNEL.md 「소재」), 개인 정보가 보이면 쓰지 않는다.
+캡처는 '인용'이다: 정부 공고·언론 기사를 근거로 보여 줄 때 쓰고, 출처는 screen_focus 가 화면 오른쪽 옆에 표기한다
+(CHANNEL.md 「소재」). 개인 정보가 보이면 쓰지 않는다.
 """
 import os
 import shutil
@@ -36,7 +38,7 @@ def find_chrome(cfg: Optional[Dict[str, Any]] = None) -> str:
 
 
 def capture(ep: Episode, url: str, name: str, width: int = 1440, height: int = 1000, mobile: bool = False,
-            wait_ms: int = 2000, scale: float = 1.0) -> Dict[str, Any]:
+            wait_ms: int = 2000, scale: float = 1.0, source_name: str = "") -> Dict[str, Any]:
     chrome = find_chrome(ep.cfg)
     if mobile:
         width, height, scale = 390, 844, 3.0
@@ -56,6 +58,7 @@ def capture(ep: Episode, url: str, name: str, width: int = 1440, height: int = 1
     if not os.path.exists(out):
         raise RuntimeError(f"캡처 실패: {url}")
     host = urllib.parse.urlparse(url).netloc or "local"
-    info = credits.add(ep, out, title=f"{host} 畫面截圖", credit=f"畫面截圖：{host}", source=url, license="網站截圖（引用）", site="capture")
+    credit = f"{source_name}（{host}）" if source_name and host != "local" else (source_name or host)
+    info = credits.add(ep, out, title=f"{source_name or host} 畫面截圖", credit=credit, source=url, license="網站截圖（引用）", site="capture")
     ep.log(f"소재 {name}: 화면 캡처 {url}")
     return {"id": name, "file": os.path.basename(out), **info}

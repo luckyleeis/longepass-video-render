@@ -16,7 +16,8 @@ const clamp01 = (v: number | undefined, d: number) => Math.min(1, Math.max(0, ty
  * 화면 캡처(웹페이지·앱·공문서) 확대: 브라우저/휴대폰 틀 안에 캡처를 보여 주고,
  * 말이 그 부분에 오면 틀 안에서 그 영역으로 다가가 테두리를 긋고 설명을 단다 ("관련 자료"를 보여 주는 장면).
  * 자료가 없으면 회색 줄로 된 가짜 페이지에 그 영역만 강조색 블록으로 그린다.
- * data: {image, device: browser|phone|plain, title, url, focus: {x,y,w,h 0~1}, note}, ev: {screen, zoom, note}
+ * 출처(자료의 credit, 없으면 data.source)는 틀 오른쪽 옆에 세워 둔다 (정부 공고·언론 기사 인용 — CHANNEL.md 「소재」).
+ * data: {image, device: browser|phone|plain, title, url, focus: {x,y,w,h 0~1}, note, source}, ev: {screen, zoom, note}
  */
 const ScreenFocus: React.FC<TemplateProps> = ({ data, ev, dur, ink, surf }) => {
   const frame = useCurrentFrame();
@@ -36,10 +37,15 @@ const ScreenFocus: React.FC<TemplateProps> = ({ data, ev, dur, ink, surf }) => {
   const bar = device === 'browser' ? 58 : 0;
   const border = phone ? 18 : t.skin.cardBorder;
   const vh = Math.round(maxH - bar - border * 2);
-  const vw = Math.round(phone ? Math.min(vh * 0.5, 620) : Math.min(L.contentW * 0.82, (vh) * Math.max(ar, 1.3)));
+  // 출처는 틀 오른쪽 옆 세로 칸 (그만큼 틀 폭을 줄이고, 틀 + 출처를 한 덩어리로 가운데에)
+  const source: string = asset?.credit || data.source || '';
+  const sideGap = 40, sideW = source ? Math.min(400, Math.round(L.contentW * 0.26)) : 0;
+  const maxVw = L.contentW - (source ? sideGap + sideW : 0) - border * 2;
+  const vw = Math.round(Math.min(maxVw, phone ? Math.min(vh * 0.5, 620) : Math.min(L.contentW * 0.82, (vh) * Math.max(ar, 1.3))));
   const imgH = vw / ar;                       // 캡처를 창 폭에 맞춘 높이 (창보다 길면 위부터 보인다)
   const frameW = vw + border * 2;
-  const frameX = (L.W - frameW) / 2;
+  const frameX = (L.W - frameW - (source ? sideGap + sideW : 0)) / 2;
+  const frameH = vh + bar + border * 2;
 
   // 다가가기: 영역이 창의 80% 폭 / 70% 높이에 들어오게
   const zs = Math.max(1, Math.min(3.2, (vw * 0.8) / (rw * vw), (vh * 0.7) / (rh * imgH)));
@@ -102,7 +108,17 @@ const ScreenFocus: React.FC<TemplateProps> = ({ data, ev, dur, ink, surf }) => {
           </div>
         </Panel>
       </div>
-      <Credit asset={asset} />
+      {source && (
+        <div style={{ position: 'absolute', left: frameX + frameW + sideGap, width: sideW, top, height: frameH, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 14, paddingBottom: 8,
+          opacity: ease(frame, (ev.screen ?? 0) + 8, (ev.screen ?? 0) + 20), transform: riseTransform(t, ease(frame, (ev.screen ?? 0) + 8, (ev.screen ?? 0) + 20), 0.5, 'x') }}>
+          <Bar color={t.primary} radius={4} style={{ width: 56, height: 8 }} />
+          <div style={{ display: 'flex' }}>
+            <Panel fill={ink} radius={8} seed="screen-source-tag" fillStyle="solid" style={{ ...keepAll, padding: '4px 14px', color: surf.bg, fontSize: 24, fontWeight: 900 }}>資料來源</Panel>
+          </div>
+          <div style={{ ...keepAll, fontSize: source.length > 24 ? 28 : 34, fontWeight: 800, lineHeight: 1.35, color: ink }}>{source.replace(/^(資料來源|畫面截圖)[：:]\s*/, '')}</div>
+        </div>
+      )}
+      {!source && <Credit asset={asset} />}
     </div>
   );
 };

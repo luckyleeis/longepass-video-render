@@ -5,6 +5,36 @@
 
 ---
 
+## 2026-10-14 (3) — 사용자 결정 반영: TTS 서버, 캡처 출처 표기, NAS 작업 폴더(.env)
+
+### 사용자가 정한 것
+- TTS는 **다큐 그곳 서버를 같이 쓴다**. config 예시에 그 주소와 목소리 기본값 `Charon`을 넣었다.
+- 화면 캡처는 **정부 공고와 언론 기사**를 쓰고, 출처는 **화면 오른쪽 옆**에 표기한다.
+- 작업 폴더는 **NAS**로 옮긴다. 경로는 **`.env`에 적어서** 쓴다.
+- 아직 남은 결정: AI 생성 이미지 허용 여부 (CHANNEL.md (확인 필요)).
+
+### 한 일
+- `agent/config.py`
+  - 저장소 루트의 `.env`(git 제외, 예시 `.env.example`)를 읽는다. `LP_WORKSPACE`, `LP_TTS_URL`, `LP_TTS_VOICE`를 지원한다.
+  - 우선순위는 환경 변수 > .env > config다. 따옴표, 줄 끝 주석, `export` 접두어를 허용한다.
+- `agent/episode.py`: NAS가 연결돼 있지 않으면(작업 폴더의 상위 폴더가 없으면) `bin/lp new`가 한 줄 오류로 멈춘다.
+- `agent/__main__.py`: 사람이 읽을 오류 한 줄만 낸다. 자세한 추적은 `LP_DEBUG=1`.
+- `bin/lp where`: `workspace_ok`와 .env 위치를 보여 준다.
+- `src/templates/screen_focus`
+  - 출처(자료의 credit, 없으면 새 칸 `data.source`)를 틀 **오른쪽 옆** 세로 칸에 표기한다: 강조 막대 + 「資料來源」 + 출처 이름.
+  - 그만큼 틀 폭을 줄이고, 틀 + 출처를 한 덩어리로 가운데에 놓는다. 출처가 있으면 구석 Credit은 숨긴다.
+- `bin/lp capture … --name "勞動部"`: 출처 이름(기관명, 언론사 + 날짜)을 credit에 넣는다 → `勞動部（www.mol.gov.tw）`.
+- CHANNEL.md, SKILL.md, README, CLAUDE.md, `longepass.config.example.json` 갱신.
+
+### 확인한 것
+- `bin/studio check` 0건, 타입 검사 0건.
+- `bin/studio gallery --only screen_focus`: 브라우저 예시에서 출처가 오른쪽 옆에 읽히게 나온다. 휴대폰 예시(출처 없음)는 그대로다.
+- `.env` 읽기: 따옴표 + 주석, `export`, 없는 NAS 경로일 때 오류.
+- **이전 방식(백엔드) 호환**: 예전 형식 job.json(`style: longepass`, 절대 경로 음성·char_times, assets 없음)을 다른 폴더에서 `bin/studio render --no-render`로 돌렸다 → 정상.
+  - `bin/studio catalog/validate`는 `--style longepass`·`showreel` 모두 정상이다.
+
+---
+
 ## 2026-10-14 (2) — LONGEPASS 제작 방식 확정: 에이전트 도구 bin/lp, 채널 규칙, TTS·소재 검색
 
 ### 배경

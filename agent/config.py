@@ -9,10 +9,14 @@ longepass.config.json (예시: longepass.config.example.json)
   "tts": {"url": "http://…/v1/audio/speech", "voice": "…", "model": "", "speed": 1.0, "instructions": "…",
           "format": "mp3", "pause_ms": 350, "extra": {}},
   "stt": {"url": "", "model": "", "language": "zh", "min_ratio": 0.85},   # 선택: TTS가 대본대로 읽었는지 받아쓰기로 확인
-  "chrome": ""                              # 선택: 화면 캡처에 쓸 크롬 경로 (없으면 Remotion 의 헤드리스 크롬)
+  "chrome": ""                              # 선택: 화면 캡처에 쓸 크롬 경로 (없으면 맥의 Google Chrome)
 }
 longepass.keys.json
 {"pexels": "…", "pixabay": "…", "unsplash": "…"}   # 없는 사이트는 검색에서 빠진다
+
+.env (저장소 루트, git에 올리지 않음 — 예시 .env.example). 같은 이름의 환경 변수가 있으면 그것이 앞선다.
+  LP_WORKSPACE=/Volumes/…/longepass       작업 폴더 (NAS). config 의 workspace 보다 앞선다
+  LP_TTS_URL=…  LP_TTS_VOICE=…            TTS 주소·목소리 (config 의 tts.url / tts.voice 보다 앞선다)
 """
 import copy
 import json
@@ -20,6 +24,32 @@ import os
 from typing import Any, Dict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_PATH = os.path.join(ROOT, ".env")
+
+
+def load_env(path: str = ENV_PATH) -> Dict[str, str]:
+    """.env 의 KEY=VALUE 를 읽어 환경 변수에 없는 것만 채운다 (따옴표·주석·export 허용)"""
+    out: Dict[str, str] = {}
+    if not os.path.exists(path):
+        return out
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            k = k.strip().removeprefix("export ").strip()
+            v = v.strip()
+            if v[:1] in ("'", '"') and v.find(v[0], 1) > 0:
+                v = v[1:v.find(v[0], 1)]          # "값"  # 주석
+            else:
+                v = v.split(" #", 1)[0].strip()
+            out[k] = v
+            os.environ.setdefault(k, v)
+    return out
+
+
+load_env()
 CONFIG_PATH = os.getenv("LP_CONFIG") or os.path.join(ROOT, "longepass.config.json")
 KEYS_PATH = os.getenv("LP_KEYS") or os.path.join(ROOT, "longepass.keys.json")
 
@@ -51,6 +81,12 @@ def load() -> Dict[str, Any]:
             cfg = _merge(DEFAULTS, json.load(f))
     else:
         cfg = copy.deepcopy(DEFAULTS)
+    if os.getenv("LP_WORKSPACE"):
+        cfg["workspace"] = os.path.expanduser(os.environ["LP_WORKSPACE"])
+    if os.getenv("LP_TTS_URL"):
+        cfg["tts"]["url"] = os.environ["LP_TTS_URL"]
+    if os.getenv("LP_TTS_VOICE"):
+        cfg["tts"]["voice"] = os.environ["LP_TTS_VOICE"]
     ws = cfg["workspace"]
     cfg["workspace"] = ws if os.path.isabs(ws) else os.path.join(ROOT, ws)
     return cfg

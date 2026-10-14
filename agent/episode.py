@@ -107,6 +107,9 @@ class Episode:
     def create(self, title: str, draft: Optional[str] = None) -> None:
         if self.exists():
             raise FileExistsError(f"이미 있음: {self.dir}")
+        ws = self.cfg["workspace"]
+        if not os.path.isdir(ws) and not os.path.isdir(os.path.dirname(ws.rstrip("/"))):
+            raise FileNotFoundError(f"작업 폴더의 상위 폴더가 없음: {ws} (NAS가 연결돼 있는지, .env 의 LP_WORKSPACE 를 확인)")
         for d in ("", "assets", "voice", "render"):
             os.makedirs(self.p(d), exist_ok=True)
         if draft:

@@ -1,12 +1,12 @@
 {
-  "_comment": "복사해서 longepass.config.json 으로 (git 에 올라가지 않음). API 키는 longepass.keys.json 에 {\"pexels\": \"…\", \"pixabay\": \"…\", \"unsplash\": \"…\"}",
+  "_comment": "복사해서 longepass.config.json 으로 (git 에 올라가지 않음). 작업 폴더(NAS)는 .env 의 LP_WORKSPACE. API 키는 longepass.keys.json 에 {\"pexels\": \"…\", \"pixabay\": \"…\", \"unsplash\": \"…\"}",
   "workspace": "out/agent",
   "project": "longepass",
   "style": "showreel",
   "tts": {
-    "_comment": "OpenAI 호환 음성 API. 아래 주소는 다큐 그곳이 쓰는 로컬 TTS 서버 예시 — 목소리는 대만 화자에 맞게 고른다 (확인 필요)",
+    "_comment": "다큐 그곳과 같은 TTS 서버를 쓴다 (2026-10-14 사용자). 목소리는 바꿀 수 있다",
     "url": "http://192.168.45.21:8005/v1/audio/speech",
-    "voice": "",
+    "voice": "Charon",
     "model": "",
     "speed": 1.0,
     "pause_ms": 350,

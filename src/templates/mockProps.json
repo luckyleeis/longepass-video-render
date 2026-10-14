@@ -5662,7 +5662,7 @@
     "id": "screen_focus",
     "name": "화면 캡처 확대",
     "category": "organize",
-    "use_when": "Showing evidence from a real source: an official web page, an app screen, a document or a news article screenshot, then zooming into the exact line that matters (deadline, amount, rule).",
+    "use_when": "Showing evidence from a real source: an official notice, a government web page, a news article or an app screen, then zooming into the exact line that matters (deadline, amount, rule). The source is shown beside the screenshot.",
     "total_frames": 477,
     "fps": 30,
     "width": 1920,
@@ -5837,7 +5837,8 @@
                   "w": 0.92,
                   "h": 0.17
                 },
-                "note": "90 天內申請"
+                "note": "90 天內申請",
+                "source": "勞動部 技能檢定公告（範例）"
               },
               "ev": {
                 "screen": 8,

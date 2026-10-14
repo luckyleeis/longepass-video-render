@@ -16,7 +16,7 @@
     "16:9"
   ],
   "llm": true,
-  "use_when": "Showing evidence from a real source: an official web page, an app screen, a document or a news article screenshot, then zooming into the exact line that matters (deadline, amount, rule).",
+  "use_when": "Showing evidence from a real source: an official notice, a government web page, a news article or an app screen, then zooming into the exact line that matters (deadline, amount, rule). The source is shown beside the screenshot.",
   "avoid_when": "There is no source screen to point at and the message is simple (use callout or headline).",
   "fields": {
     "image": {
@@ -69,6 +69,11 @@
       "type": "text",
       "max": 14,
       "desc": "label next to the marked region"
+    },
+    "source": {
+      "type": "text",
+      "max": 30,
+      "desc": "source shown beside the screenshot, e.g. 勞動部 / 聯合新聞網 2026-10-01 (the asset credit is used first)"
     }
   },
   "events": {
@@ -110,7 +115,8 @@
           "w": 0.92,
           "h": 0.17
         },
-        "note": "90 天內申請"
+        "note": "90 天內申請",
+        "source": "勞動部 技能檢定公告（範例）"
       },
       "cues": {
         "screen": "勞動部的公告",

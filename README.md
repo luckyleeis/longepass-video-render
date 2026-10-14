@@ -26,7 +26,8 @@ npm ci && npx remotion browser ensure
 Python은 표준 라이브러리만 쓴다 (3.9+). ffmpeg 필요.
 
 에이전트 방식을 쓰려면 다음을 준비한다 (둘 다 git에 올라가지 않는다).
-- `longepass.config.example.json`을 `longepass.config.json`으로 복사하고 TTS 주소·목소리·작업 폴더를 정한다.
+- `.env.example`을 `.env`로 복사하고 `LP_WORKSPACE`에 NAS 작업 폴더 경로를 적는다.
+- `longepass.config.example.json`을 `longepass.config.json`으로 복사한다 (TTS는 다큐 그곳 서버, 목소리 기본 `Charon`).
 - `longepass.keys.json`에 `{"pexels": "…", "pixabay": "…", "unsplash": "…"}`를 넣는다 (있는 것만).
 - 화면 캡처에는 Google Chrome이 필요하다.
 - 확인: `bin/lp where`
@@ -65,6 +66,11 @@ bin/lp                                                       # 에이전트 방�
 
 서버는 `VIDEO_STUDIO_DIR`(기본 `~/Project/video-studio`)에서 `python -m studio …`를 실행한다.
 비밀값은 넘기지 않는다 (PATH/HOME/언어/임시폴더만).
+
+**예전 job.json 그대로 쓸 수 있다** (2026-10-14 확인: `style: longepass`, 절대 경로 음성·out_dir).
+- 달라진 점 1: 상대 경로(음성, out_dir, 자료)는 **작업 파일이 있는 폴더 기준**으로 바뀌었다. 예전에는 실행한 폴더 기준이었다. 서버는 절대 경로를 쓰므로 영향이 없다.
+- 달라진 점 2: `style`을 빼면 showreel이다.
+- 달라진 점 3: `voices`·`assets`는 선택이다.
 
 ### 스타일의 주 바탕과 채널 인트로
 - `theme.primary_surface`: 주 바탕 (첫 장·첫 화면·마지막 화면·썸네일·쇼츠). 본문 챕터는 주 바탕과 반대 바탕을 번갈아 쓴다

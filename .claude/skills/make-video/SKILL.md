@@ -11,7 +11,8 @@ description: 사용자 초안(글·메모·기사·링크)으로 LONGEPASS 영�
 
 이 저장소는 사용자의 맥에서 로컬로 돌아간다. 처음 한 번 준비할 것:
 - `npm ci && npx remotion browser ensure`
-- `longepass.config.example.json`을 `longepass.config.json`으로 복사하고 TTS 주소·목소리를 정한다.
+- `.env.example`을 `.env`로 복사하고 `LP_WORKSPACE`(NAS 작업 폴더)를 적는다.
+- `longepass.config.example.json`을 `longepass.config.json`으로 복사한다 (TTS는 다큐 그곳 서버, 목소리 기본 `Charon`).
 - `longepass.keys.json`에 스톡 API 키를 넣는다 (Pexels, Pixabay, Unsplash 중 있는 것).
 - 화면 캡처용 Google Chrome
 - 확인: `bin/lp where`
@@ -21,11 +22,11 @@ description: 사용자 초안(글·메모·기사·링크)으로 LONGEPASS 영�
 - **지어내지 않는다.** 숫자·기한·조건·인용은 원문을 확인한 것만 쓴다 (`notes.md` 사실 카드, 등급 X는 쓰지 않음).
 - **소재는 라이선스가 분명한 것만** 쓴다. `bin/lp get/capture/add`로 받아야 출처가 자동으로 기록된다. 브라우저로 직접 저장한 그림은 `bin/lp add`로 출처와 함께 넣는다.
 - **API 키를 출력하거나 파일·로그에 옮기지 않는다.**
-- 작업물은 작업 폴더(`bin/lp where`의 workspace, 기본 `out/agent/<slug>/`)에만 둔다. 저장소의 `public/`에 소재를 넣지 않는다.
+- 작업물은 작업 폴더(`bin/lp where`의 workspace = `.env`의 `LP_WORKSPACE`, NAS)에만 둔다. NAS가 연결돼 있지 않으면 `bin/lp new`가 멈춘다. 저장소의 `public/`에 소재를 넣지 않는다.
 - 최종 렌더링(`bin/lp render`)은 사용자가 요청할 때만 한다.
 - 렌더링 엔진(`studio/`)에 네트워크 코드를 넣지 않는다. 외부 호출은 `agent/`(bin/lp)에만 있다.
 
-## 작업 폴더 (`<workspace>/<slug>/`)
+## 작업 폴더 (`<LP_WORKSPACE>/<slug>/`)
 | 파일 | 누가 | 내용 |
 |---|---|---|
 | `draft.md` | 사용자 | 초안 (`bin/lp new … --draft`) |
@@ -87,7 +88,7 @@ bin/lp status <slug>                            # 이어 하기: 단계·남은 
 bin/lp search <slug> "taipei office worker" [--video] [--portrait] [--site pexels,pixabay,unsplash,commons]
 bin/lp get <slug> <번호> <id> [--start 초 --dur 초] [--focus x,y]     # 목록 번호로 받기 (출처 자동 기록)
 bin/lp get <slug> "File:이름.jpg" <id>                               # 커먼즈 파일 이름으로
-bin/lp capture <slug> <URL> <id> [--mobile]                          # 공고·안내 페이지 캡처 (screen_focus)
+bin/lp capture <slug> <URL> <id> --name "勞動部" [--mobile]          # 정부 공고·언론 기사 캡처 (screen_focus, 출처는 화면 오른쪽 옆)
 bin/lp add <slug> <파일> <id> --credit "…" --license "…" [--source URL]   # 사용자가 준 파일
 ```
 - 스톡은 영어 검색어가 잘 맞는다. 현대 장면에만 쓴다. 영상은 움직임이 고른 구간만 `--start --dur`로 자른다(최대 30초).

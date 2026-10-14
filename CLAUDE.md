@@ -16,6 +16,7 @@
 - **네트워크는 `agent/`(bin/lp)에서만 쓴다.** 렌더링 엔진(`studio/`, `src/`)에는 외부 호출(LLM/TTS/DB/업로드/다운로드)을 넣지 않는다. 엔진은 로컬 파일만 읽는다 — 백엔드 방식도 같은 엔진을 쓴다.
   - `agent/`가 부르는 것: 설정된 TTS·받아쓰기 서버, 스톡 API(Pexels·Pixabay·Unsplash), 위키미디어 커먼즈, 로컬 크롬(화면 캡처). 표준 라이브러리만 쓴다. 네트워크가 필요한 패키지를 새로 들이지 않는다 (필요하면 사람에게 먼저 묻는다).
   - **API 키는 `longepass.keys.json`(git 제외)에서만 읽는다.** 출력하거나 다른 파일·로그·커밋에 옮기지 않는다. 설정은 `longepass.config.json`(git 제외, 예시 `longepass.config.example.json`).
+  - 작업 폴더(NAS) 경로는 `.env`의 `LP_WORKSPACE`다 (git 제외, 예시 `.env.example`).
 - **이 저장소 밖을 쓰지 않는다.** 결과는 `out/`, 작업 파일(job.json)이 지정한 `out_dir`, 또는 설정의 `workspace`(에이전트 작업 폴더)에만 둔다.
 - **운영 스타일은 showreel 하나다.** longepass, sketch_demo는 보관용이라 템플릿을 만들거나 고칠 때 고려하지 않는다 (지우지도 않는다).
 - **템플릿 규칙은 [TEMPLATE_GUIDE.md](TEMPLATE_GUIDE.md)를 따른다.** 특히:

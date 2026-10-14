@@ -151,6 +151,10 @@ def search(ep: Episode, query: str, sites: Optional[List[str]] = None, video: bo
                 notes.append(f"모르는 사이트 {site}")
         except net.NetError as e:
             notes.append(f"{site}: {e}")
+    ai = [it for it in items if credits.ai_marked(it.get("title", ""), it.get("author", ""), it.get("page", ""))]
+    if ai:
+        notes.append(f"AI 생성 표시가 있어 뺀 결과 {len(ai)}개 (CHANNEL.md: AI 이미지 쓰지 않음)")
+    items = [it for it in items if it not in ai]
     for i, it in enumerate(items):
         it["n"] = i + 1
         it.setdefault("license", LICENSE.get(it["site"], ""))
@@ -190,6 +194,8 @@ def get(ep: Episode, ref: str, name: str, start: Optional[float] = None, dur: Op
             raise ValueError(f"마지막 검색 결과에 {ref}번이 없음")
     if not credits.license_ok(it.get("license", "")):
         raise ValueError(f"쓸 수 없는 라이선스: {it.get('license')}")
+    if credits.ai_marked(it.get("title", ""), it.get("author", ""), it.get("page", "")):
+        raise ValueError("AI 생성 표시가 있는 소재는 쓰지 않는다 (CHANNEL.md)")
     keys = config.keys()
     net.hide(*keys.values())
     ext = os.path.splitext(urllib.parse.urlparse(it["url"]).path)[1].lower() or (".mp4" if it["kind"] == "video" else ".jpg")
@@ -241,6 +247,10 @@ def add_local(ep: Episode, src: str, name: str, credit: str, license: str, sourc
     kind = kind_of(src)
     if not kind:
         raise ValueError(f"사진/영상 파일이 아님: {src}")
+    if credits.ai_marked(credit, license, source, title, os.path.basename(src)):
+        raise ValueError("AI 생성 소재는 쓰지 않는다 (CHANNEL.md 「소재」)")
+    if not credits.license_ok(license):
+        raise ValueError(f"쓸 수 없는 라이선스: {license} (CHANNEL.md 「소재」의 목록 — 직접 만든 것은 'own')")
     tmp = os.path.join(ep.assets, f"_dl_{name}{os.path.splitext(src)[1].lower()}")
     shutil.copyfile(src, tmp)
     out = finish(tmp, os.path.join(ep.assets, name), kind)

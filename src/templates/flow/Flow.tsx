@@ -46,10 +46,24 @@ const Flow: React.FC<TemplateProps> = ({ data, ev, ink, sub, surf }) => {
   const nodeY = (c: number, j: number) => cy + (j - (cols[c].nodes.length - 1) / 2) * (NH + GAP_Y);
 
   // 카메라: 지금까지 보이는 열들을 화면에 담는다
-  const cams: Camera[] = shows.map((s) => {
+  const noteTop = L.H - 236 - 100;   // BeatNote(아래 236px, 높이 약 84) 윗변 + 여유
+  const cams: Camera[] = shows.map((s, b) => {
     const left = colX(0) - NW / 2 - 40, right = colX(s) + NW / 2 + 40;
     // 내용이 적으면 1.35배까지 다가가고, 많으면 화면에 담기도록 물러난다
-    return { cx: (left + right) / 2, cy: L.H / 2, zoom: Math.min(1.35, L.contentW / (right - left)) };
+    let zoom = Math.min(1.35, L.contentW / (right - left));
+    let cy = L.H / 2;
+    if (beatsData[b]?.note) {
+      // 메모가 있는 비트: 보이는 내용(열 이름 ~ 맨 아래 노드)을 제목 아래 ~ 메모 위 사이에 맞춘다 (확대는 필요한 만큼만 줄이고 카메라를 옮긴다)
+      let top = Infinity, bottom = -Infinity;
+      for (let c = 0; c <= s; c++) {
+        top = Math.min(top, nodeY(c, 0) - NH / 2 - 70);
+        bottom = Math.max(bottom, nodeY(c, cols[c].nodes.length - 1) + NH / 2 + 12);
+      }
+      const screenTop = L.contentTop - 20;
+      zoom = Math.min(zoom, (noteTop - screenTop) / (bottom - top));
+      cy = (top + bottom) / 2 - ((screenTop + noteTop) / 2 - L.H / 2) / zoom;
+    }
+    return { cx: (left + right) / 2, cy, zoom };
   });
 
   // 열이 나타나는 진행도

@@ -1,0 +1,143 @@
+{
+  "id": "photo_collage",
+  "version": 1,
+  "name": "사진 모음",
+  "component": "PhotoCollage.tsx",
+  "category": "organize",
+  "inspired_by": "스크랩북·인화 사진 — 사진이 하나씩 떨어져 흩어지는 모음",
+  "scope": "common",
+  "media": [
+    "clean"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "2-4 real examples shown side by side: jobs, places, products, cases, people. Each photo gets a short caption.",
+  "avoid_when": "The items are abstract ideas without images (use icon_series or tiles), or need numbers (use bar_chart).",
+  "fields": {
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "photos": {
+      "type": "list",
+      "item": {
+        "type": "object",
+        "fields": {
+          "image": {
+            "type": "asset",
+            "kind": "image"
+          },
+          "caption": {
+            "type": "text",
+            "max": 10,
+            "required": true
+          },
+          "icon": {
+            "type": "enum",
+            "options": [
+              "camera",
+              "building",
+              "users",
+              "user",
+              "globe",
+              "car",
+              "school",
+              "briefcase",
+              "cash",
+              "certificate",
+              "doc",
+              "calendar",
+              "phone",
+              "home",
+              "mountain",
+              "road",
+              "store",
+              "plane",
+              "train",
+              "leaf",
+              "heart",
+              "chart",
+              "trend",
+              "shield",
+              "target",
+              "book",
+              "tool",
+              "hammer",
+              "helmet",
+              "coffee",
+              "plant",
+              "sun",
+              "chef",
+              "stethoscope",
+              "truck",
+              "bike",
+              "bus"
+            ],
+            "desc": "shown when the image is missing"
+          }
+        },
+        "required": true
+      },
+      "min": 2,
+      "max": 4
+    }
+  },
+  "events": {
+    "title": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "photos": {
+      "kind": "each",
+      "of": "photos",
+      "start": 0.1
+    }
+  },
+  "sfx": {
+    "photos": "pop"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 14
+  },
+  "examples": [
+    {
+      "narration": "最常被問到的乙級證照有三種：美髮、中餐烹調，還有室內配線，都是考完馬上能用的技能。",
+      "data": {
+        "title": "最熱門的三種乙級",
+        "photos": [
+          {
+            "image": "samples/photo_d.jpg",
+            "caption": "美髮",
+            "icon": "user"
+          },
+          {
+            "image": "samples/photo_a.jpg",
+            "caption": "中餐烹調",
+            "icon": "chef"
+          },
+          {
+            "caption": "室內配線",
+            "icon": "tool"
+          }
+        ]
+      },
+      "cues": {
+        "title": "乙級證照",
+        "photos": [
+          "美髮",
+          "中餐烹調",
+          "室內配線"
+        ]
+      }
+    }
+  ]
+}

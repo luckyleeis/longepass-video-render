@@ -1,0 +1,148 @@
+{
+  "id": "screen_focus",
+  "version": 1,
+  "name": "화면 캡처 확대",
+  "component": "ScreenFocus.tsx",
+  "category": "organize",
+  "inspired_by": "설명 영상의 화면 녹화 — 페이지를 보여 주고 해당 부분으로 확대해 테두리",
+  "scope": "common",
+  "media": [
+    "clean"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "Showing evidence from a real source: an official notice, a government web page, a news article or an app screen, then zooming into the exact line that matters (deadline, amount, rule). The source is shown beside the screenshot.",
+  "avoid_when": "There is no source screen to point at and the message is simple (use callout or headline).",
+  "fields": {
+    "image": {
+      "type": "asset",
+      "kind": "image",
+      "desc": "screenshot (web page, app, document)"
+    },
+    "device": {
+      "type": "enum",
+      "options": [
+        "browser",
+        "phone",
+        "plain"
+      ],
+      "desc": "frame around the screenshot"
+    },
+    "title": {
+      "type": "text",
+      "max": 16
+    },
+    "url": {
+      "type": "text",
+      "max": 40,
+      "desc": "address bar text (browser frame)"
+    },
+    "focus": {
+      "type": "object",
+      "fields": {
+        "x": {
+          "type": "number",
+          "required": true
+        },
+        "y": {
+          "type": "number",
+          "required": true
+        },
+        "w": {
+          "type": "number",
+          "required": true
+        },
+        "h": {
+          "type": "number",
+          "required": true
+        }
+      },
+      "required": true,
+      "desc": "region to zoom into, as fractions 0-1 of the screenshot (left, top, width, height)"
+    },
+    "note": {
+      "type": "text",
+      "max": 14,
+      "desc": "label next to the marked region"
+    },
+    "source": {
+      "type": "text",
+      "max": 30,
+      "desc": "source shown beside the screenshot, e.g. 勞動部 / 聯合新聞網 2026-10-01 (the asset credit is used first)"
+    }
+  },
+  "events": {
+    "screen": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "zoom": {
+      "kind": "single",
+      "at": 0.35
+    },
+    "note": {
+      "kind": "single",
+      "at": 0.55
+    }
+  },
+  "sfx": {
+    "screen": "whoosh",
+    "zoom": "swish_up",
+    "note": "pop"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 5,
+    "max_sec": 14
+  },
+  "examples": [
+    {
+      "narration": "勞動部的公告寫得很清楚，證照生效日起九十天內就要提出申請，超過就不受理。",
+      "data": {
+        "image": "samples/screen_a.png",
+        "device": "browser",
+        "title": "官方公告怎麼寫",
+        "url": "www.mol.gov.tw/announcement",
+        "focus": {
+          "x": 0.04,
+          "y": 0.44,
+          "w": 0.92,
+          "h": 0.17
+        },
+        "note": "90 天內申請",
+        "source": "勞動部 技能檢定公告（範例）"
+      },
+      "cues": {
+        "screen": "勞動部的公告",
+        "zoom": "證照生效日",
+        "note": "九十天內"
+      }
+    },
+    {
+      "narration": "在手機上也一樣，打開申請頁面，最下面的按鈕就是線上申請。",
+      "data": {
+        "device": "phone",
+        "title": "手機上申請",
+        "focus": {
+          "x": 0.1,
+          "y": 0.78,
+          "w": 0.8,
+          "h": 0.08
+        },
+        "note": "線上申請"
+      },
+      "cues": {
+        "screen": "手機",
+        "zoom": "最下面",
+        "note": "線上申請"
+      }
+    }
+  ]
+}

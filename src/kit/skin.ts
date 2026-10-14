@@ -90,3 +90,17 @@ export const highlightStyle = (t: MotionTheme, surf: Surface, progress: number, 
 /** 강조된 글자색: 어두운 면의 형광펜 스킨은 글자 자체를 강조색으로 */
 export const highlightInk = (t: MotionTheme, surf: Surface, ink: string) =>
   t.skin.highlight === 'marker' && surf.dark ? t.primary : ink;
+
+const lum = (hex: string) => {
+  const c = hex.replace('#', '');
+  if (c.length < 6) return 0.5;
+  const ch = [0, 2, 4].map((i) => parseInt(c.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+};
+/** 두 색의 대비율 (WCAG) */
+export const contrastRatio = (a: string, b: string) => {
+  const x = lum(a), y = lum(b);
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+};
+/** 강조색 글자: 배경과 대비가 min(큰 굵은 글자 기준 3) 미만이면 그 면의 글자색으로 (노랑 글자가 크림 바탕에서 안 보이는 문제) */
+export const readableAccent = (color: string, surf: Surface, min = 3) => (contrastRatio(color, surf.bg) >= min ? color : surf.ink);

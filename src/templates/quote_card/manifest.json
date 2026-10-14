@@ -1,0 +1,113 @@
+{
+  "id": "quote_card",
+  "version": 1,
+  "name": "인용·출처",
+  "component": "QuoteCard.tsx",
+  "category": "emphasis",
+  "inspired_by": "잡지 인용 지면 — 큰 따옴표, 굵은 인용문, 출처 한 줄",
+  "scope": "common",
+  "media": [
+    "clean"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "Quoting a source to back a claim: an official notice, a law article, a news sentence, an expert or a real person's words. Always name the source.",
+  "avoid_when": "The sentence is our own message without a source (use headline).",
+  "fields": {
+    "label": {
+      "type": "text",
+      "max": 8,
+      "desc": "small tag, e.g. 官方公告 / 新聞 / 法規"
+    },
+    "quote": {
+      "type": "text",
+      "max": 56,
+      "required": true,
+      "desc": "the quoted words (shorten faithfully)"
+    },
+    "highlight": {
+      "type": "text",
+      "max": 12
+    },
+    "source": {
+      "type": "text",
+      "max": 20,
+      "required": true,
+      "desc": "who said / where it is from"
+    },
+    "source_sub": {
+      "type": "text",
+      "max": 30,
+      "desc": "date, article title or clause number"
+    },
+    "image": {
+      "type": "asset",
+      "kind": "image",
+      "desc": "optional portrait, logo or document photo shown on the right"
+    }
+  },
+  "events": {
+    "quote": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "highlight": {
+      "kind": "single",
+      "at": 0.4
+    },
+    "source": {
+      "kind": "single",
+      "at": 0.6
+    }
+  },
+  "sfx": {
+    "quote": "whoosh",
+    "highlight": "ding",
+    "source": "click"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 12
+  },
+  "examples": [
+    {
+      "narration": "勞動部的規定原文是這樣寫的：技術士證生效日起九十日內，應檢具文件提出申請，逾期不予受理。",
+      "data": {
+        "label": "官方規定",
+        "quote": "技術士證生效日起九十日內應提出申請，逾期不予受理。",
+        "highlight": "九十日內",
+        "source": "勞動部",
+        "source_sub": "範例文字，非正式條文"
+      },
+      "cues": {
+        "quote": "規定原文",
+        "highlight": "九十日內",
+        "source": "逾期不予受理"
+      }
+    },
+    {
+      "narration": "考過的學員小陳說，他最後悔的就是拖了四個月才去申請，結果兩萬元就這樣沒了。",
+      "data": {
+        "label": "學員心得",
+        "quote": "最後悔的就是拖了四個月才去申請。",
+        "highlight": "拖了四個月",
+        "source": "學員 小陳",
+        "source_sub": "美髮乙級",
+        "image": "samples/photo_c.jpg"
+      },
+      "cues": {
+        "quote": "最後悔",
+        "highlight": "四個月",
+        "source": "兩萬元"
+      }
+    }
+  ]
+}

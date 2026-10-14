@@ -5,13 +5,17 @@ import { MotionVideo } from './motion/MotionVideo';
 import { Thumbnail } from './thumbnail/Thumbnail';
 import mockTemplates from './templates/mockProps.json';
 
-const CATEGORIES: Record<string, string[]> = {
-  '1-Information': ['headline', 'title_card', 'chapter_card', 'callout', 'outro', 'brand_intro'],
-  '2-Structure': ['list', 'steps', 'flow', 'timeline', 'card_set', 'tiles', 'document_form'],
-  '3-Comparison': ['compare', 'contrast', 'board'],
-  '4-Data-Charts': ['counter', 'bar_chart', 'growth_line', 'radar', 'people_ratio'],
-  '5-Special': ['quiz', 'phone_screen', 'taiwan_map', 'globe', 'doodle_scene', 'icon_series'],
-};
+// 템플릿 목록은 명세(manifest)의 category 로 자동으로 묶는다 (bin/studio check 가 만드는 mockProps.json) — 새 템플릿이 빠지지 않게
+const CATEGORY_ORDER = ['opener', 'structure', 'emphasis', 'story', 'number', 'organize', 'compare', 'chart', 'space', 'outro'];
+const CATEGORIES: Record<string, string[]> = (() => {
+  const groups: Record<string, string[]> = {};
+  Object.entries(mockTemplates as Record<string, any>).forEach(([tid, tm]) => {
+    const cat = tm.category || 'etc';
+    (groups[cat] = groups[cat] || []).push(tid);
+  });
+  const cats = Object.keys(groups).sort((a, b) => (CATEGORY_ORDER.indexOf(a) + 99) % 99 - (CATEGORY_ORDER.indexOf(b) + 99) % 99);
+  return Object.fromEntries(cats.map((c, i) => [`${i + 1}-${c}`, groups[c].sort()]));
+})();
 
 const defaultMotionProps = (mockTemplates as any)['bar_chart']?.props || {};
 const defaultThumbProps = {

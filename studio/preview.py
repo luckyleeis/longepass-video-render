@@ -1,9 +1,9 @@
 """
-에이전트 검수용 초고속 프리뷰 생성기:
-job.json 파일 → 썸네일(JPEG) 1장 + 각 씬별 대표 프레임 스틸컷(PNG) 추출.
+빠른 프리뷰: job.json 파일 → 썸네일(JPEG) 1장 + 각 씬별 대표 프레임 스틸컷(PNG) 추출.
 
-전체 영상 MP4 렌더링(수 분)을 거치지 않고 씬당 1프레임만 초고속(수 초)으로 캡처하여
-Vision Critic 에이전트가 눈으로 직접 검수할 수 있게 JSON 형태로 반환한다.
+전체 영상 MP4 렌더링(수 분)을 거치지 않고 씬당 1프레임만 캡처해 눈으로 확인한다.
+에이전트 방식(.claude/skills/make-video)에서 전체 렌더링 전에 화면을 고칠 때 쓴다.
+음성이 없어도 된다 (글자 수로 시각을 가정). 자료(assets)는 정지 화면을 다 뽑을 때까지 남겨 두었다가 지운다.
 
 CLI 사용법:
   bin/studio preview job.json [--max-shots 6] [--all]
@@ -11,10 +11,12 @@ CLI 사용법:
 import json
 import logging
 import os
+import shutil
 import subprocess
 import tempfile
 from typing import Any, Dict, List, Optional
 
+from studio.styles import DEFAULT_STYLE
 from studio.render import ROOT, _json_load, _json_save, _log_tail, _render_env, render_job
 from studio.thumbnail import render_thumbnail
 from studio.timeline import FPS
@@ -64,7 +66,8 @@ def select_key_shots(shots: List[Dict[str, Any]], max_shots: int = 6) -> List[Di
     return [(i, shots[i]) for i in sorted_indices]
 
 
-def render_preview(job: Dict[str, Any], max_shots: Optional[int] = 6, extract_all: bool = False) -> Dict[str, Any]:
+def render_preview(job: Dict[str, Any], max_shots: Optional[int] = 6, extract_all: bool = False,
+                   base_dir: Optional[str] = None) -> Dict[str, Any]:
     """
     job.json 데이터를 기반으로 썸네일 1장 + 대표 프레임 스틸컷들을 생성하여 메타데이터 반환.
     """
@@ -74,7 +77,7 @@ def render_preview(job: Dict[str, Any], max_shots: Optional[int] = 6, extract_al
     os.makedirs(preview_dir, exist_ok=True)
 
     result: Dict[str, Any] = {
-        "style": job.get("style", "longepass"),
+        "style": job.get("style") or DEFAULT_STYLE,
         "aspect": job.get("aspect", "16:9"),
         "preview_dir": os.path.abspath(preview_dir),
         "thumbnail": None,
@@ -87,7 +90,7 @@ def render_preview(job: Dict[str, Any], max_shots: Optional[int] = 6, extract_al
         thumb_out = os.path.join(preview_dir, "thumbnail.jpg")
         try:
             thumb_job = {
-                "style": job.get("style", "longepass"),
+                "style": job.get("style") or DEFAULT_STYLE,
                 "thumbnail": thumb_spec,
                 "out": thumb_out,
                 "aspect": job.get("aspect", "16:9"),
@@ -106,7 +109,15 @@ def render_preview(job: Dict[str, Any], max_shots: Optional[int] = 6, extract_al
 
     # 2. 타임라인 Props 빌드 (render=False로 음성/타이밍/자막 구조만 계산)
     job_for_props = {**job, "out_dir": preview_dir, "name": "preview"}
-    meta = render_job(job_for_props, render=False)
+    meta = render_job(job_for_props, render=False, base_dir=base_dir, keep_job_dir=True)
+    try:
+        return _stills(result, meta, preview_dir, max_shots, extract_all)
+    finally:
+        if meta.get("job_dir"):
+            shutil.rmtree(meta["job_dir"], ignore_errors=True)
+
+
+def _stills(result: Dict[str, Any], meta: Dict[str, Any], preview_dir: str, max_shots: Optional[int], extract_all: bool) -> Dict[str, Any]:
     props_path = os.path.join(preview_dir, "props_preview.json")
 
     props = _json_load(props_path)

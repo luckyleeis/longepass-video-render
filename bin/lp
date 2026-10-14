@@ -1,0 +1,4 @@
+#!/bin/sh
+# LONGEPASS 에이전트 방식 명령 (작업 폴더·TTS·소재·캡처·빌드). 표준 라이브러리만 쓴다.
+cd "$(dirname "$0")/.." || exit 1
+exec "${STUDIO_PYTHON:-python3}" -m agent "$@"

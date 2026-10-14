@@ -24,6 +24,7 @@ video-studio/
     doodle.tsx                  관절 인형 (사람 픽토그램): Figure, POSES, blendPose
     stage.tsx                   무대 템플릿 공용: useBeat, poseAt/tween, StageCamera, BeatTitle, BeatNote, ItemCard
     objects.tsx                 사물 그림 (자격증, 지폐, 달력, 도장 …)
+    picture.tsx                 사진·영상 자료 층: Picture, PictureFallback, Scrim, Credit, assetOf (9장)
   src/templates/<id>/
     manifest.json               명세 (기준)
     <Component>.tsx             그리는 코드 (export default)
@@ -34,7 +35,8 @@ video-studio/
     timeline.py                 박자 맞춤 타임라인 → Remotion props
     render.py                   작업 파일 → 영상/자막/메타
     gallery.py                  갤러리 렌더링
-    styles.py                   스타일 로더/검사
+    styles.py                   스타일 로더/검사 (운영 스타일 = showreel)
+    assets.py                   job.json 의 자료(assets) → public/_jobs 복사, 크기/길이 읽기, 출처 목록
   bin/studio                    명령 (catalog / validate / render / check / list / styles / gallery)
 ```
 
@@ -67,6 +69,7 @@ video-studio/
 | `events` | 화면에서 일어나는 순간 (아래) |
 | `sfx` | 이벤트별 효과음 종류 |
 | `sfx_when` | data 조건에 따른 효과음 덮어쓰기. 예: `{"if": {"tone": "warning"}, "sfx": {"in": "error"}}` |
+| `hud` | 선택: `false`면 이 템플릿 샷 동안 가로 화면의 구석 로고·챕터 표시·진행 막대를 숨긴다 (화면 전체 색이 바뀌는 word_slam 등) |
 | `bg` | 강제 배경 역할 `base`·`alt`·`accent`·`deep`·`primary`(스타일의 주 바탕 `theme.primary_surface`), 또는 `null`(챕터 기본 배경: 주 바탕과 반대 바탕을 챕터마다 번갈아) |
 | `duration` | 샷 길이 권장 범위(초) |
 | `examples` | 실제로 채운 예시 1개 이상: `narration`, `data`, `cues`. 갤러리와 검사에 쓰인다 |
@@ -76,7 +79,7 @@ video-studio/
 ```json
 "title": {"type": "text", "max": 16, "required": true, "desc": "선택: LLM에게 주는 힌트"}
 ```
-- `text`(max 필수) · `number` · `int` · `bool` · `enum`(options) · `list`(item, min, max) · `object`(fields)
+- `text`(max 필수) · `number` · `int` · `bool` · `enum`(options) · `list`(item, min, max) · `object`(fields) · `asset`(kind: image|video|any — 사진·영상 자료, 9장)
 - 글자 수 `max`는 화면에 실제로 들어가는 길이로 정한다. 넘으면 경고가 남는다.
 - 강조 칸 이름은 `highlight`, 취소선은 `strike`로 쓰면 "실제 문구 안에 있는지" 자동 검사된다.
 
@@ -137,11 +140,14 @@ export default MyTemplate;
    | SVG 안의 도형 | `SRect`, `SCircle`, `SPath`, `SLine` (`reveal`=선이 그려지는 진행도, `subtle`=손그림에서 윤곽만) |
    | 아이콘 | `<Icon name size color>` (Tabler 선 아이콘, 이름 목록은 `ICON_NAMES`) |
    | 사람 | `<Person variant="bust"|"standing">` |
+   | 사진·영상 | `<Picture asset={assetOf(data.image)} w h zoom fallback={<PictureFallback icon=… />}>` (`kit/picture.tsx`, 9장) |
 
    손그림 모양은 `seed`로 고정된다 (매 프레임 같은 모양). 같은 템플릿 안에서 반복되는 부품은 `seed={`row${i}`}`처럼 다르게 준다.
    `draw={p}`를 넘기면 손그림 재료에서 테두리가 그려지며 등장한다 (깔끔한 재료에서는 무시).
 1. **색을 직접 쓰지 않는다.** `'#...'`가 있으면 검사에서 실패한다.
-   - 배경 면 위 글자: `ink`, 보조 글자: `sub`
+   - 배경 면 위 글자: `ink`, 보조 글자: `sub` (운영 스타일은 배경과 대비 4.5 이상을 검사한다)
+   - 글자 그림자처럼 배경에 묻히는 장식 색: `surf.shade || sub`
+   - 사진 위 글자: `useOverlaySurface()`(어두운 면 색 세트) + `<Scrim>`
    - 카드: `cardStyle(t, surf)` / 색 카드: `colorCardStyle(t, surf, t.primary)`
    - 강조색: `t.primary`, `t.accent`, `t.accent2`, `t.danger`
    - 비활성 면: `surf.fill`, 한 단계 진한 중립: `surf.fillStrong`, 얇은 선: `surf.line`
@@ -158,16 +164,19 @@ export default MyTemplate;
 
 ## 5. 스타일 (styles/<name>.json)
 
+**운영 스타일은 `showreel` 하나다** (`"active": true`). longepass·sketch_demo는 보관용이라 새 템플릿을 확인할 때 보지 않아도 된다.
+스타일을 빼면 `bin/studio gallery`는 showreel만, render/preview/thumbnail은 showreel을 쓴다.
+
 새 프로젝트는 `longepass.json`을 복사해 바꾼다. 서버의 프로젝트 설정(`py-macmini-server/src/video_engine/projects.py`)의 `style`에 이름을 적으면 끝.
 
 - `surfaces`: 역할별 면 색 (`base` 밝은 면, `alt` 어두운 면, `accent` 브랜드색 면, `deep` 챕터 카드)
-  각 면: `bg, ink, sub, grid, card, cardInk, line, fill, fillStrong, dark?`
+  각 면: `bg, ink, sub, grid, card, cardInk, line, fill, fillStrong, dark?, shade?`
 - `primary/accent/accent2/danger`, `font`, `mono`, `brand`
 - `skin`: 테두리(`cardBorder`, `cardBorderColor`), `radius`, `shadow`(soft/offset/none), `objectStroke`,
   배경 무늬 `grid`(dots/lines/squares/none), `ring`, `beatPulse`, 강조 `highlight`(marker/pill),
   `colorful`, `captionBg`, `motion`(damping, stiffness, mass, distance, tilt, impact)
 - `pacing`: `music`(기본 곡), `music_moods`(이 스타일이 허용하는 분위기 — 계획의 `music_mood`가 여기 있으면 그 분위기 곡 중 하나), 음악 크기(`music_open_lufs`, `music_under_voice_lufs`), `sfx_gain_db`,
-  `stagger_sfx_every`, `stagger_beats`, `transition_frames`, `transitions`(chapter/counter/default),
+  `stagger_sfx_every`, `stagger_beats`, `transition_frames`, `transitions`(chapter/counter/default — 값이 목록이면 차례로 돌려 쓴다),
   `transition_sfx`, `sfx_replace`
 - `media`, `continuity`: 이 스타일이 쓰는 그림 재료와 이어짐 방식 (템플릿 후보를 거른다)
 - `theme.media`: 재료 세부값. `{"kind": "clean"}` 또는
@@ -196,3 +205,22 @@ export default MyTemplate;
 LLM 계획 프롬프트와 프로젝트 전용 규칙(브랜드 표기, 통화 기호 등)은 서버 쪽에 있다
 (`py-macmini-server/assets/prompts/video_engine/` 의 `script.md`(대본) · `direction.md`(연출, 템플릿 설명이 들어감) · `repair.md`(고치기), `projects.py`의 `plan_rules`).
 studio는 그 프롬프트에 들어갈 템플릿 설명(`bin/studio catalog`)만 만든다.
+
+## 9. 사진·영상 자료 (asset)
+
+백엔드 방식에서는 서버가, 에이전트 방식에서는 에이전트가 사진·영상·화면 캡처를 job.json의 `assets`로 넘긴다
+(형식: `studio/assets.py` 맨 위). 렌더링은 로컬 파일만 읽는다.
+
+- 명세: `"image": {"type": "asset", "kind": "image|video|any", "desc": "…"}`.
+  계획에서 값은 자료 id, 파일 경로, `{src, focus, credit, fit, start}` 중 하나다.
+- 컴포넌트: `const a = assetOf(data.image)`. 렌더링 때 Python이 `{src, kind, w, h, duration, focus, credit}`로 바꿔 넘긴다.
+  - `<Picture asset={a} w h zoom pan dur radius fallback>`: 상자를 채운다(cover). `focus`가 잘릴 때 남길 중심이자 확대 기준이다.
+    영상은 무음이고, 장면보다 짧으면 되풀이한다.
+  - `<PictureFallback icon label tone ink place>`: **자료가 없을 때의 화면.** 모든 자료 칸에 반드시 만든다.
+    명세에 `icon` 칸(ICON_NAMES 중 선택)을 두어 LLM·에이전트가 대체 그림을 고르게 한다.
+  - `<Scrim side>`: 사진 위 글자를 읽히게 하는 어두운 그라데이션. 그 위 글자는 `useOverlaySurface()`의 색을 쓴다.
+  - `<Credit asset>`: 자료에 `credit`이 있으면 구석에 작게 출처를 표기한다.
+  - 사진의 가로세로 비율이 필요하면 `aspectOf(a, 기본값)`을 쓴다 (화면 캡처 확대 등).
+- 예시(`examples`)는 `public/samples/`의 샘플 파일을 쓴다 (`"image": "samples/photo_a.jpg"`). 자료 없는 예시도 하나 두어 대체 화면을 갤러리에서 확인한다.
+- 사진 템플릿은 "화면 끝까지 채움 / 카드 없음"처럼 기존 카드형과 다른 화면 문법을 쓰는 것이 목적이다.
+  카드 안에 작은 사진을 넣는 것만으로는 영상이 달라 보이지 않는다.

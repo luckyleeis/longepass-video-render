@@ -13,92 +13,102 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 490,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489
+        429,
+        444,
+        460,
+        475,
+        490
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -112,30 +122,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -183,8 +192,8 @@
               "ev": {
                 "title": 15,
                 "bars": [
-                  150,
-                  301,
+                  153,
+                  306,
                   329,
                   337
                 ]
@@ -217,110 +226,124 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 842,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489,
-        508,
-        527,
-        545,
-        564,
-        583,
-        602,
-        621,
-        639,
-        658,
-        677,
-        696,
-        715,
-        734,
-        752,
-        771,
-        790,
-        809,
-        828
+        429,
+        444,
+        460,
+        475,
+        490,
+        506,
+        521,
+        536,
+        551,
+        567,
+        582,
+        597,
+        613,
+        628,
+        643,
+        659,
+        674,
+        689,
+        705,
+        720,
+        735,
+        751,
+        766,
+        781,
+        797,
+        812,
+        827
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -334,30 +357,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -447,22 +469,22 @@
                   {
                     "items": [
                       15,
-                      94,
-                      103,
-                      132,
+                      92,
+                      107,
+                      130,
                       169,
                       207
                     ],
                     "at": 0
                   },
                   {
-                    "at": 216
+                    "at": 222
                   },
                   {
-                    "at": 376
+                    "at": 375
                   },
                   {
-                    "focus": 611,
+                    "focus": 613,
                     "at": 597
                   }
                 ]
@@ -495,70 +517,75 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 90,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75
+        15,
+        31,
+        46,
+        61,
+        77
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -572,30 +599,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -607,7 +633,7 @@
         {
           "id": "brand_intro_0",
           "label": "brand_intro",
-          "bg": "alt",
+          "bg": "base",
           "start": 0,
           "duration": 90,
           "layers": [
@@ -647,91 +673,101 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 484,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470
+        429,
+        444,
+        460,
+        475
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -745,30 +781,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -794,7 +829,7 @@
               },
               "ev": {
                 "in": 15,
-                "big": 226
+                "big": 230
               }
             }
           ]
@@ -824,120 +859,136 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 1020,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489,
-        508,
-        527,
-        545,
-        564,
-        583,
-        602,
-        621,
-        639,
-        658,
-        677,
-        696,
-        715,
-        734,
-        752,
-        771,
-        790,
-        809,
-        828,
-        846,
-        865,
-        884,
-        903,
-        922,
-        940,
-        959,
-        978,
-        997,
-        1016
+        429,
+        444,
+        460,
+        475,
+        490,
+        506,
+        521,
+        536,
+        551,
+        567,
+        582,
+        597,
+        613,
+        628,
+        643,
+        659,
+        674,
+        689,
+        705,
+        720,
+        735,
+        751,
+        766,
+        781,
+        797,
+        812,
+        827,
+        843,
+        858,
+        873,
+        889,
+        904,
+        919,
+        934,
+        950,
+        965,
+        980,
+        996,
+        1011
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -951,30 +1002,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -1005,16 +1055,16 @@
               "ev": {
                 "label": 15,
                 "cards": [
-                  226,
+                  222,
                   245,
-                  310,
-                  428
+                  306,
+                  429
                 ],
                 "checks": [
-                  236,
-                  269,
+                  232,
+                  268,
                   329,
-                  451
+                  452
                 ]
               }
             }
@@ -1042,10 +1092,10 @@
               "ev": {
                 "label": 15,
                 "cards": [
-                  141,
-                  198,
-                  273,
-                  358
+                  142,
+                  195,
+                  272,
+                  364
                 ]
               }
             }
@@ -1076,70 +1126,75 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 90,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75
+        15,
+        31,
+        46,
+        61,
+        77
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -1153,30 +1208,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -1229,92 +1283,102 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 503,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489
+        429,
+        444,
+        460,
+        475,
+        490
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -1328,30 +1392,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -1393,7 +1456,7 @@
                 "title": 15,
                 "left": 169,
                 "right": 329,
-                "verdict": 423
+                "verdict": 421
               }
             }
           ]
@@ -1423,90 +1486,100 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 464,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451
+        429,
+        444,
+        460
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -1520,30 +1593,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -1566,8 +1638,8 @@
                 "text": "獎勵金並非人人可領"
               },
               "ev": {
-                "char": 9,
-                "text": 156
+                "char": 8,
+                "text": 153
               }
             }
           ]
@@ -1597,91 +1669,101 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 484,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470
+        429,
+        444,
+        460,
+        475
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -1695,30 +1777,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -1774,85 +1855,93 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 364,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -1866,30 +1955,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -1930,12 +2018,12 @@
               "ev": {
                 "doc": 4,
                 "fields": [
-                  94,
-                  113,
-                  179
+                  92,
+                  107,
+                  176
                 ],
-                "stamp": 310,
-                "note": 202
+                "stamp": 306,
+                "note": 199
               }
             }
           ]
@@ -1965,98 +2053,109 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 603,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489,
-        508,
-        527,
-        545,
-        564,
-        583,
-        602
+        429,
+        444,
+        460,
+        475,
+        490,
+        506,
+        521,
+        536,
+        551,
+        567,
+        582,
+        597
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -2070,30 +2169,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -2190,31 +2288,31 @@
                 "beats": [
                   {
                     "add": [
-                      9,
-                      66
+                      8,
+                      61
                     ],
                     "at": 0
                   },
                   {
                     "add": [
-                      160
+                      161
                     ],
-                    "change": 235,
-                    "mark": 235,
-                    "at": 126
+                    "change": 237,
+                    "mark": 237,
+                    "at": 123
                   },
                   {
                     "add": [
                       329
                     ],
-                    "change": 423,
-                    "mark": 423,
-                    "at": 263
+                    "change": 421,
+                    "mark": 421,
+                    "at": 260
                   },
                   {
-                    "change": 489,
-                    "mark": 540,
-                    "at": 442
+                    "change": 490,
+                    "mark": 536,
+                    "at": 444
                   }
                 ]
               }
@@ -2246,103 +2344,115 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 702,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489,
-        508,
-        527,
-        545,
-        564,
-        583,
-        602,
-        621,
-        639,
-        658,
-        677,
-        696
+        429,
+        444,
+        460,
+        475,
+        490,
+        506,
+        521,
+        536,
+        551,
+        567,
+        582,
+        597,
+        613,
+        628,
+        643,
+        659,
+        674,
+        689
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -2356,30 +2466,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -2469,15 +2578,15 @@
                     "at": 0
                   },
                   {
-                    "at": 150
+                    "at": 153
                   },
                   {
-                    "focus": 357,
+                    "focus": 360,
                     "at": 329
                   },
                   {
-                    "focus": 555,
-                    "at": 484
+                    "focus": 551,
+                    "at": 483
                   }
                 ]
               }
@@ -2509,82 +2618,89 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 305,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301
+        260,
+        276,
+        291
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -2598,30 +2714,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -2664,13 +2779,13 @@
               "ev": {
                 "lines": [
                   15,
-                  47
+                  46
                 ],
                 "targets": [
-                  122,
-                  132,
-                  150,
-                  179
+                  123,
+                  138,
+                  153,
+                  176
                 ]
               }
             }
@@ -2701,89 +2816,98 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 437,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433
+        429
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -2797,30 +2921,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -2869,13 +2992,13 @@
               "ev": {
                 "title": 4,
                 "points": [
-                  156,
-                  202,
+                  153,
+                  199,
                   245,
-                  292,
-                  339
+                  291,
+                  345
                 ],
-                "end": 362
+                "end": 360
               }
             }
           ]
@@ -2905,93 +3028,103 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 517,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489,
-        508
+        429,
+        444,
+        460,
+        475,
+        490,
+        506
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -3005,30 +3138,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -3057,7 +3189,7 @@
               "ev": {
                 "lines": [
                   15,
-                  269
+                  268
                 ]
               }
             }
@@ -3088,91 +3220,101 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 484,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470
+        429,
+        444,
+        460,
+        475
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -3186,30 +3328,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -3239,9 +3380,9 @@
               "ev": {
                 "lines": [
                   15,
-                  94
+                  92
                 ],
-                "object": 150
+                "object": 153
               }
             }
           ]
@@ -3271,84 +3412,92 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 344,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339
+        260,
+        276,
+        291,
+        306,
+        322,
+        337
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -3362,30 +3511,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -3431,9 +3579,9 @@
               "ev": {
                 "items": [
                   15,
-                  156,
-                  216,
-                  282
+                  153,
+                  214,
+                  283
                 ]
               }
             }
@@ -3464,92 +3612,102 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 503,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489
+        429,
+        444,
+        460,
+        475,
+        490
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -3563,30 +3721,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -3629,10 +3786,10 @@
               "ev": {
                 "title": 15,
                 "items": [
-                  197,
+                  199,
                   245,
-                  339,
-                  451
+                  337,
+                  444
                 ]
               }
             }
@@ -3663,83 +3820,91 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 324,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320
+        260,
+        276,
+        291,
+        306,
+        322
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -3753,30 +3918,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -3788,7 +3952,7 @@
         {
           "id": "outro_0",
           "label": "outro",
-          "bg": "alt",
+          "bg": "base",
           "start": 0,
           "duration": 324,
           "layers": [
@@ -3805,7 +3969,7 @@
               "ev": {
                 "title": 15,
                 "stamp": 207,
-                "sub": 263
+                "sub": 260
               }
             }
           ]
@@ -3835,83 +3999,91 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 324,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320
+        260,
+        276,
+        291,
+        306,
+        322
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -3925,30 +4097,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -3977,8 +4148,8 @@
               },
               "ev": {
                 "units": 15,
-                "highlight": 75,
-                "big": 103
+                "highlight": 77,
+                "big": 107
               }
             }
           ]
@@ -4008,81 +4179,89 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 291,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282
+        260,
+        276,
+        291
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -4096,30 +4275,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -4155,13 +4333,696 @@
                 "tap": 3
               },
               "ev": {
-                "title": 9,
+                "title": 8,
                 "rows": [
-                  113,
-                  150,
-                  202
+                  107,
+                  153,
+                  199
                 ],
-                "tap": 212
+                "tap": 209
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "photo_collage": {
+    "id": "photo_collage",
+    "name": "사진 모음",
+    "category": "organize",
+    "use_when": "2-4 real examples shown side by side: jobs, places, products, cases, people. Each photo gets a short caption.",
+    "total_frames": 285,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 285,
+      "bpm": 117.5,
+      "beat_frames": [
+        0,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
+        169,
+        184,
+        199,
+        214,
+        230,
+        245,
+        260,
+        276
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
+        "surfaces": {
+          "base": {
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
+          },
+          "accent": {
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
+          },
+          "deep": {
+            "bg": "#2F54EB",
+            "ink": "#FFFFFF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
+            "cardInk": "#FFFFFF",
+            "line": "#FFFFFF",
+            "dark": true,
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
+          }
+        },
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通"
+        },
+        "skin": {
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
+          "onAccentInk": "#FFFFFF",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
+          "motion": {
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "photo_collage_0",
+          "label": "photo_collage",
+          "bg": "base",
+          "start": 0,
+          "duration": 285,
+          "layers": [
+            {
+              "module": "photo_collage",
+              "data": {
+                "title": "最熱門的三種乙級",
+                "photos": [
+                  {
+                    "image": {
+                      "src": "samples/photo_d.jpg",
+                      "kind": "image",
+                      "w": 1600,
+                      "h": 1600,
+                      "resolved": true
+                    },
+                    "caption": "美髮",
+                    "icon": "user"
+                  },
+                  {
+                    "image": {
+                      "src": "samples/photo_a.jpg",
+                      "kind": "image",
+                      "w": 1920,
+                      "h": 1280,
+                      "resolved": true
+                    },
+                    "caption": "中餐烹調",
+                    "icon": "chef"
+                  },
+                  {
+                    "caption": "室內配線",
+                    "icon": "tool"
+                  }
+                ]
+              },
+              "ev": {
+                "title": 15,
+                "photos": [
+                  92,
+                  107,
+                  153
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "photo_full": {
+    "id": "photo_full",
+    "name": "전면 사진 + 큰 글자",
+    "category": "story",
+    "use_when": "A real-world photo or short video clip carries the moment (a place, people, an object, news scene) and one strong line sits on top. Good as a hook, a scene change or a breather between card-style shots.",
+    "total_frames": 523,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 523,
+      "bpm": 117.5,
+      "beat_frames": [
+        0,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
+        169,
+        184,
+        199,
+        214,
+        230,
+        245,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
+        414,
+        429,
+        444,
+        460,
+        475,
+        490,
+        506,
+        521
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
+        "surfaces": {
+          "base": {
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
+          },
+          "accent": {
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
+          },
+          "deep": {
+            "bg": "#2F54EB",
+            "ink": "#FFFFFF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
+            "cardInk": "#FFFFFF",
+            "line": "#FFFFFF",
+            "dark": true,
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
+          }
+        },
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通"
+        },
+        "skin": {
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
+          "onAccentInk": "#FFFFFF",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
+          "motion": {
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "photo_full_0",
+          "label": "photo_full",
+          "bg": "alt",
+          "start": 0,
+          "duration": 278,
+          "layers": [
+            {
+              "module": "photo_full",
+              "data": {
+                "image": {
+                  "src": "samples/photo_a.jpg",
+                  "kind": "image",
+                  "w": 1920,
+                  "h": 1280,
+                  "resolved": true
+                },
+                "kicker": "台北車站",
+                "lines": [
+                  "考照的早晨",
+                  "大家都在拚"
+                ],
+                "highlight": "都在拚",
+                "place": "left",
+                "icon": "train"
+              },
+              "ev": {
+                "image": 4,
+                "kicker": 46,
+                "lines": [
+                  138,
+                  230
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "photo_full_1",
+          "label": "photo_full",
+          "bg": "alt",
+          "start": 278,
+          "duration": 245,
+          "layers": [
+            {
+              "module": "photo_full",
+              "data": {
+                "image": {
+                  "src": "samples/clip_a.mp4",
+                  "kind": "video",
+                  "w": 1280,
+                  "h": 720,
+                  "duration": 4.0,
+                  "resolved": true
+                },
+                "lines": [
+                  "差別只在",
+                  "申請時間"
+                ],
+                "highlight": "申請時間",
+                "place": "bottom",
+                "icon": "calendar"
+              },
+              "ev": {
+                "image": 4,
+                "kicker": 4,
+                "lines": [
+                  151,
+                  174
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "photo_split": {
+    "id": "photo_split",
+    "name": "반 사진 + 요점",
+    "category": "story",
+    "use_when": "Explaining something concrete that has a real image (a place, a workplace, an exam room, a product, a person's situation) with a short title and up to 4 short points.",
+    "total_frames": 569,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 569,
+      "bpm": 117.5,
+      "beat_frames": [
+        0,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
+        169,
+        184,
+        199,
+        214,
+        230,
+        245,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
+        414,
+        429,
+        444,
+        460,
+        475,
+        490,
+        506,
+        521,
+        536,
+        551,
+        567
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
+        "surfaces": {
+          "base": {
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
+          },
+          "accent": {
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
+          },
+          "deep": {
+            "bg": "#2F54EB",
+            "ink": "#FFFFFF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
+            "cardInk": "#FFFFFF",
+            "line": "#FFFFFF",
+            "dark": true,
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
+          }
+        },
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通"
+        },
+        "skin": {
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
+          "onAccentInk": "#FFFFFF",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
+          "motion": {
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "photo_split_0",
+          "label": "photo_split",
+          "bg": "base",
+          "start": 0,
+          "duration": 324,
+          "layers": [
+            {
+              "module": "photo_split",
+              "data": {
+                "image": {
+                  "src": "samples/photo_b.jpg",
+                  "kind": "image",
+                  "w": 1920,
+                  "h": 1280,
+                  "resolved": true
+                },
+                "side": "left",
+                "title": "術科考場長這樣",
+                "highlight": "術科考場",
+                "points": [
+                  "工具擺放",
+                  "操作順序",
+                  "最後成品"
+                ],
+                "caption": "術科考場",
+                "icon": "tool",
+                "note": "評審三項都會看"
+              },
+              "ev": {
+                "image": 4,
+                "title": 23,
+                "points": [
+                  191,
+                  214,
+                  276
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "photo_split_1",
+          "label": "photo_split",
+          "bg": "base",
+          "start": 324,
+          "duration": 245,
+          "layers": [
+            {
+              "module": "photo_split",
+              "data": {
+                "side": "right",
+                "title": "沒有照片也能用",
+                "points": [
+                  "自動換成大圖示",
+                  "版面不變"
+                ],
+                "icon": "camera"
+              },
+              "ev": {
+                "image": 4,
+                "title": 21,
+                "points": [
+                  120,
+                  166
+                ]
               }
             }
           ]
@@ -4191,84 +5052,92 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 351,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339
+        260,
+        276,
+        291,
+        306,
+        322,
+        337
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -4282,30 +5151,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -4336,12 +5204,238 @@
               "ev": {
                 "question": 15,
                 "options": [
-                  141,
-                  160,
-                  197
+                  146,
+                  161,
+                  199
                 ],
-                "reveal": 217,
-                "note": 254
+                "reveal": 219,
+                "note": 253
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "quote_card": {
+    "id": "quote_card",
+    "name": "인용·출처",
+    "category": "emphasis",
+    "use_when": "Quoting a source to back a claim: an official notice, a law article, a news sentence, an expert or a real person's words. Always name the source.",
+    "total_frames": 582,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 582,
+      "bpm": 117.5,
+      "beat_frames": [
+        0,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
+        169,
+        184,
+        199,
+        214,
+        230,
+        245,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
+        414,
+        429,
+        444,
+        460,
+        475,
+        490,
+        506,
+        521,
+        536,
+        551,
+        567,
+        582
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
+        "surfaces": {
+          "base": {
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
+          },
+          "accent": {
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
+          },
+          "deep": {
+            "bg": "#2F54EB",
+            "ink": "#FFFFFF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
+            "cardInk": "#FFFFFF",
+            "line": "#FFFFFF",
+            "dark": true,
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
+          }
+        },
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通"
+        },
+        "skin": {
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
+          "onAccentInk": "#FFFFFF",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
+          "motion": {
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "quote_card_0",
+          "label": "quote_card",
+          "bg": "base",
+          "start": 0,
+          "duration": 311,
+          "layers": [
+            {
+              "module": "quote_card",
+              "data": {
+                "label": "官方規定",
+                "quote": "技術士證生效日起九十日內應提出申請，逾期不予受理。",
+                "highlight": "九十日內",
+                "source": "勞動部",
+                "source_sub": "範例文字，非正式條文"
+              },
+              "ev": {
+                "quote": 15,
+                "highlight": 153,
+                "source": 237
+              }
+            }
+          ]
+        },
+        {
+          "id": "quote_card_1",
+          "label": "quote_card",
+          "bg": "base",
+          "start": 311,
+          "duration": 271,
+          "layers": [
+            {
+              "module": "quote_card",
+              "data": {
+                "label": "學員心得",
+                "quote": "最後悔的就是拖了四個月才去申請。",
+                "highlight": "拖了四個月",
+                "source": "學員 小陳",
+                "source_sub": "美髮乙級",
+                "image": {
+                  "src": "samples/photo_c.jpg",
+                  "kind": "image",
+                  "w": 1280,
+                  "h": 1600,
+                  "resolved": true
+                }
+              },
+              "ev": {
+                "quote": 15,
+                "highlight": 126,
+                "source": 179
               }
             }
           ]
@@ -4371,79 +5465,86 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 258,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -4457,30 +5558,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -4534,15 +5634,244 @@
               "ev": {
                 "lines": [
                   15,
-                  179
+                  176
                 ],
                 "axes": [
-                  75,
-                  94,
-                  113,
+                  77,
+                  92,
+                  107,
                   207
                 ],
                 "shape": 215
+              }
+            }
+          ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "screen_focus": {
+    "id": "screen_focus",
+    "name": "화면 캡처 확대",
+    "category": "organize",
+    "use_when": "Showing evidence from a real source: an official notice, a government web page, a news article or an app screen, then zooming into the exact line that matters (deadline, amount, rule). The source is shown beside the screenshot.",
+    "total_frames": 477,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 477,
+      "bpm": 117.5,
+      "beat_frames": [
+        0,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
+        169,
+        184,
+        199,
+        214,
+        230,
+        245,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
+        414,
+        429,
+        444,
+        460,
+        475
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
+        "surfaces": {
+          "base": {
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
+          },
+          "accent": {
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
+          },
+          "deep": {
+            "bg": "#2F54EB",
+            "ink": "#FFFFFF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
+            "cardInk": "#FFFFFF",
+            "line": "#FFFFFF",
+            "dark": true,
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
+          }
+        },
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通"
+        },
+        "skin": {
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
+          "onAccentInk": "#FFFFFF",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
+          "motion": {
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "screen_focus_0",
+          "label": "screen_focus",
+          "bg": "base",
+          "start": 0,
+          "duration": 265,
+          "layers": [
+            {
+              "module": "screen_focus",
+              "data": {
+                "image": {
+                  "src": "samples/screen_a.png",
+                  "kind": "image",
+                  "w": 1440,
+                  "h": 1000,
+                  "resolved": true
+                },
+                "device": "browser",
+                "title": "官方公告怎麼寫",
+                "url": "www.mol.gov.tw/announcement",
+                "focus": {
+                  "x": 0.04,
+                  "y": 0.44,
+                  "w": 0.92,
+                  "h": 0.17
+                },
+                "note": "90 天內申請",
+                "source": "勞動部 技能檢定公告（範例）"
+              },
+              "ev": {
+                "screen": 8,
+                "zoom": 84,
+                "note": 123
+              }
+            }
+          ]
+        },
+        {
+          "id": "screen_focus_1",
+          "label": "screen_focus",
+          "bg": "base",
+          "start": 265,
+          "duration": 212,
+          "layers": [
+            {
+              "module": "screen_focus",
+              "data": {
+                "device": "phone",
+                "title": "手機上申請",
+                "focus": {
+                  "x": 0.1,
+                  "y": 0.78,
+                  "w": 0.8,
+                  "h": 0.08
+                },
+                "note": "線上申請"
+              },
+              "ev": {
+                "screen": 15,
+                "zoom": 95,
+                "note": 149
               }
             }
           ]
@@ -4572,92 +5901,102 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 497,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489
+        429,
+        444,
+        460,
+        475,
+        490
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -4671,30 +6010,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -4736,10 +6074,10 @@
               "ev": {
                 "title": 15,
                 "steps": [
-                  103,
-                  179,
-                  202,
-                  386
+                  107,
+                  176,
+                  199,
+                  391
                 ]
               }
             }
@@ -4770,90 +6108,99 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 457,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451
+        429,
+        444
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -4867,30 +6214,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -4961,92 +6307,102 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 497,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470,
-        489
+        429,
+        444,
+        460,
+        475,
+        490
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -5060,30 +6416,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -5130,27 +6485,27 @@
               "ev": {
                 "tiles": [
                   14,
-                  23,
+                  18,
+                  22,
+                  25,
+                  29,
                   33,
-                  42,
+                  37,
+                  41,
+                  45,
+                  48,
                   52,
-                  61,
-                  70,
-                  80,
-                  89,
-                  99,
-                  108,
-                  117,
-                  127,
-                  136,
-                  146,
-                  155,
-                  164,
-                  174,
-                  183,
-                  193
+                  56,
+                  60,
+                  64,
+                  68,
+                  71,
+                  75,
+                  79,
+                  83,
+                  87
                 ],
-                "center": 201
+                "center": 95
               }
             }
           ]
@@ -5180,83 +6535,92 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 338,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320
+        260,
+        276,
+        291,
+        306,
+        322,
+        337
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -5270,30 +6634,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -5335,11 +6698,11 @@
                 "deadline": 2
               },
               "ev": {
-                "title": 9,
+                "title": 8,
                 "points": [
-                  43,
-                  103,
-                  160,
+                  46,
+                  107,
+                  161,
                   207
                 ],
                 "deadline": 217
@@ -5372,91 +6735,101 @@
       "height": 1080,
       "fps": 30,
       "total_frames": 484,
-      "bpm": 95.7,
+      "bpm": 117.5,
       "beat_frames": [
         0,
-        19,
-        38,
-        56,
-        75,
-        94,
-        113,
-        132,
-        150,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153,
         169,
-        188,
-        207,
-        226,
+        184,
+        199,
+        214,
+        230,
         245,
-        263,
-        282,
-        301,
-        320,
-        339,
-        357,
-        376,
-        395,
+        260,
+        276,
+        291,
+        306,
+        322,
+        337,
+        352,
+        368,
+        383,
+        398,
         414,
-        433,
-        451,
-        470
+        429,
+        444,
+        460,
+        475
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
-        "mono": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
         "surfaces": {
           "base": {
-            "bg": "#F4F6FA",
-            "ink": "#0F172A",
-            "sub": "#64748B",
-            "grid": "#D5DCE6",
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#D6DCE5",
-            "fill": "#D5DCE6",
-            "fillStrong": "#94A3B8"
-          },
-          "alt": {
-            "bg": "#0B1426",
-            "ink": "#F1F5F9",
-            "sub": "#94A3B8",
-            "grid": "#1A2740",
-            "card": "#13203A",
-            "cardInk": "#F1F5F9",
-            "line": "#24324F",
-            "dark": true,
-            "fill": "#334155",
-            "fillStrong": "#64748B"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
           },
           "accent": {
-            "bg": "#FACC15",
-            "ink": "#0F172A",
-            "sub": "#854D0E",
-            "grid": "#EAB308",
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
             "card": "#FFFFFF",
-            "cardInk": "#0F172A",
-            "line": "#E0B10C",
-            "fill": "#E8B90E",
-            "fillStrong": "#A16207"
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
           },
           "deep": {
-            "bg": "#1E3A8A",
+            "bg": "#2F54EB",
             "ink": "#FFFFFF",
-            "sub": "#BFDBFE",
-            "grid": "#2A4799",
-            "card": "#1E40AF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
             "cardInk": "#FFFFFF",
-            "line": "#3554B0",
+            "line": "#FFFFFF",
             "dark": true,
-            "fill": "#2E4C9E",
-            "fillStrong": "#6B83C4"
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
           }
         },
-        "primary_surface": "alt",
-        "primary": "#EAB308",
-        "accent": "#3B82F6",
-        "accent2": "#10B981",
-        "danger": "#F43F5E",
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
         "brand": {
           "parts": [
             {
@@ -5470,30 +6843,29 @@
               "text": "PASS"
             }
           ],
-          "suffix": "容易通",
-          "tagline": "考照刷題首選"
+          "suffix": "容易通"
         },
         "skin": {
-          "cardBorder": 2,
-          "cardBorderColor": "line",
-          "radius": 22,
-          "shadow": "soft",
-          "objectStroke": 4,
-          "grid": "dots",
-          "ring": false,
-          "beatPulse": false,
-          "highlight": "marker",
-          "onColorInk": "#0F172A",
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
           "onAccentInk": "#FFFFFF",
-          "colorful": false,
-          "captionBg": "rgba(11,20,38,0.88)",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
           "motion": {
-            "damping": 18,
-            "stiffness": 120,
-            "mass": 0.8,
-            "distance": 28,
-            "tilt": 0,
-            "impact": false
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
           }
         },
         "media": {
@@ -5505,7 +6877,7 @@
         {
           "id": "title_card_0",
           "label": "title_card",
-          "bg": "alt",
+          "bg": "base",
           "start": 0,
           "duration": 484,
           "layers": [
@@ -5519,10 +6891,182 @@
               },
               "ev": {
                 "title": 15,
-                "sub": 423
+                "sub": 421
               }
             }
           ]
+        }
+      ],
+      "transitions": [],
+      "voice": [],
+      "sfx": [],
+      "music": null,
+      "narration_intervals": [],
+      "captions": [],
+      "chapters": [],
+      "hud": {}
+    }
+  },
+  "word_slam": {
+    "id": "word_slam",
+    "name": "단어 쾅쾅",
+    "category": "emphasis",
+    "use_when": "A punchy rhythm of 2-5 very short words or phrases said one after another (a slogan, a three-beat summary, a turning point). Changes the pace between information shots.",
+    "total_frames": 159,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "props": {
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "total_frames": 159,
+      "bpm": 117.5,
+      "beat_frames": [
+        0,
+        15,
+        31,
+        46,
+        61,
+        77,
+        92,
+        107,
+        123,
+        138,
+        153
+      ],
+      "theme": {
+        "font": "'Noto Sans TC', sans-serif",
+        "mono": "Menlo, 'Courier New', monospace",
+        "surfaces": {
+          "base": {
+            "bg": "#F2EEE3",
+            "ink": "#121212",
+            "sub": "#6A6254",
+            "shade": "#d6ceb8",
+            "grid": "#ddd5c2",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#DDD5C2",
+            "fillStrong": "#bdb6a5"
+          },
+          "accent": {
+            "bg": "#FFCC00",
+            "ink": "#121212",
+            "sub": "#664F00",
+            "shade": "#d9ad00",
+            "grid": "#ebbd00",
+            "card": "#FFFFFF",
+            "cardInk": "#121212",
+            "line": "#121212",
+            "fill": "#ebbd00",
+            "fillStrong": "#b38f00"
+          },
+          "alt": {
+            "bg": "#121212",
+            "ink": "#F2EEE3",
+            "sub": "#9A958A",
+            "shade": "#3a3a3a",
+            "grid": "#262626",
+            "card": "#1d1d1f",
+            "cardInk": "#F2EEE3",
+            "line": "#F2EEE3",
+            "dark": true,
+            "fill": "#2a2a2c",
+            "fillStrong": "#555555"
+          },
+          "deep": {
+            "bg": "#2F54EB",
+            "ink": "#FFFFFF",
+            "sub": "#E3E9FF",
+            "shade": "#1f3ab8",
+            "grid": "#3a5ef0",
+            "card": "#1f3ab8",
+            "cardInk": "#FFFFFF",
+            "line": "#FFFFFF",
+            "dark": true,
+            "fill": "#3a5ef0",
+            "fillStrong": "#6f8cf5"
+          }
+        },
+        "primary_surface": "base",
+        "primary": "#FFCC00",
+        "accent": "#3D5AFE",
+        "accent2": "#4ADE80",
+        "danger": "#FF3B30",
+        "brand": {
+          "parts": [
+            {
+              "text": "LONG"
+            },
+            {
+              "text": "E",
+              "accent": true
+            },
+            {
+              "text": "PASS"
+            }
+          ],
+          "suffix": "容易通"
+        },
+        "skin": {
+          "cardBorder": 4,
+          "cardBorderColor": "ink",
+          "radius": 26,
+          "shadow": "offset",
+          "objectStroke": 6,
+          "grid": "squares",
+          "ring": true,
+          "beatPulse": true,
+          "highlight": "pill",
+          "onColorInk": "#121212",
+          "onAccentInk": "#FFFFFF",
+          "colorful": true,
+          "captionBg": "rgba(12,12,14,0.86)",
+          "motion": {
+            "damping": 14,
+            "stiffness": 180,
+            "mass": 0.6,
+            "distance": 60,
+            "tilt": 5,
+            "impact": true
+          }
+        },
+        "media": {
+          "kind": "clean"
+        },
+        "lang": "zh-tw"
+      },
+      "shots": [
+        {
+          "id": "word_slam_0",
+          "label": "word_slam",
+          "bg": "accent",
+          "start": 0,
+          "duration": 159,
+          "layers": [
+            {
+              "module": "word_slam",
+              "data": {
+                "words": [
+                  "考到",
+                  "申請",
+                  "領錢"
+                ],
+                "tail": "就這麼簡單"
+              },
+              "ev": {
+                "words": [
+                  8,
+                  46,
+                  77
+                ],
+                "tail": 107
+              }
+            }
+          ],
+          "hud": false
         }
       ],
       "transitions": [],

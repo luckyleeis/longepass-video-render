@@ -3,7 +3,7 @@
 
 job
 {
-  "style": "longepass",
+  "style": "showreel",                    # 선택: 기본 showreel (운영 스타일)
   "thumbnail": {
     "layout": "focus|split|stat|quiz",               # 선택: 기본 focus
     "surface": "alt|base|accent|deep",               # 선택: 배경 색상 테마 (기본 primary_surface)
@@ -30,7 +30,7 @@ import tempfile
 from typing import Any, Dict
 
 from studio.render import ROOT, _log_tail, _render_env
-from studio.styles import get_style
+from studio.styles import DEFAULT_STYLE, get_style
 
 OBJECTS = (
     "certificate", "cash", "document", "calendar", "idcard", "passbook",
@@ -41,7 +41,7 @@ SIZES = {"16:9": (1280, 720), "9:16": (1080, 1920)}
 
 
 def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
-    style = get_style(job["style"])
+    style = get_style(job.get("style") or DEFAULT_STYLE)
     spec = job.get("thumbnail") or {}
     text = (spec.get("text") or "").strip()
     layout = spec.get("layout") if spec.get("layout") in LAYOUTS else "focus"

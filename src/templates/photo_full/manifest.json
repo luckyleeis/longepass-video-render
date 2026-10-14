@@ -1,0 +1,162 @@
+{
+  "id": "photo_full",
+  "version": 1,
+  "name": "전면 사진 + 큰 글자",
+  "component": "PhotoFull.tsx",
+  "category": "story",
+  "inspired_by": "뉴스·다큐 오프닝 — 화면 가득 실사 위 굵은 자막 (켄 번스 이동)",
+  "scope": "common",
+  "media": [
+    "clean"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9",
+    "9:16"
+  ],
+  "llm": true,
+  "use_when": "A real-world photo or short video clip carries the moment (a place, people, an object, news scene) and one strong line sits on top. Good as a hook, a scene change or a breather between card-style shots.",
+  "avoid_when": "No suitable image is available and no icon fits (use headline instead), or the content is a list/number/comparison.",
+  "fields": {
+    "image": {
+      "type": "asset",
+      "kind": "any",
+      "desc": "photo or short muted video that fills the screen"
+    },
+    "kicker": {
+      "type": "text",
+      "max": 10,
+      "desc": "small label above the lines, e.g. a date or place"
+    },
+    "lines": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 10,
+        "required": true
+      },
+      "min": 1,
+      "max": 3
+    },
+    "highlight": {
+      "type": "text",
+      "max": 8
+    },
+    "place": {
+      "type": "enum",
+      "options": [
+        "left",
+        "bottom",
+        "center"
+      ],
+      "desc": "where the text sits (default left)"
+    },
+    "icon": {
+      "type": "enum",
+      "options": [
+        "camera",
+        "building",
+        "users",
+        "user",
+        "globe",
+        "car",
+        "school",
+        "briefcase",
+        "cash",
+        "certificate",
+        "doc",
+        "calendar",
+        "phone",
+        "home",
+        "mountain",
+        "road",
+        "store",
+        "plane",
+        "train",
+        "leaf",
+        "heart",
+        "chart",
+        "trend",
+        "shield",
+        "target",
+        "book",
+        "tool",
+        "hammer",
+        "helmet",
+        "coffee",
+        "plant",
+        "sun"
+      ],
+      "desc": "drawn large when the image is missing"
+    }
+  },
+  "events": {
+    "image": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "kicker": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "lines": {
+      "kind": "each",
+      "of": "lines",
+      "start": 0.1
+    }
+  },
+  "sfx": {
+    "image": "whoosh",
+    "lines": "pop"
+  },
+  "sfx_when": [],
+  "bg": "alt",
+  "duration": {
+    "min_sec": 3,
+    "max_sec": 10
+  },
+  "examples": [
+    {
+      "narration": "每天早上七點，台北車站前已經擠滿了趕著去考場的人，大家手上都拿著同一本題庫。",
+      "data": {
+        "image": "samples/photo_a.jpg",
+        "kicker": "台北車站",
+        "lines": [
+          "考照的早晨",
+          "大家都在拚"
+        ],
+        "highlight": "都在拚",
+        "place": "left",
+        "icon": "train"
+      },
+      "cues": {
+        "kicker": "台北車站",
+        "lines": [
+          "考場",
+          "題庫"
+        ]
+      }
+    },
+    {
+      "narration": "同樣一張證照，有人領到兩萬元，有人一毛都拿不到，差別只在申請的時間。",
+      "data": {
+        "image": "samples/clip_a.mp4",
+        "lines": [
+          "差別只在",
+          "申請時間"
+        ],
+        "highlight": "申請時間",
+        "place": "bottom",
+        "icon": "calendar"
+      },
+      "cues": {
+        "lines": [
+          "差別",
+          "申請的時間"
+        ]
+      }
+    }
+  ]
+}

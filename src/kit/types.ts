@@ -4,7 +4,8 @@ import type { MediaSpec } from './media';
 export interface Surface {
   bg: string;
   ink: string;      // 글자
-  sub: string;      // 보조 글자/그림자 색
+  sub: string;      // 보조 글자 색 (배경과 대비 4.5 이상)
+  shade?: string;   // 글자 그림자처럼 배경에 묻히는 장식 색 (없으면 sub)
   grid: string;     // 배경 무늬
   card: string;     // 카드 배경
   cardInk: string;  // 카드 위 글자
@@ -70,6 +71,7 @@ export interface Shot {
   duration: number;
   layers: Layer[];
   exit?: boolean;
+  hud?: boolean;   // false = 이 샷 동안 구석 로고·챕터 표시·진행 막대를 숨긴다 (템플릿 명세 "hud": false)
 }
 
 export interface Transition {

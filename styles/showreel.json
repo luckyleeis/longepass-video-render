@@ -1,6 +1,7 @@
 {
   "name": "showreel",
-  "description": "검증용: 첫 모션 시제품 모습 (크림 배경, 굵은 검정 테두리, 튀는 움직임, 빠른 BGM)",
+  "active": true,
+  "description": "운영 스타일 (유일하게 쓰는 스타일): 크림 배경, 굵은 검정 테두리, 튀는 움직임, 빠른 BGM",
   "media": "clean",
   "continuity": "cut",
   "theme": {
@@ -10,7 +11,8 @@
       "base": {
         "bg": "#F2EEE3",
         "ink": "#121212",
-        "sub": "#d6ceb8",
+        "sub": "#6A6254",
+        "shade": "#d6ceb8",
         "grid": "#ddd5c2",
         "card": "#FFFFFF",
         "cardInk": "#121212",
@@ -21,7 +23,8 @@
       "accent": {
         "bg": "#FFCC00",
         "ink": "#121212",
-        "sub": "#d9ad00",
+        "sub": "#664F00",
+        "shade": "#d9ad00",
         "grid": "#ebbd00",
         "card": "#FFFFFF",
         "cardInk": "#121212",
@@ -32,7 +35,8 @@
       "alt": {
         "bg": "#121212",
         "ink": "#F2EEE3",
-        "sub": "#3a3a3a",
+        "sub": "#9A958A",
+        "shade": "#3a3a3a",
         "grid": "#262626",
         "card": "#1d1d1f",
         "cardInk": "#F2EEE3",
@@ -44,7 +48,8 @@
       "deep": {
         "bg": "#2F54EB",
         "ink": "#FFFFFF",
-        "sub": "#1f3ab8",
+        "sub": "#E3E9FF",
+        "shade": "#1f3ab8",
         "grid": "#3a5ef0",
         "card": "#1f3ab8",
         "cardInk": "#FFFFFF",
@@ -116,7 +121,11 @@
     "transitions": {
       "chapter": "stripes",
       "counter": "iris",
-      "default": "flash"
+      "default": [
+        "flash",
+        "slide",
+        "fade"
+      ]
     },
     "transition_sfx": {
       "stripes": [
@@ -130,6 +139,14 @@
       "flash": [
         "swish_down",
         -2.0
+      ],
+      "slide": [
+        "swish_down",
+        -2.0
+      ],
+      "fade": [
+        "whoosh",
+        -4.0
       ]
     },
     "sfx_replace": {},

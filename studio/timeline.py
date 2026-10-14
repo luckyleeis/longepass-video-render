@@ -432,8 +432,9 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
             brand_len = round(max(2, round(brand.get("sec", 2.2) * FPS / grid.fpb)) * grid.fpb)   # 약 sec 초, 박자 단위
         lay = _layout_chapter(ch, v["char_times"], frame, ranges, split, brand_len, grid, pacing)
         nar, brand_at, ch_end = lay["nar"], lay["brand_at"], lay["ch_end"]
-        voice += nar.voice_clips(v["audio_src"], clip)
-        intervals += _speech_intervals(nar)  # type: ignore[arg-type]
+        if v["audio_src"]:   # 음성 없는 장(무음 영상·프리뷰)은 재생 목록·음악 낮추기 없음
+            voice += nar.voice_clips(v["audio_src"], clip)
+            intervals += _speech_intervals(nar)  # type: ignore[arg-type]
 
         for si, s in enumerate(ch["shots"]):
             if si == 1 and brand_at is not None:
@@ -451,8 +452,11 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
             bg = prim if bg == "primary" else bg
             if bg == base == "alt" and s["module"] == "contrast":
                 bg = "deep"
-            shots.append({"id": s["id"], "label": s["module"].upper(), "bg": bg, "start": s_start, "duration": s_end - s_start,
-                          "layers": [{"module": s["module"], "data": layer_data(s), "ev": ev_rel}], "_module": s["module"]})
+            shot_out = {"id": s["id"], "label": s["module"].upper(), "bg": bg, "start": s_start, "duration": s_end - s_start,
+                        "layers": [{"module": s["module"], "data": layer_data(s), "ev": ev_rel}], "_module": s["module"]}
+            if catalog.get(s["module"]).get("hud") is False:
+                shot_out["hud"] = False
+            shots.append(shot_out)
 
         # 자막 (브랜드 인트로로 나뉜 장은 앞뒤를 따로: 인트로 동안 자막이 남지 않게)
         cursor = 0
@@ -485,6 +489,7 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
     shots[-1]["duration"] = total - shots[-1]["start"]
 
     transitions = []
+    turns: Dict[str, int] = {}   # 전환 종류가 목록이면 차례로 돌려 쓴다 (같은 전환만 반복되지 않게)
     for i in range(1, len(shots)):
         prev, cur = shots[i - 1], shots[i]
         branded = "brand_intro" in (prev["_module"], cur["_module"])   # 브랜드 인트로 앞뒤는 배경이 같아도 전환
@@ -493,6 +498,8 @@ def build_long_props(plan, chapter_voices, track, style: Dict[str, Any], aspect:
             continue
         role = "chapter" if cur["_module"] == "chapter_card" or branded else ("counter" if cur["_module"] == "counter" else "default")
         kind = pacing["transitions"][role]
+        if isinstance(kind, list):
+            kind, turns[role] = kind[turns.get(role, 0) % len(kind)], turns.get(role, 0) + 1
         dur = pacing["transition_frames"]
         tr = {"type": kind, "frame": cur["start"], "duration": dur}
         next_bg = theme["surfaces"][cur["bg"]]["bg"]

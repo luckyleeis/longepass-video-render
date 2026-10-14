@@ -6,10 +6,11 @@ video-studio 명령 (외부 API 호출 없음).
   (--aspect 기본 16:9. 9:16 = 쇼츠에서 쓸 수 있는 템플릿만)
   bin/studio render   JOB.json [--no-render]                          작업 파일 → 영상/자막/메타 (render.py 참고)
   bin/studio thumbnail JOB.json                                       썸네일 JPEG (thumbnail.py 참고)
+  bin/studio preview  JOB.json [--max-shots N] [--all]                 샷별 정지 화면만 빠르게 (preview.py 참고)
   bin/studio check                                                    템플릿 명세·코드 규칙 검사 + templates/index.ts 갱신
   bin/studio list                                                     템플릿 목록
   bin/studio styles                                                   스타일 목록
-  bin/studio gallery [스타일 …] [--only id,id] [--aspect 9:16]        템플릿 × 스타일 미리보기 (out/gallery)
+  bin/studio gallery [스타일 …] [--only id,id] [--aspect 9:16]        템플릿 × 스타일 미리보기 (out/gallery). 스타일을 빼면 운영 스타일(showreel)만
 
 결과 JSON은 stdout, 진행 로그는 stderr 로 나간다.
 """
@@ -65,10 +66,14 @@ def cmd_thumbnail(a) -> int:
 
 
 def cmd_preview(a) -> int:
+    import os
     from studio.preview import render_preview
     with open(a.job, "r", encoding="utf-8") as f:
         job = json.load(f)
-    _out(render_preview(job, max_shots=a.max_shots, extract_all=a.all))
+    base = os.path.dirname(os.path.abspath(a.job))
+    if job.get("out_dir") and not os.path.isabs(job["out_dir"]):
+        job["out_dir"] = os.path.join(base, job["out_dir"])
+    _out(render_preview(job, max_shots=a.max_shots, extract_all=a.all, base_dir=base))
     return 0
 
 
@@ -94,7 +99,9 @@ def cmd_list(a) -> int:
 def cmd_styles(a) -> int:
     for n in list_styles():
         st = get_style(n)
-        print(f"{n:14} {st.get('media', 'clean'):7} {st.get('description', '')}")
+        mark = "*" if st.get("active") else " "
+        print(f"{mark} {n:14} {st.get('media', 'clean'):7} {st.get('description', '')}")
+    print("(* = 운영 스타일. 나머지는 보관용)")
     return 0
 
 
@@ -105,7 +112,8 @@ def cmd_gallery(a) -> int:
         return 1
     catalog.write_index()
     only = a.only.split(",") if a.only else None
-    for n in a.styles or list_styles():
+    from studio.styles import active_styles
+    for n in a.styles or active_styles():   # 스타일을 빼면 운영 스타일(showreel)만
         gallery.render_style(n, only, a.aspect)
     if a.aspect == "16:9":
         print(gallery.write_html())

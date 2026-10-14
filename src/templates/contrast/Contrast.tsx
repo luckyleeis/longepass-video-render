@@ -37,7 +37,7 @@ const Contrast: React.FC<TemplateProps> = ({ data, ev, ink, sub, surf }) => {
     <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap }}>
       <div style={{ position: 'relative', transform: `scale(${impact ? 1.6 - 0.6 * c : 1.1 - 0.1 * c})`, opacity: Math.min(1, c * 2) }}>
         {marker && <Mark style={highlightStyle(t, surf, mark, charSize)} seed="contrast" />}
-        <div style={{ position: 'relative', zIndex: 1, fontSize: charSize, fontWeight: 900, lineHeight: 1, color: marker ? ink : t.primary, textShadow: t.skin.shadow === 'offset' ? `${shadow}px ${shadow}px 0 ${sub}` : 'none' }}>{data.char}</div>
+        <div style={{ position: 'relative', zIndex: 1, fontSize: charSize, fontWeight: 900, lineHeight: 1, color: marker ? ink : t.primary, textShadow: t.skin.shadow === 'offset' ? `${shadow}px ${shadow}px 0 ${surf.shade || sub}` : 'none' }}>{data.char}</div>
       </div>
       <div style={{ fontSize: size, fontWeight: 900, color: ink, lineHeight: 1.2, width: perLine * size, flexShrink: 0, textWrap: 'balance', opacity: tx, transform: riseTransform(t, tx, 1.5, 'x') } as React.CSSProperties}>{text}</div>
     </div>

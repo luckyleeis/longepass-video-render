@@ -5,6 +5,15 @@
 
 ---
 
+## 2026-10-14 (6) — 템플릿 확인용 웹서버
+
+- `npm run studio`(Remotion Studio, :3333)는 원래 있었다. 다만 `src/Root.tsx`의 템플릿 목록이 손으로 적은 목록이라 새 6종과 `headline_object`가 빠져 있었다.
+  - 이제 `mockProps.json`의 `category`로 **자동으로 묶는다** (`Templates/<번호>-<갈래>/<템플릿>`).
+- `npm run gallery`: `out/gallery`(정지 화면 표, `bin/studio gallery` 결과)를 :3334로 띄운다.
+- 확인: 이 세션에서 Studio를 띄우고 헤드리스 브라우저로 `photo-full`을 열었다. 목록·재생·사진 소재 트랙이 나왔다. 타입 검사 0건.
+
+---
+
 ## 2026-10-14 (5) — 남은 화면 문제 5건 수정, TTS를 실제 서버 형식으로, 숏폼 작업
 
 ### 화면 수정 (showreel 갤러리와 릴 프레임으로 확인)

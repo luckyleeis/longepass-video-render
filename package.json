@@ -4,7 +4,8 @@
   "description": "Template-based motion video renderer (no external APIs)",
   "scripts": {
     "studio": "remotion studio --port 3333",
-    "render": "remotion render"
+    "render": "remotion render",
+    "gallery": "python3 -m http.server 3334 --directory out/gallery"
   },
   "dependencies": {
     "@remotion/bundler": "^4.0.0",

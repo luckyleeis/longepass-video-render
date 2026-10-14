@@ -49,6 +49,16 @@ bin/studio list | styles
 bin/lp                                                       # 에이전트 방식 명령 전체 (작업 폴더·소재·TTS·점검·렌더링)
 ```
 
+## 템플릿 눈으로 보기 (로컬 웹서버)
+
+```bash
+npm run studio     # Remotion Studio → http://localhost:3333
+                   #   왼쪽 Templates/<갈래>/<템플릿> 를 고르면 예시가 움직이며 재생된다 (사진 템플릿은 public/samples 샘플)
+                   #   Motion / Thumbnail 은 작업 파일(props)을 넣어 볼 때
+npm run gallery    # 정지 화면 표 → http://localhost:3334 (먼저 bin/studio gallery 로 out/gallery 를 만든다)
+```
+- Studio의 템플릿 목록과 예시는 `bin/studio check`가 만드는 `src/templates/mockProps.json`에서 온다. 새 템플릿을 만들었으면 check를 한 번 돌린다.
+
 ## 구조
 
 - `src/templates/<id>/` — 템플릿 (manifest.json + 컴포넌트). 작성법: [TEMPLATE_GUIDE.md](TEMPLATE_GUIDE.md)

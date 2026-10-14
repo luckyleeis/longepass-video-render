@@ -32,7 +32,7 @@ const ScreenFocus: React.FC<TemplateProps> = ({ data, ev, dur, ink, surf }) => {
 
   // 틀과 보이는 창(viewport) 크기
   const top = data.title ? L.contentTop - 10 : Math.round(L.H * 0.1);
-  const maxH = L.H - top - Math.round(L.H * 0.12);
+  const maxH = L.H - top - Math.round(L.H * 0.2);   // 아래 20%는 자막 자리
   const bar = device === 'browser' ? 58 : 0;
   const border = phone ? 18 : t.skin.cardBorder;
   const vh = Math.round(maxH - bar - border * 2);

@@ -1,20 +1,22 @@
 # video-studio 작업 규칙 (에이전트용)
 
-이 저장소는 영상 **렌더링 엔진**이다. 여기서 일하는 에이전트는 템플릿을 만들고 고치고, 렌더링 결과를 확인한다.
-에이전트 방식으로 초안에서 영상을 만들 때는 [.claude/skills/make-video/SKILL.md](.claude/skills/make-video/SKILL.md)를 따른다.
+이 저장소는 LONGEPASS 영상의 **렌더링 엔진**(`studio/`, `src/`)과 **에이전트 방식 도구**(`agent/`, `bin/lp`)다.
+사용자의 맥에서 로컬로 돌아간다. 여기서 일하는 에이전트는 템플릿을 만들고 고치고, 초안으로 영상을 만든다.
+에이전트 방식으로 초안에서 영상을 만들 때는 [CHANNEL.md](CHANNEL.md)(채널 규칙)와 [.claude/skills/make-video/SKILL.md](.claude/skills/make-video/SKILL.md)를 따른다.
 지난 작업 기록과 남은 일은 [WORKLOG.md](WORKLOG.md)에 있다. 작업을 시작하기 전에 먼저 읽는다.
 
 ## 영상 만드는 방식 (두 가지)
 1. **백엔드 방식**: py-macmini-server(다른 저장소)가 계획·음성·이미지를 담은 job.json을 보낸다. 이 저장소는 렌더링만 한다.
-2. **에이전트 방식**: 사람이 초안을 주면 에이전트가 분석·조사·자료 수집·구성·렌더링을 한다 (make-video 스킬).
+2. **에이전트 방식**: 사람이 초안을 주면 에이전트가 사실 확인·대본·소재·TTS·렌더링을 한다 (make-video 스킬, `bin/lp`).
 
 예전의 "LLM 여러 번 호출(초안 → 검수 → 렌더 → 검수)" 방식은 쓰지 않는다. `bin/studio preview`는 에이전트 방식의 빠른 확인용으로 남겨 두었다.
 
 ## 지켜야 할 것
 
-- **저장소 코드에 외부 호출을 넣지 않는다.** LLM/TTS/DB/업로드 API를 부르는 코드나 인터넷에서 자료를 받는 코드를 넣지 않는다. 네트워크가 필요한 패키지를 새로 들이지 않는다 (필요하면 사람에게 먼저 묻는다).
-  - 에이전트 방식에서 에이전트가 **자기 도구**(웹 검색·브라우저 등)로 자료를 찾는 것은 괜찮다. 받은 파일은 `out/agent/<slug>/`에 두고, 렌더링은 로컬 파일만 읽는다.
-- **이 저장소 밖을 쓰지 않는다.** 결과는 `out/` 또는 작업 파일(job.json)이 지정한 `out_dir`에만 둔다.
+- **네트워크는 `agent/`(bin/lp)에서만 쓴다.** 렌더링 엔진(`studio/`, `src/`)에는 외부 호출(LLM/TTS/DB/업로드/다운로드)을 넣지 않는다. 엔진은 로컬 파일만 읽는다 — 백엔드 방식도 같은 엔진을 쓴다.
+  - `agent/`가 부르는 것: 설정된 TTS·받아쓰기 서버, 스톡 API(Pexels·Pixabay·Unsplash), 위키미디어 커먼즈, 로컬 크롬(화면 캡처). 표준 라이브러리만 쓴다. 네트워크가 필요한 패키지를 새로 들이지 않는다 (필요하면 사람에게 먼저 묻는다).
+  - **API 키는 `longepass.keys.json`(git 제외)에서만 읽는다.** 출력하거나 다른 파일·로그·커밋에 옮기지 않는다. 설정은 `longepass.config.json`(git 제외, 예시 `longepass.config.example.json`).
+- **이 저장소 밖을 쓰지 않는다.** 결과는 `out/`, 작업 파일(job.json)이 지정한 `out_dir`, 또는 설정의 `workspace`(에이전트 작업 폴더)에만 둔다.
 - **운영 스타일은 showreel 하나다.** longepass, sketch_demo는 보관용이라 템플릿을 만들거나 고칠 때 고려하지 않는다 (지우지도 않는다).
 - **템플릿 규칙은 [TEMPLATE_GUIDE.md](TEMPLATE_GUIDE.md)를 따른다.** 특히:
   - 색은 스타일 값(`surf`, `t.primary` …)으로만, 도형은 그림 재료 층(`src/kit/media.tsx`) 부품으로만 그린다.
@@ -37,6 +39,7 @@ bin/studio catalog --project longepass --style showreel
 bin/studio validate raw.json --project longepass --style showreel --out plan.json
 bin/studio preview job.json [--all]                   # 샷별 정지 화면만 빠르게
 bin/studio render job.json [--no-render]
+bin/lp where | new | status | plan | search | get | capture | add | tts | job | preview | render | thumb   # 에이전트 방식 (bin/lp 만 치면 사용법)
 npx -y -p typescript@5 tsc --noEmit --jsx react-jsx --esModuleInterop --resolveJsonModule --skipLibCheck --strict \
   --moduleResolution bundler --module esnext --target es2022 src/motion/MotionVideo.tsx src/thumbnail/Thumbnail.tsx   # 타입 검사
 ```

@@ -5,3 +5,7 @@ __pycache__/
 *.py[oc]
 .DS_Store
 .agent-home/
+# 에이전트 방식 로컬 설정·API 키 (절대 올리지 않는다)
+longepass.config.json
+longepass.keys.json
+*.keys.json

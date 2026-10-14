@@ -1,147 +1,143 @@
 ---
 name: make-video
-description: 초안(글·메모·기사·링크)을 받아 에이전트가 직접 분석·조사·자료 수집·구성·렌더링까지 해서 최종 영상(mp4)을 만든다. "이 초안으로 영상 만들어줘", "에이전트 방식으로 영상", /make-video 일 때 쓴다. 백엔드(py-macmini-server)가 job.json을 보내는 방식과는 별개다.
+description: 사용자 초안(글·메모·기사·링크)으로 LONGEPASS 영상을 만든다. 에이전트가 사실 확인, 대본·샷 구성, 소재 찾기(스톡·커먼즈·화면 캡처), TTS 나레이션을 하고 렌더링까지 한다. "이 초안으로 영상 만들어줘", "에이전트 방식으로 영상", /make-video 일 때 쓴다. 이어 하기도 이 스킬로 한다 (bin/lp status).
 ---
 
-# 에이전트 방식 영상 제작
+# 에이전트 방식 영상 제작 (LONGEPASS)
 
-영상 제작 방식은 두 가지다 (WORKLOG.md 참고).
-1. **백엔드 방식** — py-macmini-server가 계획·음성·이미지를 담은 job.json을 보내고 이 저장소는 렌더링만 한다.
-2. **에이전트 방식 (이 스킬)** — 사람이 초안을 주면 에이전트가 내용을 분석하고, 이미지·관련 자료·추가 정보를 직접 찾아 넣어 최종 영상까지 렌더링한다.
+**먼저 [CHANNEL.md](../../../CHANNEL.md)를 읽는다.** 톤·구성·사실·소재·나레이션·화면 리듬 규칙은 거기에 있다.
+모든 작업은 `bin/lp` 명령으로 하고, 결정은 대화가 아니라 파일(`log.md`, `status.json`)에 남긴다.
+그래야 다음 세션이 이어받을 수 있다.
 
-렌더링 엔진과 템플릿은 두 방식이 같다. 다른 점은 계획(plan)과 자료(assets)를 누가 만드느냐뿐이다.
+이 저장소는 사용자의 맥에서 로컬로 돌아간다. 처음 한 번 준비할 것:
+- `npm ci && npx remotion browser ensure`
+- `longepass.config.example.json`을 `longepass.config.json`으로 복사하고 TTS 주소·목소리를 정한다.
+- `longepass.keys.json`에 스톡 API 키를 넣는다 (Pexels, Pixabay, Unsplash 중 있는 것).
+- 화면 캡처용 Google Chrome
+- 확인: `bin/lp where`
 
 ## 지켜야 할 것
+- **사용자 초안은 고치지 않는다** (`draft.md`). 방향은 초안이 정한다. 사실은 바로잡고 기록한다 (CHANNEL.md 「초안은 사용자가」).
+- **지어내지 않는다.** 숫자·기한·조건·인용은 원문을 확인한 것만 쓴다 (`notes.md` 사실 카드, 등급 X는 쓰지 않음).
+- **소재는 라이선스가 분명한 것만** 쓴다. `bin/lp get/capture/add`로 받아야 출처가 자동으로 기록된다. 브라우저로 직접 저장한 그림은 `bin/lp add`로 출처와 함께 넣는다.
+- **API 키를 출력하거나 파일·로그에 옮기지 않는다.**
+- 작업물은 작업 폴더(`bin/lp where`의 workspace, 기본 `out/agent/<slug>/`)에만 둔다. 저장소의 `public/`에 소재를 넣지 않는다.
+- 최종 렌더링(`bin/lp render`)은 사용자가 요청할 때만 한다.
+- 렌더링 엔진(`studio/`)에 네트워크 코드를 넣지 않는다. 외부 호출은 `agent/`(bin/lp)에만 있다.
 
-- **저장소 코드에는 외부 호출을 넣지 않는다.** 자료 검색·다운로드·화면 캡처는 에이전트가 자기 도구(웹 검색, 웹 가져오기, 브라우저, 이미지 생성 도구 등 그 세션에서 쓸 수 있는 것)로 한다. 렌더링은 로컬 파일만 읽는다 (`assets`에 인터넷 주소를 넣으면 무시된다).
-- **작업 파일은 전부 `out/agent/<slug>/` 안에.** (`out/`은 git에 들어가지 않는다)
-- **지어내지 않는다.** 숫자·날짜·규정·인용은 출처를 확인한 것만 쓴다. 확인 못 한 것은 영상에 넣지 않거나 "확인 필요"로 사람에게 보고한다. `quote_card`는 실제 출처가 있을 때만 쓴다.
-- **자료는 쓸 권리가 분명한 것만.** 다음 중 하나만 쓴다:
-  - 직접 만든 것 (화면 캡처, 생성 이미지, 직접 그린 것)
-  - 퍼블릭 도메인이나 CC0
-  - CC BY 계열 (`credit`에 저작자와 라이선스를 적는다)
-  - 정부 공개 자료 (출처를 적는다)
-  - 사람이 준 것
+## 작업 폴더 (`<workspace>/<slug>/`)
+| 파일 | 누가 | 내용 |
+|---|---|---|
+| `draft.md` | 사용자 | 초안 (`bin/lp new … --draft`) |
+| `notes.md` | 에이전트 | 분석, 사실 카드(등급·출처·확인 날짜), 초안에서 고친 것, 필요한 그림, 물을 것 |
+| `raw_plan.json` | 에이전트 | 대본 + 샷 배정 (아래 형식) |
+| `plan.json` | `bin/lp plan` | 검증 결과 + `report` (replaced / warnings / variety / missing_assets) |
+| `assets/` | `bin/lp get/capture/add` | 소재 + `_credits.json`(출처) + `_search.json`(마지막 검색) |
+| `voice/` | `bin/lp tts` | 문장별 캐시, 장별 `chNN.mp3`, `voices.json`(글자 시각) |
+| `job.json` | `bin/lp job` | 렌더링 작업 파일 |
+| `render/` | `bin/lp preview/render/thumb` | `preview/` 정지 화면, mp4·srt·json·thumbnail.jpg |
+| `status.json` · `log.md` | `bin/lp stage/log` | 단계와 남은 일 · 결정 기록 |
 
-  라이선스를 모르면 쓰지 않는다. 자료 칸을 비워 두면 템플릿이 아이콘 화면으로 대신 그린다.
-- 운영 스타일은 **showreel** 하나다 (`--style showreel`). 다른 스타일은 고려하지 않는다.
-- 화면 글자와 내레이션은 스타일 언어(**zh-tw, 대만 번체**)로 쓴다. 초안이 다른 언어여도 그렇다. 사람이 다르게 말하면 그 말을 따른다.
-
-## 작업 폴더
-
-```
-out/agent/<slug>/
-  draft.md          받은 초안 그대로
-  notes.md          분석·조사 메모: 핵심 메시지, 확인한 사실과 출처 URL, 못 찾은 것
-  assets/           모은 자료 (이미지·짧은 영상·화면 캡처)
-  raw_plan.json     내가 쓴 계획
-  plan.json         bin/studio validate 결과
-  job.json          렌더링 작업 파일 (상대 경로는 이 폴더 기준)
-  render/           최종 mp4·srt·json (render/preview/ = bin/studio preview 정지 화면)
-```
+단계: `draft → plan → assets → voice → built → rendered` (`bin/lp stage <slug> <단계> "남은 일" …`)
 
 ## 순서
 
-### 1. 분석 → notes.md
-- 누가 보는 영상인지, 보고 나서 무엇을 하게 할지 (행동 하나).
-- 핵심 메시지 3개 이내. 영상 길이는 초안 분량에 맞춘다 (보통 1~3분, 장 2~5개).
-- 사실 확인이 필요한 문장, 그림이 필요한 장면 (사진 / 화면 캡처 / 인용), 숫자 장면 (counter, bar_chart …) 목록.
+### 0. 시작 / 이어 하기
+```bash
+bin/lp new <slug> "영상 제목" --draft 초안.md   # slug: 영문 소문자·숫자·-
+bin/lp status <slug>                            # 이어 하기: 단계·남은 일 + log.md 를 읽고 남은 일부터
+```
 
-### 2. 조사와 자료 모으기 → notes.md, assets/
-- 숫자와 규정은 공식 출처(정부·기관 원문)를 우선한다. 출처 URL과 확인 날짜를 notes.md에 남긴다.
-- 그림이 필요한 장면마다 하나씩 구한다:
+### 1. 초안 분석과 사실 확인 → `notes.md`
+- 누가 보는 영상인지, 보고 나서 할 행동 하나, 핵심 메시지 3개 이내를 적는다.
+- 초안의 모든 사실 주장을 원문으로 확인한다. 웹 검색이나 브라우저 등 그 세션에서 쓸 수 있는 도구를 쓴다. 사실 카드 표에 등급, 출처 URL, 확인 날짜를 적는다.
+- 틀린 것은 바로잡는다: `bin/lp log <slug> "金額 3萬→2萬 (勞動部 公告 2026-xx)"`.
+- 거부할지 판단한다 (CHANNEL.md): 바로잡으면 중심 주장이 무너지는 경우 등. 거부하면 근거와 함께 사용자에게 보고하고 멈춘다.
+- 필요한 그림 목록을 적는다 (장면 → 사진 / 영상 / 화면 캡처 → 찾을 말).
 
-  | 장면 | 자료 | 템플릿 |
-  |---|---|---|
-  | 장소·사람·사물·현장 | 사진, 짧은 영상 (무음으로 쓰임) | `photo_full`, `photo_split`, `photo_collage` |
-  | 근거가 되는 공식 페이지·앱 화면·문서 | 화면 캡처 PNG | `screen_focus` (확대할 영역을 0~1 비율로) |
-  | 기관·기사·사람의 말 | (선택) 인물·기관 사진 | `quote_card` |
-
-- 파일은 `assets/` 에 저장하고, 각 자료의 `credit`, `source`, `license`를 기록한다.
-- 화면 캡처는 글자가 읽히게 폭 1200~1600px로 찍는다. `screen_focus.focus`에는 강조할 부분의 위치를 캡처 기준 비율로 적는다.
-- 못 구하면 비워 둔다. 템플릿마다 `icon` 칸이 대체 그림이다.
-
-### 3. 계획 쓰기 → raw_plan.json
-- 쓸 수 있는 템플릿과 칸 목록:
-  ```bash
-  bin/studio catalog --project longepass --style showreel
-  ```
-- 형식 (백엔드 LLM이 쓰는 것과 같다):
+### 2. 대본 + 샷 배정 → `raw_plan.json`, 그리고 `bin/lp plan`
+- 템플릿과 칸 목록: `bin/lp templates`. 예시 모양은 `src/templates/<id>/manifest.json`의 `examples`를 본다.
+- 형식 (백엔드 LLM 계획과 같다):
   ```json
   {
     "video_title": "…", "description": "…", "hashtags": ["…"], "music_mood": "motivating",
-    "thumbnail": {"layout": "focus", "text": "…", "emphasis": "…", "object": "certificate"},
+    "thumbnail": {"layout": "stat", "text": "…", "emphasis": "…", "stat": "20,000", "stat_unit": "元", "object": "cash"},
     "chapters": [
       {"title": "장 제목", "shots": [
-        {"module": "photo_full", "narration": "이 샷에서 읽을 문장", "data": {"image": "hero", "lines": ["…"], "icon": "train"},
-         "cues": {"lines": ["내레이션 속 단어", "…"]}},
+        {"module": "photo_full", "narration": "이 샷에서 읽을 문장。", "data": {"image": "hero", "lines": ["…"], "icon": "train"},
+         "cues": {"lines": ["나레이션 속 단어"]}},
         {"module": "board", "data": {…}, "beats": [{"narration": "…", "data": {…}, "cues": {…}}]}
       ]}
     ]
   }
   ```
-  - `data`의 asset 칸에는 job.json `assets`의 id를 쓴다 (또는 job 폴더 기준 파일 경로).
-  - `cues`는 "이 요소가 나타날 때 말하는 단어"다. 그 샷의 내레이션에 실제로 있어야 한다.
-  - `examples`의 모양은 `src/templates/<id>/manifest.json`의 `examples`를 본다.
-- **화면이 단조롭지 않게** (이 저장소의 템플릿은 디자인을 공유해서 섞지 않으면 비슷해 보인다):
-  - 같은 템플릿을 연달아 쓰지 않는다. 같은 갈래(category)를 세 번 연달아 쓰지 않는다.
-  - 4~5샷마다 카드가 없는 화면을 하나 넣는다: `photo_full`, `word_slam`, `quote_card`, `contrast`, `counter`.
-  - 근거가 있는 주장은 `screen_focus`나 `quote_card`로 출처를 직접 보여 준다.
-  - `photo_split`의 `side`는 번갈아 쓴다.
-  - 첫 샷(훅)은 `photo_full` 또는 `title_card`나 `headline`으로 강하게 연다. 마지막은 `outro`로 닫는다.
+  - `narration`은 zh-tw다. 문장은 짧게 쓰고 `。！？`로 끝낸다 (TTS가 문장마다 읽는다).
+  - asset 칸(`image` 등)에는 **소재 id**(assets/의 파일 이름에서 확장자를 뺀 것)를 쓴다. 아직 없어도 된다. 3단계에서 그 이름으로 받는다.
+  - `cues`는 그 샷 나레이션에 실제로 있는 단어여야 한다.
+  - 화면 리듬은 CHANNEL.md 「화면 리듬」을 따른다 (같은 템플릿 연속 금지, 4~5샷마다 카드 없는 화면, 근거는 `screen_focus`/`quote_card`).
+- `bin/lp plan <slug>`:
+  - `replaced`(형식 오류 → headline으로 대체)는 반드시 고친다.
+  - `warnings`(글자 수 초과)는 줄인다.
+  - `variety`는 가능하면 고친다.
+  - `missing_assets`는 3단계에서 받을 목록이다.
+- `bin/lp stage <slug> plan "소재 받기: …"`
 
-### 4. 검증 → plan.json
+### 3. 소재 → `assets/`
 ```bash
-bin/studio validate out/agent/<slug>/raw_plan.json --project longepass --style showreel --out out/agent/<slug>/plan.json
+bin/lp search <slug> "taipei office worker" [--video] [--portrait] [--site pexels,pixabay,unsplash,commons]
+bin/lp get <slug> <번호> <id> [--start 초 --dur 초] [--focus x,y]     # 목록 번호로 받기 (출처 자동 기록)
+bin/lp get <slug> "File:이름.jpg" <id>                               # 커먼즈 파일 이름으로
+bin/lp capture <slug> <URL> <id> [--mobile]                          # 공고·안내 페이지 캡처 (screen_focus)
+bin/lp add <slug> <파일> <id> --credit "…" --license "…" [--source URL]   # 사용자가 준 파일
 ```
-- `report.replaced`: 형식이 틀려 `headline`으로 바뀐 샷이다. 반드시 고친다.
-- `report.warnings`: 글자 수 초과 등. 화면에서 넘칠 수 있으니 줄인다.
-- `report.variety`: 반복 경고. 가능하면 고친다.
+- 스톡은 영어 검색어가 잘 맞는다. 현대 장면에만 쓴다. 영상은 움직임이 고른 구간만 `--start --dur`로 자른다(최대 30초).
+- `--focus x,y`는 잘릴 때 남길 중심이다 (얼굴, 글자 부분).
+- `screen_focus`의 `focus`(확대 영역)는 캡처를 보고 0~1 비율로 정한다.
+- 못 구한 소재는 비워 둔다. 템플릿이 `icon`으로 대신 그린다. 사용자에게 보고할 목록에 넣는다.
+- 다시 `bin/lp plan <slug>`를 돌려 `missing_assets`가 비었는지 본다.
 
-### 5. 작업 파일 → job.json
-```json
-{
-  "style": "showreel",
-  "plan": { plan.json 내용 },
-  "out_dir": "render",
-  "name": "<slug>",
-  "voices": [],
-  "assets": {
-    "hero": {"path": "assets/hero.jpg", "credit": "攝影：… / CC BY 4.0", "source": "https://…", "license": "CC BY 4.0", "focus": [0.5, 0.4]}
-  }
-}
-```
-**음성 (`voices`, 장마다 하나)**
-- 음성 파일과 글자별 시각이 있으면 `{"audio": "ch00.mp3", "char_times": [[ms, ms], …], "clip_end": ms}`. 가장 정확하다.
-- 음성 파일만 있으면 `{"audio": "ch00.mp3"}`. 글자를 음성 길이에 고르게 나눈다. 대략 맞는 수준이다.
-- 비워 두면 `[]`. 음성 없이 자막과 음악만 나오고, 글자당 0.2초로 시각을 가정한다.
-- 이 세션에서 TTS를 쓸 수 없으면 무음으로 만들고 그 사실을 보고한다. 음성 API를 저장소 코드에 넣지 않는다.
-
-자세한 형식: `studio/render.py`, `studio/assets.py` 맨 위.
-
-### 6. 프리뷰로 고치기 (전체 렌더링 전에 꼭)
+### 4. 나레이션 → `voice/`
 ```bash
-bin/studio preview out/agent/<slug>/job.json --all
+bin/lp tts <slug>                 # 바뀐 장만 다시 (문장 캐시)
+bin/lp tts <slug> --chapter 2     # 특정 장만 / --force 전부 새로
 ```
-- `out/agent/<slug>/render/preview/shot_XX_<template>.png`를 하나씩 직접 열어 본다.
-- 글자 넘침·겹침, 안 보이는 글자, 빈 화면, 자료가 잘못 잘림(→ `focus` 조정), 엉뚱한 사진이 있으면 고친다.
-- 고칠 때는 raw_plan.json → 4번 → 6번을 반복한다.
+- `warnings`에 "대본과 다르게 읽음"이 있으면 그 문장을 고쳐 쓰거나(숫자 표기, 쉼표) 다시 만든다.
+- TTS 서버를 쓸 수 없으면 `bin/lp job <slug> --silent`로 무음 영상을 만들고, 그 사실을 보고한다.
 
-### 7. 렌더링
+### 5. 점검 → `job.json`, 그리고 정지 화면으로 고치기
 ```bash
-bin/studio render out/agent/<slug>/job.json
-bin/studio thumbnail <썸네일 작업 파일>      # 형식은 studio/thumbnail.py 맨 위 (style 생략 시 showreel)
+bin/lp job <slug>         # job.json + 렌더링 없이 점검 (길이, 샷 수, 자료 경고)
+bin/lp preview <slug>     # 샷마다 정지 화면 → render/preview/shot_XX_<템플릿>.png
 ```
-- 결과는 `render/<slug>.mp4`, `.srt`, `.json`이다. `.json`의 `assets`가 출처 목록이고, `warnings`는 못 읽은 자료다.
-- 장이 시작하는 곳과 사진 장면에서 프레임을 뽑아 다시 본다:
+- 정지 화면을 **하나씩 직접 열어 본다**. 볼 것:
+  - 글자 넘침·겹침
+  - 자막 자리 침범
+  - 엉뚱한 사진
+  - 잘린 얼굴·글자 → `--focus`
+  - 빈 화면
+- 고칠 때는 `raw_plan.json` → `bin/lp plan` → (`bin/lp tts`) → `bin/lp job` → `bin/lp preview` 순서로 다시 돈다.
+- `bin/lp stage <slug> built "사용자 확인 후 렌더링"`
+
+### 6. 렌더링과 납품 (사용자가 요청할 때)
+```bash
+bin/lp render <slug>      # render/<slug>.mp4 · .srt · .json
+bin/lp thumb <slug>       # render/thumbnail.jpg
+```
+- 장이 시작하는 곳과 사진 장면에서 프레임을 뽑아 확인한다:
   ```bash
   ffmpeg -ss <초> -i render/<slug>.mp4 -frames:v 1 render/check_<초>.png
   ```
+- 사용자에게 보고할 것:
+  - 영상, 자막, 썸네일 경로
+  - **설명란 출처 목록**: `render/<slug>.json`의 `assets`(credit, source, license)와 `music`
+  - 바로잡은 사실
+  - 확인 못 한 것
+  - 아이콘으로 대체된 장면
+  - 음성 경고
 
-### 8. 보고
-- 영상, 자막, 썸네일 경로.
-- 영상 설명란에 넣을 출처 목록: `render/<slug>.json`의 `assets`와 `music`.
-- 확인하지 못한 사실, 못 구한 자료(아이콘으로 대체된 장면), 음성이 없는지 여부.
+## 피드백 받기
+사용자 피드백은 그 영상만 고치고 끝내지 않는다. 일반 규칙이면 날짜와 함께 CHANNEL.md 「피드백으로 생긴 규칙」에 쌓는다.
+검사로 만들 수 있으면 `studio/plan.py`의 `variety_report`에 넣는다.
 
 ## 템플릿이 모자랄 때
-새 장면 모양이 필요하면 TEMPLATE_GUIDE.md를 따라 템플릿을 추가한다. 이때는 `CLAUDE.md`의 끝내기 전 확인을 지킨다.
+새 화면 모양이 필요하면 TEMPLATE_GUIDE.md를 따라 템플릿을 추가한다 (CLAUDE.md 「끝내기 전에 반드시」).

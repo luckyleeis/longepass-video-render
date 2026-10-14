@@ -1,6 +1,8 @@
 # video-studio
 
-템플릿 기반 모션 영상 **렌더링 전용** 저장소. 외부 API(LLM, TTS, DB, 업로드)를 부르지 않는다.
+LONGEPASS 템플릿 기반 모션 영상 저장소. 사용자의 맥에서 로컬로 돌아간다.
+- **렌더링 엔진** (`studio/`, `src/`, `bin/studio`): 외부 API(LLM, TTS, DB, 업로드)를 부르지 않는다. 로컬 파일만 읽는다.
+- **에이전트 방식 도구** (`agent/`, `bin/lp`): TTS 서버, 스톡·커먼즈 소재 검색, 화면 캡처. 네트워크는 여기서만 쓴다. 채널 규칙은 [CHANNEL.md](CHANNEL.md)에 있다.
 
 영상을 만드는 방식은 두 가지다.
 
@@ -23,6 +25,12 @@ npm ci && npx remotion browser ensure
 ```
 Python은 표준 라이브러리만 쓴다 (3.9+). ffmpeg 필요.
 
+에이전트 방식을 쓰려면 다음을 준비한다 (둘 다 git에 올라가지 않는다).
+- `longepass.config.example.json`을 `longepass.config.json`으로 복사하고 TTS 주소·목소리·작업 폴더를 정한다.
+- `longepass.keys.json`에 `{"pexels": "…", "pixabay": "…", "unsplash": "…"}`를 넣는다 (있는 것만).
+- 화면 캡처에는 Google Chrome이 필요하다.
+- 확인: `bin/lp where`
+
 ## 명령
 
 ```bash
@@ -36,6 +44,8 @@ bin/studio check                                             # 템플릿 명세�
 bin/studio gallery  [스타일 …] [--only 템플릿,…]               # out/gallery/index.html (스타일을 빼면 showreel만)
 bin/studio gallery  showreel --aspect 9:16                 # 세로 쇼츠 화면에서 (out/gallery/9x16)
 bin/studio list | styles
+
+bin/lp                                                       # 에이전트 방식 명령 전체 (작업 폴더·소재·TTS·점검·렌더링)
 ```
 
 ## 구조

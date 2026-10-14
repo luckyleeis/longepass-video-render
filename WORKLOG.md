@@ -5,6 +5,74 @@
 
 ---
 
+## 2026-10-14 (2) — LONGEPASS 제작 방식 확정: 에이전트 도구 bin/lp, 채널 규칙, TTS·소재 검색
+
+### 배경
+- 사용자가 다른 채널 「다큐 그곳」의 작업 방식(에이전트 안내, 채널 규칙, 설정 구조)을 **참고용**으로 보여 줬다. 그대로 따르라는 것이 아니라, TTS·이미지 검색·작업 흐름을 참고해 LONGEPASS 제작 방식을 정하라는 것이다.
+  - 받은 파일 중 API 키 파일이 있었다. 값은 이 저장소 어디에도 옮기지 않았다 (구조만 참고).
+- **이 저장소는 사용자의 맥에서 로컬로 돌아간다.** 클라우드 세션은 수정만 하고, 실제 실행은 로컬에서 한다.
+
+### 정한 방식 (다큐 그곳에서 가져온 것 / 바꾼 것)
+- **가져온 것**
+  - 명령 하나(`./doc` → `bin/lp`)로 모든 작업
+  - 작업 폴더 하나에 파일로 남기기 (draft / notes / plan / assets / voice / log / status)
+  - 단계 관리
+  - 사용자가 초안을 주고 에이전트가 사실 확인·제작 (초안 판정·거부 기준)
+  - 사실 근거 등급 A/B/C/X
+  - 소재 라이선스 목록과 출처 자동 기록(`_credits.json`)
+  - 스톡은 현대 장면에만
+  - 문장 단위 TTS와 문장 사이 쉼
+  - 받아쓰기로 TTS가 대본대로 읽었는지 확인
+  - 피드백을 채널 규칙·검사로 쌓기
+- **바꾼 것**
+  - 웹 UI·작업 서버·깊이맵·기록영상(Internet Archive)·대사 목소리·쇼츠 흐름은 넣지 않았다 (LONGEPASS 정보 영상에 아직 필요 없음).
+  - 렌더링 엔진(`studio/`)은 계속 오프라인이다. 네트워크는 `agent/`에만 있다 — 백엔드 방식이 같은 엔진을 쓰기 때문이다.
+  - 작업 폴더 기본값은 저장소 안 `out/agent`다 (설정으로 NAS 등 바꿀 수 있음).
+
+### 한 일
+- `CHANNEL.md` (새로 만듦): LONGEPASS 채널 규칙 초안. 톤·구성, 초안은 사용자가, 사실과 표기, 나레이션, 화면 리듬, 소재, 소리, 썸네일, 납품. 사람이 정해야 할 것은 (확인 필요)로 표시했다.
+- `agent/` (새로 만듦, 표준 라이브러리만) + `bin/lp`
+  - `config.py`: `longepass.config.json` + 기본값. 키는 `longepass.keys.json`에서만 읽는다 (git 제외).
+  - `episode.py`: 작업 폴더 `new/status/stage/log/list`. notes.md에는 사실 카드 틀을 넣는다.
+  - `tts.py`: plan.json의 장마다 음성을 만든다.
+    - 문장 단위로 OpenAI 호환 음성 API를 부르고, 결과를 캐시한다.
+    - 문장 앞뒤 무음을 자르고, 문장 사이에 `pause_ms`(기본 350)를 넣어 잇는다.
+    - 글자 시각(char_times)은 문장 경계 기준으로, 문장 안은 고르게 나눈다.
+    - 선택: 받아쓰기(stt.url)로 일치율을 확인하고, 낮으면 한 번 다시 만든 뒤 그래도 낮으면 경고한다.
+  - `sources.py`
+    - 검색: Pexels(사진·영상), Pixabay(사진·영상), Unsplash(사진, 받을 때 download_location 호출), 위키미디어 커먼즈(라이선스를 읽어 NC/ND/불명은 뺌).
+    - 받기: 번호 또는 `File:` 이름으로 받는다. 사진은 긴 변 2560px 이하로 줄이고, 영상은 무음 H.264 1920px 이하, `--start --dur`, 최대 30초로 만든다.
+    - 직접 가진 파일은 `add`로 넣는다.
+  - `capture.py`: 크롬 `--headless=new --screenshot`으로 화면을 캡처한다 (데스크톱 1440×1000, `--mobile` 1170×2532). Remotion의 chrome-headless-shell은 `--screenshot`에서 멈춰서 쓰지 않는다. 맥의 Google Chrome을 먼저 찾는다.
+  - `credits.py`: `_credits.json`에 출처를 기록하고, 라이선스를 판정하고, job.json의 assets로 바꾼다.
+  - `build.py`: `plan`(검증 + 안 받은 소재 목록), `job`(job.json + 렌더링 없이 점검), `preview`, `render`(끝나면 단계를 rendered로), `thumb`.
+- `longepass.config.example.json`, `.gitignore`(config·keys 제외)
+- `src/templates/screen_focus`: 틀 아래 여백을 화면 높이의 12%에서 20%로 늘렸다 (제목 없이 쓸 때 틀이 자막과 겹쳤음).
+- `.claude/skills/make-video/SKILL.md`: `bin/lp` 기준으로 다시 썼다.
+- `CLAUDE.md`, `README.md`: 네트워크 경계(엔진 오프라인 / `agent/`만 네트워크), 키 규칙, 로컬 실행.
+
+### 확인한 것
+- 가짜 서버(로컬 HTTP: TTS·받아쓰기·Pexels·Pixabay·Unsplash·커먼즈 응답 흉내)로 전체 흐름을 시험했다: `new → search → get → capture → add → plan → tts → job → preview → render → thumb`. 실제 외부 API와 받은 키는 쓰지 않았다.
+  - 검색: NC 라이선스 결과가 빠졌다. `File:Bad.jpg`(NC)는 받기를 거부했다.
+  - TTS: 앞뒤 무음 자르기, 문장 시각, 글자 수가 나레이션과 일치했다. 다르게 읽은 문장은 다시 만든 뒤 경고가 나왔다. 두 번째 실행은 캐시를 썼다.
+  - 실제 mp4 렌더링: 21초, 사진 6장 + 영상 소재 1개 + 화면 캡처가 출처 표기와 함께 나왔다. 음성이 들어갔다(평균 -15dB). 썸네일과 단계 기록도 됐다.
+  - 화면 캡처: 시험 환경에서는 Playwright 크로미움으로 확인했다 (`LP_CHROME`).
+
+### 확인하지 않은 것 (로컬에서 할 일)
+1. **실제 TTS 서버**: 요청 형식(OpenAI 호환 `/v1/audio/speech`), 대만 화자 목소리, `instructions`를 받는지. 서버가 모르는 칸이 있으면 config에서 빼거나 `extra`로 맞춘다.
+2. **실제 받아쓰기 서버**가 있는지와, 번체/간체 차이로 일치율이 낮게 나오지 않는지. 낮게 나오면 `min_ratio`를 조정한다.
+3. **실제 Pexels·Pixabay·Unsplash·커먼즈 응답**: 필드 이름은 공개 API 문서 기준으로 짰지만 실제 호출로는 확인하지 않았다.
+4. 맥에서의 화면 캡처 (Google Chrome 경로, 한자 글꼴).
+5. 앞 항목(2026-10-14)의 "확인하지 않은 것" 중 남은 것: showreel 전체 갤러리 다시 보기, 세로 쇼츠.
+
+### 사람이 정해야 할 것 (CHANNEL.md의 (확인 필요))
+- TTS 서버와 목소리 (다큐 그곳 서버를 같이 쓸지)
+- 화면 캡처를 어디까지 쓸지 (정부 공고만? 언론 기사?)
+- AI 생성 이미지 허용 여부
+- 작업 폴더 위치 (저장소 안 `out/agent` 또는 NAS)
+
+---
+
 ## 2026-10-14 — showreel 운영 스타일, 사진·영상 자료, 새 템플릿 6종, 에이전트 방식
 
 ### 배경 (사람이 정한 것)

@@ -1,0 +1,59 @@
+"""
+소재 출처 기록: <작업>/assets/_credits.json  {id: {file, kind, title, credit, source, license, site}}
+id = 파일 이름에서 확장자를 뺀 것. 계획(raw_plan)의 asset 칸에는 이 id를 쓴다.
+job.json 의 assets 는 여기서 만든다 (bin/lp job). 렌더링 결과 메타의 assets 가 영상 설명란 출처 목록이 된다.
+"""
+import json
+import os
+from typing import Any, Dict
+
+from agent.episode import Episode
+from studio.assets import kind_of
+
+# 쓸 수 있는 라이선스 (CHANNEL.md 「소재」). 소문자로 비교
+ALLOWED = ("public domain", "pd", "cc0", "cc by", "cc-by", "pexels license", "pixabay content license", "unsplash license",
+           "政府資料開放授權條款", "open government data license", "own", "직접 만듦", "자체 제작", "screenshot", "網站截圖")
+BLOCKED = ("nc", "nd", "non-commercial", "noncommercial", "no derivatives", "all rights reserved", "fair use", "unknown")
+
+
+def license_ok(lic: str) -> bool:
+    s = (lic or "").strip().lower()
+    if not s:
+        return False
+    tokens = s.replace("-", " ").replace("/", " ").split()
+    if any(b in tokens for b in ("nc", "nd")) or any(b in s for b in BLOCKED if len(b) > 2):
+        return False
+    return any(a in s for a in ALLOWED)
+
+
+def path(ep: Episode) -> str:
+    return os.path.join(ep.assets, "_credits.json")
+
+
+def load(ep: Episode) -> Dict[str, Any]:
+    p = path(ep)
+    if not os.path.exists(p):
+        return {}
+    with open(p, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def add(ep: Episode, file_path: str, **info: Any) -> Dict[str, Any]:
+    data = load(ep)
+    aid = os.path.splitext(os.path.basename(file_path))[0]
+    data[aid] = {"file": os.path.basename(file_path), "kind": kind_of(file_path), **{k: v for k, v in info.items() if v not in (None, "")}}
+    with open(path(ep), "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    return data[aid]
+
+
+def to_job_assets(ep: Episode) -> Dict[str, Any]:
+    """job.json 의 assets (경로는 작업 폴더 기준 상대 경로)"""
+    out = {}
+    for aid, c in load(ep).items():
+        if not os.path.exists(os.path.join(ep.assets, c["file"])):
+            continue
+        out[aid] = {k: v for k, v in {
+            "path": f"assets/{c['file']}", "kind": c.get("kind"), "credit": c.get("credit"), "source": c.get("source"),
+            "license": c.get("license"), "focus": c.get("focus")}.items() if v not in (None, "")}
+    return out

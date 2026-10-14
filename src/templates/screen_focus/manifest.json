@@ -13,7 +13,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "Showing evidence from a real source: an official notice, a government web page, a news article or an app screen, then zooming into the exact line that matters (deadline, amount, rule). The source is shown beside the screenshot.",

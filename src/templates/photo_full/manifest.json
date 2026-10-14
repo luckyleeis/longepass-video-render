@@ -13,7 +13,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "A real-world photo or short video clip carries the moment (a place, people, an object, news scene) and one strong line sits on top. Good as a hook, a scene change or a breather between card-style shots.",

@@ -13,7 +13,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "Quoting a source to back a claim: an official notice, a law article, a news sentence, an expert or a real person's words. Always name the source.",

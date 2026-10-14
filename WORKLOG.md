@@ -5,6 +5,32 @@
 
 ---
 
+## 2026-10-14 (4) — AI 이미지 금지, showreel 전체 갤러리·세로 쇼츠 확인
+
+### 사용자가 정한 것
+- **AI 생성 이미지·영상은 쓰지 않는다.**
+
+### 한 일
+- CHANNEL.md 「소재」에 AI 금지를 적었다.
+- `agent/credits.py` `ai_marked()`: 제목·태그·작가·출처·라이선스에 AI 생성 표시(ai generated, midjourney, AI 生成 …)가 있는지 본다.
+  - `bin/lp search`: 표시가 있는 결과를 빼고 몇 개 뺐는지 알린다.
+  - `bin/lp get`·`add`: 표시가 있으면 거부한다. `add`는 라이선스도 검사한다 (NC 거부, 직접 만든 것은 `own`).
+- 새 6종(photo_full, photo_split, photo_collage, screen_focus, quote_card, word_slam)의 manifest `aspect`에 `9:16`을 추가했다.
+
+### 확인한 것
+- **showreel 전체 갤러리(34개)**: 보조 글자색 변경 뒤에도 부제·축 글자·보조 설명이 읽히고, 지나치게 진해진 곳이 없다. 전환 순환도 동작한다.
+- **세로 쇼츠 갤러리(새 6종)**: 넘침·잘림이 없다.
+  - photo_full·photo_split의 사진은 쇼츠에서 가운데 정사각형 무대 안에만 찬다 (위아래는 배경색). 쇼츠 화면 구조상 그렇다.
+- `bin/lp add`에 AI 표시나 NC 라이선스를 주면 거부하는 것을 확인했다.
+
+### 남은 화면 문제 (작은 것)
+- `counter`: 날아다니는 지폐·동전이 「NT$」 글자를 가린다 (showreel).
+- `timeline`: 위쪽 날짜 글자가 노랑(primary)이라 크림 바탕에서 옅다.
+- `word_slam`: 왼쪽 위 로고의 강조 글자(E)가 파란 바탕에서 안 보인다.
+- `flow`·`doodle_scene`: 하단 메모가 노드나 이름표를 가린다 (2026-10-13 점검).
+
+---
+
 ## 2026-10-14 (3) — 사용자 결정 반영: TTS 서버, 캡처 출처 표기, NAS 작업 폴더(.env)
 
 ### 사용자가 정한 것

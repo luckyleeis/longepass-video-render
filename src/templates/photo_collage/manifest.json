@@ -13,7 +13,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "2-4 real examples shown side by side: jobs, places, products, cases, people. Each photo gets a short caption.",

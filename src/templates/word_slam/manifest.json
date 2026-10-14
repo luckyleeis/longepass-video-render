@@ -13,7 +13,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "A punchy rhythm of 2-5 very short words or phrases said one after another (a slogan, a three-beat summary, a turning point). Changes the pace between information shots.",

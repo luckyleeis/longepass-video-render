@@ -13,7 +13,8 @@
     "cut"
   ],
   "aspect": [
-    "16:9"
+    "16:9",
+    "9:16"
   ],
   "llm": true,
   "use_when": "Explaining something concrete that has a real image (a place, a workplace, an exam room, a product, a person's situation) with a short title and up to 4 short points.",

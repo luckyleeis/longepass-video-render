@@ -1,0 +1,174 @@
+{
+  "id": "photo_split",
+  "version": 1,
+  "name": "반 사진 + 요점",
+  "component": "PhotoSplit.tsx",
+  "category": "story",
+  "inspired_by": "매거진 펼침면 — 한쪽은 사진이 끝까지, 다른 쪽은 제목과 요점",
+  "scope": "common",
+  "media": [
+    "clean"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "Explaining something concrete that has a real image (a place, a workplace, an exam room, a product, a person's situation) with a short title and up to 4 short points.",
+  "avoid_when": "Pure numbers or step-by-step processes; more than 4 points (use list).",
+  "fields": {
+    "image": {
+      "type": "asset",
+      "kind": "any",
+      "desc": "photo or short muted video for the half screen"
+    },
+    "side": {
+      "type": "enum",
+      "options": [
+        "left",
+        "right"
+      ],
+      "desc": "image side (alternate between shots)"
+    },
+    "title": {
+      "type": "text",
+      "max": 12,
+      "required": true
+    },
+    "highlight": {
+      "type": "text",
+      "max": 8
+    },
+    "points": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 16,
+        "required": true
+      },
+      "min": 0,
+      "max": 4
+    },
+    "note": {
+      "type": "text",
+      "max": 24,
+      "desc": "small grey line under the points"
+    },
+    "caption": {
+      "type": "text",
+      "max": 10,
+      "desc": "label on the image, e.g. place name"
+    },
+    "icon": {
+      "type": "enum",
+      "options": [
+        "camera",
+        "building",
+        "users",
+        "user",
+        "globe",
+        "car",
+        "school",
+        "briefcase",
+        "cash",
+        "certificate",
+        "doc",
+        "calendar",
+        "phone",
+        "home",
+        "mountain",
+        "road",
+        "store",
+        "plane",
+        "train",
+        "leaf",
+        "heart",
+        "chart",
+        "trend",
+        "shield",
+        "target",
+        "book",
+        "tool",
+        "hammer",
+        "helmet",
+        "coffee",
+        "plant",
+        "sun"
+      ],
+      "desc": "drawn large when the image is missing"
+    }
+  },
+  "events": {
+    "image": {
+      "kind": "single",
+      "at": 0.0
+    },
+    "title": {
+      "kind": "single",
+      "at": 0.05
+    },
+    "points": {
+      "kind": "each",
+      "of": "points",
+      "start": 0.25
+    }
+  },
+  "sfx": {
+    "image": "swish_up",
+    "points": "pop"
+  },
+  "sfx_when": [],
+  "bg": null,
+  "duration": {
+    "min_sec": 4,
+    "max_sec": 14
+  },
+  "examples": [
+    {
+      "narration": "技能檢定的術科考場，其實就是一間真正的工作室，評審會看你的工具擺放、操作順序，還有最後的成品。",
+      "data": {
+        "image": "samples/photo_b.jpg",
+        "side": "left",
+        "title": "術科考場長這樣",
+        "highlight": "術科考場",
+        "points": [
+          "工具擺放",
+          "操作順序",
+          "最後成品"
+        ],
+        "caption": "術科考場",
+        "icon": "tool",
+        "note": "評審三項都會看"
+      },
+      "cues": {
+        "title": "術科的考場",
+        "points": [
+          "工具擺放",
+          "操作順序",
+          "成品"
+        ]
+      }
+    },
+    {
+      "narration": "如果找不到合適的照片，這個畫面也會用大圖示自動補上，版面一樣成立。",
+      "data": {
+        "side": "right",
+        "title": "沒有照片也能用",
+        "points": [
+          "自動換成大圖示",
+          "版面不變"
+        ],
+        "icon": "camera"
+      },
+      "cues": {
+        "title": "找不到合適的照片",
+        "points": [
+          "大圖示",
+          "版面"
+        ]
+      }
+    }
+  ]
+}

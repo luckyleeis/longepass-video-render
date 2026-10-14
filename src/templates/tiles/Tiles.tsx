@@ -39,7 +39,7 @@ const Tiles: React.FC<TemplateProps> = ({ data, ev, ink, surf }) => {
       </div>
       {ev.center !== undefined && (
         <div style={{ position: 'absolute', left: '50%', top: '50%', transform: `translate(-50%, -50%) scale(${0.7 + 0.3 * c})`, opacity: Math.min(1, c * 1.5), textAlign: 'center' }}>
-          <div style={{ fontSize: (center.length <= 2 ? 360 : center.length === 3 ? 250 : 190), fontWeight: 900, color: ink, lineHeight: 0.95, letterSpacing: '-0.04em', whiteSpace: 'nowrap', textShadow: t.skin.shadow === 'offset' ? `0 12px 0 ${surf.sub}` : 'none' }}>{data.center}</div>
+          <div style={{ fontSize: (center.length <= 2 ? 360 : center.length === 3 ? 250 : 190), fontWeight: 900, color: ink, lineHeight: 0.95, letterSpacing: '-0.04em', whiteSpace: 'nowrap', textShadow: t.skin.shadow === 'offset' ? `0 12px 0 ${surf.shade || surf.sub}` : 'none' }}>{data.center}</div>
           {data.center_sub && <Panel fill={ink} radius={999} seed="center-sub" fillStyle="solid" style={{ display: 'inline-block', marginTop: 10, padding: '10px 36px', color: surf.bg, fontSize: 64, fontWeight: 900 }}>{data.center_sub}</Panel>}
         </div>
       )}

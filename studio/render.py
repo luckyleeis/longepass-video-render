@@ -3,11 +3,13 @@
 
 job.json
 {
-  "style": "longepass",                    # styles/<name>.json
+  "style": "showreel",                     # 선택: styles/<name>.json (기본 showreel = 운영 스타일)
   "plan": { 검증된 계획 (bin/studio validate 결과) },
-  "voices": [                              # 챕터 순서대로
+  "voices": [                              # 선택: 챕터 순서대로. 없으면(또는 모자라면) 그 장은 음성 없이 글자 수로 시각을 가정
     {"audio": "/절대경로/ch00.mp3", "char_times": [[시작ms, 끝ms], ...], "clip_end": 밀리초}
+    # char_times 가 없으면 음성 길이에 글자를 고르게 나눈다 (글자 정렬이 없을 때의 대략값 — 에이전트 방식)
   ],
+  "assets": { id: {"path": "/절대경로/a.jpg", "credit": …} },   # 선택: 이미지·영상 자료 (형식은 studio/assets.py)
   "out_dir": "/절대경로/결과폴더",
   "name": "motion",                        # 결과 파일 이름 (기본 motion)
   "music_mood": "bright",                  # 선택: 없으면 plan.music_mood → 스타일 기본 곡
@@ -19,11 +21,11 @@ job.json
 결과 (out_dir)
   <name>.mp4          -14 LUFS로 맞춘 영상
   <name>.srt          자막
-  <name>.json         메타데이터: 길이, 챕터 시각, 음악 저작권 표기, 샷/효과음 수
+  <name>.json         메타데이터: 길이, 챕터 시각, 음악 저작권 표기, 샷/효과음 수, 쓴 자료의 출처 목록(assets)
   props_<name>.json   Remotion에 넘긴 값 (디버깅용)
   <name>.render.log   Remotion 출력 전체 (실패 원인 확인용)
 
-음성 파일은 Remotion이 읽을 수 있게 public/_jobs/<작업>/ 에 잠시 복사했다가 끝나면 지운다.
+음성·자료 파일은 Remotion이 읽을 수 있게 public/_jobs/<작업>/ 에 잠시 복사했다가 끝나면 지운다.
 """
 import hashlib
 import json
@@ -36,7 +38,9 @@ import uuid
 from typing import Any, Dict, Optional
 
 from studio import timeline
-from studio.styles import get_style
+from studio.assets import AssetResolver, probe
+from studio.styles import DEFAULT_STYLE, get_style
+from studio.text import clean_text
 
 logger = logging.getLogger("studio.render")
 
@@ -140,9 +144,20 @@ def _srt(captions) -> str:
     return "\n".join(f"{i + 1}\n{tc(c['start'])} --> {tc(c['end'])}\n{c['text']}\n" for i, c in enumerate(captions))
 
 
-def render_job(job: Dict[str, Any], render: bool = True) -> Dict[str, Any]:
-    """render=False 면 props/자막/메타만 만든다 (빠른 확인용)"""
-    style = get_style(job["style"])
+def _even_char_times(audio: str, chars: int) -> Dict[str, Any]:
+    """글자 정렬이 없는 음성: 음성 길이(앞뒤 여유 제외)에 글자를 고르게 나눈다"""
+    dur_ms = (probe(audio).get("duration") or max(1.0, chars * 0.2)) * 1000
+    lead, tail = min(200.0, dur_ms * 0.05), min(300.0, dur_ms * 0.05)
+    step = max(1.0, (dur_ms - lead - tail) / max(1, chars))
+    return {"char_times": [[lead + i * step, lead + (i + 0.9) * step] for i in range(chars)], "clip_end": dur_ms}
+
+
+def render_job(job: Dict[str, Any], render: bool = True, base_dir: Optional[str] = None, keep_job_dir: bool = False) -> Dict[str, Any]:
+    """
+    render=False 면 props/자막/메타만 만든다 (빠른 확인용).
+    base_dir: 자료의 상대 경로 기준 (기본: 지금 폴더). keep_job_dir: public/_jobs 복사본을 남긴다 (프리뷰가 정지 화면을 뽑은 뒤 지운다)
+    """
+    style = get_style(job.get("style") or DEFAULT_STYLE)
     plan, out_dir = job["plan"], job["out_dir"]
     name = job.get("name") or "motion"
     os.makedirs(out_dir, exist_ok=True)
@@ -152,13 +167,21 @@ def render_job(job: Dict[str, Any], render: bool = True) -> Dict[str, Any]:
     job_id = f"{name}-{uuid.uuid4().hex[:8]}"
     job_dir = os.path.join(JOBS_DIR, job_id)
     os.makedirs(job_dir, exist_ok=True)
+    resolver = AssetResolver(job.get("assets"), base_dir=base_dir, job_dir=job_dir, job_src=f"_jobs/{job_id}")
     try:
         voices = []
-        for i, v in enumerate(job["voices"]):
-            ext = os.path.splitext(v["audio"])[1] or ".mp3"
+        for i, v in enumerate(job.get("voices") or []):
+            if i >= len(plan["chapters"]):
+                break
+            audio = os.path.abspath(os.path.join(base_dir or os.getcwd(), v["audio"]))
+            ext = os.path.splitext(audio)[1] or ".mp3"
             link = os.path.join(job_dir, f"v{i:02d}{ext}")
-            shutil.copyfile(os.path.abspath(v["audio"]), link)  # 심볼릭 링크는 Remotion 번들 복사에서 빠진다
+            shutil.copyfile(audio, link)  # 심볼릭 링크는 Remotion 번들 복사에서 빠진다
+            if not v.get("char_times"):
+                chars = sum(len(clean_text(s["narration"])) for s in plan["chapters"][i]["shots"])
+                v = {**v, **_even_char_times(audio, chars)}
             voices.append({**v, "audio_src": f"_jobs/{job_id}/v{i:02d}{ext}"})
+        plan = resolver.plan(plan)
         props = timeline.build_long_props(plan, voices, track, style, aspect=job.get("aspect") or "16:9", header=job.get("header"))
         props_path = os.path.join(out_dir, f"props_{name}.json")
         _json_save(props_path, props)
@@ -168,7 +191,8 @@ def render_job(job: Dict[str, Any], render: bool = True) -> Dict[str, Any]:
             loudnorm(raw, os.path.join(out_dir, f"{name}.mp4"))
             os.remove(raw)
     finally:
-        shutil.rmtree(job_dir, ignore_errors=True)
+        if not keep_job_dir:
+            shutil.rmtree(job_dir, ignore_errors=True)
 
     with open(os.path.join(out_dir, f"{name}.srt"), "w", encoding="utf-8") as f:
         f.write(_srt(props["captions"]))
@@ -180,17 +204,27 @@ def render_job(job: Dict[str, Any], render: bool = True) -> Dict[str, Any]:
         "chapters": [{"title": c["title"], "start_sec": round(c["start"] / timeline.FPS, 2)} for c in props["chapters"]],
         "music": {"id": track["id"], "title": track.get("title"), "artist": track.get("artist"), "mood": track.get("mood"),
                   "license": track.get("license"), "attribution": track.get("attribution")},
-        "style": job["style"],
+        "style": job.get("style") or DEFAULT_STYLE,
         "aspect": job.get("aspect") or "16:9",
         "shots": len(props["shots"]),
         "sfx": len(props["sfx"]),
+        "voiced_chapters": len(voices),            # 음성이 있는 장 수 (나머지 장은 무음, 글자 수로 시각 가정)
+        "assets": resolver.used,                   # 쓴 자료와 출처 (영상 설명란 표기용)
+        "warnings": resolver.warnings,
     }
     _json_save(os.path.join(out_dir, f"{name}.json"), meta)
+    if keep_job_dir:
+        meta["job_dir"] = job_dir
     return meta
 
 
 def render_job_file(path: str, render: bool = True) -> Dict[str, Any]:
-    return render_job(_json_load(path), render=render)
+    """상대 경로(음성·자료·out_dir)는 작업 파일이 있는 폴더 기준"""
+    base = os.path.dirname(os.path.abspath(path))
+    job = _json_load(path)
+    if job.get("out_dir") and not os.path.isabs(job["out_dir"]):
+        job["out_dir"] = os.path.join(base, job["out_dir"])
+    return render_job(job, render=render, base_dir=base)
 
 
 def cleanup_stale_jobs(max_age_sec: Optional[int] = 6 * 3600) -> None:

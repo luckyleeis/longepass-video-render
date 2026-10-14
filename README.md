@@ -2,9 +2,14 @@
 
 템플릿 기반 모션 영상 **렌더링 전용** 저장소. 외부 API(LLM, TTS, DB, 업로드)를 부르지 않는다.
 
+영상을 만드는 방식은 두 가지다.
+
 ```
-서버(py-macmini-server): 아티클 → LLM 계획 → TTS·글자 정렬 → job.json → [video-studio] → 영상 → 업로드
+1. 백엔드 방식   서버(py-macmini-server): 아티클 → LLM 계획 → TTS·글자 정렬 → 이미지 → job.json → [video-studio] → 영상 → 업로드
+2. 에이전트 방식 사람: 초안 → [에이전트가 이 저장소에서: 분석 → 조사·자료 수집 → 계획 → 프리뷰로 고치기 → 렌더링] → 영상
 ```
+에이전트 방식의 순서는 [.claude/skills/make-video/SKILL.md](.claude/skills/make-video/SKILL.md)에 있다.
+작업 기록과 남은 일은 [WORKLOG.md](WORKLOG.md)를 본다. 운영 스타일은 **showreel** 하나다.
 
 | 이 저장소 | 서버 |
 |---|---|
@@ -21,14 +26,15 @@ Python은 표준 라이브러리만 쓴다 (3.9+). ffmpeg 필요.
 ## 명령
 
 ```bash
-bin/studio catalog  --project longepass --style longepass   # LLM 프롬프트용 템플릿 설명
-bin/studio validate raw_plan.json --project longepass --style longepass
+bin/studio catalog  --project longepass --style showreel    # LLM 프롬프트용 템플릿 설명
+bin/studio validate raw_plan.json --project longepass --style showreel
 bin/studio render   job.json                                 # 형식은 studio/render.py 맨 위
 bin/studio thumbnail thumb.json                             # 유튜브 썸네일 JPEG, 형식은 studio/thumbnail.py 맨 위
 # 세로 쇼츠: render 작업에 "aspect": "9:16" + "header"(위 제목 띠), thumbnail 작업에 "aspect": "9:16", catalog/validate 에 --aspect 9:16
+bin/studio preview  job.json [--all]                         # 샷별 정지 화면만 빠르게 (전체 렌더링 전 확인)
 bin/studio check                                             # 템플릿 명세·코드 규칙 검사
-bin/studio gallery  [스타일 …] [--only 템플릿,…]               # out/gallery/index.html
-bin/studio gallery  longepass --aspect 9:16                # 세로 쇼츠 화면에서 (out/gallery/9x16)
+bin/studio gallery  [스타일 …] [--only 템플릿,…]               # out/gallery/index.html (스타일을 빼면 showreel만)
+bin/studio gallery  showreel --aspect 9:16                 # 세로 쇼츠 화면에서 (out/gallery/9x16)
 bin/studio list | styles
 ```
 
@@ -41,6 +47,7 @@ bin/studio list | styles
   `library.json`의 `mood`(calm/bright/warm/playful/motivating)로 영상마다 고른다 (계획의 `music_mood`, 스타일의 `music_moods`).
   새 곡도 출처 표기가 필요 없는 라이선스만 넣는다.
 - `public/sfx` — 효과음 (Kenney CC0 등)
+- `public/samples` — 갤러리 예시용 대용 자료 (ffmpeg로 만든 그라데이션, 실제 사진 아님)
 - `public/fonts` — Noto Sans TC (SIL OFL), 清松手寫體 JasonHandwriting (SIL OFL로 알려짐, 운영 사용 전 확인)
 - `studio/` — Python 명령
 
@@ -52,3 +59,12 @@ bin/studio list | styles
 ### 스타일의 주 바탕과 채널 인트로
 - `theme.primary_surface`: 주 바탕 (첫 장·첫 화면·마지막 화면·썸네일·쇼츠). 본문 챕터는 주 바탕과 반대 바탕을 번갈아 쓴다
 - `theme.brand.tagline`, `pacing.brand_intro: {"sec": 2.2, "sfx": [[종류, 위치 0~1, gain_db]]}`: 있으면 롱폼의 훅(첫 샷) 바로 뒤에 채널 인트로(brand_intro)를 자동으로 넣는다 (첫 장 음성은 그 자리에서 나눠 재생)
+
+### 사진·영상 자료 (백엔드 방식에서 이미지 넘기기)
+- 자료 칸이 있는 템플릿은 `photo_full`, `photo_split`, `photo_collage`, `screen_focus`, `quote_card`다.
+  `bin/studio catalog` 출력에 `asset(...)` 칸으로 나온다.
+- LLM 계획에는 자료 **id**를 적고, job.json의 `assets`에 id → 로컬 파일 경로·출처를 넣는다
+  (형식은 `studio/assets.py` 맨 위). 렌더링은 인터넷 주소를 받지 않는다. 서버가 미리 내려받아 경로로 넘긴다.
+- 파일이 없거나 형식이 틀리면 그 칸만 비우고 렌더링을 계속한다. 템플릿은 `icon` 칸의 아이콘 화면으로 대신 그린다.
+  결과 메타(`<name>.json`)의 `assets`는 쓴 자료의 출처 목록(영상 설명란용)이고, `warnings`는 못 읽은 자료다.
+- `voices`는 선택이다. 음성이 없는 장은 자막만 나오고, 글자 정렬(`char_times`)이 없으면 음성 길이에 고르게 나눈다.

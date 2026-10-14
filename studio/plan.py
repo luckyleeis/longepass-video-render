@@ -21,6 +21,26 @@ def allowed_templates(project: str, style: Dict[str, Any], aspect: str = "16:9")
     return set(catalog.candidates(project, style, aspect))
 
 
+def variety_report(chapters) -> list:
+    """
+    화면이 단조로운지 알려 주는 경고 (계획은 바꾸지 않는다). 같은 템플릿이 연달아 나오거나,
+    같은 갈래(category)가 셋 이상 이어지거나, 화면 문법이 한 가지(카드형)뿐일 때.
+    """
+    out = []
+    flat = [(ci, s) for ci, ch in enumerate(chapters) for s in ch["shots"]]
+    mods = [s["module"] for _, s in flat]
+    cats = [catalog.load()[m]["category"] if m in catalog.load() else "" for m in mods]
+    for i in range(1, len(flat)):
+        if mods[i] == mods[i - 1]:
+            out.append(f"{flat[i][1]['id']}: 바로 앞 샷과 같은 템플릿 {mods[i]}")
+        if i >= 2 and cats[i] and cats[i] == cats[i - 1] == cats[i - 2]:
+            out.append(f"{flat[i][1]['id']}: 같은 갈래({cats[i]})가 세 샷 이어짐")
+    loud = {"photo_full", "photo_split", "photo_collage", "screen_focus", "word_slam", "quote_card", "contrast", "counter"}
+    if len(flat) >= 8 and not any(m in loud for m in mods):
+        out.append("카드형 화면만 있음: 사진·화면 캡처·키네틱 글자(photo_*, screen_focus, word_slam, quote_card) 중 하나 이상 섞기를 권장")
+    return out
+
+
 def normalize_plan(raw: Dict[str, Any], allowed: Optional[set] = None) -> Dict[str, Any]:
     """allowed: 이 영상에서 쓸 수 있는 템플릿 id (없으면 전부)"""
     report = {"replaced": [], "warnings": []}
@@ -61,6 +81,7 @@ def normalize_plan(raw: Dict[str, Any], allowed: Optional[set] = None) -> Dict[s
             chapters.append({"title": (ch.get("title") or "").strip(), "shots": shots})
     if not chapters:
         raise ValueError("유효한 샷이 없습니다.")
+    report["variety"] = variety_report(chapters)
     return {
         "video_title": raw.get("video_title", ""), "description": raw.get("description", ""),
         "hashtags": [h for h in raw.get("hashtags") or [] if isinstance(h, str)][:5],

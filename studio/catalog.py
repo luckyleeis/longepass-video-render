@@ -38,7 +38,7 @@ def icon_names() -> List[str]:
 
 BG_ROLES = ["base", "alt", "accent", "deep", "primary"]   # primary = 스타일의 주 바탕 (theme.primary_surface)
 CATEGORIES = ["opener", "structure", "emphasis", "number", "organize", "compare", "chart", "space", "story", "outro"]
-FIELD_TYPES = ["text", "number", "int", "bool", "enum", "list", "object"]
+FIELD_TYPES = ["text", "number", "int", "bool", "enum", "list", "object", "asset"]   # asset = 이미지/영상 자료 (studio/assets.py)
 EVENT_KINDS = ["single", "each", "stagger"]
 STAGE_KEYS = ["beat_fields", "beat_events", "beat_sfx", "beats"]
 REQUIRED_KEYS = ["id", "version", "name", "component", "category", "scope", "media", "continuity", "aspect", "llm",
@@ -92,6 +92,8 @@ def _desc(f: Dict[str, Any]) -> str:
         s = "{ " + ", ".join(f"{n}{'*' if _required(v) else ''}: {_desc(v)}" for n, v in f["fields"].items()) + " }"
     elif k == "list":
         s = f"[{_desc(f['item'])}] ({f['min']}~{f['max']})"
+    elif k == "asset":
+        s = f"asset({f.get('kind', 'any')}: id in job assets or file path)"
     else:
         s = k
     if f.get("desc"):
@@ -155,6 +157,14 @@ def _check(f: Dict[str, Any], v, path: str, warns: List[str]) -> Tuple[bool, Any
         return True, int(n) if n is not None else None
     if k == "bool":
         return True, bool(v) if v is not None else None
+    if k == "asset":
+        from studio.assets import check_value
+        if v in (None, ""):
+            return not req, None
+        if not check_value(v):
+            warns.append(f"{path}: 자료 값 형식 오류 (id/경로 문자열 또는 {{src, focus, credit}})")
+            return not req, None
+        return True, v
     if k == "enum":
         if v in f["options"]:
             return True, v
@@ -255,6 +265,8 @@ def _check_field_spec(f, path: str, errs: List[str]):
     k = f["type"]
     if k == "text" and not isinstance(f.get("max"), int):
         errs.append(f"{path}: text에는 max(글자 수)가 필요")
+    if k == "asset" and f.get("kind", "any") not in ("image", "video", "any"):
+        errs.append(f"{path}: asset의 kind는 image|video|any")
     if k == "enum" and not f.get("options"):
         errs.append(f"{path}: enum에는 options가 필요")
     if k == "enum" and path.endswith(".icon"):
@@ -357,9 +369,10 @@ def _contrast_ratio(c1: str, c2: str) -> float:
 
 
 def check_thumbnail_rules() -> List[str]:
-    """썸네일 가드레일: 전 스타일 서피스 대비율 검사 (Contrast >= 4.5)"""
-    from studio.styles import list_styles, get_style
+    """썸네일 가드레일: 전 스타일 서피스 대비율 검사 (Contrast >= 4.5). 운영 스타일은 보조 글자(sub)도 검사"""
+    from studio.styles import active_styles, list_styles, get_style
     errs = []
+    active = set(active_styles())
     for style_name in list_styles():
         st = get_style(style_name)
         theme = st.get("theme", {})
@@ -371,6 +384,11 @@ def check_thumbnail_rules() -> List[str]:
                 ratio = _contrast_ratio(ink, bg)
                 if ratio < 4.5:
                     errs.append(f"스타일 {style_name} 서피스 '{role}': 본문 ink({ink})와 bg({bg}) 대비율 {ratio:.2f} < 4.5")
+            if bg and style_name in active and surf.get("sub"):
+                ratio = _contrast_ratio(surf["sub"], bg)
+                if ratio < 4.5:
+                    errs.append(f"스타일 {style_name} 서피스 '{role}': 보조 글자 sub({surf['sub']})와 bg({bg}) 대비율 {ratio:.2f} < 4.5 "
+                                f"(장식용 옅은 색은 shade 에)")
             if bg:
                 primary_ratio = _contrast_ratio(primary, bg)
                 stat_final = primary if primary_ratio >= 4.5 else ink
@@ -394,8 +412,8 @@ def check() -> Dict[str, List[str]]:
 def write_mock_props() -> str:
     """Remotion Studio 2단 뷰어용 템플릿별 목업 props 생성"""
     from studio.gallery import build_props
-    from studio.styles import get_style
-    style = get_style("longepass")
+    from studio.styles import DEFAULT_STYLE, get_style
+    style = get_style(DEFAULT_STYLE)
     all_templates = load()
     mock_data = {}
     for tid in sorted(all_templates.keys()):

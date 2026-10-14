@@ -21,6 +21,7 @@ import subprocess
 from typing import Any, Dict, List, Optional
 
 from studio import catalog
+from studio.assets import AssetResolver, map_shot
 from studio.render import remotion_render
 from studio.styles import get_style, list_styles
 from studio.text import clean_text
@@ -63,6 +64,7 @@ def build_props(style: Dict[str, Any], only: Optional[List[str]] = None, aspect:
     bpm = next(t["bpm"] for t in json.load(open(MUSIC_LIBRARY, encoding="utf-8"))["tracks"] if t["id"] == style["pacing"]["music"])
     grid = BeatGrid(bpm, 60 * FPS * 20)
     shots, stills, frame = [], [], 0
+    resolver = AssetResolver()   # 예시의 자료는 public/ 안의 샘플만 (public/samples)
     for tid, m in catalog.load().items():
         if only and tid not in only:
             continue
@@ -82,6 +84,7 @@ def build_props(style: Dict[str, Any], only: Optional[List[str]] = None, aspect:
                 shot = {"module": tid, "data": ex["data"], "beats": beats}
                 dur, ev_abs = SILENT_SHOT, {k: frame + 3 for k in m["events"]}
             ev = to_relative(ev_abs, frame)
+            shot = map_shot(shot, resolver.resolve)
             flat: List[int] = []
             _flatten(ev, flat)
             shots.append({"id": f"{tid}_{n}", "label": tid, "bg": _bg_for(m, style["theme"]), "start": frame, "duration": dur,

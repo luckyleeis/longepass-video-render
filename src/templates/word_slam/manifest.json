@@ -1,0 +1,79 @@
+{
+  "id": "word_slam",
+  "version": 1,
+  "name": "단어 쾅쾅",
+  "component": "WordSlam.tsx",
+  "category": "emphasis",
+  "inspired_by": "키네틱 타이포그래피 광고 — 단어마다 화면 전체 색이 바뀌며 한 박자씩",
+  "scope": "common",
+  "media": [
+    "clean"
+  ],
+  "continuity": [
+    "cut"
+  ],
+  "aspect": [
+    "16:9"
+  ],
+  "llm": true,
+  "use_when": "A punchy rhythm of 2-5 very short words or phrases said one after another (a slogan, a three-beat summary, a turning point). Changes the pace between information shots.",
+  "avoid_when": "Words longer than 5 characters, or content that needs explanation (use headline or list).",
+  "fields": {
+    "words": {
+      "type": "list",
+      "item": {
+        "type": "text",
+        "max": 5,
+        "required": true
+      },
+      "min": 2,
+      "max": 5
+    },
+    "tail": {
+      "type": "text",
+      "max": 14,
+      "desc": "small line under the last word"
+    }
+  },
+  "events": {
+    "words": {
+      "kind": "each",
+      "of": "words"
+    },
+    "tail": {
+      "kind": "single",
+      "at": 0.85
+    }
+  },
+  "sfx": {
+    "words": "impact",
+    "tail": "pop"
+  },
+  "sfx_when": [],
+  "bg": "accent",
+  "duration": {
+    "min_sec": 2,
+    "max_sec": 7
+  },
+  "examples": [
+    {
+      "narration": "考到證照，記得申請，馬上領錢。就這麼簡單。",
+      "data": {
+        "words": [
+          "考到",
+          "申請",
+          "領錢"
+        ],
+        "tail": "就這麼簡單"
+      },
+      "cues": {
+        "words": [
+          "考到",
+          "申請",
+          "領錢"
+        ],
+        "tail": "簡單"
+      }
+    }
+  ]
+}

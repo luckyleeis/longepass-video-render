@@ -66,7 +66,7 @@
 - 인용이 요약이면 출처에 "（摘要）"를 붙인다.
 
 ## 나레이션 (TTS)
-- TTS 서버는 **다큐 그곳과 같은 서버**를 쓴다. 모델은 서버 쪽 `gemini-3.8-flash-lite-tts`다 (2026-10-14 사용자).
+- TTS 서버는 **다큐 그곳과 같은 서버**를 쓴다. 모델: **롱폼은 `gemini-3.8-flash-tts`**, **숏폼은 `gemini-3.8-flash-lite-tts`** (2026-10-16 사용자).
   - 요청 기본값: `provider: gemini`, `voice: Aoede`, `language: zh-tw`, `speed: 1.0`.
   - 저장 경로는 `path: longepass/<longform|shortform>/<slug>/chNN`이다.
   - 형식은 `agent/tts.py` 맨 위에 있다.

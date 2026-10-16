@@ -61,10 +61,12 @@ DEFAULTS: Dict[str, Any] = {
     "project": "longepass",
     "style": "showreel",
     "tts": {
-        "url": "", "provider": "gemini", "voice": "Aoede", "language": "zh-tw", "model": "", "speed": 1.0, "format": "mp3",
+        "url": "", "provider": "gemini", "voice": "Aoede", "language": "zh-tw",
+        "model": {"longform": "gemini-3.8-flash-tts", "shortform": "gemini-3.8-flash-lite-tts"},
+        "speed": 1.0, "format": "mp3",
         "path_prefix": "longepass", "chunk_chars": 300, "min_ratio": 0.9, "local_root": "", "extra": {},
         "pause_ms": {"longform": 250, "shortform": 120},
-        # 2026-10-14 사용자가 정한 읽기 지시 (서버 모델: gemini-3.8-flash-lite-tts)
+        # 읽기 지시: 롱폼은 gemini-3.8-flash-tts, 숏폼은 gemini-3.8-flash-lite-tts
         "instructions": {
             "longform": ("Read in standard Taiwanese Mandarin with a smart, friendly, and well-articulated explanatory tone, "
                          "like an encouraging study mentor. Keep a steady, engaging pace so the listener stays focused throughout the breakdown."),

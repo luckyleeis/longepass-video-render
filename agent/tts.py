@@ -87,6 +87,15 @@ def instructions_for(tts: Dict[str, Any], form: str) -> str:
     return ins or ""
 
 
+def model_for(tts: Dict[str, Any], form: str) -> str:
+    m = tts.get("model")
+    if isinstance(m, dict):
+        return m.get(form) or m.get("longform") or ""
+    if not m and form == "longform":
+        return "gemini-3.8-flash-tts"
+    return m or ""
+
+
 def pause_for(tts: Dict[str, Any], form: str) -> int:
     p = tts.get("pause_ms")
     if isinstance(p, dict):
@@ -95,7 +104,7 @@ def pause_for(tts: Dict[str, Any], form: str) -> int:
 
 
 def _key(tts: Dict[str, Any], form: str, text: str) -> str:
-    sig = json.dumps([text.strip(), tts.get("provider"), tts.get("voice"), tts.get("language"), tts.get("model"), tts.get("speed"),
+    sig = json.dumps([text.strip(), tts.get("provider"), tts.get("voice"), tts.get("language"), model_for(tts, form), tts.get("speed"),
                       instructions_for(tts, form), tts.get("extra"), tts.get("format")], ensure_ascii=False, sort_keys=True)
     return hashlib.sha1(sig.encode("utf-8")).hexdigest()[:16]
 
@@ -106,9 +115,12 @@ def synth(tts: Dict[str, Any], form: str, text: str, path: str, out_audio: str) 
     if not tts.get("url"):
         raise RuntimeError("TTS 주소가 없습니다: longepass.config.json 의 tts.url 또는 .env 의 LP_TTS_URL")
     payload: Dict[str, Any] = {"input": text.strip(), "response_format": tts.get("format") or "mp3", "path": path}
-    for k in ("provider", "voice", "language", "model"):
+    for k in ("provider", "voice", "language"):
         if tts.get(k):
             payload[k] = tts[k]
+    m = model_for(tts, form)
+    if m:
+        payload["model"] = m
     if tts.get("speed") is not None:
         payload["speed"] = tts["speed"]
     ins = instructions_for(tts, form)

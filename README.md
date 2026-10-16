@@ -2,13 +2,14 @@
 
 LONGEPASS 템플릿 기반 모션 영상 저장소. 사용자의 맥에서 로컬로 돌아간다.
 - **렌더링 엔진** (`studio/`, `src/`, `bin/studio`): 외부 API(LLM, TTS, DB, 업로드)를 부르지 않는다. 로컬 파일만 읽는다.
-- **에이전트 방식 도구** (`agent/`, `bin/lp`): TTS 서버, 스톡·커먼즈 소재 검색, 화면 캡처. 네트워크는 여기서만 쓴다. 채널 규칙은 [CHANNEL.md](CHANNEL.md)에 있다.
+- **에이전트 방식 도구** (`agent/`, `bin/lp`): DB(글·업로드 대기열), TTS 서버, 스톡·커먼즈 소재 검색, 화면 캡처. 네트워크는 여기서만 쓴다. 채널 규칙은 [CHANNEL.md](CHANNEL.md)에 있다.
 
 영상을 만드는 방식은 두 가지다.
 
 ```
 1. 백엔드 방식   서버(py-macmini-server): 아티클 → LLM 계획 → TTS·글자 정렬 → 이미지 → job.json → [video-studio] → 영상 → 업로드
-2. 에이전트 방식 사람: 초안 → [에이전트가 이 저장소에서: 분석 → 조사·자료 수집 → 계획 → 프리뷰로 고치기 → 렌더링] → 영상
+2. 에이전트 방식 DB 글 → [에이전트가 이 저장소에서: 분석 → 조사로 정보 보태기 → 계획(롱폼 + 쇼츠) → 프리뷰로 고치기 → 렌더링]
+                 → (사람이 확인) bin/lp publish → 같은 업로드 대기열(longform_videos ready) → 서버가 업로드
 ```
 에이전트 방식의 순서는 [.claude/skills/make-video/SKILL.md](.claude/skills/make-video/SKILL.md)에 있다.
 작업 기록과 남은 일은 [WORKLOG.md](WORKLOG.md)를 본다. 운영 스타일은 **showreel** 하나다.
@@ -23,12 +24,13 @@ LONGEPASS 템플릿 기반 모션 영상 저장소. 사용자의 맥에서 로�
 ```bash
 npm ci && npx remotion browser ensure
 ```
-Python은 표준 라이브러리만 쓴다 (3.9+). ffmpeg 필요.
+Python은 표준 라이브러리만 쓴다 (3.9+). ffmpeg 필요. 예외: `agent/pg_run.py`만 psycopg를 쓰고, `uv`가 그때만 따로 띄운다.
 
 에이전트 방식을 쓰려면 다음을 준비한다 (둘 다 git에 올라가지 않는다).
 - `.env.example`을 `.env`로 복사하고 `LP_WORKSPACE`에 NAS 작업 폴더 경로를 적는다.
 - `longepass.config.example.json`을 `longepass.config.json`으로 복사한다 (TTS는 다큐 그곳 서버, `gemini`·`Aoede`·`zh-tw`).
 - `longepass.keys.json`에 `{"pexels": "…", "pixabay": "…", "unsplash": "…"}`를 넣는다 (있는 것만).
+- `.env`에 `DATABASE_URL`(서버와 같은 certificate_tw DB)을 적는다. DB는 `uv run --with psycopg[binary]`로 따로 띄워 읽는다 (`uv` 필요, 저장소에 패키지가 남지 않음).
 - 화면 캡처에는 Google Chrome이 필요하다.
 - 확인: `bin/lp where`
 

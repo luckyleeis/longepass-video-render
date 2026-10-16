@@ -11,6 +11,13 @@
   render/         mp4·srt·json·썸네일, render/preview/ 정지 화면
   status.json     단계와 남은 일 (bin/lp stage)
   log.md          결정 기록 (bin/lp log)
+  article.json    DB 글 원본 (bin/lp new --from-db) — 업로드 대기열 기록(request_id)은 status.json 의 db
+
+쇼츠 (같은 글로 만든 세로 영상, 롱폼과 한 세트로 업로드): part = short_1, short_2 (bin/lp … --short N)
+  raw_plan_short_N.json · plan_short_N.json · job_short_N.json   (롱폼 파일 이름 뒤에 _short_N)
+  voice/short_N/                                                  음성
+  render/short_N.mp4 · render/short_N_thumbnail.jpg               결과
+  소재(assets/)·notes.md·status.json·log.md 는 롱폼과 같이 쓴다
 """
 import datetime as dt
 import json
@@ -29,13 +36,19 @@ NOTES_TEMPLATE = """# 분석·사실 메모 — {title}
 
 ## 핵심 메시지 (3개 이내)
 
-## 사실 카드
-| # | 주장 (영상에 쓰는 문장) | 근거 등급 | 출처 (URL·문서명·확인 날짜) | 비고 |
+## 사실 카드 — 글(초안)에 있던 것
+| # | 주장 (영상에 쓰는 문장) | 근거 등급 | 출처 (URL·문서명·확인 날짜) | 비고 (바로잡음 등) |
+|---|---|---|---|---|
+
+## 사실 카드 — 조사로 보탠 것 (시청자가 다음에 물어볼 것)
+| # | 주장 (영상에 쓰는 문장) | 근거 등급 | 출처 (URL·문서명·확인 날짜) | 왜 보탰나 |
 |---|---|---|---|---|
 
 근거 등급: A 법령·공고 원문 / B 정부·기관 안내 페이지 / C 언론·민간 / X 확인 못 함(쓰지 않음)
 
 ## 초안에서 고친 것 (무엇을 왜)
+
+## 쇼츠 각도 (1~2개, 각각 핵심 하나)
 
 ## 필요한 그림 (장면 → 소재 종류 → 찾을 말)
 
@@ -51,20 +64,46 @@ def slug_ok(slug: str) -> bool:
     return bool(re.fullmatch(r"[a-z0-9][a-z0-9_\-]{0,63}", slug))
 
 
+def part_name(short: Optional[int]) -> Optional[str]:
+    """bin/lp … --short N → short_N (없으면 롱폼)"""
+    if not short:
+        return None
+    if not 1 <= short <= 2:
+        raise ValueError("쇼츠는 --short 1 또는 2")
+    return f"short_{short}"
+
+
 class Episode:
-    def __init__(self, slug: str, cfg: Optional[Dict[str, Any]] = None):
+    def __init__(self, slug: str, cfg: Optional[Dict[str, Any]] = None, part: Optional[str] = None):
         if not slug_ok(slug):
             raise ValueError(f"작업 이름은 영문 소문자·숫자·-·_ ({slug})")
+        if part is not None and not re.fullmatch(r"short_[12]", part):
+            raise ValueError(f"part 는 short_1 또는 short_2 ({part})")
         self.cfg = cfg or config.load()
         self.slug = slug
+        self.part = part
         self.dir = os.path.join(self.cfg["workspace"], slug)
 
     def p(self, *parts: str) -> str:
         return os.path.join(self.dir, *parts)
 
+    def f(self, name: str) -> str:
+        """롱폼·쇼츠별 파일: raw_plan.json → raw_plan_short_1.json (쇼츠)"""
+        if self.part:
+            base, ext = os.path.splitext(name)
+            name = f"{base}_{self.part}{ext}"
+        return self.p(name)
+
+    @property
+    def name(self) -> str:
+        """렌더링 결과 이름: render/<slug>.mp4 (롱폼) · render/short_N.mp4 (쇼츠)"""
+        return self.part or self.slug
+
     @property
     def form(self) -> str:
-        """longform (16:9) | shortform (9:16 쇼츠) — bin/lp new --short"""
+        """longform (16:9) | shortform (9:16 쇼츠) — 세트의 쇼츠(--short N) 또는 bin/lp new --short"""
+        if self.part:
+            return "shortform"
         try:
             return self.status().get("form") or "longform"
         except FileNotFoundError:
@@ -80,7 +119,7 @@ class Episode:
 
     @property
     def voice(self) -> str:
-        return self.p("voice")
+        return self.p("voice", self.part) if self.part else self.p("voice")
 
     def exists(self) -> bool:
         return os.path.isfile(self.p("status.json"))
@@ -116,6 +155,19 @@ class Episode:
             f.write(f"- {now()} {text.strip()}\n")
 
     # ------------------------------------------------------------ 만들기
+    def archive_foreign(self) -> Optional[str]:
+        """에이전트 작업이 아닌 파일(백엔드가 실패하고 남긴 것 등)이 이미 있으면 _old/<시각>/ 으로 옮긴다 (백엔드와 같은 보관 방식)"""
+        if self.exists() or not os.path.isdir(self.dir):
+            return None
+        items = [n for n in os.listdir(self.dir) if n not in ("_old", ".DS_Store")]
+        if not items:
+            return None
+        dst = self.p("_old", dt.datetime.now().strftime("%Y%m%d_%H%M%S"))
+        os.makedirs(dst, exist_ok=True)
+        for n in items:
+            shutil.move(self.p(n), os.path.join(dst, n))
+        return dst
+
     def create(self, title: str, draft: Optional[str] = None, short: bool = False) -> None:
         if self.exists():
             raise FileExistsError(f"이미 있음: {self.dir}")

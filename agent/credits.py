@@ -35,6 +35,16 @@ def license_ok(lic: str) -> bool:
     return any(a in s for a in ALLOWED)
 
 
+def needs_attribution(info: Dict[str, Any]) -> bool:
+    """화면·설명란에 출처를 적어야 하는 소재인가.
+    2026-10-14 사용자: 사진·영상은 출처를 표시하지 않는다. 다만 CC BY·CC BY-SA 는 표기가 라이선스 조건이라 남긴다.
+    화면 캡처는 근거 인용이라 screen_focus 가 「資料來源」으로 옆에 적는다 (credit 유지)"""
+    lic = (info.get("license") or "").lower().replace("-", " ")
+    if info.get("site") == "capture" or "截圖" in lic or "screenshot" in lic:
+        return True
+    return "cc by" in lic
+
+
 def path(ep: Episode) -> str:
     return os.path.join(ep.assets, "_credits.json")
 
@@ -63,6 +73,6 @@ def to_job_assets(ep: Episode) -> Dict[str, Any]:
         if not os.path.exists(os.path.join(ep.assets, c["file"])):
             continue
         out[aid] = {k: v for k, v in {
-            "path": f"assets/{c['file']}", "kind": c.get("kind"), "credit": c.get("credit"), "source": c.get("source"),
+            "path": f"assets/{c['file']}", "kind": c.get("kind"), "credit": c.get("credit") if needs_attribution(c) else None, "source": c.get("source"),
             "license": c.get("license"), "focus": c.get("focus")}.items() if v not in (None, "")}
     return out

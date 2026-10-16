@@ -36,7 +36,7 @@ const Radar: React.FC<TemplateProps> = ({ data, ev, ink, sub, surf }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '52%' }}>
-        <KineticLines lines={lines} highlight={data.highlight} size={kineticSize(lines, 140)} align="left" at={ev.lines || []} ink={ink} sub={sub} surf={surf} />
+        <KineticLines lines={lines} highlight={data.highlight} size={kineticSize(lines, 140)} align="left" at={ev.lines || []} ink={ink} sub={sub} surf={surf} box={0.52} />
       </div>
       <svg width={L.W} height={L.H} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
         {[0.25, 0.5, 0.75, 1].map((q, i) => (

@@ -76,7 +76,7 @@ const Globe: React.FC<TemplateProps> = ({ data, ev, dur, ink, sub, surf }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%' }}>
-        <KineticLines lines={lines} highlight={data.highlight} size={kineticSize(lines, 140)} align="left" at={ev.lines || []} ink={ink} sub={sub} surf={surf} />
+        <KineticLines lines={lines} highlight={data.highlight} size={kineticSize(lines, 140)} align="left" at={ev.lines || []} ink={ink} sub={sub} surf={surf} box={0.5} />
       </div>
       <svg width={L.W} height={L.H} style={{ position: 'absolute', inset: 0, overflow: 'visible', opacity: appear }}>
         <SCircle cx={cx} cy={cy} r={R} fill={surf.fill} stroke={surf.line} sw={2} opacity={0.35} subtle seed="globe" />

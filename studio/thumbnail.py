@@ -32,12 +32,37 @@ from typing import Any, Dict
 from studio.render import ROOT, _log_tail, _render_env
 from studio.styles import DEFAULT_STYLE, get_style
 
+import base64
+import mimetypes
+
 OBJECTS = (
     "certificate", "cash", "document", "calendar", "idcard", "passbook",
     "car", "scooter", "sign_warning", "speed_limit", "traffic_light", "stamp"
 )
-LAYOUTS = ("focus", "split", "stat", "quiz")
+LAYOUTS = ("focus", "split", "stat", "quiz", "photo_hero", "vs_split", "warning_dark", "evidence_doc")
 SIZES = {"16:9": (1280, 720), "9:16": (1080, 1920)}
+
+
+def _to_data_uri(path_or_url: Any, assets_dir: str = "") -> Any:
+    if not isinstance(path_or_url, str):
+        return path_or_url
+    if path_or_url.startswith("data:") or path_or_url.startswith("http://") or path_or_url.startswith("https://"):
+        return path_or_url
+    candidates = [path_or_url]
+    if assets_dir:
+        candidates.append(os.path.join(assets_dir, path_or_url))
+        for ext in (".jpg", ".jpeg", ".png", ".webp"):
+            candidates.append(os.path.join(assets_dir, path_or_url + ext))
+    for ext in (".jpg", ".jpeg", ".png", ".webp"):
+        candidates.append(path_or_url + ext)
+    for c in candidates:
+        if os.path.exists(c) and not os.path.isdir(c):
+            mime, _ = mimetypes.guess_type(c)
+            mime = mime or "image/jpeg"
+            with open(c, "rb") as f:
+                b64 = base64.b64encode(f.read()).decode("ascii")
+            return f"data:{mime};base64,{b64}"
+    return path_or_url
 
 
 def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
@@ -46,13 +71,24 @@ def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
     text = (spec.get("text") or "").strip()
     layout = spec.get("layout") if spec.get("layout") in LAYOUTS else "focus"
 
-    # split 레이아웃에서는 text가 없어도 split_left, split_right로 대체 가능
-    if not text and layout != "split":
+    # split/vs_split 레이아웃에서는 text가 없어도 split_left, split_right로 대체 가능
+    if not text and layout not in ("split", "vs_split"):
         raise ValueError("thumbnail.text 가 비어 있음")
 
     out = os.path.abspath(job["out"])
     os.makedirs(os.path.dirname(out), exist_ok=True)
     w, h = SIZES.get(job.get("aspect") or "16:9", SIZES["16:9"])
+
+    assets_dir = job.get("assets_dir") or ""
+    split_l = spec.get("split_left")
+    if isinstance(split_l, dict) and split_l.get("photo"):
+        split_l = dict(split_l)
+        split_l["photo"] = _to_data_uri(split_l["photo"], assets_dir)
+
+    split_r = spec.get("split_right")
+    if isinstance(split_r, dict) and split_r.get("photo"):
+        split_r = dict(split_r)
+        split_r["photo"] = _to_data_uri(split_r["photo"], assets_dir)
 
     props = {
         "width": job.get("width", w),
@@ -68,8 +104,14 @@ def render_thumbnail(job: Dict[str, Any]) -> Dict[str, Any]:
         "object_label": spec.get("object_label"),
         "stat": spec.get("stat"),
         "stat_unit": spec.get("stat_unit"),
-        "split_left": spec.get("split_left"),
-        "split_right": spec.get("split_right"),
+        "split_left": split_l,
+        "split_right": split_r,
+        "photo": _to_data_uri(spec.get("photo"), assets_dir),
+        "photo_dim": spec.get("photo_dim"),
+        "kicker": spec.get("kicker"),
+        "tag": spec.get("tag"),
+        "stamp": spec.get("stamp"),
+        "accent_bar": spec.get("accent_bar"),
     }
 
     with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:

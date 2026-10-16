@@ -209,7 +209,7 @@ def validate_shot(shot: Dict[str, Any]) -> Tuple[Optional[Dict[str, Any]], List[
     # 강조/취소 구절은 실제 화면 문구 안에 있어야 한다
     for key in ("highlight", "strike"):
         if isinstance(out.get(key), str) and out.get(key):  # 숫자 칸(bar_chart.highlight = 막대 번호 등)은 제외
-            texts = out.get("lines") or [out.get("title", "")]
+            texts = (out.get("lines") or [out.get("title", "")]) + [out.get("quote", "")]   # quote_card 는 인용문 안의 구절
             if not any(out[key] in t for t in texts):
                 warns.append(f"{m['id']}.{key} '{out[key]}'가 문구에 없어 제거")
                 out.pop(key)

@@ -17,7 +17,7 @@
   받지 않고 복사한다.
 - 서버가 JSON 대신 음성을 바로 주면 (다른 서버) 타임스탬프 없이 음성 길이에 글자를 고르게 나눈다.
 - 같은 조각·같은 설정이면 voice/cache 를 다시 쓴다 (--force 로 새로).
-결과: voice/chNN.mp3 (1부터), voice/voices.json
+결과: voice/chNN.mp3 (1부터), voice/voices.json — 쇼츠(--short N)는 voice/short_N/ 아래, path 는 longepass/shortform/<slug>/short_N/chNN
 """
 import difflib
 import hashlib
@@ -140,6 +140,62 @@ def _fetch_audio(tts: Dict[str, Any], url: str, out_audio: str) -> None:
     net.download(url, out_audio)
 
 
+# ---------------------------------------------------------------- 번체 → 간체 (비교용)
+# 실제 서버(2026-10-14 확인)의 타임스탬프 글자는 받아쓰기라 간체로 온다 (台灣 → 台湾). 대본(번체)과 맞춰 보려면 양쪽을 간체로 바꿔 비교한다.
+# macOS CoreFoundation 의 ICU 변환(Hant-Hans)을 ctypes 로 쓴다 (표준 라이브러리만). 다른 OS 면 바꾸지 않는다.
+_HANS_CACHE: Dict[str, str] = {}
+_CF: Any = None
+
+
+def _cf() -> Any:
+    global _CF
+    if _CF is None:
+        import ctypes
+        import ctypes.util
+        lib = ctypes.util.find_library("CoreFoundation")
+        if not lib:
+            _CF = False
+            return _CF
+        cf = ctypes.cdll.LoadLibrary(lib)
+        vp, cp = ctypes.c_void_p, ctypes.c_char_p
+        for name, res, args in (("CFStringCreateWithCString", vp, [vp, cp, ctypes.c_uint32]),
+                                ("CFStringCreateMutableCopy", vp, [vp, ctypes.c_long, vp]),
+                                ("CFStringTransform", ctypes.c_bool, [vp, vp, vp, ctypes.c_bool]),
+                                ("CFStringGetCString", ctypes.c_bool, [vp, cp, ctypes.c_long, ctypes.c_uint32]),
+                                ("CFRelease", None, [vp])):
+            getattr(cf, name).restype = res
+            getattr(cf, name).argtypes = args
+        _CF = (cf, ctypes)
+    return _CF
+
+
+def hans(ch: str) -> str:
+    """한 글자 번체 → 간체 (바꿀 수 없으면 그대로)"""
+    if ch in _HANS_CACHE:
+        return _HANS_CACHE[ch]
+    out = ch
+    lib = _cf() if ord(ch) > 0x2E80 else False
+    if lib:
+        cf, ctypes = lib
+        utf8 = 0x08000100
+        src = cf.CFStringCreateWithCString(None, ch.encode(), utf8)
+        mut = cf.CFStringCreateMutableCopy(None, 0, src)
+        tid = cf.CFStringCreateWithCString(None, b"Hant-Hans", utf8)
+        if cf.CFStringTransform(mut, None, tid, False):
+            buf = ctypes.create_string_buffer(16)
+            if cf.CFStringGetCString(mut, buf, 16, utf8):
+                v = buf.value.decode("utf-8", "replace")
+                out = v if len(v) == 1 else ch
+        for x in (src, mut, tid):
+            cf.CFRelease(x)
+    _HANS_CACHE[ch] = out
+    return out
+
+
+def _norm(text: str) -> str:
+    return "".join(hans(c) for c in text)
+
+
 # ---------------------------------------------------------------- 타임스탬프 → 글자 시각
 _NUMERALS = re.compile(r"[0-9a-z零〇一二兩三四五六七八九十百千萬亿億點点]")
 
@@ -152,14 +208,21 @@ def _fidelity(exp: str, heard: str) -> float:
     return difflib.SequenceMatcher(None, a, b, autojunk=False).ratio()
 
 
+def _span_ms(w: Dict[str, Any]) -> Tuple[float, float]:
+    """타임스탬프 한 칸의 [시작, 끝] ms. 실제 서버는 start_ms/end_ms, 다른 서버는 start/end(초)"""
+    if "start_ms" in w:
+        return float(w["start_ms"]), float(w["end_ms"])
+    return float(w["start"]) * 1000, float(w["end"]) * 1000
+
+
 def align(text: str, stamps: List[Dict[str, Any]]) -> Tuple[List[List[float]], float]:
-    """대본 글자(clean_text)마다 [시작ms, 끝ms]. 반환: (시각 목록, 일치율 0~1)"""
-    exp = clean_text(text)
+    """대본 글자(clean_text)마다 [시작ms, 끝ms]. 반환: (시각 목록, 일치율 0~1). 비교는 양쪽을 간체로 바꿔서 한다"""
+    exp = _norm(clean_text(text))
     heard, times = [], []
     for w in stamps:
-        wc = clean_text(str(w.get("word") or w.get("text") or ""))
+        wc = _norm(clean_text(str(w.get("word") or w.get("text") or "")))
         try:
-            s, e = float(w["start"]) * 1000, float(w["end"]) * 1000
+            s, e = _span_ms(w)
         except (KeyError, TypeError, ValueError):
             continue
         if not wc:
@@ -258,7 +321,7 @@ def build_voices(ep: Episode, plan: Dict[str, Any], force: bool = False, only: O
             key = _key(tts, form, part)
             audio = os.path.join(cache, f"{key}.{tts.get('format') or 'mp3'}")
             stamp_file = os.path.join(cache, f"{key}.json")
-            path = f"{prefix}/{form}/{ep.slug}/ch{no:02d}" + (f"_{k + 1:02d}" if len(parts) > 1 else "")
+            path = f"{prefix}/{form}/{ep.slug}/" + (f"{ep.part}/" if ep.part else "") + f"ch{no:02d}" + (f"_{k + 1:02d}" if len(parts) > 1 else "")
             best: Optional[Tuple[float, List[List[float]], str]] = None
             for attempt in range(2):
                 if (force and attempt == 0) or attempt > 0 or not (os.path.exists(audio) and os.path.exists(stamp_file)):
@@ -302,7 +365,7 @@ def build_voices(ep: Episode, plan: Dict[str, Any], force: bool = False, only: O
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c:a", "libmp3lame", "-q:a", "2", out_mp3], check=True)
         if len(char_times) != len(clean_text(text)):
             warnings.append(f"ch{no:02d}: 글자 수 불일치 ({len(char_times)} ≠ {len(clean_text(text))})")
-        chapters.append({"audio": f"voice/ch{no:02d}.mp3", "char_times": char_times, "clip_end": round(cursor + 150, 1),
+        chapters.append({"audio": os.path.relpath(out_mp3, ep.dir), "char_times": char_times, "clip_end": round(cursor + 150, 1),
                          "text_key": text_key, "chars": len(char_times), "parts": infos})
     result = {"made": now(), "form": form, "tts": {k: tts.get(k) for k in ("provider", "voice", "language", "speed")},
               "pause_ms": pause, "chapters": chapters, "warnings": warnings}
@@ -323,7 +386,7 @@ def voices_for_job(ep: Episode, plan: Dict[str, Any]) -> List[Dict[str, Any]]:
         text = "".join(s["narration"] for s in ch["shots"])
         key = _chapter_key(ep.cfg["tts"], ep.form, text)
         if ci >= len(chapters) or chapters[ci].get("text_key") != key or not os.path.exists(ep.p(chapters[ci]["audio"])):
-            raise RuntimeError(f"음성이 지금 계획과 맞지 않음 (ch{ci + 1:02d}) — bin/lp tts {ep.slug}")
+            raise RuntimeError(f"음성이 지금 계획과 맞지 않음 (ch{ci + 1:02d}) — bin/lp tts {ep.slug}" + (f" --short {ep.part[-1]}" if ep.part else ""))
         c = chapters[ci]
         out.append({"audio": c["audio"], "char_times": c["char_times"], "clip_end": c["clip_end"]})
     return out

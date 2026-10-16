@@ -6,3 +6,5 @@
 @font-face { font-family: 'Noto Sans TC'; src: url('../public/fonts/Noto_Sans_TC/NotoSansTC-Black.ttf') format('truetype'); font-weight: 900; }
 /* 손그림 재료용 손글씨 (清松手寫體, SIL OFL) */
 @font-face { font-family: 'Jason Handwriting'; src: url('../public/fonts/JasonHandwriting.ttf') format('truetype'); font-weight: 400 900; }
+/* 썸네일/타이틀용 특후체 (台北黑體, SIL OFL) */
+@font-face { font-family: 'Taipei Sans TC'; src: url('../public/fonts/TaipeiSansTC/TaipeiSansTCBeta-Bold.ttf') format('truetype'); font-weight: 700 900; }

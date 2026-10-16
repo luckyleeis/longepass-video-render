@@ -19,6 +19,7 @@ longepass.keys.json
 .env (저장소 루트, git에 올리지 않음 — 예시 .env.example). 같은 이름의 환경 변수가 있으면 그것이 앞선다.
   LP_WORKSPACE=/Volumes/…/longepass       작업 폴더 (NAS). config 의 workspace 보다 앞선다
   LP_TTS_URL=…  LP_TTS_VOICE=…            TTS 주소·목소리 (config 의 tts.url / tts.voice 보다 앞선다)
+  DATABASE_URL=postgresql://…             DB 글·업로드 대기열 (agent/db.py). 주소는 출력하지 않는다
 """
 import copy
 import json

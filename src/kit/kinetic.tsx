@@ -20,14 +20,18 @@ export const kineticSize = (lines: string[], max: number) => {
 export const KineticLines: React.FC<{
   lines: string[]; highlight?: string; strike?: string; kicker?: string;
   size: number; align: 'left' | 'center'; at: number[]; strikeAt?: number; ink: string; sub: string; surf: Surface;
-}> = ({ lines, highlight, strike, kicker, size: want, align, at, strikeAt, ink, sub, surf }) => {
+  /** 글자 칸이 무대 폭의 일부일 때 그 비율 (예: 왼쪽 절반 = 0.5). 정사각형·세로 무대에서만 이 폭에 맞춰 줄인다 (가로 16:9 결과는 그대로) */
+  box?: number;
+}> = ({ lines, highlight, strike, kicker, size: want, align, at, strikeAt, ink, sub, surf, box = 1 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = useMotionTheme();
   const L = useLayout();
   // 가장 긴 줄이 무대 폭을 넘지 않게 (좁은 세로 쇼츠 무대에서만 실제로 줄어든다)
   const longest = Math.max(1, ...lines.map((x) => x.length));
-  const size = Math.min(want, Math.floor((align === 'left' ? L.contentW : L.W * 0.9) / longest / 0.97));
+  const narrow = L.W / L.H < 1.5;   // 세로 쇼츠의 정사각형 무대 (1200x1200) 또는 세로 화면
+  const avail = align === 'left' ? (narrow && box < 1 ? L.W * box - L.padX * 1.5 : L.contentW) : L.W * 0.9 * (narrow ? box : 1);
+  const size = Math.min(want, Math.floor(avail / longest / 0.97));
   const first = at[0] ?? 0;
   return (
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: align === 'left' ? 'flex-start' : 'center', padding: align === 'left' ? `0 ${L.padX}px` : 0 }}>

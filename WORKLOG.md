@@ -3,6 +3,186 @@
 다른 세션의 에이전트가 이어받을 수 있게, 무엇을 왜 어떻게 했는지와 아직 확인하지 않은 것을 남긴다.
 새 작업을 하면 맨 위에 항목을 추가한다 (날짜, 무엇을, 어떻게, 확인한 것과 안 한 것, 남은 일).
 
+## 2026-10-15 — 유튜브 실전 썸네일 4대 콘셉트 시스템 구축, 자동 폰트 조절 엔진 및 실전 적용
+
+### 만든 것
+- 기존 썸네일의 문제점(단순 플랫 벡터, 감정/현장감 부재, 정보 과잉)을 해결하기 위해 실전 유튜브 클릭률(CTR) 중심의 4대 썸네일 시스템 구축:
+  1. `photo_hero`: 실사 배경 + 다크 비네팅 + 고대비 볼드 타이포 (다큐/취업/급여 현실형)
+  2. `vs_split`: 미세 사선(-4°) 실사 대비 + 수직수평 정렬 골드 VS 엠블럼 (선택/비교형)
+  3. `warning_dark`: 칠흑 다크 차콜 + 붉은 액자 속 실사 + 도발적 1줄 타이틀 (경고/주의형)
+  4. `evidence_doc`: 실제 정부 공문/규정 캡처 액자 + 검인 도장 + 공식 수치 (공문/법령/일정표형)
+- 코드 엔진 확장:
+  - `src/thumbnail/Thumbnail.tsx`: `calcAutoFontSize` 및 `whiteSpace: 'nowrap'` 전면 적용으로 글자 수에 따른 자동 크기 조절 및 억지 줄바꿈/넘침 방지. `Taipei Sans TC` 볼드 폰트 적용.
+  - `LandscapeEvidenceDoc` 상단 타이틀 폰트(최대 54px) 확대 및 메인 헤드라인(최대 122px) 스케일링, 정보 다이어트 최적화.
+  - `studio/thumbnail.py`, `agent/build.py`: asset id 및 상대 경로 자동 탐색 + Data URI 인코딩 지원.
+- 실전 영상 2편 썸네일 전면 교체 및 렌더링 완료:
+  1. `caregiver-salary-reality-taiwan`: `vs_split` (상단 정중앙 `[2026 長照] 照服員薪水現實面` 58px 대형 타이틀 바 추가, 月薪 3.8萬 VS 時薪 200元 기관/재가 실사 사진 대조) 렌더링 완료.
+  2. `2026-taiwan-skill-certification-exam-schedule`: `evidence_doc` (정보량 다이어트, 상단 `[官方日程] 2026 全國技能檢定` 54px 확대 + 중앙 `三梯次時程全公開` 122px + 노동부 공식 일정표 공문서 + 官方核定 검인 직인) 렌더링 완료.
+
+### 확인 및 결과
+- `bin/studio check`: 템플릿 34개 문제 0건.
+- TypeScript 타입 검사: 오류 0건.
+- 두 영상 작업 폴더 내 `render/thumbnail.jpg` 렌더링 확인 완료 (`bin/lp thumb` 정상 작동).
+
+---
+
+## 2026-10-14 (10) — 2026-taiwan-skill-certification-exam-schedule (DB 글 183)
+
+### 만든 것
+- 대상: `2026-taiwan-skill-certification-exam-schedule` (2026年全國技術士技能檢定年度考試時程總表：三梯次報名日期一次看懂, DB id: 183)
+- 작업 폴더: `/Volumes/Nini/longepass/exam_data_mirror/sns/longform/longepass/2026-taiwan-skill-certification-exam-schedule/`, DB 기록 `lp-f98c1655f53e` (running).
+- 롱폼: 5장 25샷 153.4초, BGM `Crazy Daze`, 효과음 88개.
+- 쇼츠 2편:
+  - `short_1`: 30.2초 (초상 간장 흰색 vs 커피색 봉투 차이점, 퀴즈·카드셋·콜아웃·앱화면).
+  - `short_2`: 27.4초 (성적 보류 3년 규정의 함정: 술과 3년 보류 vs 학과 취소·보류 불가).
+- 조사로 보탠 것 (notes.md 사실 카드):
+  - 勞動部 技能檢定 115年度 簡章 봉투 색상 구분: 全國檢定은 白色包裝 vs 即測即評은 咖啡色(牛皮紙)包裝 (각 NT$50).
+  - 104년 1월 1일부터 學科 성적 보류 폐지 규정 (術科만 3년 보류 신청 가능, 學科는 불합격 시 다음 회차 재응시).
+  - 115년 網路報名 無紙化 (서류 우편발송 불필요, 단 특정 보조금·면제자·단체는 통신접수 필수).
+  - 연중 상시 열리는 即測即評及發證 대안 트랙.
+  - 學科 4대 공통과목 및 90일 3단계 수험 전략.
+- 소재 5종 확보 (스톡 및 정부 사이트 캡처):
+  - `exam_hall` (pexels 동영상 10초)
+  - `schedule_sheet` (技能檢定中心 115年度 공식 웹사이트 중요일정표 캡처)
+  - `exam_desk` (pexels 고화질 수험생 공부 사진)
+  - `store_front` (pexels 편의점 결제 사진)
+  - `computer_lab` (pexels CBT 컴퓨터 시험실 사진)
+
+### 확인 및 결과
+- TTS: 롱폼 5챕터 133.9초, 쇼츠 1 24.5초, 쇼츠 2 22.9초 (warning 0건, 글자별 timestamp 100% 매칭).
+- Plan 검증: 롱폼 및 쇼츠 1, 2 모두 replaced 0, warning 0, variety 0, missing_assets 0.
+- 렌더링:
+  - 롱폼: `render/2026-taiwan-skill-certification-exam-schedule.mp4` (153.4s) · `thumbnail.jpg` · `.srt`
+  - 쇼츠 1: `render/short_1.mp4` (30.2s) · `short_1_thumbnail.jpg`
+  - 쇼츠 2: `render/short_2.mp4` (27.4s) · `short_2_thumbnail.jpg`
+- 프레임 점검:
+  - 롱폼 장 시작 및 주요 화면 (비디오 클립, screen_focus 캡처 확대, compare 비교 카드 등) 프레임 추출 검증 완료.
+  - 쇼츠 1, 2 세로 9:16 프레임 추출 검증 완료 (글자 잘림, 겹침 없음).
+- `bin/lp publish --dry-run`: youtube.json 설명란 챕터 5개, 素材來源 5건, 음악 출처 확인 완료.
+- `bin/studio check` 문제 0건, TypeScript 타입 검사 오류 0건.
+
+### 남은 일
+- 사용자 확인 대기 후 `bin/lp publish 2026-taiwan-skill-certification-exam-schedule` (업로드 대기열 등록).
+
+---
+
+## 2026-10-14 (9) — 첫 실제 영상: caregiver-salary-reality-taiwan (DB 글 190)
+
+### 만든 것
+- 작업 폴더: `/Volumes/Nini/.../sns/longform/longepass/caregiver-salary-reality-taiwan/`, DB 기록 `lp-fc4e21a75a74` (running).
+- 롱폼 5장 22샷 약 178초, 쇼츠 2편 (short_1 28초: 시급 하한 200 vs 최저임금 196, short_2 26초: 90시간 자격훈련).
+- 조사로 보탠 것 (notes.md 사실 카드):
+  - 2026 최저임금 (勞動部), 거택 照服員 임금 하한 (衛福部)
+  - 90시간 자격훈련 구성 (衛福部 111年 계획)
+  - 장기요양 인원 인정 6년 120점, 2026.7.1 새 규정 (衛福部 2026-03-17)
+- 글의 「면접 제안 2.6배」는 원출처를 못 찾아 뺐다.
+
+### 실제 서비스로 처음 확인한 것
+- **TTS 서버 실제 응답**: `timestamp: [{word, start_ms, end_ms}]`. 시각은 **밀리초**이고, `word`는 **간체 한 글자**(받아쓰기)다.
+  - `agent/tts.py` 수정:
+    - `start_ms/end_ms`를 읽는다 (`start/end` 초도 계속 받는다).
+    - 비교 전에 양쪽을 간체로 바꾼다. macOS CoreFoundation `CFStringTransform("Hant-Hans")`를 ctypes로 부른다 (표준 라이브러리만).
+  - 고친 뒤 일치율은 0.94~0.98이다.
+  - 받아쓰기가 동음이의로 틀리는 경우(照服員→赵福元, 時薪→实薪) 일치율이 0.88까지 내려간다. 음성은 맞게 읽었을 가능성이 크다.
+- 스톡 API(Pexels·Pixabay·Unsplash) 실제 검색·받기 됨.
+  - Pixabay 최근 사진 중 AI 생성으로 보이는 것(표시 없음)이 있어 직접 보고 뺐다.
+- 화면 캡처(맥 Google Chrome)로 勞動部·衛福部 페이지를 캡처했다. 한자 글꼴 정상.
+- DB `new --from-db` 실제 기록 생성.
+
+### 엔진 수정
+- `studio/catalog.py` validate_shot: 강조 구절 검사에 `quote`도 넣었다.
+  - 그전에는 quote_card의 highlight가 인용문 안에 있어도 「문구에 없어 제거」됐다.
+
+### 결과
+- 렌더링: `render/caregiver-salary-reality-taiwan.mp4`(177.9초) · `thumbnail.jpg`, `short_1.mp4`(28.1초) · `short_2.mp4`(26.0초)와 각 표지.
+- 프레임 확인: 장 시작, 사진 장면, 근거 캡처 확대, 쇼츠 6프레임.
+- `bin/lp publish --dry-run`: youtube.json(설명란 챕터 5개·素材來源 6줄)을 확인했다. DB는 되돌림 → 여전히 running.
+- **업로드 대기열에는 아직 넣지 않았다** (사용자 확인 대기).
+
+### 템플릿 수정: 세로(9:16)에서 글자가 그림에 가려짐
+- 원인: `KineticLines`가 글자 크기를 무대 전체 폭 기준으로 정한다. 그런데 `headline_object`(62%)·`globe`(50%)·`radar`(52%)는 글자가 무대 일부 칸에만 들어간다.
+  - 쇼츠의 1200×1200 무대에서는 6자 줄이 칸을 넘어 그림 밑으로 들어갔다.
+- `src/kit/kinetic.tsx`: `box`(글자 칸 폭 비율) 칸을 추가했다. **정사각형·세로 무대에서만** 그 폭에 맞춰 줄인다. 가로(16:9)는 계산이 같아 결과가 그대로다.
+- `headline_object`: 정사각형 무대에서는 그림을 위(78%), 글자를 아래 가운데로 놓는다.
+  - manifest 예시에 「90小時訓練／拿結業證明」(certificate)을 추가했다.
+- `globe`·`radar`는 `box={0.5}`·`box={0.52}`를 넘긴다.
+- 확인: check 0건, 타입 검사 0건, 갤러리 16:9·9:16 (headline_object 0·1, globe, radar).
+
+### 남은 문제
+- 9:16의 `globe`: 지구본 그림이 무대 왼쪽까지 커서 글자 끝과 조금 겹친다 (전부터 있던 문제, 글자는 이번에 작아져 덜 겹침).
+- 9:16의 `radar`: 오른쪽 축 이름(「工安」)이 무대 밖으로 잘린다 (전부터 있던 문제).
+- 쇼츠 길이가 26~28초로 CHANNEL 「보통 40~55초」보다 짧다. 핵심 하나라 그대로 뒀다 (사용자 판단 대기).
+- 롱폼 썸네일의 큰 숫자 38,100元은 구인 사례(C등급)다. 「평균 월급」으로 읽힐 수 있다.
+
+---
+
+## 2026-10-14 (8) — DB 글로 만들기, 조사로 보태기, 롱폼 + 쇼츠 세트, 업로드 대기열
+
+### 사용자가 정한 것
+- 영상은 **DB(certificate_tw) `articles`의 글로만** 만든다. `slug`가 작업 이름, 본문이 초안.
+- 글을 그대로 옮기지 않고 **같은 주제로 조사해서 더 풍부한 정보**를 준다.
+- DB 접속은 추천 방식: `uv run --with psycopg[binary]` (저장소 규칙의 표준 라이브러리 예외로 승인).
+- 에이전트로 만든 영상도 **기존 업로드 예약**(백엔드 `longform_videos` → publish.py → Postiz)에 넣는다.
+
+### 백엔드에서 확인한 것 (py-macmini-server)
+- 테이블은 `articles`(복수). 영상 대상은 `confirm AND NOT discarded`.
+  - 자동 선택은 `longform_videos`에 기록이 없는 slug만, 최근 수정 순, `https://longepass.com/topics/<slug>`가 200인 것.
+- 업로드는 **세트**(롱폼 1 + 쇼츠 1~2) 단위다.
+  - `status=ready` 기록의 `{out_dir}/youtube.json`을 읽어 예약한다 (롱폼 먼저, 쇼츠는 다음 날부터 하루 하나).
+  - youtube.json 경로는 절대 경로 `/Volumes/Nini/...`이고, 백엔드도 같은 경로로 NAS를 본다.
+
+### 한 일
+- `agent/db.py` + `agent/pg_run.py`
+  - pg_run만 psycopg를 쓰고 uv가 띄운다. 한 트랜잭션, `commit=false`면 되돌림 (쓰기 시험용).
+  - 접속은 `.env`의 `DATABASE_URL`.
+- `bin/lp articles`: 아직 기록이 없는 확정 글 (사이트에 열리는 것만, `--all`이면 다).
+- `bin/lp new <slug> --from-db`
+  - draft.md(요약·본문·FAQ·절차·source_urls)와 article.json을 쓴다.
+  - `longform_videos`에 `lp-…` running 기록을 남긴다. 백엔드 자동 선택이 이 글을 건너뛴다.
+  - 이미 running/ready/scheduled/published 기록이 있으면 거부한다.
+  - 백엔드가 실패하고 남긴 파일은 `_old/<시각>/`으로 옮긴다.
+- **쇼츠 = 같은 작업 폴더의 part** (`--short N`, plan·tts·job·preview·render·thumb)
+  - `raw_plan_short_N.json` · `plan_short_N.json` · `job_short_N.json`
+  - `voice/short_N/` (TTS path `longepass/shortform/<slug>/short_N/chNN`)
+  - `render/short_N.mp4` · `render/short_N_thumbnail.jpg` · `render/short_N/preview/`
+  - raw_plan의 `angle`을 plan에 남긴다.
+- `bin/lp publish <slug> [--dry-run]` (`agent/publish.py`)
+  - 롱폼, 썸네일, 쇼츠 1~2(60초 이하, 표지)를 확인한다.
+  - youtube.json·result.json을 백엔드 pipeline.py와 같은 모양으로 쓴다. 설명란 = 설명 + 챕터 + 해시태그 + 素材來源 + 음악.
+  - 그다음 `longform_videos` → ready (out_dir·video_path·thumbnail_path·duration_sec·report{made_by: agent}·shorts).
+- `bin/lp release <slug>`: 그만둘 때 내 running 기록을 지운다.
+- CHANNEL.md: 「기본 데이터와 조사」, 「브랜드 표기」(容易通/LONGEPASS, #LONGEPASS 먼저, NT$), 「쇼츠 (업로드 세트)」, 납품·대기열. 롱폼 길이 기준은 보통 3~5분.
+- SKILL.md: 요청별 범위를 정했다.
+  - "새 영상 만들어줘" → articles 맨 위 → 조사 → 롱폼 + 쇼츠 → 렌더링 → 보고.
+  - publish는 사용자가 요청할 때만.
+- notes.md 틀: 사실 카드를 「글에 있던 것」과 「조사로 보탠 것」으로 나누고, 쇼츠 각도 칸을 추가했다.
+
+### 확인한 것
+- `bin/lp where`(database 표시, 주소는 숨김), `bin/lp articles`(52개 중 상위, live 확인).
+- DB 쓰기: INSERT·UPDATE(jsonb)를 되돌림으로 시험했고, 끝나고 남은 기록이 없다.
+- `set_ready`가 없는 기록이면 오류를 낸다.
+- `new_from_db`(되돌림 기록으로): draft.md·article.json·status.db를 쓰고, 남은 파일을 _old로 옮긴다. 기록이 있는 글은 거부한다.
+- 임시 작업 폴더에서 롱폼 + 쇼츠 1을 실제로 렌더링했다 (무음, 1080×1920). 썸네일·쇼츠 표지·쇼츠 프리뷰도 만들었다.
+- `publish.build` → youtube.json 모양 확인. DB 글이 아닌 작업은 publish 거부.
+- `bin/studio check` 0건.
+
+### 확인하지 않은 것
+- 실제 publish (DB에 ready를 쓰고 백엔드 예약이 가져가는지). 첫 실제 영상 때 `--dry-run` 뒤 사용자 확인을 받고 한다.
+- 실제 TTS로 쇼츠 part 음성 (path에 `short_N/`이 들어가도 서버가 받는지).
+- 실제 글 하나를 처음부터 끝까지 (조사 품질, 길이 3~5분이 맞는지).
+
+---
+
+## 2026-10-14 (7) — 이 맥의 로컬 설정 (git 제외 파일)
+
+- 사용자가 정한 작업 폴더: `/Volumes/Nini/longepass/exam_data_mirror/sns/longform/longepass` (에피소드마다 하위 폴더).
+  - `sns/longform/`은 이름과 달리 **이 저장소(video-studio)로 만든 영상** 폴더다. 롱폼·숏폼(`--short`) 모두 여기에 둔다.
+  - `sns/shortform/`은 다른 스타일의 숏폼(daily_question 등)을 만드는 별도 흐름의 폴더다. 여기에 쓰지 않는다.
+  - 같은 폴더에 백엔드 방식 결과 폴더(`<slug>/voice/`)가 이미 있다. `bin/lp`는 `status.json`이 있는 폴더만 에피소드로 본다. 같은 slug를 쓰면 그 폴더 안에 만들어지니 겹치지 않게 짓는다.
+- `.env`(LP_WORKSPACE), `longepass.config.json`(예시 그대로), `longepass.keys.json`(다큐 그곳과 같은 스톡 키)을 만들었다.
+- 확인: `bin/lp where` → `workspace_ok: true`, TTS 주소, 키 3곳(pexels·pixabay·unsplash).
+- 아직: 실제 TTS 호출, 실제 스톡 API 호출, 실제 초안으로 끝까지 만들기.
+
 ---
 
 ## 2026-10-14 (6) — 템플릿 확인용 웹서버

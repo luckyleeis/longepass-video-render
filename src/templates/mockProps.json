@@ -3211,7 +3211,7 @@
     "name": "큰 글자 + 사물 그림",
     "category": "emphasis",
     "use_when": "A key message paired with a concrete object (certificate, cash, document, calendar with a number, ID card, bankbook).",
-    "total_frames": 484,
+    "total_frames": 749,
     "fps": 30,
     "width": 1920,
     "height": 1080,
@@ -3219,7 +3219,7 @@
       "width": 1920,
       "height": 1080,
       "fps": 30,
-      "total_frames": 484,
+      "total_frames": 749,
       "bpm": 117.5,
       "beat_frames": [
         0,
@@ -3253,7 +3253,24 @@
         429,
         444,
         460,
-        475
+        475,
+        490,
+        506,
+        521,
+        536,
+        551,
+        567,
+        582,
+        597,
+        613,
+        628,
+        643,
+        659,
+        674,
+        689,
+        705,
+        720,
+        735
       ],
       "theme": {
         "font": "'Noto Sans TC', sans-serif",
@@ -3383,6 +3400,34 @@
                   92
                 ],
                 "object": 153
+              }
+            }
+          ]
+        },
+        {
+          "id": "headline_object_1",
+          "label": "headline_object",
+          "bg": "base",
+          "start": 484,
+          "duration": 265,
+          "layers": [
+            {
+              "module": "headline_object",
+              "data": {
+                "lines": [
+                  "90小時訓練",
+                  "拿結業證明"
+                ],
+                "highlight": "90小時訓練",
+                "object": "certificate",
+                "object_label": "結業證明"
+              },
+              "ev": {
+                "lines": [
+                  15,
+                  198
+                ],
+                "object": 144
               }
             }
           ]
